@@ -46,6 +46,10 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Build exact clean native package
         run: python tools/package.py --rid ${{ matrix.rid }} --commit ${{ github.sha }} --work artifacts/build --out artifacts/delivery
+      - name: Expression-only dependency notice regressions
+        run: python tools/test_notices.py --out artifacts/notices-tests
+      - name: Canonical pinned-key and attacker-signature regressions
+        run: python tools/test_verifier.py --out artifacts/verifier-tests
       - name: Current advisory data for locked dependencies
         run: python tools/audit_dependencies.py --out artifacts/dependency-advisories.json
       - name: Extract and execute the actual package
@@ -82,6 +86,8 @@ jobs:
             artifacts/unit.xml
             artifacts/package-checks.json
             artifacts/dependency-advisories.json
+            artifacts/notices-tests/receipt.json
+            artifacts/verifier-tests/receipt.json
             artifacts/build/archive.json
             artifacts/integration/receipt.json
           if-no-files-found: error

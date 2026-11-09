@@ -95,10 +95,14 @@ Install the pinned SDK in an existing development environment. From this checkou
 ```sh
 dotnet restore tests/Ownership.Tests/Ownership.Tests.csproj --locked-mode
 dotnet run --project tests/Ownership.Tests/Ownership.Tests.csproj -c Release --no-restore -- -noLogo
+python tools/test_notices.py --out artifacts/notices-tests
+python tools/test_verifier.py --out artifacts/verifier-tests
 dotnet restore src/Ownership.Cli/Ownership.Cli.csproj --locked-mode
 dotnet build src/Ownership.Cli/Ownership.Cli.csproj -c Release --no-restore
 ```
 
-The full Linux/Windows demo can also use a built DLL with `--cli <absolute-ownership.dll> --dotnet <absolute-dotnet>`. Release packaging requires a clean exact commit and preserves third-party notices, a shipped-dependency SBOM, manifest and separate external-service lock references. Windows CI checks native code/package execution; Linux CI additionally runs real local service faults. Actual Windows-to-WSL full-demo evidence is a separate check, not inferred from Windows unit CI.
+The verifier regression creates only a disposable attacker key for negative cases; keep that private work directory out of uploads. It also verifies an actual tiny synthetic fixture signed by the established maintainer key, including normal, -O and PYTHONOPTIMIZE modes. No private maintainer key is needed to run tests.
+
+The full Linux/Windows demo can also use a built DLL with `--cli <absolute-ownership.dll> --dotnet <absolute-dotnet>`. Release packaging requires a clean exact commit and preserves full per-component license texts/copyrights, a shipped-dependency SBOM, manifest and separate external-service lock references. Missing or altered notice text stops packaging. Windows CI checks native code/package execution; Linux CI additionally runs real local service faults. Actual Windows-to-WSL full-demo evidence is a separate check, not inferred from Windows unit CI.
 
 Original code: MIT. Third-party software and separately downloaded fixtures retain their own licenses; see [NOTICE.md](NOTICE.md). No private/shared project code or data is included.

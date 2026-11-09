@@ -15,6 +15,9 @@ def linux_path(path):
 def atomic(path,data):
     temp=path.with_suffix('.partial');temp.write_text(json.dumps(data)+'\n',encoding='utf-8');os.replace(temp,path)
 
+def require(condition,message='Validation failed'):
+    if not condition:raise ValueError(message)
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--fixtures',type=Path,required=True);parser.add_argument('--out',type=Path,required=True);parser.add_argument('--cli',type=Path,required=True);parser.add_argument('--dotnet',type=Path);a=parser.parse_args()
     out=a.out.resolve();out.mkdir(parents=True,exist_ok=False);hostdir=out/'host'
@@ -55,20 +58,20 @@ def main():
         raise TimeoutError('Competing acquisition never completed')
     def apply(owner,name,delta,status):
         result=call('apply',configuration['run'],*identity(owner),name,delta,allowed=(0,4))
-        assert result['status']==status,(status,result)
+        require(result['status']==status, (status,result))
         if status=='APPLIED':expected[name]=delta
         return result
     def oracle(owner):
         observed=control('oracle');state=observed['state'];effects=observed['effects']
         actual={e['operation_id']:int(e['delta']) for e in effects}
-        assert len(actual)==len(effects) and actual==expected,(actual,expected)
-        assert int(state['total'])==sum(actual.values())==sum(expected.values())
-        assert int(state['fence'])==int(owner['fence']) and state['owner']==owner['owner']
-        assert state['cluster_id']==owner['clusterId'] and state['run_id']==configuration['run']
+        require(len(actual)==len(effects) and actual==expected, (actual,expected))
+        require(int(state['total'])==sum(actual.values())==sum(expected.values()), 'Validation failed: integration.py:65')
+        require(int(state['fence'])==int(owner['fence']) and state['owner']==owner['owner'], 'Validation failed: integration.py:66')
+        require(state['cluster_id']==owner['clusterId'] and state['run_id']==configuration['run'], 'Validation failed: integration.py:67')
         for effect in effects:
             digest=hashlib.sha256(('effect-v1\nsynthetic-shard\n'+effect['operation_id']+'\n'+str(effect['delta'])+'\n').encode()).hexdigest()
-            assert effect['request_hash']==digest
-            receipt=json.loads(effect['receipt']);assert receipt['operationId']==effect['operation_id'] and int(receipt['delta'])==effect['delta']
+            require(effect['request_hash']==digest, 'Validation failed: integration.py:70')
+            receipt=json.loads(effect['receipt']);require(receipt['operationId']==effect['operation_id'] and int(receipt['delta'])==effect['delta'], 'Validation failed: integration.py:71')
         history.append({'independentSqlOracle':{'fence':state['fence'],'owner':state['owner'],'total':state['total'],'uniqueEffects':len(effects)}})
     def paused(action,owner,stage,name=None,delta=None):
         folder=out/('pause-'+str(len(own_children)));folder.mkdir();args=[action,configuration['run'],*identity(owner)]
@@ -82,53 +85,53 @@ def main():
     try:
         wait_file(hostdir/'ready.json');configuration=json.loads((hostdir/'connection.private.json').read_text())
         version=call('--version');run=configuration['run'];endpoint=configuration['endpoints'][0]
-        assert call('init',run)['status']=='INITIALIZED_FRESH'
-        owner_a=acquire('worker-a',10);assert call('renew',endpoint,*identity(owner_a))['status']=='RENEWED'
-        denied=call('acquire',endpoint,'competing-worker',3,allowed=(3,));assert denied['status']=='ACQUISITION_DENIED'
-        assert call('activate',run,*identity(owner_a))['status']=='ACTIVATED';mark('real-acquisition-renewal-and-competition')
-        original=apply(owner_a,'original',17,'APPLIED')['receipt'];assert apply(owner_a,'original',17,'REPLAYED')['receipt']==original
+        require(call('init',run)['status']=='INITIALIZED_FRESH', 'Validation failed: integration.py:85')
+        owner_a=acquire('worker-a',10);require(call('renew',endpoint,*identity(owner_a))['status']=='RENEWED', 'Validation failed: integration.py:86')
+        denied=call('acquire',endpoint,'competing-worker',3,allowed=(3,));require(denied['status']=='ACQUISITION_DENIED', 'Validation failed: integration.py:87')
+        require(call('activate',run,*identity(owner_a))['status']=='ACTIVATED', 'Validation failed: integration.py:88');mark('real-acquisition-renewal-and-competition')
+        original=apply(owner_a,'original',17,'APPLIED')['receipt'];require(apply(owner_a,'original',17,'REPLAYED')['receipt']==original, 'Validation failed: integration.py:89')
         apply(owner_a,'original',18,'IDENTITY_CONFLICT');oracle(owner_a);mark('same-identity-replay-and-conflict')
         old,folder=paused('apply',owner_a,'BeforeLock','delayed-old',101)
-        owner_b=acquire('worker-b');assert int(owner_b['fence'])>int(owner_a['fence'])
-        assert call('activate',run,*identity(owner_b))['status']=='ACTIVATED'
+        owner_b=acquire('worker-b');require(int(owner_b['fence'])>int(owner_a['fence']), 'Validation failed: integration.py:92')
+        require(call('activate',run,*identity(owner_b))['status']=='ACTIVATED', 'Validation failed: integration.py:93')
         (folder/'continue').write_text('continue');stdout,_=old.communicate(timeout=20)
-        assert old.returncode==0 and json.loads(stdout)['status']=='STALE_FENCE'
+        require(old.returncode==0 and json.loads(stdout)['status']=='STALE_FENCE', 'Validation failed: integration.py:95')
         apply(owner_a,'late-old',103,'STALE_FENCE');oracle(owner_b);mark('paused-inflight-application-rejected-after-cutover')
-        assert apply(owner_b,'original',17,'REPLAYED')['receipt']==original;oracle(owner_b);mark('idempotency-survives-new-generation')
+        require(apply(owner_b,'original',17,'REPLAYED')['receipt']==original, 'Validation failed: integration.py:97');oracle(owner_b);mark('idempotency-survives-new-generation')
         def concurrent_apply(_):return call('apply',run,*identity(owner_b),'concurrent',23)['status']
         with concurrent.futures.ThreadPoolExecutor(max_workers=4) as executor:statuses=list(executor.map(concurrent_apply,range(4)))
-        assert statuses.count('APPLIED')==1 and statuses.count('REPLAYED')==3;expected['concurrent']=23
+        require(statuses.count('APPLIED')==1 and statuses.count('REPLAYED')==3, 'Validation failed: integration.py:100');expected['concurrent']=23
         oracle(owner_b);mark('concurrent-same-identity-single-effect')
         owner_c=acquire('worker-c');process,_=paused('activate',owner_c,'BeforeCommit');oracle(owner_b)
-        kill(process);oracle(owner_b);assert call('activate',run,*identity(owner_c))['status']=='ACTIVATED';oracle(owner_c);mark('activation-crash-before-commit')
+        kill(process);oracle(owner_b);require(call('activate',run,*identity(owner_c))['status']=='ACTIVATED', 'Validation failed: integration.py:103');oracle(owner_c);mark('activation-crash-before-commit')
         owner_d=acquire('worker-d');process,_=paused('activate',owner_d,'AfterCommit');oracle(owner_d)
         apply(owner_c,'after-cutover',107,'STALE_FENCE');kill(process)
-        assert call('activate',run,*identity(owner_d))['status']=='ACTIVATED';oracle(owner_d);mark('activation-commit-before-ack')
+        require(call('activate',run,*identity(owner_d))['status']=='ACTIVATED', 'Validation failed: integration.py:106');oracle(owner_d);mark('activation-commit-before-ack')
         process,_=paused('apply',owner_d,'BeforeCommit','before-commit',31);oracle(owner_d);kill(process)
-        assert call('lookup',run,'before-commit',31) is None
+        require(call('lookup',run,'before-commit',31) is None, 'Validation failed: integration.py:108')
         apply(owner_d,'before-commit',31,'APPLIED');oracle(owner_d);mark('effect-crash-before-commit-resolved-by-same-identity')
         process,_=paused('apply',owner_d,'AfterCommit','after-commit',41);expected['after-commit']=41;oracle(owner_d);kill(process)
-        stored=call('lookup',run,'after-commit',41);assert stored is not None
-        assert apply(owner_d,'after-commit',41,'REPLAYED')['receipt']==stored;oracle(owner_d);mark('effect-commit-before-ack-unknown-resolved')
+        stored=call('lookup',run,'after-commit',41);require(stored is not None, 'Validation failed: integration.py:111')
+        require(apply(owner_d,'after-commit',41,'REPLAYED')['receipt']==stored, 'Validation failed: integration.py:112');oracle(owner_d);mark('effect-commit-before-ack-unknown-resolved')
         wrong=dict(owner_d);wrong['clusterId']='1' if owner_d['clusterId']!='1' else '2'
-        assert call('activate',run,*identity(wrong))['status']=='LINEAGE_MISMATCH'
-        assert call('activate','wrong-run',*identity(owner_d))['status']=='LINEAGE_MISMATCH'
-        assert call('apply',run,*identity(owner_d),'invalid-delta',0,allowed=(2,))['status']=='ERROR';oracle(owner_d);mark('lineage-and-domain-rejections-have-no-effects')
+        require(call('activate',run,*identity(wrong))['status']=='LINEAGE_MISMATCH', 'Validation failed: integration.py:114')
+        require(call('activate','wrong-run',*identity(owner_d))['status']=='LINEAGE_MISMATCH', 'Validation failed: integration.py:115')
+        require(call('apply',run,*identity(owner_d),'invalid-delta',0,allowed=(2,))['status']=='ERROR', 'Validation failed: integration.py:116');oracle(owner_d);mark('lineage-and-domain-rejections-have-no-effects')
         control('restart-sink');oracle(owner_d);apply(owner_a,'old-after-restart',109,'STALE_FENCE')
-        assert apply(owner_d,'after-commit',41,'REPLAYED')['receipt']==stored;oracle(owner_d);mark('ordinary-sink-restart-retains-fence-and-dedup')
-        control('stop-sink');assert call('apply',run,*identity(owner_d),'unavailable',53,allowed=(4,))['status']=='UNKNOWN'
-        control('start-sink');assert call('lookup',run,'unavailable',53) is None
+        require(apply(owner_d,'after-commit',41,'REPLAYED')['receipt']==stored, 'Validation failed: integration.py:118');oracle(owner_d);mark('ordinary-sink-restart-retains-fence-and-dedup')
+        control('stop-sink');require(call('apply',run,*identity(owner_d),'unavailable',53,allowed=(4,))['status']=='UNKNOWN', 'Validation failed: integration.py:119')
+        control('start-sink');require(call('lookup',run,'unavailable',53) is None, 'Validation failed: integration.py:120')
         apply(owner_d,'unavailable',53,'APPLIED');oracle(owner_d);mark('unavailable-sink-outcome-resolved-without-new-identity')
-        control('stop-quorum');failed=call('acquire',endpoint,'no-quorum',3,allowed=(2,));assert failed['status']=='ERROR'
+        control('stop-quorum');failed=call('acquire',endpoint,'no-quorum',3,allowed=(2,));require(failed['status']=='ERROR', 'Validation failed: integration.py:122')
         oracle(owner_d);control('start-quorum');mark('real-two-of-three-quorum-loss-denies-new-acquisition')
-        owner_e=acquire('worker-e');assert owner_e['clusterId']==owner_d['clusterId']
-        assert call('activate',run,*identity(owner_e))['status']=='ACTIVATED'
-        apply(owner_d,'late-after-quorum',113,'STALE_FENCE');assert apply(owner_e,'original',17,'REPLAYED')['receipt']==original
+        owner_e=acquire('worker-e');require(owner_e['clusterId']==owner_d['clusterId'], 'Validation failed: integration.py:124')
+        require(call('activate',run,*identity(owner_e))['status']=='ACTIVATED', 'Validation failed: integration.py:125')
+        apply(owner_d,'late-after-quorum',113,'STALE_FENCE');require(apply(owner_e,'original',17,'REPLAYED')['receipt']==original, 'Validation failed: integration.py:126')
         oracle(owner_e);mark('recovered-quorum-preserves-lineage-and-forward-only-cutover')
         telemetry=subprocess.run(cli+list(map(str,['apply',run,*identity(owner_e),'original',17])),env=env({'OWNERSHIP_LAB_TELEMETRY':'1'}),capture_output=True,text=True,timeout=25)
-        assert telemetry.returncode==0 and json.loads(telemetry.stdout)['status']=='REPLAYED'
-        trace=json.loads(telemetry.stderr);assert trace['signal']=='trace' and trace['operation']=='ownership.apply' and trace['status']=='Ok'
-        assert 'Password' not in telemetry.stderr and configuration['connection'].split('Password=')[1].split(';')[0] not in telemetry.stderr
+        require(telemetry.returncode==0 and json.loads(telemetry.stdout)['status']=='REPLAYED', 'Validation failed: integration.py:129')
+        trace=json.loads(telemetry.stderr);require(trace['signal']=='trace' and trace['operation']=='ownership.apply' and trace['status']=='Ok', 'Validation failed: integration.py:130')
+        require('Password' not in telemetry.stderr and configuration['connection'].split('Password=')[1].split(';')[0] not in telemetry.stderr, 'Validation failed: integration.py:131')
         oracle(owner_e);mark('stable-otel-trace-redacted-and-business-result-preserved')
         receipt={'schema':1,'status':'PASS','clientOs':platform.system(),'clientArchitecture':platform.machine(),'version':version,'cases':checks,'caseCount':len(checks),'independentSqlOracle':True,'effectCount':len(expected),'total':sum(expected.values()),'durationSeconds':round(time.monotonic()-started,3),'history':history,'limits':['Single physical host; local synthetic fixtures only','BeforeLock is an application pause, not packet-delay measurement','Graceful sink restart; arbitrary storage restore/rollback unsupported','No production HA, exactly-once network delivery, orders or latency claim']}
         atomic(out/'receipt.json',receipt);print(json.dumps({k:receipt[k] for k in ['status','clientOs','caseCount','effectCount','total','durationSeconds']}))

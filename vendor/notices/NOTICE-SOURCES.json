@@ -1,0 +1,320 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "name": "Npgsql-10.0.3-LICENSE.txt",
+      "url": "https://github.com/npgsql/npgsql/blob/v10.0.3/LICENSE",
+      "sha256": "2e1d9cc6ed4eb7fe6fa82091846c06b4f58571a2c3b54777db6baeca10dd2d74"
+    },
+    {
+      "name": "dotnet-10.0.0-LICENSE.txt",
+      "url": "https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/LICENSE.TXT",
+      "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310"
+    }
+  ],
+  "components": [
+    {
+      "id": "Microsoft.Extensions.Configuration.Abstractions",
+      "version": "10.0.0",
+      "license": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "d2kDKnCsJvY7mBVhcjPSp9BkJk48DsaHPg5u+Oy4f8XaOqnEedRy/USyvnpHL92wpJ6DrTPy7htppUUzskbCXQ==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/dotnet/dotnet",
+        "commit": "b0f34d51fccc69fd334253924abd8d6853fad7aa"
+      },
+      "licenseSource": {
+        "kind": "vendor",
+        "file": "dotnet-10.0.0-LICENSE.txt",
+        "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+        "url": "https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/LICENSE.TXT"
+      }
+    },
+    {
+      "id": "Microsoft.Extensions.Configuration.Binder",
+      "version": "10.0.0",
+      "license": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "tMF9wNh+hlyYDWB8mrFCQHQmWHlRosol1b/N2Jrefy1bFLnuTlgSYmPyHNmz8xVQgs7DpXytBRWxGhG+mSTp0g==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/dotnet/dotnet",
+        "commit": "b0f34d51fccc69fd334253924abd8d6853fad7aa"
+      },
+      "licenseSource": {
+        "kind": "vendor",
+        "file": "dotnet-10.0.0-LICENSE.txt",
+        "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+        "url": "https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/LICENSE.TXT"
+      }
+    },
+    {
+      "id": "Microsoft.Extensions.Configuration.EnvironmentVariables",
+      "version": "10.0.0",
+      "license": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "TmFegsI/uCdwMBD4yKpmO+OkjVNHQL49Dh/ep83NI5rPUEoBK9OdsJo1zURc1A2FuS/R/Pos3wsTjlyLnguBLA==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/dotnet/dotnet",
+        "commit": "b0f34d51fccc69fd334253924abd8d6853fad7aa"
+      },
+      "licenseSource": {
+        "kind": "vendor",
+        "file": "dotnet-10.0.0-LICENSE.txt",
+        "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+        "url": "https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/LICENSE.TXT"
+      }
+    },
+    {
+      "id": "Microsoft.Extensions.Configuration",
+      "version": "10.0.0",
+      "license": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "H4SWETCh/cC5L1WtWchHR6LntGk3rDTTznZMssr4cL8IbDmMWBxY+MOGDc/ASnqNolLKPIWHWeuC1ddiL/iNPw==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/dotnet/dotnet",
+        "commit": "b0f34d51fccc69fd334253924abd8d6853fad7aa"
+      },
+      "licenseSource": {
+        "kind": "vendor",
+        "file": "dotnet-10.0.0-LICENSE.txt",
+        "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+        "url": "https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/LICENSE.TXT"
+      }
+    },
+    {
+      "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+      "version": "10.0.0",
+      "license": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "L3AdmZ1WOK4XXT5YFPEwyt0ep6l8lGIPs7F5OOBZc77Zqeo01Of7XXICy47628sdVl0v/owxYJTe86DTgFwKCA==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/dotnet/dotnet",
+        "commit": "b0f34d51fccc69fd334253924abd8d6853fad7aa"
+      },
+      "licenseSource": {
+        "kind": "vendor",
+        "file": "dotnet-10.0.0-LICENSE.txt",
+        "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+        "url": "https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/LICENSE.TXT"
+      }
+    },
+    {
+      "id": "Microsoft.Extensions.DependencyInjection",
+      "version": "10.0.0",
+      "license": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "f0RBabswJq+gRu5a+hWIobrLWiUYPKMhCD9WO3sYBAdSy3FFH14LMvLVFZc2kPSCimBLxSuitUhsd6tb0TAY6A==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/dotnet/dotnet",
+        "commit": "b0f34d51fccc69fd334253924abd8d6853fad7aa"
+      },
+      "licenseSource": {
+        "kind": "vendor",
+        "file": "dotnet-10.0.0-LICENSE.txt",
+        "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+        "url": "https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/LICENSE.TXT"
+      }
+    },
+    {
+      "id": "Microsoft.Extensions.Diagnostics.Abstractions",
+      "version": "10.0.0",
+      "license": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "SfK89ytD61S7DgzorFljSkUeluC1ncn6dtZgwc0ot39f/BEYWBl5jpgvodxduoYAs1d9HG8faCDRZxE95UMo2A==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/dotnet/dotnet",
+        "commit": "b0f34d51fccc69fd334253924abd8d6853fad7aa"
+      },
+      "licenseSource": {
+        "kind": "vendor",
+        "file": "dotnet-10.0.0-LICENSE.txt",
+        "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+        "url": "https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/LICENSE.TXT"
+      }
+    },
+    {
+      "id": "Microsoft.Extensions.Logging.Abstractions",
+      "version": "10.0.0",
+      "license": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "FU/IfjDfwaMuKr414SSQNTIti/69bHEMb+QKrskRb26oVqpx3lNFXMjs/RC9ZUuhBhcwDM2BwOgoMw+PZ+beqQ==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/dotnet/dotnet",
+        "commit": "b0f34d51fccc69fd334253924abd8d6853fad7aa"
+      },
+      "licenseSource": {
+        "kind": "vendor",
+        "file": "dotnet-10.0.0-LICENSE.txt",
+        "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+        "url": "https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/LICENSE.TXT"
+      }
+    },
+    {
+      "id": "Microsoft.Extensions.Logging.Configuration",
+      "version": "10.0.0",
+      "license": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "j8zcwhS6bYB6FEfaY3nYSgHdpiL2T+/V3xjpHtslVAegyI1JUbB9yAt/BFdvZdsNbY0Udm4xFtvfT/hUwcOOOg==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/dotnet/dotnet",
+        "commit": "b0f34d51fccc69fd334253924abd8d6853fad7aa"
+      },
+      "licenseSource": {
+        "kind": "vendor",
+        "file": "dotnet-10.0.0-LICENSE.txt",
+        "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+        "url": "https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/LICENSE.TXT"
+      }
+    },
+    {
+      "id": "Microsoft.Extensions.Logging",
+      "version": "10.0.0",
+      "license": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "BStFkd5CcnEtarlcgYDBcFzGYCuuNMzPs02wN3WBsOFoYIEmYoUdAiU+au6opzoqfTYJsMTW00AeqDdnXH2CvA==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/dotnet/dotnet",
+        "commit": "b0f34d51fccc69fd334253924abd8d6853fad7aa"
+      },
+      "licenseSource": {
+        "kind": "vendor",
+        "file": "dotnet-10.0.0-LICENSE.txt",
+        "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+        "url": "https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/LICENSE.TXT"
+      }
+    },
+    {
+      "id": "Microsoft.Extensions.Options.ConfigurationExtensions",
+      "version": "10.0.0",
+      "license": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "tL9cSl3maS5FPzp/3MtlZI21ExWhni0nnUCF8HY4npTsINw45n9SNDbkKXBMtFyUFGSsQep25fHIDN4f/Vp3AQ==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/dotnet/dotnet",
+        "commit": "b0f34d51fccc69fd334253924abd8d6853fad7aa"
+      },
+      "licenseSource": {
+        "kind": "vendor",
+        "file": "dotnet-10.0.0-LICENSE.txt",
+        "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+        "url": "https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/LICENSE.TXT"
+      }
+    },
+    {
+      "id": "Microsoft.Extensions.Options",
+      "version": "10.0.0",
+      "license": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "8oCAgXOow5XDrY9HaXX1QmH3ORsyZO/ANVHBlhLyCeWTH5Sg4UuqZeOTWJi6484M+LqSx0RqQXDJtdYy2BNiLQ==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/dotnet/dotnet",
+        "commit": "b0f34d51fccc69fd334253924abd8d6853fad7aa"
+      },
+      "licenseSource": {
+        "kind": "vendor",
+        "file": "dotnet-10.0.0-LICENSE.txt",
+        "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+        "url": "https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/LICENSE.TXT"
+      }
+    },
+    {
+      "id": "Microsoft.Extensions.Primitives",
+      "version": "10.0.0",
+      "license": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "inRnbpCS0nwO/RuoZIAqxQUuyjaknOOnCEZB55KSMMjRhl0RQDttSmLSGsUJN3RQ3ocf5NDLFd2mOQViHqMK5w==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/dotnet/dotnet",
+        "commit": "b0f34d51fccc69fd334253924abd8d6853fad7aa"
+      },
+      "licenseSource": {
+        "kind": "vendor",
+        "file": "dotnet-10.0.0-LICENSE.txt",
+        "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+        "url": "https://github.com/dotnet/dotnet/blob/b0f34d51fccc69fd334253924abd8d6853fad7aa/src/runtime/LICENSE.TXT"
+      }
+    },
+    {
+      "id": "Npgsql",
+      "version": "10.0.3",
+      "license": "PostgreSQL",
+      "copyright": "Copyright 2025 \u00a9 The Npgsql Development Team",
+      "nugetContentHash": "7nb5YzXuvWWJxB0J8DiyL3we+X4FOctZrt0fIBnucOIaIevFEEwGQVZKtiu9olXdlNAK1eNgqSral6r/jlhI4w==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/npgsql/npgsql",
+        "commit": "d3768398c17877b3a916c3c4d87e8e11698991fc"
+      },
+      "licenseSource": {
+        "kind": "vendor",
+        "file": "Npgsql-10.0.3-LICENSE.txt",
+        "sha256": "2e1d9cc6ed4eb7fe6fa82091846c06b4f58571a2c3b54777db6baeca10dd2d74",
+        "url": "https://github.com/npgsql/npgsql/blob/v10.0.3/LICENSE"
+      }
+    },
+    {
+      "id": "OpenTelemetry.Api.ProviderBuilderExtensions",
+      "version": "1.20.1",
+      "license": "Apache-2.0",
+      "copyright": "Copyright The OpenTelemetry Authors",
+      "nugetContentHash": "eDzDY/jTBqRytkYECmVKF7ZP5sKmCIqv1SSnA5BSWltIIvc3931TOMRyCW1qCGNIgmtldtJhISnsmFNxOCfauQ==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/open-telemetry/opentelemetry-dotnet",
+        "commit": "0bfd4c350f670dbc819b39bd57fac4c3ad5ba238"
+      },
+      "licenseSource": {
+        "kind": "package",
+        "file": "LICENSE.TXT",
+        "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6"
+      }
+    },
+    {
+      "id": "OpenTelemetry.Api",
+      "version": "1.20.1",
+      "license": "Apache-2.0",
+      "copyright": "Copyright The OpenTelemetry Authors",
+      "nugetContentHash": "QO9hlwadOdJGR4vDpJyDnl9B62v7epIBSTIHUA4C+bCtrRaB4TWmYSnu3QVOIe7caH8dt7NaHRei6zebESJJyw==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/open-telemetry/opentelemetry-dotnet",
+        "commit": "0bfd4c350f670dbc819b39bd57fac4c3ad5ba238"
+      },
+      "licenseSource": {
+        "kind": "package",
+        "file": "LICENSE.TXT",
+        "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6"
+      }
+    },
+    {
+      "id": "OpenTelemetry",
+      "version": "1.20.1",
+      "license": "Apache-2.0",
+      "copyright": "Copyright The OpenTelemetry Authors",
+      "nugetContentHash": "+XDw3fYbiv1a40aFnDJSQleeuUJciXuhoIA19XmcGhT47Hy/xZRqk8NCjHUDKrg72Ixjthicecp8ygBDNeH/Jw==",
+      "repository": {
+        "type": "git",
+        "url": "https://github.com/open-telemetry/opentelemetry-dotnet",
+        "commit": "0bfd4c350f670dbc819b39bd57fac4c3ad5ba238"
+      },
+      "licenseSource": {
+        "kind": "package",
+        "file": "LICENSE.TXT",
+        "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6"
+      }
+    }
+  ]
+}
