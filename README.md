@@ -1,0 +1,104 @@
+# Fenced Shard Ownership Lab
+
+A small C#/.NET lab that makes a stale-writer failure reproducible: pause one worker, transfer ownership, then resume the old request. The PostgreSQL sink rejects its old fencing generation. A separate durable business identity prevents duplicate effects when the new owner retries an uncertain operation.
+
+Synthetic, local and single-machine only. No exchange, market data, orders, account credentials, strategy, production HA or speed claim.
+
+## Start with the failure
+
+The demo runs these independently checked examples:
+
+| Question | Evidence |
+| --- | --- |
+| Can a paused old worker write after committed cutover? | `paused-inflight-application-rejected-after-cutover`: rejected, no effect. |
+| Did a process die before or after an effect commit? | Before-commit lookup is absent; commit-before-ack lookup finds one durable receipt. Retry uses the same business identity. |
+| Does retrying under a new generation duplicate the effect? | Original receipt is replayed; PostgreSQL uniqueness is independent of the fencing token. |
+| Does losing two of three etcd members grant new ownership? | Acquisition fails; the demo reports unavailable coordination rather than inventing ownership. |
+| What survives an ordinary database process restart? | Committed fencing state, effect identities, hashes and results, checked through a separate SQL-history oracle. |
+
+The full demo currently has 15 named cases, including a stable OpenTelemetry trace check. The receipt records the actual client OS, version/commit, cases, attempted commands and independent SQL checks. It ends with five unique synthetic effects and total 165. That is a fixture invariant, not trading volume or a benchmark.
+
+## Run the preview
+
+Use the Windows x64 or Linux x64 self-contained archive from [Releases](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases). The native CLI does not require an installed .NET SDK. Python 3.12 and existing Ubuntu 24.04/Linux are needed for the full demo; Windows uses an existing `Ubuntu-24.04` WSL distribution for the servers. No Docker daemon, package installation or paid service is required by this path. The fixture archives are downloaded separately and checksum-pinned.
+
+First inspect the package:
+
+```powershell
+.\ownership.exe --help
+.\ownership.exe --version
+```
+
+Linux uses `./ownership` for those commands. Both help/version are offline. See [PROVENANCE.md](PROVENANCE.md) to verify source/tag and archive signatures. Git provenance is separate from Windows Authenticode or production suitability.
+
+### Windows client and Linux services
+
+Run from the extracted package in PowerShell. Use fresh `artifacts` paths for each attempt; existing output directories are deliberately not overwritten.
+
+```powershell
+python tools/fetch_services.py --out artifacts/upstream
+if ($LASTEXITCODE -ne 0) { throw 'Fixture download failed' }
+$linuxHere = (wsl -d Ubuntu-24.04 -- wslpath -a (Get-Location).Path).Trim()
+if ($LASTEXITCODE -ne 0) { throw 'Existing Ubuntu WSL access required' }
+wsl -d Ubuntu-24.04 -- python3 "$linuxHere/tools/prepare_linux.py" --archives "$linuxHere/artifacts/upstream" --out "$linuxHere/artifacts/services"
+if ($LASTEXITCODE -ne 0) { throw 'Linux preparation failed' }
+python tools/integration.py --fixtures artifacts/services --cli ownership.exe --out artifacts/demo
+if ($LASTEXITCODE -ne 0) { throw 'Demo failed; preserve its evidence' }
+Get-Content artifacts/demo/receipt.json
+```
+
+### Native Linux client and services
+
+```sh
+python3 tools/fetch_services.py --out artifacts/upstream &&
+python3 tools/prepare_linux.py --archives artifacts/upstream --out artifacts/services &&
+python3 tools/integration.py --fixtures artifacts/services --cli ./ownership --out artifacts/demo &&
+cat artifacts/demo/receipt.json
+```
+
+The helpers extract verified upstream `.deb`/tar archives into the selected directory; they do not install packages or change system services. PostgreSQL data lives in a fresh user-owned Linux temporary directory. Each profile owns its processes, binds loopback, and stops those processes at completion. Scratch data/logs are retained for inspection. `connection.private.json` contains an ephemeral lab-only password: keep the whole demo directory private and out of commits, uploads and release archives.
+
+## Architecture and choices
+
+```mermaid
+flowchart LR
+    W1[C# worker A] --> E[Three local etcd members]
+    W2[C# worker B] --> E
+    E --> T[Owned-key creation revision]
+    T --> S[PostgreSQL sink transaction]
+    W1 --> S
+    W2 --> S
+    S --> F[Durable fence and unique business identity]
+    O[Independent Python / SQL oracle] --> F
+```
+
+- .NET 10 LTS / C# 14; SDK 10.0.403, runtime 10.0.14 and dependency locks.
+- etcd 3.7.3 is existing consensus; this project does not implement Raft. A small bounded `HttpClient` adapter uses its official v3 gateway.
+- PostgreSQL 18.6 / Npgsql 10.0.3 enforce the sink transaction. Two workers plus three etcd members still have one physical host and one database sink.
+- xUnit v3 package 4.0.3 covers exact integers, framing, domain bounds and fail-closed validation. The independent SQL oracle reconstructs effects instead of trusting the application's snapshot command.
+- OpenTelemetry 1.20.1 can export a whitelisted trace to stderr when `OWNERSHIP_LAB_TELEMETRY=1`. It emits no SQL text, payloads, business identities, credentials or connection strings; default mode is off. This is one trace path, not a hosted observability platform.
+
+[Contract](docs/CONTRACT.md) · [Architecture decision](docs/ADR-001.md) · [Failure matrix](docs/FAILURE-MATRIX.md) · [Runbook](docs/RUNBOOK.md) · [Contributing](CONTRIBUTING.md)
+
+## Important boundaries
+
+Cutover is committed sink activation, not merely lease expiry or election. The sink atomically checks the active generation and writes the effect/receipt. The business deduplication key survives generation changes. A timeout/disconnect is not a rollback receipt: a possibly committed operation is `UNKNOWN` until same-identity lookup/retry resolves it.
+
+An already-started request paused before the state lock is an application-delay fixture, not a measured network-packet delay. The demonstrated sink restart is ordinary process restart. Arbitrary database rollback/restore and coordinator-lineage reset are unsupported; the lab supplies no admission/reset path after them and does not claim universal rollback detection. Workers and the local fixture controller are trusted, non-Byzantine participants; fencing is not authentication.
+
+etcd's documented support is Tier 1 on Linux AMD64/ARM64 and Tier 3 on Windows AMD64. This lab uses the Linux service profile and independently executes native Windows/Linux clients. Shared CI timing and WSL timing are not exchange or hardware latency evidence.
+
+## Build and verify source
+
+Install the pinned SDK in an existing development environment. From this checkout:
+
+```sh
+dotnet restore tests/Ownership.Tests/Ownership.Tests.csproj --locked-mode
+dotnet run --project tests/Ownership.Tests/Ownership.Tests.csproj -c Release --no-restore -- -noLogo
+dotnet restore src/Ownership.Cli/Ownership.Cli.csproj --locked-mode
+dotnet build src/Ownership.Cli/Ownership.Cli.csproj -c Release --no-restore
+```
+
+The full Linux/Windows demo can also use a built DLL with `--cli <absolute-ownership.dll> --dotnet <absolute-dotnet>`. Release packaging requires a clean exact commit and preserves third-party notices, a shipped-dependency SBOM, manifest and separate external-service lock references. Windows CI checks native code/package execution; Linux CI additionally runs real local service faults. Actual Windows-to-WSL full-demo evidence is a separate check, not inferred from Windows unit CI.
+
+Original code: MIT. Third-party software and separately downloaded fixtures retain their own licenses; see [NOTICE.md](NOTICE.md). No private/shared project code or data is included.
