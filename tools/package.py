@@ -15,7 +15,7 @@ def main():
     if not a.local_candidate:assert platform.system()==('Windows' if a.rid=='win-x64' else 'Linux'),'Public build OS must match RID'
     work=Path(a.work).resolve();work.mkdir(parents=True,exist_ok=False);out=Path(a.out).resolve();out.mkdir(parents=True,exist_ok=True)
     published=work/'published';log=work/'build.log'
-    commands=[[a.dotnet,'restore','src/Ownership.Cli/Ownership.Cli.csproj','--runtime',a.rid,'--locked-mode'],
+    commands=[[a.dotnet,'restore','src/Ownership.Cli/Ownership.Cli.csproj','--locked-mode'],
       [a.dotnet,'publish','src/Ownership.Cli/Ownership.Cli.csproj','-c','Release','-r',a.rid,'--self-contained','true','--no-restore',
        '-p:RuntimeFrameworkVersion=10.0.14','-p:PublishTrimmed=false','-p:PublishAot=false','-p:PublishReadyToRun=false',
        '-p:DebugType=None','-p:DebugSymbols=false','-p:SourceRevisionId='+a.commit,'-o',str(published)]]
