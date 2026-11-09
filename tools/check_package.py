@@ -25,6 +25,11 @@ def main():
             require((package/copyright_path).read_text(encoding='utf-8').strip()==dep['copyright'], 'Validation failed: check_package.py:22')
     checks.append('every-shipped-component-full-license-and-copyright')
     sbom=json.loads((package/'SBOM.spdx.json').read_text());require(sbom['spdxVersion']=='SPDX-2.3' and sbom['packages'], 'Validation failed: check_package.py:24');checks.append('resolved-shipped-sbom-present')
+    components={c['name']+'/'+c['versionInfo']:c for c in sbom['packages'] if c['SPDXID']!='SPDXRef-App'}
+    require(set(components)=={d['id']+'/'+d['version'] for d in dependencies},'SBOM graph mismatch')
+    for dep in dependencies:
+        require(len(dep['rawSignedNupkgSha512'])==128 and components[dep['id']+'/'+dep['version']]['checksums']==[{'algorithm':'SHA512','checksumValue':dep['rawSignedNupkgSha512']}],'Raw archive checksum relationship')
+    checks.append('raw-signed-archive-checksum-distinct-from-normalized-restore-identity')
     app=package/('ownership.exe' if platform.system()=='Windows' else 'ownership');require(app.is_file(), 'Validation failed: check_package.py:25')
     environment=os.environ.copy();environment.pop('OWNERSHIP_LAB_TELEMETRY',None)
     def call(args,code):

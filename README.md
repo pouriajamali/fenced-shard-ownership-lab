@@ -20,6 +20,8 @@ The full demo currently has 15 named cases, including a stable OpenTelemetry tra
 
 ## Run the preview
 
+Metadata correction candidate **v0.1.0-preview.2** is being prepared for the five-lab coordinator review. The published preview below remains available, but its managed-package SPDX checksums incorrectly label normalized NuGet `contentHash` as a raw signed `.nupkg` checksum; its runtime component also lacks that raw checksum. This is a metadata defect, not evidence of archive/signature tampering. Preview.2 separately records restore identity and actual signed archive SHA512, with independent byte verification. Existing preview.1 tags/assets/signatures are preserved. No publication or final acceptance of preview.2 is claimed here.
+
 Current preview: [v0.1.0-preview.1](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.1). Download the self-contained [Windows x64 ZIP](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.1/fenced-shard-ownership-lab-v0.1.0-preview.1-win-x64.zip) or [Linux x64 tar.gz](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.1/fenced-shard-ownership-lab-v0.1.0-preview.1-linux-x64.tar.gz), together with `SHA256SUMS.txt`, its signature and the public key from that release. Verify them with [PROVENANCE.md](PROVENANCE.md) before running the package.
 
 The native CLI does not require an installed .NET SDK. Python 3.12 and existing Ubuntu 24.04/Linux are needed for the full demo; Windows uses an existing `Ubuntu-24.04` WSL distribution for the servers. No Docker daemon, package installation or paid service is required by this path. The fixture archives are downloaded separately and checksum-pinned.

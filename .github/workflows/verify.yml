@@ -63,6 +63,12 @@ jobs:
           if ($package.Count -ne 1) { throw 'Exactly one package root required' }
           python tools/check_package.py --package $package[0].FullName --commit '${{ github.sha }}' --out artifacts/package-checks.json
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $nugetRoot = (dotnet nuget locals global-packages --list).Substring('global-packages: '.Length).Trim()
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python tools/check_sbom_archives.py --package $package[0].FullName --nuget-root $nugetRoot --out artifacts/sbom-archive-checks.json
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          python tools/test_sbom_archives.py --out artifacts/sbom-regressions
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
       - name: Real local Linux quorum and sink fault matrix
         if: runner.os == 'Linux'
         shell: pwsh
@@ -85,6 +91,8 @@ jobs:
           path: |
             artifacts/unit.xml
             artifacts/package-checks.json
+            artifacts/sbom-archive-checks.json
+            artifacts/sbom-regressions/receipt.json
             artifacts/dependency-advisories.json
             artifacts/notices-tests/receipt.json
             artifacts/verifier-tests/receipt.json
@@ -101,7 +109,7 @@ jobs:
       id-token: write
       attestations: write
     env:
-      RELEASE_TAG: v0.1.0-preview.1
+      RELEASE_TAG: v0.1.0-preview.2
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -136,4 +144,4 @@ jobs:
           ACTUAL_TAG: ${{ github.ref_name }}
         run: |
           test "$ACTUAL_TAG" = "$RELEASE_TAG"
-          gh release create "$RELEASE_TAG" artifacts/release/* --verify-tag --prerelease --title "$RELEASE_TAG — Fenced Shard Ownership Lab" --notes-file docs/RELEASE-v0.1.0-preview.1.md
+          gh release create "$RELEASE_TAG" artifacts/release/* --verify-tag --prerelease --title "$RELEASE_TAG â€” Fenced Shard Ownership Lab" --notes-file docs/RELEASE-v0.1.0-preview.2.md

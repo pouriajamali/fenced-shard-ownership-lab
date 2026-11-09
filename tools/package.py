@@ -5,6 +5,12 @@ import notices as notice_resolver
 ROOT=Path(__file__).resolve().parents[1]
 
 def sha(path):return hashlib.sha256(path.read_bytes()).hexdigest()
+
+def raw_sha512(path):
+    digest=hashlib.sha512()
+    with path.open('rb') as stream:
+        for block in iter(lambda:stream.read(1024*1024),b''):digest.update(block)
+    return digest.hexdigest()
 def git(*args):return subprocess.check_output(['git','-C',str(ROOT),*args],text=True).strip()
 
 def require(condition,message='Validation failed'):
@@ -44,7 +50,10 @@ def main():
         for file in notice['suppliedNotices']:shutil.copy2(file,licenses/(identifier+'-'+file.name))
         primary=licenses/(identifier+'-PRIMARY-LICENSE.txt');shutil.copy2(notice['primary'],primary)
         copyright_file=licenses/(identifier+'-COPYRIGHT.txt');copyright_file.write_text(notice['copyright']+'\n',encoding='utf-8',newline='\n')
-        dependencies.append({'id':identifier,'version':version_id,'license':declared,'nugetContentHash':entry.get('sha512'),'copyright':notice['copyright'],
+        raw=raw_sha512(next(directory.glob('*.nupkg')))
+        frozen=next(r for r in json.loads((ROOT/'vendor/notices/NOTICE-SOURCES.json').read_text())['components'] if r['id']+'/'+r['version']==identity)
+        require(base64.b64decode(frozen['rawSignedNupkgSha512Base64']).hex()==raw,'Frozen raw signed NuGet archive changed: '+identity)
+        dependencies.append({'id':identifier,'version':version_id,'license':declared,'nugetContentHash':entry.get('sha512'),'nugetContentHashMeaning':'Normalized restore identity excluding signatures','rawSignedNupkgSha512':raw,'copyright':notice['copyright'],
             'licenseFile':primary.relative_to(package).as_posix(),'licenseSha256':sha(primary),'copyrightFile':copyright_file.relative_to(package).as_posix(),'licenseSource':notice['licenseSource']})
     locks=json.loads((ROOT/'src/Ownership.Cli/packages.lock.json').read_text(encoding='utf-8'))['dependencies']
     locked={(key,value['resolved'],value['contentHash']) for graph in locks.values() for key,value in graph.items() if 'contentHash' in value}
@@ -52,18 +61,28 @@ def main():
     require(actual==locked, 'Resolved/shipped library graph differs from source lock')
     runtime_id='Microsoft.NETCore.App.Runtime.'+a.rid
     runtime=next(p/runtime_id.lower()/'10.0.14' for p in folders if (p/runtime_id.lower()/'10.0.14').is_dir())
+    runtime_metadata=ET.parse(next(runtime.glob('*.nuspec'))).find('{*}metadata')
+    normalized=json.loads((runtime/'.nupkg.metadata').read_text())['contentHash']
+    resolved=notice_resolver.resolve(ROOT,runtime,runtime_id+'/10.0.14',{'sha512':normalized},runtime_metadata)
+    raw=raw_sha512(next(runtime.glob('*.nupkg')))
+    frozen=next(r for r in json.loads((ROOT/'vendor/notices/NOTICE-SOURCES.json').read_text())['components'] if r['id']==runtime_id)
+    require(base64.b64decode(frozen['rawSignedNupkgSha512Base64']).hex()==raw,'Frozen raw runtime archive changed')
     notices=[f for f in runtime.iterdir() if f.is_file() and (f.name.upper().startswith('LICENSE') or f.name.upper().startswith('THIRD-PARTY-NOTICES'))]
     require(any(f.name.upper().startswith('LICENSE') for f in notices) and any(f.name.upper().startswith('THIRD-PARTY-NOTICES') for f in notices), 'Validation failed: package.py:53')
     for file in notices:shutil.copy2(file,licenses/(runtime_id+'-'+file.name))
     runtime_license=next(licenses/(runtime_id+'-'+f.name) for f in notices if f.name.upper().startswith('LICENSE'))
-    dependencies.append({'id':runtime_id,'version':'10.0.14','license':'MIT','copyright':'Copyright (c) .NET Foundation and Contributors',
-        'licenseFile':runtime_license.relative_to(package).as_posix(),'licenseSha256':sha(runtime_license),'notice':'Bundled runtime retains full original license and third-party notices'})
+    copyright_file=licenses/(runtime_id+'-COPYRIGHT.txt');copyright_file.write_text(resolved['copyright']+'\n',encoding='utf-8',newline='\n')
+    dependencies.append({'id':runtime_id,'version':'10.0.14','license':'MIT','copyright':resolved['copyright'],'copyrightFile':copyright_file.relative_to(package).as_posix(),'nugetContentHash':normalized,'nugetContentHashMeaning':'Normalized restore identity excluding signatures','rawSignedNupkgSha512':raw,
+        'licenseFile':runtime_license.relative_to(package).as_posix(),'licenseSha256':sha(runtime_license),'notice':'Bundled runtime retains full original license and third-party notices; raw signed archive checksum is separate from normalized restore identity'})
+    shipped=json.loads((package/'ownership.deps.json').read_text())['libraries']
+    require({k.removeprefix('runtimepack.') for k,v in shipped.items() if v['type'] in ['package','runtimepack']}=={d['id']+'/'+d['version'] for d in dependencies},'Actual shipped graph changed')
     (package/'DEPENDENCIES.json').write_text(json.dumps({'packages':dependencies,'externalFixtures':'Six pinned upstream archives in tools/upstream.lock.json are REFERENCES, not bundled servers/libraries.'},indent=2)+'\n',encoding='utf-8')
     spdx=[{'name':'Fenced Shard Ownership Lab','SPDXID':'SPDXRef-App','versionInfo':version,'downloadLocation':'NOASSERTION','filesAnalyzed':False,'licenseDeclared':'MIT','licenseConcluded':'NOASSERTION','copyrightText':'Copyright (c) 2026 Pouria Jamali'}]
     relationships=[{'spdxElementId':'SPDXRef-DOCUMENT','relationshipType':'DESCRIBES','relatedSpdxElement':'SPDXRef-App'}]
     for i,dep in enumerate(dependencies):
         item={'name':dep['id'],'SPDXID':'SPDXRef-Package'+str(i),'versionInfo':dep['version'],'downloadLocation':'https://api.nuget.org/v3-flatcontainer/'+dep['id'].lower()+'/'+dep['version']+'/'+dep['id'].lower()+'.'+dep['version']+'.nupkg','filesAnalyzed':False,'licenseDeclared':dep['license'],'licenseConcluded':'NOASSERTION'}
-        if dep.get('nugetContentHash'):item['checksums']=[{'algorithm':'SHA512','checksumValue':base64.b64decode(dep['nugetContentHash']).hex()}]
+        item['checksums']=[{'algorithm':'SHA512','checksumValue':dep['rawSignedNupkgSha512']}]
+        item['comment']='SHA512 of the raw signed NuGet archive; normalized NuGet contentHash remains separate in DEPENDENCIES.json.'
         item['copyrightText']=dep['copyright']
         spdx.append(item);relationships.append({'spdxElementId':'SPDXRef-App','relationshipType':'DEPENDS_ON','relatedSpdxElement':item['SPDXID']})
     sbom={'spdxVersion':'SPDX-2.3','dataLicense':'CC0-1.0','SPDXID':'SPDXRef-DOCUMENT','name':name,'documentNamespace':'https://github.com/pouriajamali/fenced-shard-ownership-lab/spdx/'+str(uuid.uuid4()),'creationInfo':{'creators':['Tool: ownership-lab-package.py'],'created':datetime.datetime.now(datetime.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')},'packages':spdx,'relationships':relationships}
