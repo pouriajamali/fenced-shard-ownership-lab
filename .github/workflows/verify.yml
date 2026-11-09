@@ -144,4 +144,4 @@ jobs:
           ACTUAL_TAG: ${{ github.ref_name }}
         run: |
           test "$ACTUAL_TAG" = "$RELEASE_TAG"
-          gh release create "$RELEASE_TAG" artifacts/release/* --verify-tag --prerelease --title "$RELEASE_TAG â€” Fenced Shard Ownership Lab" --notes-file docs/RELEASE-v0.1.0-preview.2.md
+          gh release create "$RELEASE_TAG" artifacts/release/* --verify-tag --prerelease --title "$RELEASE_TAG - Fenced Shard Ownership Lab" --notes-file docs/RELEASE-v0.1.0-preview.2.md

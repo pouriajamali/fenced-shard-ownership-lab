@@ -17,8 +17,8 @@ From a fresh directory, using a previously trusted checkout's tools/verify_downl
 ```powershell
 $ErrorActionPreference = 'Stop'
 $repo = 'pouriajamali/fenced-shard-ownership-lab'
-$tag = 'v0.1.0-preview.1'
-$archive = 'fenced-shard-ownership-lab-v0.1.0-preview.1-source.zip'
+$tag = 'v0.1.0-preview.2'
+$archive = 'fenced-shard-ownership-lab-v0.1.0-preview.2-source.zip'
 foreach ($name in @($archive, 'SHA256SUMS.txt', 'SHA256SUMS.txt.sig', 'SIGNING-PUBLIC-KEY.pub')) {
     Invoke-WebRequest -Uri "https://github.com/$repo/releases/download/$tag/$name" -OutFile $name
 }
@@ -30,8 +30,8 @@ if ($LASTEXITCODE -ne 0) { throw 'Provenance verification failed' }
 
 ```sh
 repo='pouriajamali/fenced-shard-ownership-lab'
-tag='v0.1.0-preview.1'
-archive='fenced-shard-ownership-lab-v0.1.0-preview.1-source.zip'
+tag='v0.1.0-preview.2'
+archive='fenced-shard-ownership-lab-v0.1.0-preview.2-source.zip'
 for name in "$archive" SHA256SUMS.txt SHA256SUMS.txt.sig SIGNING-PUBLIC-KEY.pub; do
   curl --fail --location --output "$name" "https://github.com/$repo/releases/download/$tag/$name" || exit 1
 done
@@ -46,4 +46,4 @@ GitHub build provenance attestations supplement this key-based verification when
 
 ## NuGet metadata correction
 
-Published preview.1 incorrectly used normalized NuGet contentHash as a managed-package SPDX raw-archive SHA512 and omitted the runtime raw checksum. Package/signature verification above is a separate check of release bytes and is not invalidated by that semantic finding. The local preview.2 candidate retains normalized identity separately and emits actual raw signed archive SHA512. `tools/check_sbom_archives.py` independently hashes cached NuGet archive bytes; its regression suite rejects the old mislabel and matching false metadata. See [preview.2 notes](docs/RELEASE-v0.1.0-preview.2.md). Old tags/assets/signatures remain unchanged; preview.2 publication is pending coordinator gate.
+Published preview.1 incorrectly used normalized NuGet contentHash as a managed-package SPDX raw-archive SHA512 and omitted the runtime raw checksum. Package/signature verification above is a separate check of release bytes and is not invalidated by that semantic finding. Preview.2 retains normalized identity separately and emits actual raw signed archive SHA512. `tools/check_sbom_archives.py` independently hashes cached NuGet archive bytes; its regression suite rejects the old mislabel and matching false metadata. See [preview.2 notes](docs/RELEASE-v0.1.0-preview.2.md). Old tags/assets/signatures remain unchanged. Each release has its own signed tag and downloadable verification evidence.
