@@ -20,7 +20,9 @@ The full demo currently has 15 named cases, including a stable OpenTelemetry tra
 
 ## Run the preview
 
-Use the Windows x64 or Linux x64 self-contained archive from [Releases](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases). The native CLI does not require an installed .NET SDK. Python 3.12 and existing Ubuntu 24.04/Linux are needed for the full demo; Windows uses an existing `Ubuntu-24.04` WSL distribution for the servers. No Docker daemon, package installation or paid service is required by this path. The fixture archives are downloaded separately and checksum-pinned.
+Current preview: [v0.1.0-preview.1](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.1). Download the self-contained [Windows x64 ZIP](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.1/fenced-shard-ownership-lab-v0.1.0-preview.1-win-x64.zip) or [Linux x64 tar.gz](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.1/fenced-shard-ownership-lab-v0.1.0-preview.1-linux-x64.tar.gz), together with `SHA256SUMS.txt`, its signature and the public key from that release. Verify them with [PROVENANCE.md](PROVENANCE.md) before running the package.
+
+The native CLI does not require an installed .NET SDK. Python 3.12 and existing Ubuntu 24.04/Linux are needed for the full demo; Windows uses an existing `Ubuntu-24.04` WSL distribution for the servers. No Docker daemon, package installation or paid service is required by this path. The fixture archives are downloaded separately and checksum-pinned.
 
 First inspect the package:
 
