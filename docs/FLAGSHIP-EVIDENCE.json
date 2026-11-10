@@ -1,0 +1,190 @@
+{
+  "schema": "flagship-evidence/v1",
+  "documentationDate": "2026-11-10",
+  "project": "Fenced Shard Ownership Lab",
+  "repository": "https://github.com/pouriajamali/fenced-shard-ownership-lab",
+  "scope": "AI-assisted original synthetic local laboratory; documentation refresh, no runtime test or benchmark rerun",
+  "runtime": {
+    "tag": "v0.1.0-preview.2",
+    "commit": "ea35e6a664931b1972c348796a9b7edae9e51378",
+    "tree": "b4e47875355301c816eb62b6f99535340219eaef",
+    "signedTagObject": "ec3faf2bd67c13af775b1fa650242102db255396"
+  },
+  "release": {
+    "id": 439576423,
+    "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.2",
+    "prerelease": true,
+    "assets": [
+      {
+        "id": 728782710,
+        "name": "fenced-shard-ownership-lab-v0.1.0-preview.2-linux-x64.tar.gz",
+        "bytes": 36587791,
+        "sha256": "6b8864fd5d7a22834c6277353c3df122e8af765c7a2e2ed8573c2240f9c89f92",
+        "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.2/fenced-shard-ownership-lab-v0.1.0-preview.2-linux-x64.tar.gz"
+      },
+      {
+        "id": 728782723,
+        "name": "fenced-shard-ownership-lab-v0.1.0-preview.2-source.zip",
+        "bytes": 86240,
+        "sha256": "760432d57866f72a78cd6a140304bc9f9e2a918516bfcbeae432bceebbb54648",
+        "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.2/fenced-shard-ownership-lab-v0.1.0-preview.2-source.zip"
+      },
+      {
+        "id": 728782720,
+        "name": "fenced-shard-ownership-lab-v0.1.0-preview.2-win-x64.zip",
+        "bytes": 37139593,
+        "sha256": "e0594649bd7f854a48754e91bd9b7685de5513ebe049130acb13b1991bce5480",
+        "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.2/fenced-shard-ownership-lab-v0.1.0-preview.2-win-x64.zip"
+      },
+      {
+        "id": 728782711,
+        "name": "SHA256SUMS.txt",
+        "bytes": 370,
+        "sha256": "7e317b69a22269c7153a3e7362911aee998760a5aa2d7af04ede1ad5a93a88a4",
+        "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.2/SHA256SUMS.txt"
+      },
+      {
+        "id": 728808845,
+        "name": "SHA256SUMS.txt.sig",
+        "bytes": 294,
+        "sha256": "f7c5ad3d2ebe7ac6518931fc6ed189ff0603d2554e66e5dc8c8e3510ec1db9d2",
+        "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.2/SHA256SUMS.txt.sig"
+      },
+      {
+        "id": 728808884,
+        "name": "SIGNING-PUBLIC-KEY.pub",
+        "bytes": 113,
+        "sha256": "cc7038b2d98f856af97b58eb06619ff441fbe9b178da5396f61d1ccdf7a65e7c",
+        "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.2/SIGNING-PUBLIC-KEY.pub"
+      }
+    ]
+  },
+  "tagCi": {
+    "id": 42688162148,
+    "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/actions/runs/42688162148",
+    "headSha": "ea35e6a664931b1972c348796a9b7edae9e51378",
+    "event": "push",
+    "headBranch": "v0.1.0-preview.2",
+    "conclusion": "success"
+  },
+  "signing": {
+    "trustedFingerprint": "SHA256:AgU5bZlJSjUu0KsWMmVEEr+BfXpcMVNroTA33bHcQdU",
+    "namespace": "file",
+    "guide": "../PROVENANCE.md",
+    "trustBoundary": "Key shipped beside bytes is not independent identity proof; SSH provenance is not OS code signing"
+  },
+  "sourceFilesComparedDuringDelivery": 54,
+  "observedTaggedEvidence": {
+    "unitsEachOs": 41,
+    "tagProofPlatforms": [
+      {
+        "rid": "linux-x64",
+        "unitCases": 41,
+        "packageChecks": {
+          "status": "PASS",
+          "sourceCommit": "ea35e6a664931b1972c348796a9b7edae9e51378",
+          "rid": "linux-x64",
+          "os": "Linux",
+          "checks": [
+            "exact-manifest-file-set-and-sha256",
+            "original-and-third-party-notices",
+            "every-shipped-component-full-license-and-copyright",
+            "resolved-shipped-sbom-present",
+            "raw-signed-archive-checksum-distinct-from-normalized-restore-identity",
+            "actual-native-apphost-help",
+            "actual-apphost-exact-source-version",
+            "external-endpoint-rejected-before-network"
+          ],
+          "checkCount": 8,
+          "filesVerified": 299
+        },
+        "nativeArchiveSha256": "6b8864fd5d7a22834c6277353c3df122e8af765c7a2e2ed8573c2240f9c89f92"
+      },
+      {
+        "rid": "win-x64",
+        "unitCases": 41,
+        "packageChecks": {
+          "status": "PASS",
+          "sourceCommit": "ea35e6a664931b1972c348796a9b7edae9e51378",
+          "rid": "win-x64",
+          "os": "Windows",
+          "checks": [
+            "exact-manifest-file-set-and-sha256",
+            "original-and-third-party-notices",
+            "every-shipped-component-full-license-and-copyright",
+            "resolved-shipped-sbom-present",
+            "raw-signed-archive-checksum-distinct-from-normalized-restore-identity",
+            "actual-native-apphost-help",
+            "actual-apphost-exact-source-version",
+            "external-endpoint-rejected-before-network"
+          ],
+          "checkCount": 8,
+          "filesVerified": 299
+        },
+        "nativeArchiveSha256": "e0594649bd7f854a48754e91bd9b7685de5513ebe049130acb13b1991bce5480"
+      }
+    ],
+    "fullServiceIntegrationTaggedCiOs": "Linux",
+    "fullServiceIntegrationWindowsCiClaim": false,
+    "integrationCaseCount": 15,
+    "integrationCases": [
+      "real-acquisition-renewal-and-competition",
+      "same-identity-replay-and-conflict",
+      "paused-inflight-application-rejected-after-cutover",
+      "idempotency-survives-new-generation",
+      "concurrent-same-identity-single-effect",
+      "activation-crash-before-commit",
+      "activation-commit-before-ack",
+      "effect-crash-before-commit-resolved-by-same-identity",
+      "effect-commit-before-ack-unknown-resolved",
+      "lineage-and-domain-rejections-have-no-effects",
+      "ordinary-sink-restart-retains-fence-and-dedup",
+      "unavailable-sink-outcome-resolved-without-new-identity",
+      "real-two-of-three-quorum-loss-denies-new-acquisition",
+      "recovered-quorum-preserves-lineage-and-forward-only-cutover",
+      "stable-otel-trace-redacted-and-business-result-preserved"
+    ],
+    "effectCount": 5,
+    "total": 165
+  },
+  "namedSourceEvidence": [
+    {
+      "path": "tools/integration.py",
+      "name": "paused-inflight-application-rejected-after-cutover",
+      "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/blob/ea35e6a664931b1972c348796a9b7edae9e51378/tools/integration.py"
+    },
+    {
+      "path": "tools/integration.py",
+      "name": "effect-commit-before-ack-unknown-resolved",
+      "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/blob/ea35e6a664931b1972c348796a9b7edae9e51378/tools/integration.py"
+    },
+    {
+      "path": "tools/integration.py",
+      "name": "idempotency-survives-new-generation",
+      "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/blob/ea35e6a664931b1972c348796a9b7edae9e51378/tools/integration.py"
+    },
+    {
+      "path": "tools/integration.py",
+      "name": "real-two-of-three-quorum-loss-denies-new-acquisition",
+      "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/blob/ea35e6a664931b1972c348796a9b7edae9e51378/tools/integration.py"
+    },
+    {
+      "path": "tests/Ownership.Tests/ContractTests.cs",
+      "name": "BusinessIdentityDoesNotDependOnGeneration",
+      "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/blob/ea35e6a664931b1972c348796a9b7edae9e51378/tests/Ownership.Tests/ContractTests.cs"
+    },
+    {
+      "path": "tests/Ownership.Tests/GatewayTests.cs",
+      "name": "AcquiresExactBeyondDoublePrecisionFromActualOwnedKey",
+      "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/blob/ea35e6a664931b1972c348796a9b7edae9e51378/tests/Ownership.Tests/GatewayTests.cs"
+    }
+  ],
+  "claimsNotEstablished": [
+    "Production or venue suitability",
+    "Live trading or profitability",
+    "Independent human authorship or individual mastery from CI alone",
+    "Real adoption or team-management history",
+    "Performance superiority"
+  ],
+  "reproductionBoundary": "Use exact runtime tag/source and fresh local outputs; CI artifact retention and timing reproducibility are not guaranteed; current documentation main can differ from runtime source"
+}

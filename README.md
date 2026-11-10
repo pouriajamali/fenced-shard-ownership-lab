@@ -4,6 +4,10 @@ A small C#/.NET lab that makes a stale-writer failure reproducible: pause one wo
 
 Synthetic, local and single-machine only. No exchange, market data, orders, account credentials, strategy, production HA or speed claim.
 
+## Architecture review
+
+Read the [architecture case study](docs/ARCHITECTURE-CASE-STUDY.md) for the decision, rejected alternatives, failure examples, frozen-release evidence and short English/Persian introductions. Follow the [30-minute four-project review](https://github.com/pouriajamali/trading-execution-lab/blob/main/docs/FLAGSHIP-REVIEW.md) for a guided discussion. The [evidence index](docs/FLAGSHIP-EVIDENCE.json) separates runtime/tag CI from later documentation commits.
+
 ## Start with the failure
 
 The demo runs these independently checked examples:
