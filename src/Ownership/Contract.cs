@@ -5,7 +5,6 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 
 namespace Ownership;
-
 public sealed class ContractException(string code) : Exception(code)
 {
     public string Code { get; } = code;
@@ -16,8 +15,10 @@ public static class Contract
     public const string Shard = "synthetic-shard";
     public const long MaximumDelta = 1_000_000;
     public const int MaximumFrameBytes = 32_768;
-    public static readonly JsonSerializerOptions Json = new(JsonSerializerDefaults.Web) { NumberHandling = JsonNumberHandling.WriteAsString | JsonNumberHandling.AllowReadingFromString };
-
+    public static readonly JsonSerializerOptions Json = new(JsonSerializerDefaults.Web)
+    {
+        NumberHandling = JsonNumberHandling.WriteAsString | JsonNumberHandling.AllowReadingFromString
+    };
     public static string Identity(string value)
     {
         if (value.Length is < 1 or > 64 || value.Any(c => !char.IsAsciiLetterOrDigit(c) && c is not '-' and not '_' and not '.'))
@@ -41,9 +42,7 @@ public static class Contract
 
     public static long PositiveIntegerString(JsonElement parent, string name)
     {
-        if (parent.ValueKind != JsonValueKind.Object || !parent.TryGetProperty(name, out var field) || field.ValueKind != JsonValueKind.String ||
-            !long.TryParse(field.GetString(), NumberStyles.None, CultureInfo.InvariantCulture, out var value) || value <= 0 ||
-            value.ToString(CultureInfo.InvariantCulture) != field.GetString())
+        if (parent.ValueKind != JsonValueKind.Object || !parent.TryGetProperty(name, out var field) || field.ValueKind != JsonValueKind.String || !long.TryParse(field.GetString(), NumberStyles.None, CultureInfo.InvariantCulture, out var value) || value <= 0 || value.ToString(CultureInfo.InvariantCulture) != field.GetString())
             throw new ContractException("INVALID_INT64_" + name.ToUpperInvariant());
         return value;
     }
@@ -64,7 +63,8 @@ public static class Contract
 
     public static long? AddTotal(long current, long delta)
     {
-        if (current < 0 || delta is < 1 or > MaximumDelta) throw new ContractException("INVALID_TOTAL_DOMAIN");
+        if (current < 0 || delta is < 1 or > MaximumDelta)
+            throw new ContractException("INVALID_TOTAL_DOMAIN");
         return current > long.MaxValue - delta ? null : checked(current + delta);
     }
 }
@@ -73,8 +73,10 @@ public sealed record Acquisition(string Owner, string ClusterId, long Fence, lon
 {
     public Acquisition Validate()
     {
-        Contract.Identity(Owner); Contract.Cluster(ClusterId);
-        if (Fence <= 0 || LeaseId <= 0 || Ttl is < 1 or > 60) throw new ContractException("INVALID_ACQUISITION");
+        Contract.Identity(Owner);
+        Contract.Cluster(ClusterId);
+        if (Fence <= 0 || LeaseId <= 0 || Ttl is < 1 or > 60)
+            throw new ContractException("INVALID_ACQUISITION");
         return this;
     }
 }
@@ -84,7 +86,8 @@ public sealed record BusinessOperation(string Id, long Delta)
     public string Digest()
     {
         Contract.Identity(Id);
-        if (Delta is < 1 or > Contract.MaximumDelta) throw new ContractException("DELTA_OUT_OF_RANGE");
+        if (Delta is < 1 or > Contract.MaximumDelta)
+            throw new ContractException("DELTA_OUT_OF_RANGE");
         return Convert.ToHexStringLower(SHA256.HashData(Encoding.UTF8.GetBytes("effect-v1\n" + Contract.Shard + "\n" + Id + "\n" + Delta.ToString(CultureInfo.InvariantCulture) + "\n")));
     }
 }
@@ -92,7 +95,12 @@ public sealed record BusinessOperation(string Id, long Delta)
 public sealed record EffectReceipt(string OperationId, long Delta, long TotalAfter, long OriginalFence);
 public sealed record SinkReply(string Status, EffectReceipt? Receipt = null);
 public sealed record SinkSnapshot(string RunId, string ClusterId, long Fence, string Owner, long Total, long Operations);
-public enum CommitStage { BeforeLock, BeforeCommit, AfterCommit }
+public enum CommitStage
+{
+    BeforeLock,
+    BeforeCommit,
+    AfterCommit
+}
 
 public interface ICommitObserver
 {

@@ -3,7 +3,6 @@ using System.Text.Json;
 using Npgsql;
 
 namespace Ownership;
-
 public sealed class PostgresSink
 {
     private readonly NpgsqlDataSource source;
@@ -11,7 +10,9 @@ public sealed class PostgresSink
     private readonly string runId;
     public PostgresSink(NpgsqlDataSource source, string runId, ICommitObserver? observer = null)
     {
-        this.source = source; this.runId = Contract.Identity(runId); this.observer = observer ?? new NoCommitObserver();
+        this.source = source;
+        this.runId = Contract.Identity(runId);
+        this.observer = observer ?? new NoCommitObserver();
     }
 
     public static NpgsqlDataSource OpenLocal(string connectionString)
@@ -19,8 +20,11 @@ public sealed class PostgresSink
         var options = new NpgsqlConnectionStringBuilder(connectionString);
         if (options.Host != "127.0.0.1" || options.Port < 1024 || options.Database != "ownership_lab" || options.Username != "ownership_lab")
             throw new ContractException("DEDICATED_LOOPBACK_DATABASE_REQUIRED");
-        options.Timeout = 3; options.CommandTimeout = 5; options.MaxPoolSize = 4;
-        options.Pooling = true; options.IncludeErrorDetail = false;
+        options.Timeout = 3;
+        options.CommandTimeout = 5;
+        options.MaxPoolSize = 4;
+        options.Pooling = true;
+        options.IncludeErrorDetail = false;
         return NpgsqlDataSource.Create(options.ConnectionString);
     }
 
@@ -58,9 +62,12 @@ public sealed class PostgresSink
                 Add(insert, Contract.Shard, runId, acquisition.ClusterId, acquisition.Fence, acquisition.Owner);
                 await insert.ExecuteNonQueryAsync(token);
             }
+
             var state = await LockedStateAsync(connection, transaction, token);
-            if (state.RunId != runId || state.ClusterId != acquisition.ClusterId) return new("LINEAGE_MISMATCH");
-            if (acquisition.Fence < state.Fence || (acquisition.Fence == state.Fence && acquisition.Owner != state.Owner)) return new("STALE_FENCE");
+            if (state.RunId != runId || state.ClusterId != acquisition.ClusterId)
+                return new("LINEAGE_MISMATCH");
+            if (acquisition.Fence < state.Fence || (acquisition.Fence == state.Fence && acquisition.Owner != state.Owner))
+                return new("STALE_FENCE");
             await using var update = new NpgsqlCommand("UPDATE ownership_lab_v1.state SET fence=$1,owner=$2 WHERE shard=$3", connection, transaction);
             Add(update, acquisition.Fence, acquisition.Owner, Contract.Shard);
             await update.ExecuteNonQueryAsync(token);
@@ -69,21 +76,26 @@ public sealed class PostgresSink
             await observer.ObserveAsync("activation", CommitStage.AfterCommit, token);
             return new("ACTIVATED");
         }
-        catch (Exception error) when (error is NpgsqlException or OperationCanceledException or TimeoutException or IOException)
-        { return new("UNKNOWN"); }
+        catch (Exception error)when (error is NpgsqlException or OperationCanceledException or TimeoutException or IOException)
+        {
+            return new("UNKNOWN");
+        }
     }
 
     public async Task<SinkReply> ApplyAsync(Acquisition acquisition, BusinessOperation operation, CancellationToken token)
     {
-        acquisition.Validate(); var hash = operation.Digest();
+        acquisition.Validate();
+        var hash = operation.Digest();
         try
         {
             await using var connection = await source.OpenConnectionAsync(token);
             await using var transaction = await connection.BeginTransactionAsync(IsolationLevel.ReadCommitted, token);
             await observer.ObserveAsync("effect", CommitStage.BeforeLock, token);
             var state = await LockedStateAsync(connection, transaction, token);
-            if (state.RunId != runId || state.ClusterId != acquisition.ClusterId) return new("LINEAGE_MISMATCH");
-            if (state.Fence != acquisition.Fence || state.Owner != acquisition.Owner) return new("STALE_FENCE");
+            if (state.RunId != runId || state.ClusterId != acquisition.ClusterId)
+                return new("LINEAGE_MISMATCH");
+            if (state.Fence != acquisition.Fence || state.Owner != acquisition.Owner)
+                return new("STALE_FENCE");
             await using (var lookup = new NpgsqlCommand("SELECT request_hash,receipt FROM ownership_lab_v1.effects WHERE shard=$1 AND operation_id=$2", connection, transaction))
             {
                 Add(lookup, Contract.Shard, operation.Id);
@@ -91,8 +103,10 @@ public sealed class PostgresSink
                 if (await reader.ReadAsync(token))
                     return reader.GetString(0) == hash ? new("REPLAYED", JsonSerializer.Deserialize<EffectReceipt>(reader.GetString(1), Contract.Json)) : new("IDENTITY_CONFLICT");
             }
+
             var total = Contract.AddTotal(state.Total, operation.Delta);
-            if (total is null) return new("OVERFLOW_REJECTED");
+            if (total is null)
+                return new("OVERFLOW_REJECTED");
             var receipt = new EffectReceipt(operation.Id, operation.Delta, total.Value, acquisition.Fence);
             await using var effect = new NpgsqlCommand("INSERT INTO ownership_lab_v1.effects(shard,operation_id,request_hash,receipt,delta) VALUES($1,$2,$3,$4,$5)", connection, transaction);
             Add(effect, Contract.Shard, operation.Id, hash, JsonSerializer.Serialize(receipt, Contract.Json), operation.Delta);
@@ -105,8 +119,10 @@ public sealed class PostgresSink
             await observer.ObserveAsync("effect", CommitStage.AfterCommit, token);
             return new("APPLIED", receipt);
         }
-        catch (Exception error) when (error is NpgsqlException or OperationCanceledException or TimeoutException or IOException)
-        { return new("UNKNOWN"); }
+        catch (Exception error)when (error is NpgsqlException or OperationCanceledException or TimeoutException or IOException)
+        {
+            return new("UNKNOWN");
+        }
     }
 
     public async Task<EffectReceipt?> LookupAsync(BusinessOperation operation, CancellationToken token)
@@ -119,8 +135,10 @@ public sealed class PostgresSink
             """, connection);
         Add(command, runId, Contract.Shard, operation.Id);
         await using var reader = await command.ExecuteReaderAsync(token);
-        if (!await reader.ReadAsync(token)) return null;
-        if (reader.GetString(0) != hash) throw new ContractException("IDENTITY_CONFLICT");
+        if (!await reader.ReadAsync(token))
+            return null;
+        if (reader.GetString(0) != hash)
+            throw new ContractException("IDENTITY_CONFLICT");
         return JsonSerializer.Deserialize<EffectReceipt>(reader.GetString(1), Contract.Json);
     }
 
@@ -142,11 +160,14 @@ public sealed class PostgresSink
         await using var command = new NpgsqlCommand("SELECT run_id,cluster_id,fence,owner,total FROM ownership_lab_v1.state WHERE shard=$1 FOR UPDATE", connection, transaction);
         Add(command, Contract.Shard);
         await using var reader = await command.ExecuteReaderAsync(token);
-        if (!await reader.ReadAsync(token)) throw new ContractException("SINK_NOT_ACTIVATED");
+        if (!await reader.ReadAsync(token))
+            throw new ContractException("SINK_NOT_ACTIVATED");
         return new(reader.GetString(0), reader.GetString(1), reader.GetInt64(2), reader.GetString(3), reader.GetInt64(4), 0);
     }
+
     private static void Add(NpgsqlCommand command, params object[] values)
     {
-        foreach (var value in values) command.Parameters.AddWithValue(value);
+        foreach (var value in values)
+            command.Parameters.AddWithValue(value);
     }
 }
