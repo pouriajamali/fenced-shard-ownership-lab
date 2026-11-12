@@ -1,0 +1,11 @@
+Go Vulnerability Database data attribution
+
+The Go Authors and contributors, Go Vulnerability Database.
+Original data: https://vuln.go.dev/ ; https://go.googlesource.com/vulndb/
+Original license: https://go.googlesource.com/vulndb/+/6ea5988e83c45fac18cd4463b938a2aba65e166e/LICENSE
+Data license: Creative Commons Attribution 4.0 International (CC-BY-4.0), https://creativecommons.org/licenses/by/4.0/ .
+The complete original LICENSE is retained in GO-VULNDB-LICENSE.txt, including its warranty disclaimer and separate Go source-code terms.
+
+Copied data occurs in vendor/etcd-admission/source-audit.jsonl and vendor/etcd-admission/binary-audit.jsonl in the source/runtime bundles, or admission/source-audit.jsonl and admission/binary-audit.jsonl in the separate serving bundle. Each retained govulncheck stream contains291 OSV record objects. The corresponding advisory-snapshot.json adds project dispositions and references to the frozen data.
+The original streams/proofs are byte-identical to the admitted inputs. Their tool output selects/arranges upstream records and adds generated analysis; the snapshot adds project annotations. These are not an unchanged copy of the entire upstream database. Embedded original credits/references remain in those immutable records.
+The frozen database archive SHA256 is714ff02d9533ec6ca269e565b61b27cbd959aa0af89d51f318261322e875861c; the retained snapshot reports observation2026-11-12T16:23:09.313153+00:00. This attribution records that historical input; it is not a fresh audit or a general security certificate.

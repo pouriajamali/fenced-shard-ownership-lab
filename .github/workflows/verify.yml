@@ -1,8 +1,9 @@
 name: Native packages and bounded ownership faults
 on:
   push:
-    branches: [main]
-    tags: ['*']
+    branches: [main, codex/ci06-prerequisite-probe]
+    # Support tooling tags are excluded, preventing a fixture-bootstrap CI loop.
+    tags: ['*', '!tooling-etcd-v3.7.3-go1.26.11-r1']
   pull_request:
   workflow_dispatch:
     inputs:
@@ -16,13 +17,58 @@ env:
   DOTNET_CLI_TELEMETRY_OPTOUT: '1'
   DOTNET_GENERATE_ASPNET_CERTIFICATE: 'false'
 concurrency:
-  # Main, tag and manual runs never share a pending/cancelling group.
-  # A PR uses its complete merge-base delta, so its newer run includes earlier source changes.
+  # Main, tag and manual runs retain unique groups; sole operator serializes delivery events.
   group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && format('pr-{0}', github.event.pull_request.number) || format('run-{0}', github.run_id) }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
+  prerequisite_probe:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/codex/ci06-prerequisite-probe'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      # No checkout/setup/install/artifact action and no downloaded execution.
+      - name: Read existing nonroot user manager and delegation only
+        shell: bash
+        run: |
+          python3 -I -B - <<'CI06_READONLY_PROBE'
+          import json,os,re,stat,subprocess,sys,time
+          from pathlib import Path
+          record={'schema':'ci06-readonly-prerequisite-probe/v1','downloadedOrForeignExecutions':0,'artifactUploads':0,'newUnitsCreated':0,'newFilesWritten':0,'actual64or128TargetEnforcement':'UNKNOWN_NOT_EXERCISED'}
+          def need(value,why):
+           if not value:raise RuntimeError('HOLD_'+why)
+          def read(path):
+           with path.open('rb') as f:raw=f.read(4097)
+           need(len(raw)<=4096,'READ_CAP');return raw.decode('utf-8').strip()
+          try:
+           need(os.environ.get('GITHUB_EVENT_NAME')=='push' and os.environ.get('GITHUB_REF')=='refs/heads/codex/ci06-prerequisite-probe','EXACT_PROPOSED_PROBE_EVENT')
+           need(re.fullmatch('[0-9a-f]{40}',os.environ.get('GITHUB_SHA','')),'EXACT_SOURCE_SHA_FRAME');record['sourceCommit']=os.environ['GITHUB_SHA']
+           need(os.environ.get('GITHUB_RUN_ATTEMPT')=='1','NO_RERUN');need(sys.platform=='linux' and sys.version_info[:2]==(3,12),'EXISTING_UBUNTU_PYTHON312');uid=os.getuid();need(uid!=0,'NONROOT_ONLY')
+           base=Path('/run/user')/str(uid);bus=base/'bus';deadline=time.monotonic()+20;ready=False;queries=0
+           env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8','XDG_RUNTIME_DIR':str(base),'DBUS_SESSION_BUS_ADDRESS':'unix:path='+str(bus)}
+           while time.monotonic()<deadline:
+            if bus.exists() and stat.S_ISSOCK(bus.lstat().st_mode) and bus.lstat().st_uid==uid:
+             need(base.resolve()==base and base.stat().st_uid==uid,'EXISTING_OWN_RUNTIME_DIR')
+             try:
+              q=subprocess.run(['/usr/bin/systemctl','--user','show','--property=Version','--value'],env=env,capture_output=True,timeout=min(3,max(.1,deadline-time.monotonic())));queries+=1
+              if q.returncode==0 and 0<len(q.stdout)<=4096:record['managerVersion']=q.stdout.decode('utf-8').strip()[:100];ready=True;break
+             except subprocess.TimeoutExpired:queries+=1
+            time.sleep(min(.25,max(0,deadline-time.monotonic())))
+           need(ready,'EXISTING_USER_MANAGER_MISSING_NO_START_INSTALL_OR_LINGER')
+           root=Path('/sys/fs/cgroup')/f'user.slice/user-{uid}.slice/user@{uid}.service';available=set(read(root/'cgroup.controllers').split());enabled=set(read(root/'cgroup.subtree_control').split());required={'cpu','memory','pids'}
+           record.update(uid=uid,managerQueries=queries,availableControllers=sorted(available),enabledControllers=sorted(enabled),currentMembership=read(Path('/proc/self/cgroup')),userManagerCgroup=str(root),scope='Read-only existing prerequisites on this runner only; no reservation and no target cap proof')
+           need(required<=available and required<=enabled,'EXISTING_DELEGATION_NOT_OBSERVED_NO_CONFIGURATION')
+           record['existingCgroupWritableByUid']=os.access(root/'cgroup.procs',os.W_OK) and os.access(root/'cgroup.subtree_control',os.W_OK)
+           need(record['existingCgroupWritableByUid'],'EXISTING_DELEGATED_ACCESS_NOT_OBSERVED')
+           record['status']='READONLY_PREREQUISITES_OBSERVED_TARGET_ENFORCEMENT_STILL_REQUIRED'
+          except Exception as ex:record.update(status='HOLD',reason=str(ex)[:200],errorType=type(ex).__name__)
+          text=json.dumps(record,ensure_ascii=True);print(text if len(text)<=16384 else '{"status":"HOLD_LOG_CAP"}')
+          raise SystemExit(0 if record['status'].startswith('READONLY_PREREQUISITES') else 125)
+          CI06_READONLY_PROBE
   ci_policy:
+    if: github.ref != 'refs/heads/codex/ci06-prerequisite-probe'
     name: Changed files and documentation policy
     runs-on: windows-2025
     timeout-minutes: 5
@@ -35,15 +81,9 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      - name: Verify event and documentation contracts
-        run: python -m unittest discover -s .github/ci -p test_policy.py -v
-      - name: Classify complete change and validate documentation
+      - name: Existing policy tests, classification and sealed linter under a real Job
         id: scope
-        run: python .github/ci/policy.py gate
-      - name: Import exact reviewed sealed maintainer linter
-        run: python tools/build_actionlint.py prepare-ci-sealed --target windows-amd64
-      - name: Check actual workflow syntax and expressions
-        run: python .github/ci/policy.py lint
+        run: python -I -B tools/ci_pipeline.py --stage policy --rid win-x64 --commit ${{ github.sha }}
   verify:
     needs: ci_policy
     if: needs.ci_policy.outputs.native == 'true'
@@ -59,85 +99,32 @@ jobs:
     runs-on: ${{ matrix.os }}
     timeout-minutes: 20
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
-        with:
-          dotnet-version: '10.0.404'
-      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
-        with:
-          python-version: '3.12'
-      - name: Locked source tests
-        shell: pwsh
-        run: |
-          New-Item -ItemType Directory -Path artifacts -ErrorAction Stop | Out-Null
-          dotnet restore tests/Ownership.Tests/Ownership.Tests.csproj --locked-mode
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          dotnet run --project tests/Ownership.Tests/Ownership.Tests.csproj -c Release --no-restore -- -noLogo -xml artifacts/unit.xml
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-      - name: Independent complete-receipt oracle vectors
-        shell: pwsh
-        run: |
-          $priorOptimize = $env:PYTHONOPTIMIZE
-          try {
-            $env:PYTHONOPTIMIZE = '0'
-            python tools/test_receipt_oracle.py --out artifacts/receipt-oracle-normal
-            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-            $env:PYTHONOPTIMIZE = '1'
-            python tools/test_receipt_oracle.py --out artifacts/receipt-oracle-optimized
-            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          } finally {
-            $env:PYTHONOPTIMIZE = $priorOptimize
-          }
-      - name: Build exact clean native package
-        run: python tools/package.py --rid ${{ matrix.rid }} --commit ${{ github.sha }} --work artifacts/build --out artifacts/delivery
-      - name: Expression-only dependency notice regressions
-        run: python tools/test_notices.py --out artifacts/notices-tests
-      - name: Canonical pinned-key and attacker-signature regressions
-        run: python tools/test_verifier.py --out artifacts/verifier-tests
-      - name: Current advisory data for locked dependencies
-        run: python tools/audit_dependencies.py --out artifacts/dependency-advisories.json
-      - name: Extract and execute the actual package
-        shell: pwsh
-        run: |
-          $archive = @(Get-ChildItem artifacts/delivery -File)
-          if ($archive.Count -ne 1) { throw 'Exactly one archive required' }
-          python tools/extract_package.py --archive $archive[0].FullName --out 'artifacts/extracted with spaces'
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          $package = @(Get-ChildItem 'artifacts/extracted with spaces' -Directory)
-          if ($package.Count -ne 1) { throw 'Exactly one package root required' }
-          python tools/check_package.py --package $package[0].FullName --commit '${{ github.sha }}' --out artifacts/package-checks.json
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          $nugetRoot = (dotnet nuget locals global-packages --list).Substring('global-packages: '.Length).Trim()
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          python tools/check_sbom_archives.py --package $package[0].FullName --nuget-root $nugetRoot --out artifacts/sbom-archive-checks.json
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          python tools/test_sbom_archives.py --out artifacts/sbom-regressions
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-      - name: Real local Linux quorum and sink fault matrix
+      # No setup fallback: Python3.12 and exact SDK404 must already exist.
+      # Missing runtime/manager/controller/delegation is HOLD, never installation.
+      - name: Existing source, native package, notices, verifier and advisory gates
+        run: python -I -B tools/ci_pipeline.py --stage verify --rid ${{ matrix.rid }} --commit ${{ github.sha }}
+      - name: Consume exact closed fixture bundle under generic64
         if: runner.os == 'Linux'
-        shell: pwsh
-        run: |
-          python tools/fetch_services.py --out artifacts/upstream
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          python tools/prepare_linux.py --archives artifacts/upstream --out artifacts/services
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          $package = @(Get-ChildItem 'artifacts/extracted with spaces' -Directory)
-          python tools/integration.py --fixtures artifacts/services --cli (Join-Path $package[0].FullName ownership) --out artifacts/integration
-          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        run: python -I -B tools/ci_pipeline.py --stage prepare --rid linux-x64 --commit ${{ github.sha }}
+      - name: Exact packaged Linux sixteen-case runtime under explicit128
+        if: runner.os == 'Linux'
+        run: python -I -B tools/ci_pipeline.py --stage runtime --rid linux-x64 --commit ${{ github.sha }}
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         if: startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch'
         with:
-          retention-days: ${{ (startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch') && 7 || 3 }}
+          retention-days: 7
           name: bundle-${{ matrix.rid }}
           path: artifacts/delivery/*
           if-no-files-found: error
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           retention-days: ${{ (startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch') && 7 || 3 }}
           name: proof-${{ matrix.rid }}
+          # No whole work directories, console logs, raw caches or private passwords.
           path: |
             artifacts/unit.xml
             artifacts/receipt-oracle-normal/receipt.json
@@ -150,51 +137,64 @@ jobs:
             artifacts/verifier-tests/receipt.json
             artifacts/build/archive.json
             artifacts/integration/receipt.json
+            artifacts/integration/host/stopped.json
+            artifacts/ci-fixture/transport-receipt.json
+            artifacts/ci-caps/*/phase.json
+            artifacts/ci-caps/*/unit-owner.json
+            artifacts/ci-caps/*/worker-failure.json
+            artifacts/ci-caps/*/resource-summary.json
+            artifacts/ci-caps/*/command-*/resource-counters.json
+            artifacts/ci-caps/*/command-*/process.json
+            artifacts/ci-caps/*/command-*/job/process.json
+            artifacts/ci-caps/*/job/process.json
           if-no-files-found: error
+      - name: Retain only safe phase failure facts
+        if: failure()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: failure-facts-${{ matrix.rid }}
+          retention-days: 3
+          path: |
+            artifacts/ci-caps/*/phase.json
+            artifacts/ci-caps/*/unit-owner.json
+            artifacts/ci-caps/*/worker-failure.json
+            artifacts/ci-caps/*/resource-summary.json
+            artifacts/ci-caps/*/command-*/process.json
+            artifacts/ci-caps/*/command-*/resource-counters.json
+            artifacts/ci-caps/*/command-*/job/process.json
+            artifacts/ci-caps/*/job/process.json
+          if-no-files-found: warn
   aggregate:
     if: startsWith(github.ref, 'refs/tags/v') || inputs.verify_release == true
     needs: verify
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
-      contents: write
+      contents: read
       id-token: write
       attestations: write
-    env:
-      RELEASE_TAG: v0.1.0-preview.3
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 0
           persist-credentials: false
-      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
-        with:
-          python-version: '3.12'
-      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+      - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333
         with:
           pattern: bundle-*
           merge-multiple: true
           path: artifacts/release
-      - name: Verify executed native archives and exact Git source
-        env:
-          SOURCE_SHA: ${{ github.sha }}
-        run: python tools/check_release.py --directory artifacts/release --commit "$SOURCE_SHA" --tag "$RELEASE_TAG"
-      - name: Attest exact archive digests
-        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6 # v4.2.2
+      - name: Existing normal-public archive predicate and exact Git source
+        run: python -I -B tools/ci_pipeline.py --stage aggregate --rid linux-x64 --commit ${{ github.sha }}
+      - name: Attest exact CI archive digests
+        uses: actions/attest@1e69f48acb82d1966a394da916b4c1698aa569d6
         with:
           subject-checksums: artifacts/release/SHA256SUMS.txt
           create-storage-record: false
-      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
-          retention-days: ${{ (startsWith(github.ref, 'refs/tags/') || github.event_name == 'workflow_dispatch') && 7 || 3 }}
+          retention-days: 7
           name: verified-release-candidate
           path: artifacts/release/*
           if-no-files-found: error
-      - name: Publish tested preview without rebuilding
-        if: startsWith(github.ref, 'refs/tags/v')
-        env:
-          GH_TOKEN: ${{ github.token }}
-          ACTUAL_TAG: ${{ github.ref_name }}
-        run: |
-          test "$ACTUAL_TAG" = "$RELEASE_TAG"
-          gh release create "$RELEASE_TAG" artifacts/release/* --verify-tag --prerelease --title "$RELEASE_TAG - Fenced Shard Ownership Lab" --notes-file docs/RELEASE-v0.1.0-preview.3.md
+      # Public release creation is deliberately coordinator-only AFTER actual CI,
+      # artifact download, known-key sums signature and exact six-file verification.

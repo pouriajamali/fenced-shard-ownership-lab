@@ -18,3 +18,5 @@ https://vuln.go.dev/ and https://github.com/golang/vulndb/tree/master/data.
 The public sealed tooling ZIPs retain the complete original Go vulnerability
 database LICENSE and an attribution/formatting/analysis note under
 producer-proofs/vulndb-*. No upstream endorsement is claimed.
+
+The copied etcd audit records in vendor/etcd-admission also retain Go Vulnerability Database CC-BY-4.0 data. Their complete original license and source/selection/analysis attribution are bundled as vendor/notices/GO-VULNDB-LICENSE.txt and vendor/notices/VULNDB-ATTRIBUTION.txt. In the separate serving ZIP these same notices live under notices/. The original seven proof files and admitted image remain byte-identical; adding these disclosures performs no new audit or security certification.
