@@ -3,8 +3,9 @@
 The controller mailbox accepts only named operations on this process's own
 children. Keep the private output directory out of Git and release archives.
 """
-import argparse,json,os,secrets,socket,subprocess,tempfile,time,urllib.request
+import argparse,json,os,secrets,socket,subprocess,sys,tempfile,time,urllib.request
 from pathlib import Path
+sys.path.insert(0,str(Path(__file__).resolve().parent))
 from bounded_fixture import canonical, kernel_limits
 from check_etcd_fixture import admitted_etcd
 
@@ -17,12 +18,21 @@ def publish(path,data):
     temp=path.with_suffix('.partial');temp.write_text(json.dumps(data,indent=2)+'\n');os.replace(temp,path)
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--fixtures',type=Path,required=True);parser.add_argument('--out',type=Path,required=True);a=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--fixtures',type=Path,required=True);parser.add_argument('--out',type=Path,required=True);parser.add_argument('--windows-client-unit');parser.add_argument('--profile-token');a=parser.parse_args()
     if os.name!='posix' or os.getuid()==0:raise SystemExit('Existing non-root Linux user required')
-    kernel_limits()
+    actual_caps=kernel_limits()
+    if a.windows_client_unit:
+        from profile_limits import guest
+        guest(actual_caps,a.windows_client_unit)
+        import re
+        if not a.profile_token or not re.fullmatch(r'[0-9a-f]{64}',a.profile_token):raise ValueError('Own profile token required')
     root=canonical(a.fixtures.absolute())
     with admitted_etcd(root) as admitted:fixture_identity=admitted['identity']
-    out=a.out.resolve();out.mkdir(parents=True,exist_ok=False)
+    out=canonical(a.out.absolute(),exists=False);out.mkdir(parents=True,exist_ok=False)
+    if a.windows_client_unit:
+        invocation=os.environ.get('INVOCATION_ID','')
+        if not invocation:raise ValueError('Actual systemd invocation identity required')
+        publish(out/'unit.json',{'unit':a.windows_client_unit,'token':a.profile_token,'group':actual_caps['group'],'invocationId':invocation,'pid':os.getpid(),'processStartIdentity':Path('/proc/self/stat').read_text().rsplit(')',1)[1].split()[19]})
     scratch=Path(tempfile.mkdtemp(prefix='portfolio-ownership-'));os.chmod(scratch,0o700)
     pg=root/'root/usr/lib/postgresql/18/bin'
     env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8','HOME':str(scratch),
@@ -83,7 +93,7 @@ def main():
         ready()
         publish(out/'connection.private.json',{'run':run,'connection':f'Host=127.0.0.1;Port={pgport};Username=ownership_lab;Password={password};Database=ownership_lab','endpoints':[f'http://127.0.0.1:{x}/' for x in clients]})
         os.chmod(out/'connection.private.json',0o600)
-        publish(out/'ready.json',{'status':'READY_OWNED_LOCAL_FIXTURES','run':run,'pgPort':pgport,'etcdClientPorts':clients,'scratch':str(scratch),'pid':os.getpid(),'physicalFaultDomains':1,'fixtureIdentity':fixture_identity})
+        publish(out/'ready.json',{'status':'READY_OWNED_LOCAL_FIXTURES','run':run,'pgPort':pgport,'etcdClientPorts':clients,'scratch':str(scratch),'pid':os.getpid(),'physicalFaultDomains':1,'actualKernelCaps':actual_caps,'fixtureIdentity':fixture_identity})
         print(json.dumps({'status':'READY','out':str(out)}),flush=True)
         while time.monotonic()-started<15*60:
             if sum(p.stat().st_size for p in out.glob('*.log'))>128*1024*1024:raise RuntimeError('Log cap exceeded')
@@ -112,6 +122,6 @@ def main():
         try:stop_pg()
         finally:
             for log in logs:log.close()
-            publish(out/'stopped.json',{'status':'OWNED_PROCESSES_STOPPED','scratchRetained':str(scratch),'durationSeconds':round(time.monotonic()-started,3),'fixtureIdentity':fixture_identity})
+            publish(out/'stopped.json',{'status':'OWNED_PROCESSES_STOPPED','scratchRetained':str(scratch),'durationSeconds':round(time.monotonic()-started,3),'actualKernelCaps':actual_caps,'fixtureIdentity':fixture_identity})
 
 if __name__=='__main__':main()

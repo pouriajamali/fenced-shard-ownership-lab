@@ -18,7 +18,7 @@ def main():
     external_helpers={
         'tools/build_etcd_fixture.py','tools/check_etcd_fixture.py','tools/bounded_fixture.py',
         'tools/test_etcd_fixture.py','tools/test_etcd_inputs.py','tools/test_fixture_resources.py',
-        'tools/etcd_inputs.py','tools/etcd-build.inputs.json','tools/etcd-build.lock.json','docs/ETCD-FIXTURE-BUILD.md',
+        'tools/etcd_inputs.py','tools/profile_limits.py','tools/wsl_host_entry.py','tools/test_profile_limits.py','tools/etcd-build.inputs.json','tools/etcd-build.lock.json','docs/ETCD-FIXTURE-BUILD.md',
         'vendor/notices/ETCD-FIXTURE-SOURCES.json','tools/build_actionlint.py',
         'tools/check_actionlint.py','tools/run_actionlint.py','tools/bounded_actionlint.py',
         'tools/test_actionlint_admission.py','tools/actionlint-build.lock.json',

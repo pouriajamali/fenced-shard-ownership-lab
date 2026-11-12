@@ -4,9 +4,11 @@ The exact source and binary security checks are complete. Two fresh builds have
 identical35,702,972-byte output, SHA256
 `720420f5f09bf4acb5b32365eddd7594764fb74e3e2b22aa7d1ae67b844f2af6`.
 The independent serving reference and pre-execution admission controls are now
-finalized. Two subsequent consuming calls stopped at existing WSL user-bus
-readiness deadlines before starting their target. No etcd image has executed. Native package/client profiles
-and the tested signed candidate have not yet completed.
+finalized. The first guarded native version check passed for etcd3.7.3,
+Git0a173d0, Go1.26.11, linux/amd64. Preparing the admitted bundle plus the five
+PostgreSQL/library archives also passed without starting services. Earlier
+user-bus readiness failures remain retained. Native package/client acceptance
+and the complete signed M1 candidate are separate required checks.
 
 The target is Linux/amd64. Native Windows and Linux C# clients use the same owned
 Linux services; Windows uses existing Ubuntu WSL. The old affected upstream
@@ -91,8 +93,12 @@ sealed exact-byte memfd; pathname replacement cannot change the selected image.
 
 Every consuming operation needs actual aggregate kernel limits: at most4GiB,
 two CPU cores,64 tasks, zero swap and finite wall/log/disk/input bounds. The owned
-child stops before first exec for actual cgroup/limit readback. Windows clients
-also require their own native Job cap. Shared operator phases use the canonical
+child stops before first exec for actual cgroup/limit readback. Windows profiles split that aggregate budget: the native client family must
+already be in a Job limited to1GiB/one CPU/16 processes; the exact owned Linux
+service unit receives3GiB/one CPU/48 tasks, zero swap. The integration entry
+requires a fresh --service-unit and actual Job readback before any child.
+The host records its invocation identity; shutdown checks the exact unit/token
+and actual empty cgroup before the outer controller can release its lease. Shared operator phases use the canonical
 atomic lease and terminal owned teardown; no foreign lease can be reset.
 
 Thirteen Linux common/held-identity controls passed in normal/-O/PYTHONOPTIMIZE=1
@@ -103,7 +109,9 @@ modules, raw size/hash and default/direct admission order. A Unix-mode test was
 moved from DrvFS to the approved native evidence root; five unaffected completed
 normal controls were retained.
 
-Portable end-to-end reproduction/CI, actual package helper/proof binding and both
-16-case native C# profiles still need final validation. Source/control evidence
+End-to-end default reproduction, actual package helper/proof binding and both
+16-case native C# profiles are required local acceptance steps. Their current
+results belong to the exact candidate review packet. Public hosted CI is a
+separate gate and is not established by shared tooling CI. Source/control evidence
 alone does not establish runtime behavior, production operation or a public
 release. Public push/CI/tag/release require the separate exact owner gate.

@@ -3,7 +3,7 @@
 Windows uses an EXISTING Ubuntu-24.04 WSL instance for Linux services.
 The CLI itself executes natively on the calling OS. No package or OS install.
 """
-import argparse,concurrent.futures,json,os,platform,subprocess,sys,time
+import argparse,concurrent.futures,json,os,platform,re,secrets,subprocess,sys,time
 from pathlib import Path
 from bounded_fixture import canonical
 from check_etcd_fixture import FIELDS, reference
@@ -22,14 +22,33 @@ def require(condition,message='Validation failed'):
     if not condition:raise ValueError(message)
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--fixtures',type=Path,required=True);parser.add_argument('--out',type=Path,required=True);parser.add_argument('--cli',type=Path,required=True);parser.add_argument('--dotnet',type=Path);a=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--fixtures',type=Path,required=True);parser.add_argument('--out',type=Path,required=True);parser.add_argument('--cli',type=Path,required=True);parser.add_argument('--dotnet',type=Path);parser.add_argument('--service-unit');a=parser.parse_args()
     fixture_reference=reference();canonical(a.fixtures.absolute())
     expected_fixture={key:fixture_reference[key] for key in FIELDS}
-    out=a.out.resolve();out.mkdir(parents=True,exist_ok=False);hostdir=out/'host'
+    windows_budget=None;unit_token=None;terminal=None
+    if os.name=='nt':
+        from profile_limits import windows
+        windows_budget=windows()
+        require(a.service_unit and re.fullmatch(r'ownership(?:06|lab)-[a-z0-9-]{8,100}',a.service_unit),'Fresh owned service unit required')
+        require(not os.environ.get('OWNERSHIP_SERVICE_UNIT') or a.service_unit==os.environ['OWNERSHIP_SERVICE_UNIT'],'Own controller service unit mismatch')
+        unit_token=os.environ.get('OWNERSHIP_PROFILE_TOKEN') or secrets.token_hex(32)
+        require(re.fullmatch(r'[0-9a-f]{64}',unit_token),'Own profile token framing')
+    out=canonical(a.out.absolute(),exists=False);out.mkdir(parents=True,exist_ok=False);hostdir=out/'host'
     hostscript=Path(__file__).with_name('linux_host.py').resolve()
     hostargs=['python3',linux_path(hostscript),'--fixtures',linux_path(a.fixtures),'--out',linux_path(hostdir)]
-    if os.name=='nt':hostargs=['wsl','-d','Ubuntu-24.04','--']+hostargs
-    hostlog=(out/'host-console.log').open('wb');host=subprocess.Popen(hostargs,stdout=hostlog,stderr=subprocess.STDOUT)
+    if os.name=='nt':
+        terminal=Path(os.environ.get('OWNERSHIP_NATIVE_TERMINAL',str(out.parent/(out.name+'-native-terminal.json')))).absolute()
+        canonical(terminal,exists=False);require(terminal.is_relative_to(out.parent),'Own native terminal containment')
+        if terminal.exists():
+            previous=json.loads(terminal.read_bytes());require(previous.get('unit')==a.service_unit and previous.get('token')==unit_token and previous.get('terminal') is True,'Own controller prestart state')
+        atomic(terminal,{'unit':a.service_unit,'token':unit_token,'terminal':False,'populated':None,'targetStarted':False})
+        hostentry=Path(__file__).with_name('wsl_host_entry.py').resolve()
+        hostargs=['wsl','-d','Ubuntu-24.04','--','/usr/bin/python3','-I','-B',linux_path(hostentry),'--unit',a.service_unit,'--token',unit_token,'--terminal',linux_path(terminal),'--fixtures',linux_path(a.fixtures),'--out',linux_path(hostdir)]
+    hostlog=(out/'host-console.log').open('wb')
+    try:host=subprocess.Popen(hostargs,stdout=hostlog,stderr=subprocess.STDOUT)
+    except BaseException:
+        if terminal is not None:atomic(terminal,{'unit':a.service_unit,'token':unit_token,'terminal':True,'populated':0,'targetStarted':False,'reason':'WINDOWS_WSL_CLIENT_NOT_CREATED'})
+        hostlog.close();raise
     own_children=[];history=[];checks=[];expected={};planned_receipts={};original_sql_texts={};counter=0;started=time.monotonic();configuration=None
     cli=([str(a.dotnet.resolve())] if a.dotnet else [])+[str(a.cli.resolve())]
     def wait_file(path,timeout=120):
@@ -91,7 +110,11 @@ def main():
         return process.communicate(timeout=10)
     try:
         wait_file(hostdir/'ready.json')
-        require(json.loads((hostdir/'ready.json').read_text()).get('fixtureIdentity')==expected_fixture, 'Host fixture identity differs from independent reference')
+        ready=json.loads((hostdir/'ready.json').read_text())
+        require(ready.get('fixtureIdentity')==expected_fixture, 'Host fixture identity differs from independent reference')
+        if windows_budget is not None:
+            from profile_limits import guest
+            guest(ready['actualKernelCaps'],a.service_unit)
         configuration=json.loads((hostdir/'connection.private.json').read_text())
         version=call('--version');run=configuration['run'];endpoint=configuration['endpoints'][0]
         require(call('init',run)['status']=='INITIALIZED_FRESH', 'Validation failed: integration.py:85')
@@ -165,18 +188,29 @@ def main():
         require('Password' not in telemetry.stderr and configuration['connection'].split('Password=')[1].split(';')[0] not in telemetry.stderr, 'Validation failed: integration.py:131')
         oracle(owner_e);mark('stable-otel-trace-redacted-and-business-result-preserved')
         require(len(checks)==16 and len(expected)==5 and sum(expected.values())==165, 'Fixed profile invariant changed')
-        receipt={'schema':1,'status':'PASS','fixtureIdentity':expected_fixture,'clientOs':platform.system(),'clientArchitecture':platform.machine(),'version':version,'cases':checks,'caseCount':len(checks),'independentSqlOracle':True,'completeOriginalReceiptOracle':True,'effectCount':len(expected),'total':sum(expected.values()),'durationSeconds':round(time.monotonic()-started,3),'history':history,'limits':['Single physical host; local synthetic fixtures only','BeforeLock is an application pause, not packet-delay measurement','Graceful sink restart; arbitrary storage restore/rollback unsupported','No production HA, exactly-once network delivery, orders or latency claim']}
+        receipt={'schema':1,'status':'PASS','fixtureIdentity':expected_fixture,'clientOs':platform.system(),'clientArchitecture':platform.machine(),'resourceBudget':{'windows':windows_budget,'linux':ready['actualKernelCaps']},'version':version,'cases':checks,'caseCount':len(checks),'independentSqlOracle':True,'completeOriginalReceiptOracle':True,'effectCount':len(expected),'total':sum(expected.values()),'durationSeconds':round(time.monotonic()-started,3),'history':history,'limits':['Single physical host; local synthetic fixtures only','BeforeLock is an application pause, not packet-delay measurement','Graceful sink restart; arbitrary storage restore/rollback unsupported','No production HA, exactly-once network delivery, orders or latency claim']}
         atomic(out/'receipt.json',receipt);print(json.dumps({k:receipt[k] for k in ['status','clientOs','caseCount','effectCount','total','durationSeconds']}))
     except Exception as error:
         atomic(out/'failure.json',{'status':'FAIL','type':type(error).__name__,'detail':str(error)[:1200],'completedCases':checks,'history':history});raise
     finally:
         for process in own_children:
             if process.poll() is None:kill(process)
-        if configuration is not None and host.poll() is None:
-            try:control('shutdown')
-            except (OSError,ValueError,RuntimeError,TimeoutError):host.terminate()
-        try:host.wait(timeout=35)
-        except subprocess.TimeoutExpired:host.terminate();host.wait(timeout=10)
-        hostlog.close()
+        try:
+            if configuration is not None and host.poll() is None:
+                try:control('shutdown')
+                except (OSError,ValueError,RuntimeError,TimeoutError):
+                    if os.name!='nt':host.terminate()
+            try:host.wait(timeout=35)
+            except subprocess.TimeoutExpired:
+                if os.name=='nt':
+                    # Stop only the exact recorded invocation, never the WSL distro/client.
+                    stopped=subprocess.run([*hostargs,'--stop'],stdout=hostlog,stderr=subprocess.STDOUT,timeout=60)
+                    require(stopped.returncode==0,'Owned native terminal proof required')
+                    host.wait(timeout=15)
+                else:host.terminate();host.wait(timeout=10)
+            require(host.returncode==0,'Owned service host exited nonzero')
+            if os.name=='nt':
+                actual=json.loads(terminal.read_bytes());require(actual.get('unit')==a.service_unit and actual.get('token')==unit_token and actual.get('terminal') is True and actual.get('populated')==0,'Actual native group terminal before profile completion')
+        finally:hostlog.close()
 
 if __name__=='__main__':main()
