@@ -6,7 +6,8 @@ children. Keep the private output directory out of Git and release archives.
 import argparse,json,os,secrets,socket,subprocess,sys,tempfile,time,urllib.request
 from pathlib import Path
 sys.path.insert(0,str(Path(__file__).resolve().parent))
-from bounded_fixture import canonical, kernel_limits
+from bounded_fixture import NATIVE_RUNTIME_PROFILE, canonical, kernel_limits, require
+from profile_limits import ResourceWatch, native_runtime
 from check_etcd_fixture import admitted_etcd
 
 def port(used):
@@ -18,9 +19,10 @@ def publish(path,data):
     temp=path.with_suffix('.partial');temp.write_text(json.dumps(data,indent=2)+'\n');os.replace(temp,path)
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--fixtures',type=Path,required=True);parser.add_argument('--out',type=Path,required=True);parser.add_argument('--windows-client-unit');parser.add_argument('--profile-token');a=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--fixtures',type=Path,required=True);parser.add_argument('--out',type=Path,required=True);parser.add_argument('--windows-client-unit');parser.add_argument('--profile-token');parser.add_argument('--runtime-profile',choices=[NATIVE_RUNTIME_PROFILE]);a=parser.parse_args()
+    require(not a.runtime_profile or (sys.platform=='linux' and not a.windows_client_unit),'NATIVE_RUNTIME_LINUX_ONLY')
     if os.name!='posix' or os.getuid()==0:raise SystemExit('Existing non-root Linux user required')
-    actual_caps=kernel_limits()
+    actual_caps=native_runtime(a.runtime_profile) if a.runtime_profile else kernel_limits()
     if a.windows_client_unit:
         from profile_limits import guest
         guest(actual_caps,a.windows_client_unit)
@@ -40,7 +42,7 @@ def main():
     password=secrets.token_hex(24);admin=secrets.token_hex(24);run=secrets.token_hex(12)
     private=scratch/'admin-password';private.write_text(admin);os.chmod(private,0o600)
     used=set();pgport=port(used);clients=[port(used) for _ in range(3)];peers=[port(used) for _ in range(3)]
-    logs=[];members=[];started=time.monotonic();pg_started=False
+    logs=[];members=[];started=time.monotonic();pg_started=False;resources=ResourceWatch(actual_caps)
     def command(args,extra=None,timeout=30):
         local=env.copy();local.update(extra or {})
         result=subprocess.run([str(x) for x in args],env=local,capture_output=True,text=True,timeout=timeout)
@@ -96,6 +98,7 @@ def main():
         publish(out/'ready.json',{'status':'READY_OWNED_LOCAL_FIXTURES','run':run,'pgPort':pgport,'etcdClientPorts':clients,'scratch':str(scratch),'pid':os.getpid(),'physicalFaultDomains':1,'actualKernelCaps':actual_caps,'fixtureIdentity':fixture_identity})
         print(json.dumps({'status':'READY','out':str(out)}),flush=True)
         while time.monotonic()-started<15*60:
+            resources.sample()
             if sum(p.stat().st_size for p in out.glob('*.log'))>128*1024*1024:raise RuntimeError('Log cap exceeded')
             request=out/'control.json'
             if not request.exists():time.sleep(.05);continue
@@ -122,6 +125,6 @@ def main():
         try:stop_pg()
         finally:
             for log in logs:log.close()
-            publish(out/'stopped.json',{'status':'OWNED_PROCESSES_STOPPED','scratchRetained':str(scratch),'durationSeconds':round(time.monotonic()-started,3),'actualKernelCaps':actual_caps,'fixtureIdentity':fixture_identity})
+            publish(out/'stopped.json',{'status':'OWNED_PROCESSES_STOPPED','scratchRetained':str(scratch),'durationSeconds':round(time.monotonic()-started,3),'actualKernelCaps':actual_caps,'fixtureIdentity':fixture_identity,'resourceCounters':resources.finish()})
 
 if __name__=='__main__':main()

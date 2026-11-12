@@ -5,7 +5,8 @@ The CLI itself executes natively on the calling OS. No package or OS install.
 """
 import argparse,concurrent.futures,json,os,platform,re,secrets,subprocess,sys,time
 from pathlib import Path
-from bounded_fixture import canonical
+from bounded_fixture import NATIVE_RUNTIME_PROFILE, canonical, kernel_limits
+from profile_limits import native_runtime, validate_resource_counters
 from check_etcd_fixture import FIELDS, reference
 from receipt_oracle import ReceiptOracleError, decode_json, validate_history, validate_receipt
 
@@ -22,7 +23,10 @@ def require(condition,message='Validation failed'):
     if not condition:raise ValueError(message)
 
 def main():
-    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--fixtures',type=Path,required=True);parser.add_argument('--out',type=Path,required=True);parser.add_argument('--cli',type=Path,required=True);parser.add_argument('--dotnet',type=Path);parser.add_argument('--service-unit');a=parser.parse_args()
+    parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--fixtures',type=Path,required=True);parser.add_argument('--out',type=Path,required=True);parser.add_argument('--cli',type=Path,required=True);parser.add_argument('--dotnet',type=Path);parser.add_argument('--service-unit');parser.add_argument('--runtime-profile',choices=[NATIVE_RUNTIME_PROFILE]);a=parser.parse_args()
+    require(not a.runtime_profile or (os.name!='nt' and sys.platform=='linux'),'NATIVE_RUNTIME_LINUX_ONLY')
+    native_caps=None
+    if os.name!='nt':native_caps=native_runtime(a.runtime_profile) if a.runtime_profile else kernel_limits()
     fixture_reference=reference();canonical(a.fixtures.absolute())
     expected_fixture={key:fixture_reference[key] for key in FIELDS}
     windows_budget=None;unit_token=None;terminal=None
@@ -44,12 +48,13 @@ def main():
         atomic(terminal,{'unit':a.service_unit,'token':unit_token,'terminal':False,'populated':None,'targetStarted':False})
         hostentry=Path(__file__).with_name('wsl_host_entry.py').resolve()
         hostargs=['wsl','-d','Ubuntu-24.04','--','/usr/bin/python3','-I','-B',linux_path(hostentry),'--unit',a.service_unit,'--token',unit_token,'--terminal',linux_path(terminal),'--fixtures',linux_path(a.fixtures),'--out',linux_path(hostdir)]
+    if a.runtime_profile:hostargs+=['--runtime-profile',a.runtime_profile]
     hostlog=(out/'host-console.log').open('wb')
     try:host=subprocess.Popen(hostargs,stdout=hostlog,stderr=subprocess.STDOUT)
     except BaseException:
         if terminal is not None:atomic(terminal,{'unit':a.service_unit,'token':unit_token,'terminal':True,'populated':0,'targetStarted':False,'reason':'WINDOWS_WSL_CLIENT_NOT_CREATED'})
         hostlog.close();raise
-    own_children=[];history=[];checks=[];expected={};planned_receipts={};original_sql_texts={};counter=0;started=time.monotonic();configuration=None
+    own_children=[];history=[];checks=[];expected={};planned_receipts={};original_sql_texts={};counter=0;started=time.monotonic();configuration=None;receipt=None
     cli=([str(a.dotnet.resolve())] if a.dotnet else [])+[str(a.cli.resolve())]
     def wait_file(path,timeout=120):
         until=time.monotonic()+timeout
@@ -115,6 +120,9 @@ def main():
         if windows_budget is not None:
             from profile_limits import guest
             guest(ready['actualKernelCaps'],a.service_unit)
+        if native_caps is not None:
+            current=native_runtime(a.runtime_profile) if a.runtime_profile else kernel_limits()
+            require(current==native_caps and ready['actualKernelCaps']==current,'PARENT_AND_HOST_ACTUAL_RUNTIME_BUDGET')
         configuration=json.loads((hostdir/'connection.private.json').read_text())
         version=call('--version');run=configuration['run'];endpoint=configuration['endpoints'][0]
         require(call('init',run)['status']=='INITIALIZED_FRESH', 'Validation failed: integration.py:85')
@@ -188,8 +196,8 @@ def main():
         require('Password' not in telemetry.stderr and configuration['connection'].split('Password=')[1].split(';')[0] not in telemetry.stderr, 'Validation failed: integration.py:131')
         oracle(owner_e);mark('stable-otel-trace-redacted-and-business-result-preserved')
         require(len(checks)==16 and len(expected)==5 and sum(expected.values())==165, 'Fixed profile invariant changed')
-        receipt={'schema':1,'status':'PASS','fixtureIdentity':expected_fixture,'clientOs':platform.system(),'clientArchitecture':platform.machine(),'resourceBudget':{'windows':windows_budget,'linux':ready['actualKernelCaps']},'version':version,'cases':checks,'caseCount':len(checks),'independentSqlOracle':True,'completeOriginalReceiptOracle':True,'effectCount':len(expected),'total':sum(expected.values()),'durationSeconds':round(time.monotonic()-started,3),'history':history,'limits':['Single physical host; local synthetic fixtures only','BeforeLock is an application pause, not packet-delay measurement','Graceful sink restart; arbitrary storage restore/rollback unsupported','No production HA, exactly-once network delivery, orders or latency claim']}
-        atomic(out/'receipt.json',receipt);print(json.dumps({k:receipt[k] for k in ['status','clientOs','caseCount','effectCount','total','durationSeconds']}))
+        receipt={'schema':1,'status':'PASS','fixtureIdentity':expected_fixture,'clientOs':platform.system(),'clientArchitecture':platform.machine(),'runtimeProfile':a.runtime_profile or ('windows-coallocated' if windows_budget is not None else 'generic-default-64'),'resourceBudget':{'windows':windows_budget,'linux':ready['actualKernelCaps']},'version':version,'cases':checks,'caseCount':len(checks),'independentSqlOracle':True,'completeOriginalReceiptOracle':True,'effectCount':len(expected),'total':sum(expected.values()),'durationSeconds':round(time.monotonic()-started,3),'history':history,'limits':['Single physical host; local synthetic fixtures only','BeforeLock is an application pause, not packet-delay measurement','Graceful sink restart; arbitrary storage restore/rollback unsupported','No production HA, exactly-once network delivery, orders or latency claim']}
+        # Publish PASS only after actual host teardown and resource counters below.
     except Exception as error:
         atomic(out/'failure.json',{'status':'FAIL','type':type(error).__name__,'detail':str(error)[:1200],'completedCases':checks,'history':history});raise
     finally:
@@ -212,5 +220,9 @@ def main():
             if os.name=='nt':
                 actual=json.loads(terminal.read_bytes());require(actual.get('unit')==a.service_unit and actual.get('token')==unit_token and actual.get('terminal') is True and actual.get('populated')==0,'Actual native group terminal before profile completion')
         finally:hostlog.close()
+    stopped=json.loads((hostdir/'stopped.json').read_bytes())
+    require(stopped['status']=='OWNED_PROCESSES_STOPPED' and stopped['fixtureIdentity']==expected_fixture,'OWNED_HOST_STOP_IDENTITY')
+    receipt['resourceCounters']=validate_resource_counters(stopped['resourceCounters'])
+    atomic(out/'receipt.json',receipt);print(json.dumps({k:receipt[k] for k in ['status','clientOs','caseCount','effectCount','total','durationSeconds']}))
 
 if __name__=='__main__':main()

@@ -92,7 +92,10 @@ fresh native build workspace with real Unix mode semantics. Linux executes a
 sealed exact-byte memfd; pathname replacement cannot change the selected image.
 
 Every consuming operation needs actual aggregate kernel limits: at most4GiB,
-two CPU cores,64 tasks, zero swap and finite wall/log/disk/input bounds. The owned
+two CPU cores,64 tasks, zero swap and finite wall/log/disk/input bounds. Only
+the explicitly selected native Linux sixteen-case C# runtime uses the approved
+128-task exception; this does not apply to reproduction/compiler/audit/default
+or linter operations. The owned
 child stops before first exec for actual cgroup/limit readback. Windows profiles split that aggregate budget: the native client family must
 already be in a Job limited to1GiB/one CPU/16 processes; the exact owned Linux
 service unit receives3GiB/one CPU/48 tasks, zero swap. The integration entry
@@ -120,7 +123,7 @@ separate gate and is not established by shared tooling CI. Source/control eviden
 alone does not establish runtime behavior, production operation or a public
 release. Public push/CI/tag/release require the separate exact owner gate.
 
-## Native client acceptance boundary
+## Historical native client acceptance boundary -925d1d0
 
 Exact925d1d0 actual packages bind these helpers/proofs on both OSs. The Windows
 packaged16-case profile passed with actual1GiB native+3GiB guest limits and
@@ -128,5 +131,11 @@ terminal teardown. The native Linux profile stopped at four concurrent clients;
 a minimal diagnosis proved the64-task cap exhausted, with no memory OOM events.
 The admitted fixture/default reproduction are not relabeled failed by this
 separate client resource limit. Linux16-case acceptance and a complete signed
-M1 candidate remain blocked. A128-task native-runtime-only exception is proposed
-but unapproved; generic SDK/tool/build/audit and current actual limits remain64.
+M1 candidate required a new resource decision. The subsequent exact amendment
+approves only `--runtime-profile native-linux-16` at4GiB/CPU2/128 tasks/swap0.
+Generic SDK/tool/build/audit/default/linter remain64 and Windows budgets are
+unchanged. Both entries validate actual owned limits before children. Finite
+129/unbounded/wrongOS/profile/no-child controls and actual64/128 positives
+passed in all three optimization modes; exact-new-package profiles belong
+to the later candidate packet. Existing default/source/security proofs are reused
+without bootstrap, default reproduction or audit replay.

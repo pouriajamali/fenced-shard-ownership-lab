@@ -47,7 +47,7 @@ separate later observations. See [the source evidence checkpoint](W2-M1-RECEIPT-
 No production HA, separate physical failure-domain proof, exactly-once network
 delivery, performance, live trading or general security certification claim.
 
-## Native acceptance follow-up - blocked
+## Historical native acceptance follow-up -925d1d0
 
 Exact925d1d0 Windows/Linux archives passed native/Core15/manifest/notices/SBOM
 checks. Windows passed all16 packaged cases, five effects/total165 and actual
@@ -56,7 +56,25 @@ request step, exit137 without JSON. A separate unchanged-environment minimal
 four-client diagnosis confirmed64 tasks, pids.events max0->4, failed network
 thread creation and zero memory OOM/kill events. The failed proof is retained.
 No task cap, concurrency, scenario, runtime setting or engine was relaxed.
-The full tested signed local M1 candidate remains blocked; the native-Linux-only
-128-task proposal awaits explicit resource-contract approval. No higher-cap run
-or public operation occurred. This documentation-only follow-up does not change
-the exact runtime/package candidate925d1d0 or assert a fresh package/profile.
+This was the retained pre-amendment block; its exact runtime/package925d1d0
+results are not reclassified. The subsequent source below requires fresh exact
+native package/profile acceptance before full local candidate assembly.
+
+## Explicit native Linux128 runtime amendment
+
+Only `--runtime-profile native-linux-16` selects an owned delegated runtime unit
+with exact4GiB/two CPU/128 tasks/zero swap. Integration and host recheck actual
+limits before service/client children; omitted selectors remain64 and Windows
+rejects the selector. Generic compiler/build/audit/default/linter paths stay64;
+Windows1GiB/one CPU/16-process+guest3GiB/one CPU/48-task budgets are unchanged.
+No engine, dependency, SQL, four-client concurrency, fault or receipt behavior
+changed. Actual before/peak/after pids/memory counters and no new task denial/OOM
+are mandatory; PASS follows owned host teardown. A new failure stops the run.
+
+Eight new finite guard cases passed on both OSs in normal,-O and environment
+optimization modes, plus actual64/128 positives in all three modes. Exact source
+blob comparison now binds all six shipped profile helpers during package checks.
+This source checkpoint precedes the required new native packages/profiles; their
+actual outcomes and the six verified signed local deliverables belong to the
+final exact-candidate review packet. Public pipeline/CI/README/About writes are
+proposals for a separate coordinator gate; none is authorized or performed here.

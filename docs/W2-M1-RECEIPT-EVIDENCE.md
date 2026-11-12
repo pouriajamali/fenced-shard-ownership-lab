@@ -1,9 +1,11 @@
 # M1 local evidence checkpoint - preview.3
 
 Implementation checkpoint with native follow-up: 2026-11-12.
-Status: M1 BLOCKED BY CONFIRMED NATIVE LINUX64-TASK CEILING.
-Runtime/package candidate:925d1d043590b8ffa3142b95763815d12c25e26d.
-The later documentation-only head does not replace those exact runtime bytes.
+Status: EXACT NATIVE128 AMENDMENT APPROVED; NEW SOURCE CONTROLS PASS.
+Source cutoff precedes new exact native package/profile acceptance.
+Historical runtime/package candidate:925d1d043590b8ffa3142b95763815d12c25e26d.
+The explicit128 implementation is a new source candidate; historical native
+results below retain their original source boundary.
 Baseline: b90ee33fe4a80d16e930e706c28ff44a3e6bf4d6.
 Contracts: W2-M1-06-RECEIPT-ORACLE-1 and W2-M1-06-SERVICING-ALT-1.
 Authorized scope is a tested signed local candidate. Public app push/CI/tag/
@@ -104,12 +106,22 @@ replacement16-case acceptance result. Its own services/cgroup were terminal.
 
 No cap, runtime diagnostics setting, four-client concurrency, engine, SQL,
 managed graph, fault or receipt behavior was retuned. A precise128-task exception
-for only the native Linux runtime profile is proposed in the private review
-packet.4GiB/two CPU/swap0, generic SDK/tool/build/audit64-task bounds and Windows
-coallocation would remain unchanged. This exception is NOT AUTHORIZED and was
-not executed. The existing local gate requires stopping at a real hard-cap
-boundary. Required after an explicit decision: affected guard controls, new exact
-native packages/profiles and only then local candidate assembly/signature.
+for only the explicit native Linux16 runtime was approved by the exact
+coordinator gate SHA2560d1c65a9548f3194000c50d421a687fd24c36ebc72adb22a87a559dd7e8120ad.
+4GiB/two CPU/swap0, generic SDK/tool/build/audit/default/linter64-task bounds
+and Windows coallocation remain unchanged. Both runtime entries read actual
+owned cgroup limits before children. No arbitrary integer/environment override
+selects128. Missing selector, wrongOS/profile,129/unbounded limits reject.
+
+Eight new finite controls passed on each OS in normal,-O and actual
+PYTHONOPTIMIZE=1 modes, with no child on rejection. Actual64 and128 kernel
+positives passed in all three modes. Under an actual128 unit, omitted selectors
+in both integration and host rejected before children, even with an environment
+value set. New task-denial/OOM counters fail acceptance; final PASS follows
+actual owned host teardown. Six shipped helper files are independently compared
+with their exact Git blobs during package checks. New native packages/profiles
+and only then complete local assembly/signature belong to the final candidate
+packet. No old compiler/module/security/default/150/219 proof was replayed.
 
 The added sixteenth case retains old owner_d/delta41 and42 stale-before-conflict;
 current owner_e/delta41 replays total112/originalFence owner_d; delta42 conflicts.

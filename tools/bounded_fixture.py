@@ -12,10 +12,12 @@ import re
 import selectors
 import signal
 import stat
+import sys
 import tarfile
 import time
 from pathlib import Path
 
+NATIVE_RUNTIME_PROFILE = "native-linux-16"
 MEMORY_MAX = 4294967296
 DOWNLOAD_MAX = 67108864
 WORKSPACE_MAX = 4294967296
@@ -71,19 +73,28 @@ def fresh_directory(path, owned_root):
     return path
 
 
-def kernel_limits(pid="self"):
-    require(os.name == "posix" and os.getuid() != 0, "NONROOT_LINUX_REQUIRED")
+def kernel_limits(pid="self", *, runtime_profile=None):
+    require(runtime_profile is None or (type(runtime_profile) is str and runtime_profile == NATIVE_RUNTIME_PROFILE),
+            "FINITE_NATIVE_RUNTIME_PROFILE")
+    require(sys.platform == "linux" and hasattr(os, "getuid") and os.getuid() != 0,
+            "NONROOT_LINUX_REQUIRED")
     membership = Path(f"/proc/{pid}/cgroup").read_text()
     names = [x[3:] for x in membership.splitlines() if x.startswith("0::")]
     require(len(names) == 1 and names[0] != "/", "DELEGATED_CGROUP_REQUIRED")
     group = Path("/sys/fs/cgroup") / names[0].lstrip("/")
+    if runtime_profile is not None:
+        prefix = f"/user.slice/user-{os.getuid()}.slice/user@{os.getuid()}.service/app.slice/"
+        require(names[0].startswith(prefix) and
+                re.fullmatch(r"ownership(?:06|lab)-[a-z0-9-]{8,100}\.service",
+                             names[0][len(prefix):]), "OWN_NATIVE_RUNTIME_GROUP")
     values = {n: (group/n).read_text().strip()
               for n in ("memory.max", "memory.swap.max", "pids.max", "cpu.max")}
     require(values["memory.max"].isdigit()
             and 0 < int(values["memory.max"]) <= MEMORY_MAX, "AGGREGATE_MEMORY_HOLD")
     require(values["memory.swap.max"] == "0", "SWAP_HOLD")
     require(values["pids.max"].isdigit()
-            and 0 < int(values["pids.max"]) <= 64, "AGGREGATE_TASK_HOLD")
+            and 0 < int(values["pids.max"]) <= (128 if runtime_profile is not None else 64),
+            "AGGREGATE_TASK_HOLD")
     quota, period = values["cpu.max"].split()
     require(quota.isdigit() and 0 < int(quota) <= 2*int(period), "AGGREGATE_CPU_HOLD")
     return {"membership": membership, "group": str(group), "kernel": values}

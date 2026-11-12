@@ -5,6 +5,13 @@ from pathlib import Path,PurePosixPath
 def require(condition,message='Validation failed'):
     if not condition:raise ValueError(message)
 
+def verify_profile_helpers(package,commit):
+    require(len(commit)==40 and all(c in '0123456789abcdef' for c in commit),'EXACT_SOURCE_COMMIT_FORMAT')
+    for name in ['bounded_fixture.py','linux_host.py','integration.py','profile_limits.py','test_profile_limits.py','check_package.py']:
+        original=subprocess.check_output(['git','-C',str(Path(__file__).resolve().parents[1]),'show',commit+':tools/'+name])
+        require((package/'tools'/name).read_bytes()==original,'Exact native-runtime helper Git blob differs: '+name)
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--package',type=Path,required=True);parser.add_argument('--commit',required=True);parser.add_argument('--out',type=Path,required=True);a=parser.parse_args()
     package=a.package.resolve();a.out.parent.mkdir(parents=True,exist_ok=True);require(not a.out.exists(), 'Validation failed: check_package.py:7')
@@ -31,6 +38,8 @@ def main():
             tooling.get('admission',{}).get('state')=='ADMITTED',
             'Unadmitted fixture/tooling source is not a complete local candidate')
     checks.append('complete-external-reproduction-helpers-and-admitted-reference-states')
+    verify_profile_helpers(package,a.commit)
+    checks.append('independent-exact-git-blob-binding-of-six-runtime-profile-helpers')
     require('MIT License' in (package/'LICENSE').read_text(), 'Validation failed: check_package.py:15');require((package/'licenses').is_dir(), 'Validation failed: check_package.py:15');checks.append('original-and-third-party-notices')
     dependencies=json.loads((package/'DEPENDENCIES.json').read_text(encoding='utf-8'))['packages']
     require(manifest['rid'] in ('win-x64','linux-x64'), 'Supported native RID required')
