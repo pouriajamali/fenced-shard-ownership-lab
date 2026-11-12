@@ -103,8 +103,8 @@ jobs:
         with:
           fetch-depth: 0
           persist-credentials: false
-      # No setup fallback: Python3.12 and exact SDK404 must already exist.
-      # Missing runtime/manager/controller/delegation is HOLD, never installation.
+      # Python3.12 must already exist. Windows stages only source-pinned private SDK404.
+      # Linux still requires existing404/manager/delegation; absence remains HOLD.
       - name: Existing source, native package, notices, verifier and advisory gates
         run: python -I -B tools/ci_pipeline.py --stage verify --rid ${{ matrix.rid }} --commit ${{ github.sha }}
       - name: Consume exact closed fixture bundle under generic64
@@ -139,6 +139,7 @@ jobs:
             artifacts/integration/receipt.json
             artifacts/integration/host/stopped.json
             artifacts/ci-fixture/transport-receipt.json
+            artifacts/ci-caps/*/sdk404.json
             artifacts/ci-caps/*/phase.json
             artifacts/ci-caps/*/unit-owner.json
             artifacts/ci-caps/*/worker-failure.json
@@ -155,6 +156,7 @@ jobs:
           name: failure-facts-${{ matrix.rid }}
           retention-days: 3
           path: |
+            artifacts/ci-caps/*/sdk404.json
             artifacts/ci-caps/*/phase.json
             artifacts/ci-caps/*/unit-owner.json
             artifacts/ci-caps/*/worker-failure.json

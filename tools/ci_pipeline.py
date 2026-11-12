@@ -27,12 +27,29 @@ def env_for_child():
  for k,name in [('DOTNET_CLI_HOME','home'),('NUGET_PACKAGES','packages'),('NUGET_HTTP_CACHE_PATH','http'),('NUGET_PLUGINS_CACHE_PATH','plugins'),('TEMP','tmp'),('TMP','tmp')]:env[k]=str(cache/name)
  # Linux owned fixture scratch must have native0700 semantics, not a drive mount.
  env['TMPDIR']=str(cache/'tmp') if os.name=='nt' else '/tmp'
- env.update(DOTNET_CLI_TELEMETRY_OPTOUT='1',DOTNET_GENERATE_ASPNET_CERTIFICATE='false',DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE='true',MSBuildEnableWorkloadResolver='false',DOTNET_CLI_USE_MSBUILD_SERVER='0',MSBUILDDISABLENODEREUSE='1',DOTNET_PROCESSOR_COUNT='1',DOTNET_MULTILEVEL_LOOKUP='0',DisableTransitiveFrameworkReferenceDownloads='true')
+ env.update(PYTHONOPTIMIZE='0',DOTNET_CLI_TELEMETRY_OPTOUT='1',DOTNET_GENERATE_ASPNET_CERTIFICATE='false',DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE='true',MSBuildEnableWorkloadResolver='false',DOTNET_CLI_USE_MSBUILD_SERVER='0',MSBUILDDISABLENODEREUSE='1',DOTNET_PROCESSOR_COUNT='1',DOTNET_MULTILEVEL_LOOKUP='0',DisableTransitiveFrameworkReferenceDownloads='true')
  return env
+
+
+# Explicit per-service values only. No manager import-environment/set-environment.
+SERVICE_ENV_ALLOWLIST=frozenset(('PATH','SystemRoot','WINDIR','COMSPEC','PATHEXT','HOME','USERPROFILE','APPDATA','LOCALAPPDATA','LANG','GITHUB_ACTIONS','GITHUB_EVENT_NAME','GITHUB_REF','GITHUB_SHA','GITHUB_EVENT_PATH','GITHUB_OUTPUT','GITHUB_STEP_SUMMARY','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_JOB','GITHUB_WORKSPACE','RUNNER_TEMP','RUNNER_OS','DOTNET_CLI_HOME','NUGET_PACKAGES','NUGET_HTTP_CACHE_PATH','NUGET_PLUGINS_CACHE_PATH','TEMP','TMP','TMPDIR','DOTNET_CLI_TELEMETRY_OPTOUT','DOTNET_GENERATE_ASPNET_CERTIFICATE','DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE','MSBuildEnableWorkloadResolver','DOTNET_CLI_USE_MSBUILD_SERVER','MSBUILDDISABLENODEREUSE','DOTNET_PROCESSOR_COUNT','DOTNET_MULTILEVEL_LOOKUP','DisableTransitiveFrameworkReferenceDownloads','PYTHONOPTIMIZE'))
+SERVICE_ENV_UNSET=('GITHUB_TOKEN','GH_TOKEN','ACTIONS_RUNTIME_TOKEN','ACTIONS_ID_TOKEN_REQUEST_TOKEN','OWNERSHIP_LAB_DB','HTTP_PROXY','HTTPS_PROXY','ALL_PROXY','http_proxy','https_proxy','all_proxy','PYTHONPATH','PYTHONHOME','PYTHONSTARTUP')
+
+def service_environment_flags(env,commit):
+ need(type(env) is dict and set(env)<=SERVICE_ENV_ALLOWLIST,'SERVICE_ENV_FIXED_KEYS_ONLY')
+ need(env.get('GITHUB_ACTIONS')=='true' and env.get('GITHUB_RUN_ATTEMPT')=='1' and env.get('GITHUB_SHA')==commit,'SERVICE_ENV_EXACT_CI_SOURCE')
+ need(env.get('PYTHONOPTIMIZE') in ('0','1'),'SERVICE_ENV_FINITE_OPTIMIZATION')
+ need(all(type(k) is str and type(v) is str and len(v.encode('utf-8'))<=8192 and not any(c in v for c in ('\0','\r','\n')) for k,v in env.items()),'SERVICE_ENV_VALUE_FRAME')
+ need(sum(len((k+'='+v).encode('utf-8')) for k,v in env.items())<=65536,'SERVICE_ENV_TOTAL_CAP')
+ # Each NAME=VALUE is one argv element. Values are never shell-interpolated/logged.
+ return ['--setenv='+k+'='+env[k] for k in sorted(env)]+['--property=UnsetEnvironment='+' '.join(SERVICE_ENV_UNSET)]
 
 def sdk(env):
  pin=json.loads((ROOT/'global.json').read_bytes())
  need(pin=={'sdk':{'version':'10.0.404','rollForward':'disable'}},'SDK_SOURCE_PIN')
+ if os.name=='nt':
+  from ci_windows_sdk import stage_sdk
+  return stage_sdk(env)
  exe=shutil.which('dotnet',path=env['PATH']);need(exe,'PREINSTALLED_SDK_REQUIRED_NO_SETUP_FALLBACK')
  exe=Path(exe).resolve();need((exe.parent/'sdk/10.0.404/dotnet.dll').is_file(),'PREINSTALLED_404_REQUIRED_NO_INSTALL')
  # First project SDK invocation is the bounded locked restore, never a health probe.
@@ -165,10 +182,10 @@ def worker(stage,rid,commit,phase,token,unit):
  elif stage=='runtime':
   need(sys.platform=='linux','LINUX_RUNTIME_ONLY');package=package_root()
   run([python,'-B',str(package/'tools/integration.py'),'--runtime-profile','native-linux-16','--fixtures',str(ART/'services'),'--cli',str(package/'ownership'),'--out',str(ART/'integration')],1020)
- elif stage=='aggregate':run(py('tools/check_release.py','--directory','artifacts/release','--commit',commit,'--tag','v0.1.0-preview.3'),480)
+ elif stage=='aggregate':run(py('tools/check_release.py','--directory','artifacts/release','--commit',commit,'--tag','v0.1.0-preview.4'),480)
  if os.name!='nt':
   summary=stageWatch.finish();write(phase/'resource-summary.json',summary);validate_resource_counters(summary)
- write(phase/'worker.json',dict(status='PASS',stage=stage,commands=count,sourceCommit=commit,python=sys.version,preinstalledSdkPolicy='global.json404/disable; bounded locked restore first; no SDK health/setup/install'))
+ write(phase/'worker.json',dict(status='PASS',stage=stage,commands=count,sourceCommit=commit,python=sys.version,sdkPolicy='Windows exact official404 private ephemeral Job staging; Linux existing404 only; global.json404/disable; first SDK target locked restore; no SDK health/global install'))
 
 def bus_environment():
  uid=os.getuid();need(uid!=0,'NONROOT_EXISTING_USER_REQUIRED');base=Path('/run/user')/str(uid);bus=base/'bus'
@@ -214,9 +231,9 @@ def main():
     if file.exists():
      observed=json.loads(file.read_bytes());value=observed.get('actualCap',{}).get('activeProcessesAtTeardown');safe=type(value) is int and value==0;code=observed.get('exitCode',125);record['actualCap']=observed.get('actualCap',{})
   else:
-   unit=unit_name;group=group_for(unit);need(not group.exists(),'FRESH_OWN_UNIT_ONLY');safe=True;env=bus_environment();argv+=['--unit',unit];safe=False
-   args=['/usr/bin/systemd-run','--user','--wait','--collect','--pipe','--quiet','--slice=app.slice','--unit='+unit,'--property=MemoryMax=4294967296','--property=MemorySwapMax=0','--property=CPUQuota=200%','--property=TasksMax='+('128' if a.stage=='runtime' else '64'),'--property=RuntimeMaxSec='+str(WALL[a.stage]),'--property=TimeoutStopSec=5','--property=KillMode=control-group','--property=WorkingDirectory='+str(ROOT),*argv]
-   child=subprocess.Popen(args,env=dict(env_for_child(),**env),cwd=ROOT)
+   unit=unit_name;group=group_for(unit);need(not group.exists(),'FRESH_OWN_UNIT_ONLY');safe=True;env=bus_environment();argv+=['--unit',unit];safe=False;service_env=env_for_child();service_flags=service_environment_flags(service_env,a.commit)
+   args=['/usr/bin/systemd-run','--user','--wait','--collect','--pipe','--quiet','--slice=app.slice','--expand-environment=no',*service_flags,'--unit='+unit,'--property=MemoryMax=4294967296','--property=MemorySwapMax=0','--property=CPUQuota=200%','--property=TasksMax='+('128' if a.stage=='runtime' else '64'),'--property=RuntimeMaxSec='+str(WALL[a.stage]),'--property=TimeoutStopSec=5','--property=KillMode=control-group','--property=WorkingDirectory='+str(ROOT),*argv]
+   child=subprocess.Popen(args,env=env,cwd=ROOT)
    try:code=child.wait(timeout=WALL[a.stage]+15)
    except subprocess.TimeoutExpired:
     owner=json.loads((phase/'unit-owner.json').read_bytes());need(owner['token']==token and owner['unit']==unit and owner['stage']==a.stage and owner['sourceCommit']==a.commit and owner['group']==str(group) and owner['bootId']==Path('/proc/sys/kernel/random/boot_id').read_text().strip() and type(owner['pid']) is int and owner['pid']>0 and owner['processStart']==job._start_identity(owner['pid']),'OWN_INVOCATION_RECORD_ONLY')

@@ -1,8 +1,16 @@
-# v0.1.0-preview.3 - local candidate, unreleased
+# v0.1.0-preview.3 - retained local candidate and failed public tag
 
-No preview.3 public tag/release/download is established. Historical preview.1
-and preview.2 assets remain immutable. Authorized work ends at a tested signed
-local candidate; public app operations and final acceptance need separate gates.
+The signed public tag remains at `91469504bbdfd116da9af49058559072fbfc5461`
+(tree `788ebe4f75c4f131ad41fa5303c105b84a8b2c33`).
+[Native CI attempt 1](https://github.com/pouriajamali/fenced-shard-ownership-lab/actions/runs/43313447070)
+passed policy in20s, then held Windows on the missing preinstalled SDK404 file
+and Linux on an absent service CI environment before project SDK work.
+Linux SDK and64/128 target-cap readiness were not reached. Aggregation skipped.
+No app release, main promotion or About update followed. The failed tag and
+its evidence are retained; it must never be retagged, deleted or retried as
+corrected source. Historical preview.1/2 releases and the separately accepted
+support tag/payload are unchanged. The following local evidence retains its
+original source boundary. The next correction is preview.4, with separate gates.
 
 The source adds an independent complete four-field receipt oracle and one
 composed lost-ACK/cutover case, preserving the previous15 cases, five effects

@@ -62,3 +62,32 @@ lock is still unadmitted. No public preview.3 exists from this checkpoint.
 The same-commit etcd rebuild with Go1.26.11 and a separately pinned advisory tool now has a complete local scope approval, including direct-entry admission and optimized-mode guards. Approval is not security acceptance. Exact Go/source archives and the pinned auditor source have now been acquired and fully inventoried. The actual Go1.26.11 SDK completed current source/backport/target/init advisory review and one native identity command after all 15,048 regular file hashes/modes were checked. Auditor/fixture source and binary admission is still pending. The prior Linux instance was removed during owner-directed storage work; its successful .NET/Linux SDK/unit observations remain historical. The replacement now has fresh actual aggregate cgroup and scoped Go SDK qualification. The Windows SDK starts from the migrated task root, and a separate owned Windows Job Object confirmed a 4GiB aggregate committed-memory limit, CPU limit and process limit. This is a resource-control observation, not a fixture or release result.
 
 The E DrvFS mode mismatch is recorded as a preserved failed attempt. A narrowly approved private native workspace in the existing E-backed WSL VHD preserves source modes; no mount/configuration/security setting changed. SDK admission does not admit the separate analyzer, module graphs, source-built fixture or public workflow. Initial Windows synthetic archive/admission controls passed11 tests and95 rejected vectors per normal/-O/PYTHONOPTIMIZE=1 mode. Linux held-image checks, complete source-build negatives and real admitted positive controls remain pending.
+
+
+## Corrective preview.4 policy and evidence boundary
+
+The preview.3 tag at91469504bbdfd116da9af49058559072fbfc5461 is now a retained
+failed native-CI attempt, not an application release. Earlier sections are
+historical checkpoints. Run43313447070 attempt1 passed policy20s, held Windows
+on the missing preinstalled SDK404 file, and held Linux before SDK/cap work
+because its transient service lacked GITHUB_ACTIONS. No app/main/About delivery
+followed. See [retained preview.3](RELEASE-v0.1.0-preview.3.md).
+
+The proposed preview.4 keeps global.json404/disable, runtime15, managed locks,
+RIDs, C#/SQL/digest/receipt behavior and all current resource ceilings. It changes
+only the CI envelope and Windows SDK acquisition policy: fixed explicit safe
+service environment, and exact official Windows SDK404 ZIP in the existing
+bounded private verify Job. Its303618098-byte SHA512 and5578-member/10-notice
+catalog reuse already sealed inputs; this draft runs no SDK or security review.
+Linux remains preinstalled404 only. The first SDK target remains locked restore.
+No setup action outside caps, global install, SDK probe, SDK artifact or cache is
+permitted. Full SDK notices stay in its private tree. The new source and public
+proofs remain pending; localA2 and support bytes are unchanged. The coordinator's
+exact source/finite/public gate and independent tool review precede execution;
+See [preview.4](RELEASE-v0.1.0-preview.4.md).
+
+SDK download180s and total staging300s are elapsed-time acceptance guards
+checked through final writes and before the first SDK target. Socket I/O has
+a20s timeout; these checks are not fully preemptive I/O deadlines. The enclosing
+verify Job retains its existing900s hard process wall. Workspace acceptance
+remains4GiB and is not a filesystem quota.
