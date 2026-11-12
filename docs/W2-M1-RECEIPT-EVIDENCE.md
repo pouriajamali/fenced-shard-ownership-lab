@@ -1,7 +1,9 @@
 # M1 local evidence checkpoint - preview.3
 
-Source cutoff: 2026-11-12, before native package/profile acceptance.
-Status: LOCAL IMPLEMENTATION AND SCOPED CHECKS; M1 NOT YET ACCEPTED.
+Implementation checkpoint with native follow-up: 2026-11-12.
+Status: M1 BLOCKED BY CONFIRMED NATIVE LINUX64-TASK CEILING.
+Runtime/package candidate:925d1d043590b8ffa3142b95763815d12c25e26d.
+The later documentation-only head does not replace those exact runtime bytes.
 Baseline: b90ee33fe4a80d16e930e706c28ff44a3e6bf4d6.
 Contracts: W2-M1-06-RECEIPT-ORACLE-1 and W2-M1-06-SERVICING-ALT-1.
 Authorized scope is a tested signed local candidate. Public app push/CI/tag/
@@ -76,24 +78,45 @@ failed attempts and actual process/resource/teardown receipts.
   normalization. The separate shared producer public release/hosted CI is not
   this application's CI and supplies no public app authority.
 
-## Required candidate acceptance
+## Actual native follow-up and remaining resource boundary
 
-The added sixteenth case composes lost acknowledgement with ownership cutover:
-old owner_d/delta41 and42 must be stale before conflict; current owner_e/delta41
-must replay total112/originalFence owner_d; current owner_e/delta42 conflicts.
-All previous15 cases remain, with five effects and sum165. Source/units do not
-establish this live behavior. Each native packaged client requires its own
-actual16-case receipt, independent complete SQL-history oracle and owned stop.
+Both exact925d1d0 native archives passed extraction, full manifest/helper/proof
+binding, actual apphost help/version/literal-external rejection, Core10.0.15,
+complete original notices and actual raw-archive/SBOM checks. Windows then passed
+all16 packaged cases, independent complete SQL-history receipts, five effects and
+total165. Actual native1GiB/one-CPU/16-process Job and guest3GiB/one-CPU/48-task
+unit were read back; both owned families were terminal before lease release.
 
-The new default source reproduction route passed locally using public
-source-held identities without private E-drive receipt dependencies, reproducing
-the independently admitted image twice with original notice/source/module checks.
-Native archives require exact clean source/manifest/helper/proof binding,
-Core15/native execution, full notice/SBOM raw-archive checks and exact local
-checksums/signature/key verification. Public hosted CI/download evidence is
-required only after a separate exact public gate; none is claimed here.
+The Linux full profile passed four named cases, then one of the four concurrent
+CLI requests exited137 without JSON. Its host stopped its own services and the
+actual cgroup was removed before the canonical lease was released. This failed
+attempt remains unchanged. Its receipt does not establish a complete Linux
+profile or full tested signed candidate.
+
+One separate minimal diagnosis used the same exact package, four concurrent
+apply requests, clean unchanged environment and4GiB/two-CPU/64-task/swap-zero
+unit. Actual pids.current reached64; pids.events max rose0->4. All four child
+errors identified SocketAsyncEngine initialization and Thread.StartCore
+OutOfMemoryException. Memory OOM/kill counters stayed zero; the sampled task-peak
+memory was327,163,904 bytes. This establishes task exhaustion rather than a
+memory-OOM assertion. The diagnostic produced no business effects and is not a
+replacement16-case acceptance result. Its own services/cgroup were terminal.
+
+No cap, runtime diagnostics setting, four-client concurrency, engine, SQL,
+managed graph, fault or receipt behavior was retuned. A precise128-task exception
+for only the native Linux runtime profile is proposed in the private review
+packet.4GiB/two CPU/swap0, generic SDK/tool/build/audit64-task bounds and Windows
+coallocation would remain unchanged. This exception is NOT AUTHORIZED and was
+not executed. The existing local gate requires stopping at a real hard-cap
+boundary. Required after an explicit decision: affected guard controls, new exact
+native packages/profiles and only then local candidate assembly/signature.
+
+The added sixteenth case retains old owner_d/delta41 and42 stale-before-conflict;
+current owner_e/delta41 replays total112/originalFence owner_d; delta42 conflicts.
+Windows demonstrated it. Complete Linux evidence is still required. Public app
+push/CI/tag/release and final coordinator acceptance remain separate exact gates.
 
 No engine/C#/SQL/digest algorithm, managed lock, original fixture source,
-maintainer key or production state changed. One Windows/WSL physical host is
-not independent failure-domain evidence. No trading, production HA, arbitrary
-rollback support, exactly-once transport, latency or general certification claim.
+maintainer key or production state changed. One Windows/WSL physical host is not
+independent failure-domain evidence. No trading, production HA, arbitrary rollback
+support, exactly-once transport, latency or general certification claim.

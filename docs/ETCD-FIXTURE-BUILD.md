@@ -119,3 +119,14 @@ results belong to the exact candidate review packet. Public hosted CI is a
 separate gate and is not established by shared tooling CI. Source/control evidence
 alone does not establish runtime behavior, production operation or a public
 release. Public push/CI/tag/release require the separate exact owner gate.
+
+## Native client acceptance boundary
+
+Exact925d1d0 actual packages bind these helpers/proofs on both OSs. The Windows
+packaged16-case profile passed with actual1GiB native+3GiB guest limits and
+terminal teardown. The native Linux profile stopped at four concurrent clients;
+a minimal diagnosis proved the64-task cap exhausted, with no memory OOM events.
+The admitted fixture/default reproduction are not relabeled failed by this
+separate client resource limit. Linux16-case acceptance and a complete signed
+M1 candidate remain blocked. A128-task native-runtime-only exception is proposed
+but unapproved; generic SDK/tool/build/audit and current actual limits remain64.

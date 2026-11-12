@@ -46,3 +46,17 @@ checksums and the verified established signing key. Public CI/tag/downloads are
 separate later observations. See [the source evidence checkpoint](W2-M1-RECEIPT-EVIDENCE.md).
 No production HA, separate physical failure-domain proof, exactly-once network
 delivery, performance, live trading or general security certification claim.
+
+## Native acceptance follow-up - blocked
+
+Exact925d1d0 Windows/Linux archives passed native/Core15/manifest/notices/SBOM
+checks. Windows passed all16 packaged cases, five effects/total165 and actual
+paired terminal teardown. Linux stopped after four cases at the concurrent
+request step, exit137 without JSON. A separate unchanged-environment minimal
+four-client diagnosis confirmed64 tasks, pids.events max0->4, failed network
+thread creation and zero memory OOM/kill events. The failed proof is retained.
+No task cap, concurrency, scenario, runtime setting or engine was relaxed.
+The full tested signed local M1 candidate remains blocked; the native-Linux-only
+128-task proposal awaits explicit resource-contract approval. No higher-cap run
+or public operation occurred. This documentation-only follow-up does not change
+the exact runtime/package candidate925d1d0 or assert a fresh package/profile.

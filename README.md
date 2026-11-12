@@ -12,7 +12,9 @@ Read the [architecture case study](docs/ARCHITECTURE-CASE-STUDY.md) for the deci
 
 The local source candidate is version **0.1.0-preview.3**, targeting SDK **10.0.404** and self-contained Core runtime **10.0.15**. The eight receipt-oracle vectors passed normally and with optimization on native Windows/Linux. The original 41 C# units passed on Windows and on the current replacement Linux instance. Locked restore, scoped managed advisory queries and the two actual runtime notice identities have been checked. The unchanged etcd3.7.3 source now has two equal Go1.26.11 builds, closed frozen source/binary advisory checks, independent serving admission and a successful guarded native version check. Five retained PostgreSQL/library archives and the admitted image prepared successfully without starting services.
 
-**Local M1 acceptance and public delivery are separate.** Each exact candidate still requires actual native package checks, both 16-case client profiles and a verified local signature. The evidence checkpoint records observations at its stated source cutoff; the final local review packet supplies subsequent package/profile results. Public app push/CI/tag/release require a separate exact gate. The shared actionlint public producer release and its hosted CI establish tooling evidence only. This project's local Windows/Linux public-profile controls and clean signed tooling candidate passed. They do not establish this application's hosted CI or complete M1 acceptance. The historical download links below remain preview.2.
+**Local M1 acceptance is blocked by the native Linux task cap.** Exact `925d1d0` Windows/Linux packages passed native manifest/Core15/notices/SBOM checks. Its Windows packaged client passed all16 cases with five effects/total165 under the coallocated1GiB+3GiB budget and verified terminal teardown. Linux completed four cases before a concurrent client exited137 without JSON. A separate minimal diagnostic confirmed64 actual tasks and four `pids.events max` failures, with zero memory OOM events; thread creation in SocketAsyncEngine failed. This is an enforced task-limit failure. The64-task ceiling, four concurrent clients and scenarios remain unchanged. A128-task native-Linux-only exception is proposed privately and has not been authorized or executed. The complete tested signed M1 candidate is not ready.
+
+Public delivery remains a separate exact gate. The shared actionlint public producer release/hosted CI and this project's accepted signed local tooling candidate establish tooling evidence only. They do not establish this application's hosted CI or authorize its publication. Historical download links below remain preview.2.
 
 The source adds independent checks of all four original receipt fields, including the original commit total and generation after a lost acknowledgement and cutover. The one additional composed case keeps five effects/total165 and checks that an old owner's changed payload is still rejected as stale before identity conflict. See the [source evidence status](docs/W2-M1-RECEIPT-EVIDENCE.md) and [unreleased candidate notes](docs/RELEASE-v0.1.0-preview.3.md).
 
@@ -28,7 +30,7 @@ The demo runs these independently checked examples:
 | Does losing two of three etcd members grant new ownership? | Acquisition fails; the demo reports unavailable coordination rather than inventing ownership. |
 | What survives an ordinary database process restart? | Committed fencing state, effect identities, hashes and results, checked through a separate SQL-history oracle. |
 
-The frozen preview.2 demo has 15 named cases, including a stable OpenTelemetry trace check. The current-source candidate defines an unexecuted 16th composed case; that count is a planned fixture shape, not a new execution result. The receipt records the actual client OS, version/commit, cases, attempted commands and independent SQL checks. It ends with five unique synthetic effects and total 165. That is a fixture invariant, not trading volume or a benchmark.
+The frozen preview.2 demo has 15 named cases, including a stable OpenTelemetry trace check. The exact925d1d0 Windows packaged candidate passed all16 cases, including the new composed case. Native Linux stopped after four cases at its task cap; a complete Linux16-case result is not established. The receipt records the actual client OS, version/commit, cases, attempted commands and independent SQL checks. It ends with five unique synthetic effects and total 165. That is a fixture invariant, not trading volume or a benchmark.
 
 ## Run the preview
 
@@ -96,7 +98,7 @@ flowchart LR
 - xUnit v3 package 4.0.3 covers exact integers, framing, domain bounds and fail-closed validation. The independent SQL oracle reconstructs effects instead of trusting the application's snapshot command.
 - OpenTelemetry 1.20.1 can export a whitelisted trace to stderr when `OWNERSHIP_LAB_TELEMETRY=1`. It emits no SQL text, payloads, business identities, credentials or connection strings; default mode is off. This is one trace path, not a hosted observability platform.
 
-[Contract](docs/CONTRACT.md) ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· [Architecture decision](docs/ADR-001.md) ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· [Failure matrix](docs/FAILURE-MATRIX.md) ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· [Runbook](docs/RUNBOOK.md) ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· [Contributing](CONTRIBUTING.md)
+[Contract](docs/CONTRACT.md) ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· [Architecture decision](docs/ADR-001.md) ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· [Failure matrix](docs/FAILURE-MATRIX.md) ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· [Runbook](docs/RUNBOOK.md) ÃƒÆ’Ã†â€™ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â· [Contributing](CONTRIBUTING.md)
 
 ## Important boundaries
 
