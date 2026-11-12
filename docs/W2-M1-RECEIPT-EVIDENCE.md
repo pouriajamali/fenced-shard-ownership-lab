@@ -57,6 +57,18 @@ failed attempts and actual process/resource/teardown receipts.
   budget, foreign-token/invocation refusal, nonterminal shutdown refusal and
   pre-target user-bus failure. Host entry isolated imports and the changed
   controller-unit mismatch control passed without replaying completed cases.
+- The new default public-source-held reproduction entry passed end to end in
+  one bounded498-second phase using181 retained hash-checked raw inputs.
+  All58 canonical source-module checks and741 metadata checks completed; both
+  fresh outputs matched the independent image, then actual versions and five
+  PostgreSQL/library archives prepared successfully. Shared SDK/auditor
+  security admission and frozen SCA proofs were reused without new audits.
+- The controller/entry terminal layout mismatch was corrected before the first
+  live profile: its exact-token terminal file is beside the profile folder.
+  Three new layout controls plus four affected ownership/stop controls passed
+  in all three optimization modes; unrelated completed controls were reused.
+  Earlier exact-c78f74e native package checks passed on both OSs and remain
+  historical acceptance for that source, separate from the corrected candidate.
 - Local actionlint public-profile acceptance passed42 new finite negatives per
   OS plus actual portable and managed positives, real limits and terminal
   teardown. Its exact clean signed tooling-only candidate is89f9746/tree35dc093.
@@ -73,9 +85,9 @@ All previous15 cases remain, with five effects and sum165. Source/units do not
 establish this live behavior. Each native packaged client requires its own
 actual16-case receipt, independent complete SQL-history oracle and owned stop.
 
-The new default source reproduction route must work using public source-held
-identities without private E-drive receipts, reproduce the independently
-admitted image twice and preserve all original notice/source/module checks.
+The new default source reproduction route passed locally using public
+source-held identities without private E-drive receipt dependencies, reproducing
+the independently admitted image twice with original notice/source/module checks.
 Native archives require exact clean source/manifest/helper/proof binding,
 Core15/native execution, full notice/SBOM raw-archive checks and exact local
 checksums/signature/key verification. Public hosted CI/download evidence is

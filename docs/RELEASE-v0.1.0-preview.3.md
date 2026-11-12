@@ -24,7 +24,12 @@ SHA256720420f5f09bf4acb5b32365eddd7594764fb74e3e2b22aa7d1ae67b844f2af6,
 35,702,972 bytes. Source/binary/static/init/advisory checks and independent
 sealed-image admission are closed for the frozen snapshot. The first guarded
 native version and admitted-bundle preparation passed; earlier failed attempts
-are retained. Default reproduction requires only public source-held references.
+are retained. The new default reproduction route passed locally with two fresh exact-byte
+outputs and public source-held references, reusing retained verified raw inputs.
+The controller/host terminal layout was aligned before live profile acceptance;
+three new layout and four affected ownership controls passed in all three
+optimization modes. Earlier native package checks are retained for their exact
+source commit and do not substitute for the corrected candidate packages.
 
 Native Linux uses one4GiB/two-CPU/64-task/swap-zero unit. A Windows profile
 coallocates1GiB/one CPU/16 native processes and3GiB/one CPU/48 guest tasks.

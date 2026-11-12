@@ -8,9 +8,28 @@ UNIT='ownership06-synthetic-profile-00000001';TOKEN='a'*64;WORK=None
 class Controls(unittest.TestCase):
  def setUp(self):self.root=WORK/self._testMethodName;self.root.mkdir()
  def data(self,stop=True):
-  out=self.root/'host';out.mkdir();terminal=self.root/'terminal.json';terminal.write_text(json.dumps(dict(unit=UNIT,token=TOKEN,terminal=False,populated=None)));group=Path('/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice')/(UNIT+'.service');record=dict(unit=UNIT,token=TOKEN,group=str(group),invocationId='own-invocation');(out/'unit.json').write_text(json.dumps(record));argv=['wsl_host_entry.py','--unit',UNIT,'--token',TOKEN,'--terminal',str(terminal),'--fixtures',str(self.root),'--out',str(out)]
+  out=self.root/'cases'/'host';out.mkdir(parents=True);terminal=self.root/'terminal.json';terminal.write_text(json.dumps(dict(unit=UNIT,token=TOKEN,terminal=False,populated=None)));group=Path('/sys/fs/cgroup/user.slice/user-1000.slice/user@1000.service/app.slice')/(UNIT+'.service');record=dict(unit=UNIT,token=TOKEN,group=str(group),invocationId='own-invocation');(out/'unit.json').write_text(json.dumps(record));argv=['wsl_host_entry.py','--unit',UNIT,'--token',TOKEN,'--terminal',str(terminal),'--fixtures',str(self.root),'--out',str(out)]
   if stop:argv+=['--stop']
   return out,terminal,group,record,argv
+ def test_controller_terminal_sibling_layout_accepted(self):
+  out,terminal,group,record,argv=self.data();original=Path.read_text
+  def text(path,*args,**kwargs):return 'synthetic-boot' if path.as_posix()=='/proc/sys/kernel/random/boot_id' else original(path,*args,**kwargs)
+  with patch.object(sys,'argv',argv),patch.object(entry,'environment',return_value={}),patch.object(entry,'populated',return_value=0),patch.object(entry.subprocess,'run',side_effect=AssertionError('ALREADY_TERMINAL_NO_STOP')),patch.object(Path,'read_text',text):entry.main()
+  observed=json.loads(terminal.read_bytes());self.assertTrue(observed['terminal']);self.assertEqual(observed['populated'],0)
+ def test_nested_or_foreign_terminal_parent_rejected(self):
+  out,terminal,group,record,argv=self.data()
+  for folder in [out.parent,self.root/'foreign']:
+   folder.mkdir(exist_ok=True);bad=folder/'bad-terminal.json';bad.write_bytes(terminal.read_bytes());changed=list(argv);changed[changed.index('--terminal')+1]=str(bad)
+   with patch.object(sys,'argv',changed),patch.object(entry.subprocess,'run',side_effect=AssertionError('NO_TARGET_OR_STOP')) as child:
+    with self.assertRaisesRegex(ValueError,'OWN_TERMINAL_PATH'):entry.main()
+    child.assert_not_called()
+ def test_integration_nested_terminal_rejected_before_child(self):
+  import integration
+  fixtures=Path(__file__).resolve().parents[2]/'state/etcd-amendment-01/serving-bundle-01';out=self.root/'cases'
+  argv=['integration.py','--fixtures',str(fixtures),'--cli',str(self.root/'never-run.exe'),'--out',str(out),'--service-unit',UNIT]
+  with patch.object(sys,'argv',argv),patch.dict(os.environ,{'OWNERSHIP_SERVICE_UNIT':UNIT,'OWNERSHIP_PROFILE_TOKEN':TOKEN,'OWNERSHIP_NATIVE_TERMINAL':str(out/'nested-terminal.json')}),patch.object(limits,'windows',return_value={'syntheticBudgetSeam':True}),patch.object(integration.subprocess,'Popen',side_effect=AssertionError('CHILD_MUST_NOT_START')) as child:
+   with self.assertRaisesRegex(ValueError,'Own native terminal containment'):integration.main()
+   child.assert_not_called()
  def test_actual_windows_lower_budget(self):
   proof=limits.windows();self.assertLessEqual(proof['memoryMax'],1073741824);self.assertLessEqual(proof['effectiveCpuCores'],1);self.assertLessEqual(proof['activeProcessMax'],16);self.assertTrue(proof['memberBeforeServiceOrClientChildren']);(self.root/'actual-job.json').write_text(json.dumps(proof,indent=2)+'\n')
  def test_controller_unit_mismatch_before_work_or_child(self):
@@ -54,8 +73,8 @@ class Controls(unittest.TestCase):
   r=json.loads(terminal.read_bytes());self.assertTrue(r['terminal']);self.assertEqual(r['populated'],0);self.assertFalse(r['targetStarted'])
 def main():
  global WORK
- p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True);p.add_argument('--opt',type=int,required=True);p.add_argument('--only',choices=['test_controller_unit_mismatch_before_work_or_child']);a=p.parse_args()
+ p=argparse.ArgumentParser();p.add_argument('--out',type=Path,required=True);p.add_argument('--opt',type=int,required=True);p.add_argument('--only',choices=['test_controller_unit_mismatch_before_work_or_child','terminal-contract']);a=p.parse_args()
  if sys.flags.optimize!=a.opt:raise ValueError('ACTUAL_OPTIMIZATION')
- WORK=a.out.absolute();WORK.mkdir(exist_ok=False);suite=unittest.TestSuite([Controls(a.only)]) if a.only else unittest.defaultTestLoader.loadTestsFromTestCase(Controls);result=unittest.TextTestRunner(verbosity=1).run(suite);r=dict(status='PASS' if result.wasSuccessful() and not result.skipped else 'FAIL',tests=result.testsRun,errors=len(result.errors),failures=len(result.failures),skips=len(result.skipped),optimization=sys.flags.optimize,realWindowsBudgetQueried=True,linuxUnitOrFixtureOrSdkStarted=False,scope='Actual1GiB/1CPU/16-process Windows readback plus synthetic strict3GiB/1CPU/48-task/own-invocation/terminal controls. Actual coupled profile remains separate.')
+ WORK=a.out.absolute();WORK.mkdir(exist_ok=False);suite=unittest.TestSuite(Controls(name) for name in ['test_controller_terminal_sibling_layout_accepted','test_nested_or_foreign_terminal_parent_rejected','test_integration_nested_terminal_rejected_before_child','test_foreign_unit_record_before_any_stop','test_changed_invocation_never_stopped','test_nonterminal_group_cannot_claim_pass','test_unready_bus_proves_no_target_started']) if a.only=='terminal-contract' else (unittest.TestSuite([Controls(a.only)]) if a.only else unittest.defaultTestLoader.loadTestsFromTestCase(Controls));result=unittest.TextTestRunner(verbosity=1).run(suite);r=dict(status='PASS' if result.wasSuccessful() and not result.skipped else 'FAIL',tests=result.testsRun,errors=len(result.errors),failures=len(result.failures),skips=len(result.skipped),optimization=sys.flags.optimize,realWindowsBudgetQueried=a.only is None,linuxUnitOrFixtureOrSdkStarted=False,scope='Actual1GiB/1CPU/16-process Windows readback plus synthetic strict3GiB/1CPU/48-task/own-invocation/terminal controls. Actual coupled profile remains separate.')
  (WORK/'receipt.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r));raise SystemExit(0 if r['status']=='PASS' else 1)
 if __name__=='__main__':main()

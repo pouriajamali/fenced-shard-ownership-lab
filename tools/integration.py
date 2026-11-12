@@ -38,7 +38,7 @@ def main():
     hostargs=['python3',linux_path(hostscript),'--fixtures',linux_path(a.fixtures),'--out',linux_path(hostdir)]
     if os.name=='nt':
         terminal=Path(os.environ.get('OWNERSHIP_NATIVE_TERMINAL',str(out.parent/(out.name+'-native-terminal.json')))).absolute()
-        canonical(terminal,exists=False);require(terminal.is_relative_to(out.parent),'Own native terminal containment')
+        canonical(terminal,exists=False);require(terminal.parent==out.parent,'Own native terminal containment')
         if terminal.exists():
             previous=json.loads(terminal.read_bytes());require(previous.get('unit')==a.service_unit and previous.get('token')==unit_token and previous.get('terminal') is True,'Own controller prestart state')
         atomic(terminal,{'unit':a.service_unit,'token':unit_token,'terminal':False,'populated':None,'targetStarted':False})

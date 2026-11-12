@@ -109,8 +109,12 @@ modules, raw size/hash and default/direct admission order. A Unix-mode test was
 moved from DrvFS to the approved native evidence root; five unaffected completed
 normal controls were retained.
 
-End-to-end default reproduction, actual package helper/proof binding and both
-16-case native C# profiles are required local acceptance steps. Their current
+The new default route passed end to end with retained hash-checked raw inputs:
+all58 source modules were authenticated, both fresh outputs matched the
+independent image and PostgreSQL/library preparation plus versions passed.
+This is local default-entry evidence, not a hosted CI or fresh security audit.
+Actual package helper/proof binding and both16-case native C# profiles remain
+separate exact-candidate acceptance steps. Their current
 results belong to the exact candidate review packet. Public hosted CI is a
 separate gate and is not established by shared tooling CI. Source/control evidence
 alone does not establish runtime behavior, production operation or a public

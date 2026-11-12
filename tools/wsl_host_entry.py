@@ -31,7 +31,7 @@ def populated(unit):
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('--unit',required=True);p.add_argument('--token',required=True);p.add_argument('--terminal',required=True,type=Path);p.add_argument('--fixtures',required=True,type=Path);p.add_argument('--out',required=True,type=Path);p.add_argument('--stop',action='store_true');a=p.parse_args()
- require(re.fullmatch(r'ownership(?:06|lab)-[a-z0-9-]{8,100}',a.unit) and re.fullmatch(r'[0-9a-f]{64}',a.token),'EXACT_OWN_UNIT_TOKEN');a.terminal=canonical(a.terminal.absolute());a.out=canonical(a.out.absolute(),exists=False);require(a.terminal.is_relative_to(a.out.parent),'OWN_TERMINAL_PATH');old=json.loads(a.terminal.read_bytes());require(old.get('unit')==a.unit and old.get('token')==a.token,'OWN_CONTROLLER_TERMINAL');env=environment()
+ require(re.fullmatch(r'ownership(?:06|lab)-[a-z0-9-]{8,100}',a.unit) and re.fullmatch(r'[0-9a-f]{64}',a.token),'EXACT_OWN_UNIT_TOKEN');a.terminal=canonical(a.terminal.absolute());a.out=canonical(a.out.absolute(),exists=False);require(a.out.name=='host' and a.terminal.parent==a.out.parent.parent,'OWN_TERMINAL_PATH');old=json.loads(a.terminal.read_bytes());require(old.get('unit')==a.unit and old.get('token')==a.token,'OWN_CONTROLLER_TERMINAL');env=environment()
  def terminal(reason,code,started):write(a.terminal,dict(unit=a.unit,token=a.token,populated=populated(a.unit),terminal=populated(a.unit)==0,reason=reason,exitCode=code,targetStarted=started,bootId=Path('/proc/sys/kernel/random/boot_id').read_text().strip()))
  if a.stop:
   if populated(a.unit)==0:terminal('ACTUAL_NATIVE_GROUP_ALREADY_TERMINAL',0,True);return
