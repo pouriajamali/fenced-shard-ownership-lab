@@ -47,3 +47,15 @@ GitHub build provenance attestations supplement this key-based verification when
 ## NuGet metadata correction
 
 Published preview.1 incorrectly used normalized NuGet contentHash as a managed-package SPDX raw-archive SHA512 and omitted the runtime raw checksum. Package/signature verification above is a separate check of release bytes and is not invalidated by that semantic finding. Preview.2 retains normalized identity separately and emits actual raw signed archive SHA512. `tools/check_sbom_archives.py` independently hashes cached NuGet archive bytes; its regression suite rejects the old mislabel and matching false metadata. See [preview.2 notes](docs/RELEASE-v0.1.0-preview.2.md). Old tags/assets/signatures remain unchanged. Each release has its own signed tag and downloadable verification evidence.
+
+## Sealed tooling release provenance
+
+The shared input tag is tooling-actionlint-v1.7.12-go1.26.11-r1 in
+pouriajamali/data-admission-gate. Its two ZIP hashes/sizes are pinned in the
+reviewed source lock. Verify the file-namespace signed SHA256SUMS against the
+independently trusted ED25519 fingerprint printed above and principal
+pouriajamali. Candidate PASS/self-hashes and a co-downloaded key alone are not
+trust anchors. The archive carries all original tooling notices plus the
+Go Vulnerability Database CC-BY-4.0 license/attribution. Producer path strings
+are observations; fresh runtime reads only reviewed source and archive-relative
+inputs. See docs/ACTIONLINT-BUILD.md for controlled import/default/direct routes.

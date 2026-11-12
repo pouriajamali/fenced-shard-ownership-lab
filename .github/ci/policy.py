@@ -196,7 +196,7 @@ def gate() -> None:
 
 
 def lint() -> None:
-    # Same independent gate as direct use; unadmitted tooling has no fallback.
+    # Same independent gate as the direct CLI. Missing admission is HOLD; no vendor fallback.
     import sys
     root = Path(__file__).resolve().parents[2]
     subprocess.run([sys.executable, '-B', str(root / 'tools/run_actionlint.py')],

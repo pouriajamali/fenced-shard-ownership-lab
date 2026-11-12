@@ -11,3 +11,10 @@ tools/upstream.lock.json contains references to separately downloaded Linux fixt
 Public architecture references: [etcd v3 gateway](https://etcd.io/docs/v3.7/dev-guide/api_grpc_gateway/), [platform tiers](https://etcd.io/docs/v3.7/op-guide/supported-platform/), [fencing explanation](https://martin.kleppmann.com/2016/02/08/how-to-do-distributed-locking.html), [PostgreSQL transactions](https://www.postgresql.org/docs/18/tutorial-transactions.html), [Npgsql 10 client](https://www.npgsql.org/doc/release-notes/10.0.html). The fencing pattern and existing consensus are not claimed as new inventions.
 
 The provenance/packaging approach follows the author's established public synthetic portfolio delivery process; no private signing key or private project implementation is distributed.
+
+Go Vulnerability Database data in the tooling proof streams is licensed
+CC-BY-4.0, separately from the module/compiler/auditor notice graph. Source:
+https://vuln.go.dev/ and https://github.com/golang/vulndb/tree/master/data.
+The public sealed tooling ZIPs retain the complete original Go vulnerability
+database LICENSE and an attribution/formatting/analysis note under
+producer-proofs/vulndb-*. No upstream endorsement is claimed.

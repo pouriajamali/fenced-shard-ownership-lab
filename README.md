@@ -134,3 +134,10 @@ Original code: MIT. Third-party software and separately downloaded fixtures reta
 The current source expands compact C# layout for review. The published preview links identify its frozen runtime release. Formatting preserves complete syntax, token text and values, comments and directives; it does not introduce a runtime behavior or performance claim.
 
 To reproduce a published package, use its exact original runtime source: [v0.1.0-preview.1 source](https://github.com/pouriajamali/fenced-shard-ownership-lab/tree/7c853fde7bf2aeab9bf60f6b6e979cb17738d802) (`7c853fde7bf2aeab9bf60f6b6e979cb17738d802`), [v0.1.0-preview.2 source](https://github.com/pouriajamali/fenced-shard-ownership-lab/tree/ea35e6a664931b1972c348796a9b7edae9e51378) (`ea35e6a664931b1972c348796a9b7edae9e51378`). Later `main` layout is reviewed separately from those frozen release commits.
+
+## Build-time sealed linter
+
+Fresh CI/contributor lint imports the exact reviewed public sealed archive; no
+producer drive/private receipts or local compiler are required. Managed task
+checkouts retain the canonical gate. See [native profile and signed input setup](docs/ACTIONLINT-BUILD.md).
+Archive availability and hosted cap acceptance require actual release/CI readback.
