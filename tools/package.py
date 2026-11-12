@@ -27,7 +27,7 @@ def main():
     published=work/'published';log=work/'build.log'
     commands=[[a.dotnet,'restore','src/Ownership.Cli/Ownership.Cli.csproj','--locked-mode'],
       [a.dotnet,'publish','src/Ownership.Cli/Ownership.Cli.csproj','-c','Release','-r',a.rid,'--self-contained','true','--no-restore',
-       '-p:RuntimeFrameworkVersion=10.0.14','-p:PublishTrimmed=false','-p:PublishAot=false','-p:PublishReadyToRun=false',
+       '-p:RuntimeFrameworkVersion=10.0.15','-p:PublishTrimmed=false','-p:PublishAot=false','-p:PublishReadyToRun=false',
        '-p:DebugType=None','-p:DebugSymbols=false','-p:SourceRevisionId='+a.commit,'-o',str(published)]]
     with log.open('wb') as output:
         for command in commands:subprocess.run(command,cwd=ROOT,stdout=output,stderr=subprocess.STDOUT,check=True,timeout=300)
@@ -60,10 +60,10 @@ def main():
     actual={(d['id'],d['version'],d['nugetContentHash']) for d in dependencies}
     require(actual==locked, 'Resolved/shipped library graph differs from source lock')
     runtime_id='Microsoft.NETCore.App.Runtime.'+a.rid
-    runtime=next(p/runtime_id.lower()/'10.0.14' for p in folders if (p/runtime_id.lower()/'10.0.14').is_dir())
+    runtime=next(p/runtime_id.lower()/'10.0.15' for p in folders if (p/runtime_id.lower()/'10.0.15').is_dir())
     runtime_metadata=ET.parse(next(runtime.glob('*.nuspec'))).find('{*}metadata')
     normalized=json.loads((runtime/'.nupkg.metadata').read_text())['contentHash']
-    resolved=notice_resolver.resolve(ROOT,runtime,runtime_id+'/10.0.14',{'sha512':normalized},runtime_metadata)
+    resolved=notice_resolver.resolve(ROOT,runtime,runtime_id+'/10.0.15',{'sha512':normalized},runtime_metadata)
     raw=raw_sha512(next(runtime.glob('*.nupkg')))
     frozen=next(r for r in json.loads((ROOT/'vendor/notices/NOTICE-SOURCES.json').read_text())['components'] if r['id']==runtime_id)
     require(base64.b64decode(frozen['rawSignedNupkgSha512Base64']).hex()==raw,'Frozen raw runtime archive changed')
@@ -72,11 +72,11 @@ def main():
     for file in notices:shutil.copy2(file,licenses/(runtime_id+'-'+file.name))
     runtime_license=next(licenses/(runtime_id+'-'+f.name) for f in notices if f.name.upper().startswith('LICENSE'))
     copyright_file=licenses/(runtime_id+'-COPYRIGHT.txt');copyright_file.write_text(resolved['copyright']+'\n',encoding='utf-8',newline='\n')
-    dependencies.append({'id':runtime_id,'version':'10.0.14','license':'MIT','copyright':resolved['copyright'],'copyrightFile':copyright_file.relative_to(package).as_posix(),'nugetContentHash':normalized,'nugetContentHashMeaning':'Normalized restore identity excluding signatures','rawSignedNupkgSha512':raw,
+    dependencies.append({'id':runtime_id,'version':'10.0.15','license':'MIT','copyright':resolved['copyright'],'copyrightFile':copyright_file.relative_to(package).as_posix(),'nugetContentHash':normalized,'nugetContentHashMeaning':'Normalized restore identity excluding signatures','rawSignedNupkgSha512':raw,
         'licenseFile':runtime_license.relative_to(package).as_posix(),'licenseSha256':sha(runtime_license),'notice':'Bundled runtime retains full original license and third-party notices; raw signed archive checksum is separate from normalized restore identity'})
     shipped=json.loads((package/'ownership.deps.json').read_text())['libraries']
     require({k.removeprefix('runtimepack.') for k,v in shipped.items() if v['type'] in ['package','runtimepack']}=={d['id']+'/'+d['version'] for d in dependencies},'Actual shipped graph changed')
-    (package/'DEPENDENCIES.json').write_text(json.dumps({'packages':dependencies,'externalFixtures':'Six pinned upstream archives in tools/upstream.lock.json are REFERENCES, not bundled servers/libraries.'},indent=2)+'\n',encoding='utf-8')
+    (package/'DEPENDENCIES.json').write_text(json.dumps({'packages':dependencies,'externalFixtures':'Five pinned PostgreSQL/library archives in tools/upstream.lock.json and the separate same-source etcd build lock are REFERENCES, not bundled servers/libraries.'},indent=2)+'\n',encoding='utf-8')
     spdx=[{'name':'Fenced Shard Ownership Lab','SPDXID':'SPDXRef-App','versionInfo':version,'downloadLocation':'NOASSERTION','filesAnalyzed':False,'licenseDeclared':'MIT','licenseConcluded':'NOASSERTION','copyrightText':'Copyright (c) 2026 Pouria Jamali'}]
     relationships=[{'spdxElementId':'SPDXRef-DOCUMENT','relationshipType':'DESCRIBES','relatedSpdxElement':'SPDXRef-App'}]
     for i,dep in enumerate(dependencies):

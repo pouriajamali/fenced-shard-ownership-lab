@@ -8,6 +8,14 @@ Synthetic, local and single-machine only. No exchange, market data, orders, acco
 
 Read the [architecture case study](docs/ARCHITECTURE-CASE-STUDY.md) for the decision, rejected alternatives, failure examples, frozen-release evidence and short English/Persian introductions. Follow the [30-minute four-project review](https://github.com/pouriajamali/trading-execution-lab/blob/main/docs/FLAGSHIP-REVIEW.md) for a guided discussion. The [evidence index](docs/FLAGSHIP-EVIDENCE.json) separates runtime/tag CI from later documentation commits.
 
+## Current source candidate
+
+The draft source is version **0.1.0-preview.3**, targeting SDK **10.0.404** and self-contained Core runtime **10.0.15**. The eight receipt-oracle vectors pass normally and with optimization on native Windows/Linux, and the original 41 C# units pass on each OS. Locked restore, current managed advisory queries and the two actual runtime notice identities have been checked. **Local validation remains incomplete:** the affected historical etcd fixture has now been rebuilt from the same unchanged source with Go1.26.11. Two fresh outputs match, and actual source/binary advisory checks are closed for the frozen snapshot; independent serving controls now pass, while native execution and both16-case package/client profiles remain pending. Native package receipts and public release verification remain separate evidence. It is not a delivered preview; the verified historical download links below remain preview.2.
+
+The recorded .NET/Linux checks belong to the previous Ubuntu instance. Its replacement now has an actual owned 4GiB/2CPU/64-task/swap-zero cgroup qualification. The official Linux Go1.26.11 SDK passed current scoped advisory/source/backport review, full member/hash/mode checks and one native identity command in a private native workspace. The separate auditor is admitted. The same-source etcd image now has equal-byte builds and closed source/binary/static/init checks; its independently pinned serving reference is admitted. First execution remains pending because the latest consuming calls stopped before target start at the shared WSL user-bus deadline. Linux held-image, actual resource and portable input controls pass. Shared actionlint admission and this project's150 negative plus seven native controls per OS pass. Full default/public CI integration, package binding and the16-case live profiles remain pending.
+
+The source adds independent checks of all four original receipt fields, including the original commit total and generation after a lost acknowledgement and cutover. The one additional composed case keeps five effects/total165 and checks that an old owner's changed payload is still rejected as stale before identity conflict. See the [source evidence status](docs/W2-M1-RECEIPT-EVIDENCE.md) and [unreleased candidate notes](docs/RELEASE-v0.1.0-preview.3.md).
+
 ## Start with the failure
 
 The demo runs these independently checked examples:
@@ -20,7 +28,7 @@ The demo runs these independently checked examples:
 | Does losing two of three etcd members grant new ownership? | Acquisition fails; the demo reports unavailable coordination rather than inventing ownership. |
 | What survives an ordinary database process restart? | Committed fencing state, effect identities, hashes and results, checked through a separate SQL-history oracle. |
 
-The full demo currently has 15 named cases, including a stable OpenTelemetry trace check. The receipt records the actual client OS, version/commit, cases, attempted commands and independent SQL checks. It ends with five unique synthetic effects and total 165. That is a fixture invariant, not trading volume or a benchmark.
+The frozen preview.2 demo has 15 named cases, including a stable OpenTelemetry trace check. The current-source candidate defines an unexecuted 16th composed case; that count is a planned fixture shape, not a new execution result. The receipt records the actual client OS, version/commit, cases, attempted commands and independent SQL checks. It ends with five unique synthetic effects and total 165. That is a fixture invariant, not trading volume or a benchmark.
 
 ## Run the preview
 
@@ -38,6 +46,8 @@ First inspect the package:
 ```
 
 Linux uses `./ownership` for those commands. Both help/version are offline. See [PROVENANCE.md](PROVENANCE.md) to verify source/tag and archive signatures. Git provenance is separate from Windows Authenticode or production suitability.
+
+The full current-source service profile is **on hold** while the separately built etcd fixture and its independent admission path are completed. The server commands below document the frozen historical preview; they are not new candidate validation or permission to bypass the advisory gate. Offline CLI help/version remain separate.
 
 ### Windows client and Linux services
 
@@ -80,13 +90,13 @@ flowchart LR
     O[Independent Python / SQL oracle] --> F
 ```
 
-- .NET 10 LTS / C# 14; SDK 10.0.403, runtime 10.0.14 and dependency locks.
+- .NET 10 LTS / C# 14; current-source target SDK 10.0.404/runtime 10.0.15 with unchanged managed dependency locks. Full candidate package/fault validation is pending; frozen preview.2 used SDK 10.0.403/runtime 10.0.14.
 - etcd 3.7.3 is existing consensus; this project does not implement Raft. A small bounded `HttpClient` adapter uses its official v3 gateway.
 - PostgreSQL 18.6 / Npgsql 10.0.3 enforce the sink transaction. Two workers plus three etcd members still have one physical host and one database sink.
 - xUnit v3 package 4.0.3 covers exact integers, framing, domain bounds and fail-closed validation. The independent SQL oracle reconstructs effects instead of trusting the application's snapshot command.
 - OpenTelemetry 1.20.1 can export a whitelisted trace to stderr when `OWNERSHIP_LAB_TELEMETRY=1`. It emits no SQL text, payloads, business identities, credentials or connection strings; default mode is off. This is one trace path, not a hosted observability platform.
 
-[Contract](docs/CONTRACT.md) · [Architecture decision](docs/ADR-001.md) · [Failure matrix](docs/FAILURE-MATRIX.md) · [Runbook](docs/RUNBOOK.md) · [Contributing](CONTRIBUTING.md)
+[Contract](docs/CONTRACT.md) Ã‚Â· [Architecture decision](docs/ADR-001.md) Ã‚Â· [Failure matrix](docs/FAILURE-MATRIX.md) Ã‚Â· [Runbook](docs/RUNBOOK.md) Ã‚Â· [Contributing](CONTRIBUTING.md)
 
 ## Important boundaries
 
@@ -101,6 +111,8 @@ etcd's documented support is Tier 1 on Linux AMD64/ARM64 and Tier 3 on Windows A
 Install the pinned SDK in an existing development environment. From this checkout:
 
 ```sh
+python tools/test_receipt_oracle.py --out artifacts/receipt-oracle-normal
+python -O tools/test_receipt_oracle.py --out artifacts/receipt-oracle-optimized
 dotnet restore tests/Ownership.Tests/Ownership.Tests.csproj --locked-mode
 dotnet run --project tests/Ownership.Tests/Ownership.Tests.csproj -c Release --no-restore -- -noLogo
 python tools/test_notices.py --out artifacts/notices-tests

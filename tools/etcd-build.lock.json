@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "status": "ADMITTED_MAINTAINER_BUILD",
+  "sourceCommit": "0a173d0410a96d01091b484daae81365bbcde57e",
+  "goVersion": "go1.26.11",
+  "target": "linux/amd64",
+  "sourceArchive": {
+    "url": "https://codeload.github.com/etcd-io/etcd/tar.gz/0a173d0410a96d01091b484daae81365bbcde57e",
+    "bytes": 7467783,
+    "sha256": "f7628ecdb67353acdc708a42c4fb9e1267b4a1efed68ec1da83514406a598b60"
+  },
+  "compilerArchive": {
+    "url": "https://go.dev/dl/go1.26.11.linux-amd64.tar.gz",
+    "bytes": 66999944,
+    "sha256": "9849f4e04ee35303714e34fbc3ac8ab44ea3e448a95aa182f91e3b9b79c710ec"
+  },
+  "binarySha256": "720420f5f09bf4acb5b32365eddd7594764fb74e3e2b22aa7d1ae67b844f2af6",
+  "binaryBytes": 35702972,
+  "proofs": {
+    "admission/advisory-snapshot.json": "139377ee21b074ab752060a02cbd97645db880d50b69415b5125ffb028be8f13",
+    "admission/binary-audit.jsonl": "d7706e8221267486ae5ba92f15ba44760b2c19185f32ce9fec34524593d4349d",
+    "admission/buildinfo.json": "4141ff1543a3e5fecea025d119b1ad719a01843817012073b6d58b6d113945ed",
+    "admission/licenses.json": "2669a151b0e3f30d82a21bf04bf7b584631045514d6dd86250d745181bbbac78",
+    "admission/module-graph.json": "b6825411e676482faf08301730b93aa8fef0f596379d5f8a38051c486f769f26",
+    "admission/reproducibility.json": "42c816155b16648af275ae2ffec300995d8188ae13ec36ff0c5e3b9be6eb8522",
+    "admission/source-audit.jsonl": "59693cea515bdafd7a7ae7aa43000c3b7822b02333eb3cb11868825c7e966734"
+  },
+  "unknowns": [],
+  "publicBoundary": "Unreleased local candidate; public push/CI/tag/release require the separate exact coordinator/owner gate.",
+  "compilerScope": "Exact admitted Go1.26.11 Linux SDK and authenticated unchanged etcd source; actual source/binary SCA and static/init binding closed for the frozen primary DB.",
+  "buildInputsSha256": "1657bd245d79c1eb8f0691a9e1d0b9065e562e34c2be84a7e311168f5229d785",
+  "admissionScope": "Exact same-source Linux amd64 image and frozen security proofs. Actual native package/client profiles and the complete local candidate are separate gates."
+}

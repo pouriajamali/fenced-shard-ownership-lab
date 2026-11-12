@@ -5,6 +5,8 @@ children. Keep the private output directory out of Git and release archives.
 """
 import argparse,json,os,secrets,socket,subprocess,tempfile,time,urllib.request
 from pathlib import Path
+from bounded_fixture import canonical, kernel_limits
+from check_etcd_fixture import admitted_etcd
 
 def port(used):
     while True:
@@ -17,10 +19,14 @@ def publish(path,data):
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--fixtures',type=Path,required=True);parser.add_argument('--out',type=Path,required=True);a=parser.parse_args()
     if os.name!='posix' or os.getuid()==0:raise SystemExit('Existing non-root Linux user required')
-    root=a.fixtures.resolve();out=a.out.resolve();out.mkdir(parents=True,exist_ok=False)
+    kernel_limits()
+    root=canonical(a.fixtures.absolute())
+    with admitted_etcd(root) as admitted:fixture_identity=admitted['identity']
+    out=a.out.resolve();out.mkdir(parents=True,exist_ok=False)
     scratch=Path(tempfile.mkdtemp(prefix='portfolio-ownership-'));os.chmod(scratch,0o700)
-    pg=root/'root/usr/lib/postgresql/18/bin';etcd=root/'etcd-v3.7.3-linux-amd64/etcd'
-    env=os.environ.copy();env['LD_LIBRARY_PATH']=str(root/'root/usr/lib/x86_64-linux-gnu');env['GOMAXPROCS']='1'
+    pg=root/'root/usr/lib/postgresql/18/bin'
+    env={'PATH':'/usr/bin:/bin','LANG':'C.UTF-8','HOME':str(scratch),
+         'LD_LIBRARY_PATH':str(root/'root/usr/lib/x86_64-linux-gnu'),'GOMAXPROCS':'1'}
     password=secrets.token_hex(24);admin=secrets.token_hex(24);run=secrets.token_hex(12)
     private=scratch/'admin-password';private.write_text(admin);os.chmod(private,0o600)
     used=set();pgport=port(used);clients=[port(used) for _ in range(3)];peers=[port(used) for _ in range(3)]
@@ -35,12 +41,15 @@ def main():
     def start_member(index):
         log=(out/f'etcd-{index}-{time.monotonic_ns()}.log').open('wb');logs.append(log)
         cluster=','.join(f'm{j}=http://127.0.0.1:{peers[j]}' for j in range(3))
-        args=[str(etcd),'--name',f'm{index}','--data-dir',str(scratch/f'etcd-{index}'),
+        args=['ADMITTED_ETCD_FD','--name',f'm{index}','--data-dir',str(scratch/f'etcd-{index}'),
               '--listen-client-urls',f'http://127.0.0.1:{clients[index]}','--advertise-client-urls',f'http://127.0.0.1:{clients[index]}',
               '--listen-peer-urls',f'http://127.0.0.1:{peers[index]}','--initial-advertise-peer-urls',f'http://127.0.0.1:{peers[index]}',
               '--initial-cluster',cluster,'--initial-cluster-token',run,'--initial-cluster-state','new',
               '--quota-backend-bytes','67108864','--max-wals','2','--max-snapshots','2','--log-level','error']
-        process=subprocess.Popen(args,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True)
+        with admitted_etcd(root) as admitted:
+            if admitted['identity']!=fixture_identity:raise ValueError('Fixture identity changed before restart')
+            args[0]=admitted['executable']
+            process=subprocess.Popen(args,env=env,stdout=log,stderr=subprocess.STDOUT,start_new_session=True,pass_fds=admitted['pass_fds'])
         if len(members)<=index:members.append(process)
         else:members[index]=process
     def stop_member(index):
@@ -74,10 +83,10 @@ def main():
         ready()
         publish(out/'connection.private.json',{'run':run,'connection':f'Host=127.0.0.1;Port={pgport};Username=ownership_lab;Password={password};Database=ownership_lab','endpoints':[f'http://127.0.0.1:{x}/' for x in clients]})
         os.chmod(out/'connection.private.json',0o600)
-        publish(out/'ready.json',{'status':'READY_OWNED_LOCAL_FIXTURES','run':run,'pgPort':pgport,'etcdClientPorts':clients,'scratch':str(scratch),'pid':os.getpid(),'physicalFaultDomains':1})
+        publish(out/'ready.json',{'status':'READY_OWNED_LOCAL_FIXTURES','run':run,'pgPort':pgport,'etcdClientPorts':clients,'scratch':str(scratch),'pid':os.getpid(),'physicalFaultDomains':1,'fixtureIdentity':fixture_identity})
         print(json.dumps({'status':'READY','out':str(out)}),flush=True)
         while time.monotonic()-started<15*60:
-            if sum(p.stat().st_size for p in out.glob('*.log'))>256*1024*1024:raise RuntimeError('Log cap exceeded')
+            if sum(p.stat().st_size for p in out.glob('*.log'))>128*1024*1024:raise RuntimeError('Log cap exceeded')
             request=out/'control.json'
             if not request.exists():time.sleep(.05);continue
             message=json.loads(request.read_text());request.unlink()
@@ -103,6 +112,6 @@ def main():
         try:stop_pg()
         finally:
             for log in logs:log.close()
-            publish(out/'stopped.json',{'status':'OWNED_PROCESSES_STOPPED','scratchRetained':str(scratch),'durationSeconds':round(time.monotonic()-started,3)})
+            publish(out/'stopped.json',{'status':'OWNED_PROCESSES_STOPPED','scratchRetained':str(scratch),'durationSeconds':round(time.monotonic()-started,3),'fixtureIdentity':fixture_identity})
 
 if __name__=='__main__':main()

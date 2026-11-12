@@ -98,5 +98,24 @@ class EventPolicyTests(unittest.TestCase):
                 policy.check_source_inventory(root)
 
 
+    def test_lint_uses_the_same_direct_admission_entry(self):
+        with patch.object(policy.subprocess, 'run') as child:
+            policy.lint()
+        args, options = child.call_args
+        self.assertEqual(1, child.call_count)
+        self.assertEqual('-B', args[0][1])
+        self.assertEqual('run_actionlint.py', Path(args[0][2]).name)
+        self.assertEqual('tools', Path(args[0][2]).parent.name)
+        self.assertTrue(options['check'])
+        self.assertEqual(90, options['timeout'])
+
+    def test_lint_propagates_guard_failure_without_a_fallback(self):
+        failure = policy.subprocess.CalledProcessError(1, ['guard'])
+        with patch.object(policy.subprocess, 'run', side_effect=failure) as child:
+            with self.assertRaises(policy.subprocess.CalledProcessError):
+                policy.lint()
+        self.assertEqual(1, child.call_count)
+
+
 if __name__ == '__main__':
     unittest.main(verbosity=2)

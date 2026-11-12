@@ -63,7 +63,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-dotnet@0f4a354dd5547a28c70b7853dbd95d5b67886e73 # v6.1.0
         with:
-          dotnet-version: '10.0.403'
+          dotnet-version: '10.0.404'
       - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
         with:
           python-version: '3.12'
@@ -75,6 +75,20 @@ jobs:
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           dotnet run --project tests/Ownership.Tests/Ownership.Tests.csproj -c Release --no-restore -- -noLogo -xml artifacts/unit.xml
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Independent complete-receipt oracle vectors
+        shell: pwsh
+        run: |
+          $priorOptimize = $env:PYTHONOPTIMIZE
+          try {
+            $env:PYTHONOPTIMIZE = '0'
+            python tools/test_receipt_oracle.py --out artifacts/receipt-oracle-normal
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+            $env:PYTHONOPTIMIZE = '1'
+            python tools/test_receipt_oracle.py --out artifacts/receipt-oracle-optimized
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          } finally {
+            $env:PYTHONOPTIMIZE = $priorOptimize
+          }
       - name: Build exact clean native package
         run: python tools/package.py --rid ${{ matrix.rid }} --commit ${{ github.sha }} --work artifacts/build --out artifacts/delivery
       - name: Expression-only dependency notice regressions
@@ -124,6 +138,8 @@ jobs:
           name: proof-${{ matrix.rid }}
           path: |
             artifacts/unit.xml
+            artifacts/receipt-oracle-normal/receipt.json
+            artifacts/receipt-oracle-optimized/receipt.json
             artifacts/package-checks.json
             artifacts/sbom-archive-checks.json
             artifacts/sbom-regressions/receipt.json
@@ -143,7 +159,7 @@ jobs:
       id-token: write
       attestations: write
     env:
-      RELEASE_TAG: v0.1.0-preview.2
+      RELEASE_TAG: v0.1.0-preview.3
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -179,4 +195,4 @@ jobs:
           ACTUAL_TAG: ${{ github.ref_name }}
         run: |
           test "$ACTUAL_TAG" = "$RELEASE_TAG"
-          gh release create "$RELEASE_TAG" artifacts/release/* --verify-tag --prerelease --title "$RELEASE_TAG - Fenced Shard Ownership Lab" --notes-file docs/RELEASE-v0.1.0-preview.2.md
+          gh release create "$RELEASE_TAG" artifacts/release/* --verify-tag --prerelease --title "$RELEASE_TAG - Fenced Shard Ownership Lab" --notes-file docs/RELEASE-v0.1.0-preview.3.md

@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "status": "TWO_ACTUAL_FRESH_EQUAL_BYTE_BUILDS",
+  "sourceCommit": "0a173d0410a96d01091b484daae81365bbcde57e",
+  "sourceArchiveSha256": "f7628ecdb67353acdc708a42c4fb9e1267b4a1efed68ec1da83514406a598b60",
+  "compilerArchiveSha256": "9849f4e04ee35303714e34fbc3ac8ab44ea3e448a95aa182f91e3b9b79c710ec",
+  "portableBuildInputsSha256": "1657bd245d79c1eb8f0691a9e1d0b9065e562e34c2be84a7e311168f5229d785",
+  "binarySha256": "720420f5f09bf4acb5b32365eddd7594764fb74e3e2b22aa7d1ae67b844f2af6",
+  "binaryBytes": 35702972,
+  "builds": [
+    {
+      "number": 1,
+      "binarySha256": "720420f5f09bf4acb5b32365eddd7594764fb74e3e2b22aa7d1ae67b844f2af6",
+      "rawBuildReceiptSha256": "68814cc4bed1e5945daa67470b16ed00bba466bc2519cbc95805f3c5c9f17f0e"
+    },
+    {
+      "number": 2,
+      "binarySha256": "720420f5f09bf4acb5b32365eddd7594764fb74e3e2b22aa7d1ae67b844f2af6",
+      "rawBuildReceiptSha256": "7609a368a9c756e9784ee25a28d4ebe6028cc4c7f4328979dd69a241d97bb5c9"
+    }
+  ],
+  "recipe": {
+    "argv": [
+      "go",
+      "build",
+      "-mod=readonly",
+      "-p=1",
+      "-trimpath",
+      "-buildvcs=false",
+      "-installsuffix=cgo",
+      "-ldflags=-X=go.etcd.io/etcd/api/v3/version.GitSHA=0a173d0",
+      "-o=<fresh-output>",
+      "."
+    ],
+    "workingDirectory": "unchanged-source/server",
+    "GOTOOLCHAIN": "local",
+    "CGO_ENABLED": "0",
+    "GOOS": "linux",
+    "GOARCH": "amd64",
+    "GOAMD64": "v1"
+  },
+  "scope": "These historical actual build records bind the expected image; public reproductions must independently produce the same bytes and retain their own process evidence. No private receipt is an input."
+}

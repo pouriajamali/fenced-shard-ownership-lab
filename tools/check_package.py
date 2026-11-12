@@ -15,8 +15,39 @@ def main():
         require(record['path'] not in expected, 'Validation failed: check_package.py:12');expected.add(record['path']);file=package/relative
         require(file.is_file() and not file.is_symlink() and file.stat().st_size==record['bytes'] and hashlib.sha256(file.read_bytes()).hexdigest()==record['sha256'], 'Validation failed: check_package.py:13')
     require({f.relative_to(package).as_posix() for f in package.rglob('*') if f.is_file()}==expected|{'BUILD-MANIFEST.json'}, 'Validation failed: check_package.py:14');checks.append('exact-manifest-file-set-and-sha256')
+    external_helpers={
+        'tools/build_etcd_fixture.py','tools/check_etcd_fixture.py','tools/bounded_fixture.py',
+        'tools/test_etcd_fixture.py','tools/test_etcd_inputs.py','tools/test_fixture_resources.py',
+        'tools/etcd_inputs.py','tools/etcd-build.inputs.json','tools/etcd-build.lock.json','docs/ETCD-FIXTURE-BUILD.md',
+        'vendor/notices/ETCD-FIXTURE-SOURCES.json','tools/build_actionlint.py',
+        'tools/check_actionlint.py','tools/run_actionlint.py','tools/bounded_actionlint.py',
+        'tools/test_actionlint_admission.py','tools/actionlint-build.lock.json',
+        'tools/actionlint-notices.json','docs/ACTIONLINT-BUILD.md'}
+    external_helpers |= {'vendor/etcd-admission/'+name for name in ('source-audit.jsonl','binary-audit.jsonl','module-graph.json','licenses.json','buildinfo.json','reproducibility.json','advisory-snapshot.json')}
+    require(external_helpers <= expected, 'External build/admission helpers missing from actual package')
+    fixture=json.loads((package/'tools/etcd-build.lock.json').read_text(encoding='utf-8-sig'))
+    tooling=json.loads((package/'tools/actionlint-build.lock.json').read_text(encoding='utf-8-sig'))
+    require(fixture.get('status')=='ADMITTED_MAINTAINER_BUILD' and
+            tooling.get('admission',{}).get('state')=='ADMITTED',
+            'Unadmitted fixture/tooling source is not a complete local candidate')
+    checks.append('complete-external-reproduction-helpers-and-admitted-reference-states')
     require('MIT License' in (package/'LICENSE').read_text(), 'Validation failed: check_package.py:15');require((package/'licenses').is_dir(), 'Validation failed: check_package.py:15');checks.append('original-and-third-party-notices')
     dependencies=json.loads((package/'DEPENDENCIES.json').read_text(encoding='utf-8'))['packages']
+    require(manifest['rid'] in ('win-x64','linux-x64'), 'Supported native RID required')
+    runtime_id='Microsoft.NETCore.App.Runtime.'+manifest['rid']
+    runtime=[d for d in dependencies if d['id'].startswith('Microsoft.NETCore.App.Runtime.')]
+    require(len(runtime)==1 and runtime[0]['id']==runtime_id and runtime[0]['version']=='10.0.15',
+            'Exact serviced Core runtime/RID required')
+    runtimeconfig=json.loads((package/'ownership.runtimeconfig.json').read_text(encoding='utf-8'))
+    options=runtimeconfig['runtimeOptions']
+    require(options.get('tfm')=='net10.0' and options.get('includedFrameworks')==
+            [{'name':'Microsoft.NETCore.App','version':'10.0.15'}],
+            'Self-contained runtimeconfig must record Core10.0.15')
+    shipped=json.loads((package/'ownership.deps.json').read_text(encoding='utf-8'))['libraries']
+    runtimepacks={name.removeprefix('runtimepack.') for name,entry in shipped.items()
+                  if entry['type']=='runtimepack' or name.startswith('runtimepack.')}
+    require(runtimepacks=={runtime_id+'/10.0.15'}, 'Shipped runtimepack identity mismatch')
+    checks.append('actual-self-contained-core-runtime-10.0.15-and-native-rid')
     for dep in dependencies:
         relative=PurePosixPath(dep['licenseFile']);require(not relative.is_absolute() and '..' not in relative.parts, 'Validation failed: check_package.py:18')
         license_file=package/relative;require(license_file.stat().st_size>=300 and hashlib.sha256(license_file.read_bytes()).hexdigest()==dep['licenseSha256'] and dep['copyright'], 'Validation failed: check_package.py:19')

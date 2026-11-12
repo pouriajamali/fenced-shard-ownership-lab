@@ -15,3 +15,26 @@ CLI JSON integer fields are decimal strings so downstream readers do not silentl
 Acceptance: independent resulting-history checks, exact-integer and malformed/incomplete renewal tests, competing acquisition, paused/in-flight old worker, sink activation/effect crashes before and after commit, cross-generation idempotency/conflict, ordinary sink restart, unavailable sink and real quorum loss. A single-machine three-member cluster does not establish physical fault-domain independence or production HA. Timing is fixture coordination, not a trading-latency benchmark.
 
 Initial local profile budget: 4 logical CPUs, 8 GiB lab RAM, 10 GiB task scratch; 120-second readiness, 60-second owned case, 15-minute profile cap, 256 MiB logs. These are provisional limits, not measured machine requirements. Existing Linux/WSL access required; no OS feature or container runtime installation is implied.
+
+
+## Complete original receipt check (current source candidate; UNTESTED)
+
+Receipt fields are operationId, delta, totalAfter and originalFence. CLI/receipt
+integers remain canonical decimal strings. totalAfter and originalFence describe
+the original committed effect, even after later effects or a new active owner;
+they are not recomputed at replay. SQL and CLI agreeing with each other is not
+enough: the independent controller compares both with planned commit totals and
+previously confirmed owner fences, and retains the original SQL receipt text.
+
+After committed cutover, a request by the old owner returns STALE_FENCE before
+deduplication or payload conflict, including an already committed ID with changed
+delta. Under the active owner, identical ID/digest returns REPLAYED with the
+complete original receipt; changed delta returns IDENTITY_CONFLICT. Rejects
+return no receipt and produce no effect. A killed AfterCommit child with no
+response is caller uncertainty, not a literal emitted UNKNOWN or a rollback.
+
+The one added composed case reuses after-commit/delta41 under owner_d, original
+total112, after owner_e activates and current total165. Both old-owner delta41
+and delta42 must be stale; current-owner delta41 replays the original receipt,
+and current-owner delta42 conflicts. Five effects/total165 are preserved.
+Source authoring does not establish any fresh executed acceptance result.

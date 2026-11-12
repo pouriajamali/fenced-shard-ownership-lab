@@ -5,13 +5,6 @@
   "platform": "ubuntu24.04-linux-amd64",
   "files": [
     {
-      "name": "etcd-v3.7.3-linux-amd64.tar.gz",
-      "url": "https://github.com/etcd-io/etcd/releases/download/v3.7.3/etcd-v3.7.3-linux-amd64.tar.gz",
-      "bytes": 23941525,
-      "sha256": "5dfa9cc3b3ce3b4b491fbcc2057d3daa166bcc6676f743fcd20f8e5760cb9775",
-      "digestSource": "https://github.com/etcd-io/etcd/releases/download/v3.7.3/SHA256SUMS"
-    },
-    {
       "name": "postgresql-18_18.6-1.pgdg24.04+2_amd64.deb",
       "url": "https://apt.postgresql.org/pub/repos/apt/pool/main/p/postgresql-18/postgresql-18_18.6-1.pgdg24.04+2_amd64.deb",
       "bytes": 7576708,
@@ -48,5 +41,14 @@
     }
   ],
   "indexSha256": "8df2ea9b5212f561f1bbb007efa59ad2946e4de497331b3cac4d52829458c629",
-  "verification": "Official HTTPS digest metadata; no package install or upstream signature claim"
+  "verification": "Official HTTPS digest metadata; no package install or upstream signature claim",
+  "retiredEtcdReference": {
+    "name": "etcd-v3.7.3-linux-amd64.tar.gz",
+    "url": "https://github.com/etcd-io/etcd/releases/download/v3.7.3/etcd-v3.7.3-linux-amd64.tar.gz",
+    "bytes": 23941525,
+    "sha256": "5dfa9cc3b3ce3b4b491fbcc2057d3daa166bcc6676f743fcd20f8e5760cb9775",
+    "digestSource": "https://github.com/etcd-io/etcd/releases/download/v3.7.3/SHA256SUMS",
+    "status": "HISTORICAL_AFFECTED_PREBUILT_NOT_FETCHED_OR_EXECUTED"
+  },
+  "etcdBuildLock": "etcd-build.lock.json"
 }

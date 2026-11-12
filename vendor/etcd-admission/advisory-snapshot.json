@@ -1,0 +1,1278 @@
+{
+  "schema": 1,
+  "status": "EXACT_SOURCE_AND_BINARY_FINDINGS_DISPOSED_FROZEN_SNAPSHOT",
+  "observedAtUtc": "2026-11-12T16:23:09.313153+00:00",
+  "primaryIndex": {
+    "url": "https://vuln.go.dev/index/modules.json",
+    "bytes": 556873,
+    "sha256": "e1064477b87ca8e977447efeb9884de9bfc3bff13a96086368545047a06c35f8"
+  },
+  "databaseArchiveSha256": "714ff02d9533ec6ca269e565b61b27cbd959aa0af89d51f318261322e875861c",
+  "sourceStreamSha256": "59693cea515bdafd7a7ae7aa43000c3b7822b02333eb3cb11868825c7e966734",
+  "binaryStreamSha256": "d7706e8221267486ae5ba92f15ba44760b2c19185f32ce9fec34524593d4349d",
+  "sourceContextReview": [
+    {
+      "id": "GO-2026-4559",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "584dadedd291cd638b28a7fcca7d663e792aed9fe204617fd32cbb50d93df534",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-4559",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "584dadedd291cd638b28a7fcca7d663e792aed9fe204617fd32cbb50d93df534",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-4918",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "cf690ff9affe270dba8096b45883bb17dd8ac6ce43cfdf031bc218e3a54e2bc4",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-4918",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "cf690ff9affe270dba8096b45883bb17dd8ac6ce43cfdf031bc218e3a54e2bc4",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/http2"
+      ]
+    },
+    {
+      "id": "GO-2026-4918",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "cf690ff9affe270dba8096b45883bb17dd8ac6ce43cfdf031bc218e3a54e2bc4",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-4923",
+      "kind": "source-module",
+      "module": "go.etcd.io/bbolt",
+      "version": "v1.5.0",
+      "recordSha256": "b530aab0e6fb4a70e15e99e044488508ea3e7642ff3269f5ae80499a3ad259f2",
+      "status": "WITHDRAWN_REVIEW_REQUIRED"
+    },
+    {
+      "id": "GO-2026-4970",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "7cd0f040d0f20a62a8535191c5078a0602fe21eeb8348ca61a3115aed239bea9",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5005",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "8d24b2236ae02c64b9bf92a99dc6721e3c2ade218163f7cb5294bff74e357aff",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5005",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "8d24b2236ae02c64b9bf92a99dc6721e3c2ade218163f7cb5294bff74e357aff",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh/agent"
+      ]
+    },
+    {
+      "id": "GO-2026-5006",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "152d008ff7e07a87383be519b62d51a527e737888f36eb5ecb198e720c0846f6",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5006",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "152d008ff7e07a87383be519b62d51a527e737888f36eb5ecb198e720c0846f6",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh/agent"
+      ]
+    },
+    {
+      "id": "GO-2026-5013",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "cb3eaa424df27b95938aa35b9a4920afc5cf92fadd21ac55faae972a83911fd5",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5013",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "cb3eaa424df27b95938aa35b9a4920afc5cf92fadd21ac55faae972a83911fd5",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh"
+      ]
+    },
+    {
+      "id": "GO-2026-5014",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "8881518e9af9fdf2d7739e90b41f342338c35326de711fe5e7cb9ed69abdba55",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5014",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "8881518e9af9fdf2d7739e90b41f342338c35326de711fe5e7cb9ed69abdba55",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh"
+      ]
+    },
+    {
+      "id": "GO-2026-5015",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "a2eafff52b85bc439e9f91d923f13a2c8e92dc50988d224b0ec9fa7743a6c364",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5015",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "a2eafff52b85bc439e9f91d923f13a2c8e92dc50988d224b0ec9fa7743a6c364",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh"
+      ]
+    },
+    {
+      "id": "GO-2026-5016",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "673f517ceda776cb44591c043ca3ed99fe82577e53a6edb265d0f274e23d0577",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5016",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "673f517ceda776cb44591c043ca3ed99fe82577e53a6edb265d0f274e23d0577",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh"
+      ]
+    },
+    {
+      "id": "GO-2026-5017",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "fbb033eb529bb5198e2203664842555b119aa81925af3f87f2da7585201a5fea",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5017",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "fbb033eb529bb5198e2203664842555b119aa81925af3f87f2da7585201a5fea",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh"
+      ]
+    },
+    {
+      "id": "GO-2026-5018",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "879ffd14c792d727369d49dcde915ffedc76232853e72b76caba851f7777a8a0",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5018",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "879ffd14c792d727369d49dcde915ffedc76232853e72b76caba851f7777a8a0",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh"
+      ]
+    },
+    {
+      "id": "GO-2026-5019",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "f924ec0c7031420d825c2f0f10c73b158174305877cb896208516f3aef251eaf",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5019",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "f924ec0c7031420d825c2f0f10c73b158174305877cb896208516f3aef251eaf",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh"
+      ]
+    },
+    {
+      "id": "GO-2026-5020",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "73b72fdce63562ab7cb226d1d5278b5329967548cddca2ee54821f7a136ade86",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5020",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "73b72fdce63562ab7cb226d1d5278b5329967548cddca2ee54821f7a136ade86",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh"
+      ]
+    },
+    {
+      "id": "GO-2026-5021",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "4f82e7ac5204567584bae41c4f8a8031a847990d4cf21f9d0c17d7562a54a9bb",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5021",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "4f82e7ac5204567584bae41c4f8a8031a847990d4cf21f9d0c17d7562a54a9bb",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh/knownhosts"
+      ]
+    },
+    {
+      "id": "GO-2026-5023",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "e713fe8d7b4b4f2f7f8df50970dc34934438a40d59d348263edb5bf8c21ba165",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5023",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "e713fe8d7b4b4f2f7f8df50970dc34934438a40d59d348263edb5bf8c21ba165",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh"
+      ]
+    },
+    {
+      "id": "GO-2026-5024",
+      "kind": "source-module",
+      "module": "golang.org/x/sys",
+      "version": "v0.49.0",
+      "recordSha256": "ec93b4e06338823aff63cebe8aa3bad0d46bc68e16fe226cffaed3846af8b95f",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5024",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/sys",
+      "version": "v0.39.0",
+      "recordSha256": "ec93b4e06338823aff63cebe8aa3bad0d46bc68e16fe226cffaed3846af8b95f",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/sys/windows"
+      ]
+    },
+    {
+      "id": "GO-2026-5025",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "6e0e4f8fec5380789ccafbc0e5655b2c00021c259926d63a16ca2fde7164f561",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5025",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "6e0e4f8fec5380789ccafbc0e5655b2c00021c259926d63a16ca2fde7164f561",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/html"
+      ]
+    },
+    {
+      "id": "GO-2026-5026",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "6c8aed80ae71362ee6a2c4ca36ace9d5f6d991040d5242ffc4713e2a7a9a750c",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5026",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "6c8aed80ae71362ee6a2c4ca36ace9d5f6d991040d5242ffc4713e2a7a9a750c",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5026",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "6c8aed80ae71362ee6a2c4ca36ace9d5f6d991040d5242ffc4713e2a7a9a750c",
+      "status": "ACTUAL_SOURCE_PACKAGE_OVERLAP_REVIEW_REQUIRED",
+      "imports": [
+        {
+          "path": "golang.org/x/net/idna",
+          "symbols": [
+            "Profile.ToASCII",
+            "Profile.ToUnicode",
+            "Profile.process",
+            "ToASCII",
+            "ToUnicode"
+          ]
+        }
+      ],
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "0.55.0"
+            }
+          ]
+        }
+      ],
+      "summary": "Invoking failure to reject ASCII-only Punycode-encoded labels in golang.org/x/net/idna"
+    },
+    {
+      "id": "GO-2026-5027",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "81f8d128ae4b9c3739ee3f2f0a2d23348a59690803530040bf85b90d43cd1c45",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5027",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "81f8d128ae4b9c3739ee3f2f0a2d23348a59690803530040bf85b90d43cd1c45",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/html"
+      ]
+    },
+    {
+      "id": "GO-2026-5028",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "615e12cb464e5692178222320c0827dc68d3f2555b7a1cc33d6c931cc51b828c",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5028",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "615e12cb464e5692178222320c0827dc68d3f2555b7a1cc33d6c931cc51b828c",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/html"
+      ]
+    },
+    {
+      "id": "GO-2026-5029",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "780d7ee07d3e472e37e794c58d0807c41bd7ab8fe2ca11c569c0a8a3e7132041",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5029",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "780d7ee07d3e472e37e794c58d0807c41bd7ab8fe2ca11c569c0a8a3e7132041",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/html"
+      ]
+    },
+    {
+      "id": "GO-2026-5030",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "b4cb67a12ef499db547c483edc5dab8a7dfac2fb4e44cb90b8a870fb37adee2c",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5030",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "b4cb67a12ef499db547c483edc5dab8a7dfac2fb4e44cb90b8a870fb37adee2c",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/html"
+      ]
+    },
+    {
+      "id": "GO-2026-5033",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "030807122c1428e544615a49eda6639487c6fc74c1681acf37c9e5151807a1ac",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5033",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "030807122c1428e544615a49eda6639487c6fc74c1681acf37c9e5151807a1ac",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh/agent"
+      ]
+    },
+    {
+      "id": "GO-2026-5856",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "bb7ed27b950c15aa32058cd35011e9d6d365ede507a2c2fa0b7f11e91c6158c1",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5932",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "bde8769150ec1368d9a8dbd61fbbde52296de692c57147e02e3ae295e1981f11",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/openpgp",
+        "golang.org/x/crypto/openpgp/packet",
+        "golang.org/x/crypto/openpgp/armor",
+        "golang.org/x/crypto/openpgp/clearsign",
+        "golang.org/x/crypto/openpgp/errors",
+        "golang.org/x/crypto/openpgp/elgamal",
+        "golang.org/x/crypto/openpgp/s2k"
+      ]
+    },
+    {
+      "id": "GO-2026-5932",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "bde8769150ec1368d9a8dbd61fbbde52296de692c57147e02e3ae295e1981f11",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/openpgp",
+        "golang.org/x/crypto/openpgp/packet",
+        "golang.org/x/crypto/openpgp/armor",
+        "golang.org/x/crypto/openpgp/clearsign",
+        "golang.org/x/crypto/openpgp/errors",
+        "golang.org/x/crypto/openpgp/elgamal",
+        "golang.org/x/crypto/openpgp/s2k"
+      ]
+    },
+    {
+      "id": "GO-2026-5942",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "0395782ca63c3ac9d29271da01eb582638a886911c7b682e36acef1690dbec16",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5942",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "0395782ca63c3ac9d29271da01eb582638a886911c7b682e36acef1690dbec16",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5942",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "0395782ca63c3ac9d29271da01eb582638a886911c7b682e36acef1690dbec16",
+      "status": "ACTUAL_SOURCE_PACKAGE_OVERLAP_REVIEW_REQUIRED",
+      "imports": [
+        {
+          "path": "golang.org/x/net/dns/dnsmessage",
+          "symbols": [
+            "Message.Unpack",
+            "Parser.Additional",
+            "Parser.AllAdditionals",
+            "Parser.AllAnswers",
+            "Parser.AllAuthorities",
+            "Parser.Answer",
+            "Parser.Authority",
+            "Parser.HTTPSResource",
+            "Parser.SVCBResource",
+            "unpackSVCBResource"
+          ]
+        }
+      ],
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "0.56.0"
+            }
+          ]
+        }
+      ],
+      "summary": "Parsing an invalid SVCB or HTTPS RR can panic in golang.org/x/net/dns/dnsmessage"
+    },
+    {
+      "id": "GO-2026-5970",
+      "kind": "source-module",
+      "module": "golang.org/x/text",
+      "version": "v0.43.0",
+      "recordSha256": "67ada3c81c785215b93c9ea718755b8204b322f95f45f4a4594e2f8b52c7aead",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-5970",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/text",
+      "version": "v0.32.0",
+      "recordSha256": "67ada3c81c785215b93c9ea718755b8204b322f95f45f4a4594e2f8b52c7aead",
+      "status": "ACTUAL_SOURCE_PACKAGE_OVERLAP_REVIEW_REQUIRED",
+      "imports": [
+        {
+          "path": "golang.org/x/text/unicode/norm",
+          "symbols": [
+            "Form.Append",
+            "Form.AppendString",
+            "Form.Bytes",
+            "Form.FirstBoundary",
+            "Form.FirstBoundaryInString",
+            "Form.IsNormal",
+            "Form.IsNormalString",
+            "Form.LastBoundary",
+            "Form.NextBoundary",
+            "Form.NextBoundaryInString",
+            "Form.Properties",
+            "Form.PropertiesString",
+            "Form.QuickSpan",
+            "Form.QuickSpanString",
+            "Form.Span",
+            "Form.SpanString",
+            "Form.String",
+            "Form.Transform",
+            "Iter.Init",
+            "Iter.InitString",
+            "Iter.Next",
+            "Iter.Seek",
+            "nextComposed",
+            "normReader.Read",
+            "normWriter.Write"
+          ]
+        }
+      ],
+      "ranges": [
+        {
+          "type": "SEMVER",
+          "events": [
+            {
+              "introduced": "0"
+            },
+            {
+              "fixed": "0.39.0"
+            }
+          ]
+        }
+      ],
+      "summary": "Infinite loop on invalid input in golang.org/x/text"
+    },
+    {
+      "id": "GO-2026-5972",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "0a5decf07d8113ebbbd7d126d55d5d463df99fa02dc965d6be252dee342339c6",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6088",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "8a0a8b03822e77aeb92698759ed61a6eac38de4f58e1205419d13a22758f9836",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6089",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "a2b4097de79210e5aaabb90365a70657a6fb19811fe3b6f093f7ee78efb728f5",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6090",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "a095ce22d74407d8422f4214aa9193527771a036a19ff4099990106f28fb2cb7",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6091",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "33cff0a977c052c465d2856b544f654807a5bc9048ed5e90796cb21184b18766",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6179",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "0c9188802ec6e0fe75d24c187ec7af3e75e9dee649fcba31caed55d6b14dc6ae",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6180",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "440cf96581be963cc51ab4bb32029107d682138dfb2156d935132c981f76fa4d",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6218",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "28092def611c88e5c6b14494576edf21cb04fd431aaef944a1d2987b17af3c09",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6303",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "55275661179f83a58b740dd4e3100bfcb56d29d511cc55d68ad9fa80461d4b5a",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6303",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "55275661179f83a58b740dd4e3100bfcb56d29d511cc55d68ad9fa80461d4b5a",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh"
+      ]
+    },
+    {
+      "id": "GO-2026-6354",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "42641bb564464159a3c66c97f171bfb24850315d0cd630f8dadb7c6cea811b27",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6354",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "42641bb564464159a3c66c97f171bfb24850315d0cd630f8dadb7c6cea811b27",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh"
+      ]
+    },
+    {
+      "id": "GO-2026-6355",
+      "kind": "source-module",
+      "module": "golang.org/x/crypto",
+      "version": "v0.58.0",
+      "recordSha256": "a67d5f78f69e6c0898a7addee07a7069c923d61cca58736fc9db550c5709bb2c",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6355",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/crypto",
+      "version": "v0.46.1-0.20251210140736-7dacc380ba00",
+      "recordSha256": "a67d5f78f69e6c0898a7addee07a7069c923d61cca58736fc9db550c5709bb2c",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/crypto/ssh"
+      ]
+    },
+    {
+      "id": "GO-2026-6443",
+      "kind": "source-module",
+      "module": "google.golang.org/grpc",
+      "version": "v1.83.2",
+      "recordSha256": "828ef8f93835d23572ba0a75e9d1c632037516f93f1bdbbaf91a4c9fef633f87",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6599",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "c38e8f1f16170826bdda20a8331b6119661aabfdc0da2a85223afa88884a749e",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6600",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "7ed76e290b366142cbbaac2c0fb12057ba378c96a102180705fa6c7505269dac",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6601",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "536992d865cd6662ecea9c925e69a06a3ff0579da250013154e2b483b1572d55",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6602",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "215a4c29eef4243ff80442ab3bc3f767fc253aad1f0a518e6d46ad8ca786fb87",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6603",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "76a1945737d8c2ea4a34d18fd44230946b1185894ea155f9812d1149b2838d3c",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6603",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "76a1945737d8c2ea4a34d18fd44230946b1185894ea155f9812d1149b2838d3c",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6603",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "76a1945737d8c2ea4a34d18fd44230946b1185894ea155f9812d1149b2838d3c",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6603",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "76a1945737d8c2ea4a34d18fd44230946b1185894ea155f9812d1149b2838d3c",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/http2"
+      ]
+    },
+    {
+      "id": "GO-2026-6604",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "8b5ef99e9faea517629d07377cb0a47b29980cfa4d6d37fb75038ef893ea16f9",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6605",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "d49f2ab0c0d4c1c2e854008c2434e132ec422ce378e8a91170169cef30a727f1",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6607",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "f4bf7540a2b1f5671a55ab2445ed6071036a699dcd9ec215ac73f7a57aadc8d6",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6608",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "5bbf511ad6cc75190d3661c5d79d705e41e3cd40010c325e5fa3b9183237eb54",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6609",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "3a47edb3f881a474a00b696392923a6f97a8b84fb8ca90cf440c1b2b32366ea7",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6610",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "2c7881c7945c7c5eadefd3d0caceb1a23b14467373fb28c601141545ff21f190",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6610",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "2c7881c7945c7c5eadefd3d0caceb1a23b14467373fb28c601141545ff21f190",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6610",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "2c7881c7945c7c5eadefd3d0caceb1a23b14467373fb28c601141545ff21f190",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6610",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "2c7881c7945c7c5eadefd3d0caceb1a23b14467373fb28c601141545ff21f190",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/http2"
+      ]
+    },
+    {
+      "id": "GO-2026-6611",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "5e89ac4314a24eac41111b71ef4544f22836c7b1baf48747e31c5c1d8282c3de",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6611",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "5e89ac4314a24eac41111b71ef4544f22836c7b1baf48747e31c5c1d8282c3de",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6611",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "5e89ac4314a24eac41111b71ef4544f22836c7b1baf48747e31c5c1d8282c3de",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6611",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "5e89ac4314a24eac41111b71ef4544f22836c7b1baf48747e31c5c1d8282c3de",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/http2"
+      ]
+    },
+    {
+      "id": "GO-2026-6612",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "76c44a4cbdbc463286fb968abd288a26025b8576fe2aed3dcda542fde9518452",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6612",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "76c44a4cbdbc463286fb968abd288a26025b8576fe2aed3dcda542fde9518452",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6612",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "76c44a4cbdbc463286fb968abd288a26025b8576fe2aed3dcda542fde9518452",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6612",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "76c44a4cbdbc463286fb968abd288a26025b8576fe2aed3dcda542fde9518452",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/http2"
+      ]
+    },
+    {
+      "id": "GO-2026-6613",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "6c2bd0f788183c22cae14deb2b3c80fdf1552bd12f5f09614b084ed3233967d0",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6617",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "197efc1b2f05e891ab3dad2127b7ea3997dc80dc39b21294ab93e11333c4c08b",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6617",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "197efc1b2f05e891ab3dad2127b7ea3997dc80dc39b21294ab93e11333c4c08b",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6617",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "197efc1b2f05e891ab3dad2127b7ea3997dc80dc39b21294ab93e11333c4c08b",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6617",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "197efc1b2f05e891ab3dad2127b7ea3997dc80dc39b21294ab93e11333c4c08b",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/http2"
+      ]
+    },
+    {
+      "id": "GO-2026-6629",
+      "kind": "source-module",
+      "module": "golang.org/x/text",
+      "version": "v0.43.0",
+      "recordSha256": "b68c3868c023ae6d358294a1af09758ce97aed426a8a65e2c755ca524ba509b6",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6629",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/text",
+      "version": "v0.32.0",
+      "recordSha256": "b68c3868c023ae6d358294a1af09758ce97aed426a8a65e2c755ca524ba509b6",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/text/secure/precis"
+      ]
+    },
+    {
+      "id": "GO-2026-6809",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "67d1ae42283683c4fe26081cb174da0b945370d846ebafce11bedd14c1b99151",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6848",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "bad9b77ad6b5a7235f6f1e85f2b0b37258acc9f1b8b88fc4c04520f8662c5dc0",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6849",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "95e685d8dc64ac08ad6362ae0fe86d59b4e63eb49f9ad417a6676661c128dc98",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6850",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "a9049cb32a78e82b432867a255720f1d102371569a77a39ede7d5f2ed5b56b01",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6851",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "e5f11153c4021f3b64d47eac77f9fe91a97c1f5a7b5140a32edaad6dc2a3e8a7",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6852",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "50351f6e3b0f2c65e96c822f90f8efaa3f6b42226b77bc7ee034f369dcf41906",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6853",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "79f4033e8325476762b866f2ba0fea4f0c58be8d9a4103b4e7b9fda807578f6c",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6854",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "092c412a088dad268583683dfea532d8fe9cff599539e9a13fdf394023405653",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6855",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "e487161b67b67527cb3252817be76aae326ae2ef91c3e71237018fe15e5a8ada",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6856",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "e2211af70b30f3041b08d0fdc73a9afa9119808b42989fb9e09165c1e3cb77d7",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6857",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "0de8e14f1ac666ba08ba8d629abc400c4399471ca0a5d157062169cbc771903e",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6858",
+      "kind": "actual-program-distribution",
+      "module": "toolchain",
+      "version": "v1.26.11",
+      "recordSha256": "7322872514f346a34d0b546c482fd7889a364543d998102865812ee2ebbf4df5",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6859",
+      "kind": "actual-program-distribution",
+      "module": "stdlib",
+      "version": "v1.26.11",
+      "recordSha256": "9eb1590c57233fd8a63e8ad737d12cbdef5572eed86ffee05897291fff12a9ce",
+      "status": "VERSION_NOT_AFFECTED"
+    },
+    {
+      "id": "GO-2026-6860",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "443304c129b9540dc46d28392b973a136db90644019dc20c3e25941833d49df3",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/html"
+      ]
+    },
+    {
+      "id": "GO-2026-6860",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "443304c129b9540dc46d28392b973a136db90644019dc20c3e25941833d49df3",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/html"
+      ]
+    },
+    {
+      "id": "GO-2026-6866",
+      "kind": "source-module",
+      "module": "golang.org/x/net",
+      "version": "v0.61.0",
+      "recordSha256": "c0d687be9779f000941b6c847646075598b659cdd51476951559208956bd0f82",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/html"
+      ]
+    },
+    {
+      "id": "GO-2026-6866",
+      "kind": "actual-stdlib-vendor",
+      "module": "golang.org/x/net",
+      "version": "v0.47.1-0.20261008201845-026a91c07857",
+      "recordSha256": "c0d687be9779f000941b6c847646075598b659cdd51476951559208956bd0f82",
+      "status": "NO_AFFECTED_PACKAGE_OR_TARGET_IN_COMPLETE_SOURCE_GRAPH",
+      "advisoryPackages": [
+        "golang.org/x/net/html"
+      ]
+    }
+  ],
+  "sourceAndBinaryMetadataDispositions": [
+    {
+      "id": "GO-2026-5932",
+      "module": "golang.org/x/crypto",
+      "recordSha256": "bde8769150ec1368d9a8dbd61fbbde52296de692c57147e02e3ae295e1981f11",
+      "status": "NO_AFFECTED_PACKAGE_IN_EXACT_COMPLETE_SOURCE_CLOSURE",
+      "affectedPackages": [
+        "golang.org/x/crypto/openpgp",
+        "golang.org/x/crypto/openpgp/packet",
+        "golang.org/x/crypto/openpgp/armor",
+        "golang.org/x/crypto/openpgp/clearsign",
+        "golang.org/x/crypto/openpgp/errors",
+        "golang.org/x/crypto/openpgp/elgamal",
+        "golang.org/x/crypto/openpgp/s2k"
+      ],
+      "scannerTraceScope": "module-only; no package or symbol",
+      "sourceGraphSha256": "157dbcaf4e46ff6d19e262a4c97e1c22a3b6257a93417f25edd65b79d0064633",
+      "binaryConfirmationPending": false,
+      "binaryDisposition": "COMPLETE_SOURCE_PACKAGE_ABSENCE_AND_ACTUAL_BINARY_MODULE_SYMBOL_TYPE_SCA_COMPOSITE",
+      "binarySha256": "720420f5f09bf4acb5b32365eddd7594764fb74e3e2b22aa7d1ae67b844f2af6",
+      "binarySymbolOrTypeMatches": []
+    },
+    {
+      "id": "GO-2026-6860",
+      "module": "golang.org/x/net",
+      "recordSha256": "443304c129b9540dc46d28392b973a136db90644019dc20c3e25941833d49df3",
+      "status": "NO_AFFECTED_PACKAGE_IN_EXACT_COMPLETE_SOURCE_CLOSURE",
+      "affectedPackages": [
+        "golang.org/x/net/html"
+      ],
+      "scannerTraceScope": "module-only; no package or symbol",
+      "sourceGraphSha256": "157dbcaf4e46ff6d19e262a4c97e1c22a3b6257a93417f25edd65b79d0064633",
+      "binaryConfirmationPending": false,
+      "binaryDisposition": "COMPLETE_SOURCE_PACKAGE_ABSENCE_AND_ACTUAL_BINARY_MODULE_SYMBOL_TYPE_SCA_COMPOSITE",
+      "binarySha256": "720420f5f09bf4acb5b32365eddd7594764fb74e3e2b22aa7d1ae67b844f2af6",
+      "binarySymbolOrTypeMatches": []
+    },
+    {
+      "id": "GO-2026-6866",
+      "module": "golang.org/x/net",
+      "recordSha256": "c0d687be9779f000941b6c847646075598b659cdd51476951559208956bd0f82",
+      "status": "NO_AFFECTED_PACKAGE_IN_EXACT_COMPLETE_SOURCE_CLOSURE",
+      "affectedPackages": [
+        "golang.org/x/net/html"
+      ],
+      "scannerTraceScope": "module-only; no package or symbol",
+      "sourceGraphSha256": "157dbcaf4e46ff6d19e262a4c97e1c22a3b6257a93417f25edd65b79d0064633",
+      "binaryConfirmationPending": false,
+      "binaryDisposition": "COMPLETE_SOURCE_PACKAGE_ABSENCE_AND_ACTUAL_BINARY_MODULE_SYMBOL_TYPE_SCA_COMPOSITE",
+      "binarySha256": "720420f5f09bf4acb5b32365eddd7594764fb74e3e2b22aa7d1ae67b844f2af6",
+      "binarySymbolOrTypeMatches": []
+    }
+  ],
+  "sdkSourceClosureSha256": "725417bedd53bc2f94a63ee508a32d68aedac862439bc22f7f1983a56e5f0f3f",
+  "sdkArchiveSha256": "9849f4e04ee35303714e34fbc3ac8ab44ea3e448a95aa182f91e3b9b79c710ec",
+  "actualBinarySha256": "720420f5f09bf4acb5b32365eddd7594764fb74e3e2b22aa7d1ae67b844f2af6",
+  "actualFullSymbolCount": 40875,
+  "sdkNormIterSymbols": [],
+  "retainedSdkIteratorHelpers": [
+    "vendor/golang.org/x/text/unicode/norm.nextHangul",
+    "vendor/golang.org/x/text/unicode/norm.nextMulti",
+    "vendor/golang.org/x/text/unicode/norm.nextMultiNorm",
+    "vendor/golang.org/x/text/unicode/norm.nextDecomposed",
+    "vendor/golang.org/x/text/unicode/norm.nextCGJDecompose",
+    "vendor/golang.org/x/text/unicode/norm.nextComposed",
+    "vendor/golang.org/x/text/unicode/norm.nextCGJCompose"
+  ],
+  "sdkCompositeScope": "Same authenticated SDK NFC-only importer/init/function-pointer source scope; actual full ELF contains norm init and retained lower helpers, no SDK Iter entry/type. External x/text0.43.0 is fixed and distinguished. This composite is required in addition to source and binary SCA.",
+  "staticElfTableHashes": {
+    ".symtab": {
+      "bytes": 981000,
+      "sha256": "b2f35f5c39c7e2e56724d26b2ea4e3a80a9a442f33bc842343910e58100d49ef"
+    },
+    ".gopclntab": {
+      "bytes": 9357576,
+      "sha256": "c7f6b9d19889d96c6fabadb7570fd455b852ff6140190b111b07ccfeba7e2289"
+    },
+    ".go.buildinfo": {
+      "bytes": 5424,
+      "sha256": "462e4067d9c54762cb7070a221af7aeba9b71ca417376a70c8d602c11f02fc40"
+    }
+  },
+  "scope": "Point-in-time exact source/binary/SDK scope, not general security certification. SDK-vendor IDNA/DNS whole-source fixes and norm source/init/function-pointer/binary composite remain distinct from module-level scanner findings. No target execution is established."
+}

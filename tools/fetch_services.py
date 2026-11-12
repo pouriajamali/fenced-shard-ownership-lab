@@ -5,6 +5,7 @@ vendor-signature verification. Binaries/archives stay outside the source tree.
 """
 import argparse, hashlib, json, urllib.request
 from pathlib import Path
+from check_etcd_fixture import reference
 
 def get(url):
     request = urllib.request.Request(url, headers={'User-Agent':'ownership-lab-fixtures/1'})
@@ -16,6 +17,7 @@ def get(url):
 def sha(data):return hashlib.sha256(data).hexdigest()
 
 def fetch(out):
+    reference()  # Missing/new fixture admission never falls back to affected prebuilt etcd.
     out.mkdir(parents=True,exist_ok=False)
     receipt=json.loads(Path(__file__).with_name('upstream.lock.json').read_text(encoding='utf-8'))
     for record in receipt['files']:
