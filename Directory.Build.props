@@ -8,8 +8,9 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <AnalysisLevel>latest</AnalysisLevel>
     <Deterministic>true</Deterministic>
+    <UseSharedCompilation>false</UseSharedCompilation>
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
-    <Version>0.1.0-preview.5</Version>
+    <Version>0.1.0-preview.6</Version>
     <Authors>Pouria Jamali</Authors>
     <RepositoryType>git</RepositoryType>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

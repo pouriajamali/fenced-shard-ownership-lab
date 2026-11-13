@@ -134,3 +134,24 @@ SDK archive open or public event was performed to prepare this draft.
 The accepted Linux source catalog retains its exact CRLF byte identity.
 A narrow .gitattributes -text -eol rule for that catalog prevents Git LF
 normalization from silently changing the helper's accepted source-lock pin.
+
+## Proposed preview.6 bounded compiler policy
+
+The candidate declares project-scoped UseSharedCompilation=false once in
+Directory.Build.props for all three actual SDK projects. Existing unit-run and
+publish callers keep their exact arguments and working directory; the aggregate
+caller alone changes its proposed tag argument to v0.1.0-preview.6. Runtime and
+SDK versions remain404/15; no environment allowlist or machine setting changes.
+
+Preview.5 Windows restore01 succeeded (exit0/5.062s/terminal0); its worker later
+reported OWNED_DESCENDANTS_REAP. Command02 has no retained process.json; exit,
+unit outcome and remaining process identity are UNKNOWN. The existing guard
+waits10s for its own Job descendants and fails rather than accepting residuals.
+A shared compiler daemon is a hypothesis, not established identity or root cause.
+The proposed property is unexecuted. No global kill/build-server shutdown, SDK
+health command, bootstrap, new fixture, cap/teardown change or closed proof replay.
+
+Static XML/inheritance/caller/version/unchanged-byte regression is proposed for
+a later exact gate. Actual compiler/process/unit/terminal behavior requires the
+normal exact new-source validation path, with first SDK target still locked
+restore. Missing command02 process evidence is UNKNOWN/HOLD. See preview.6 notes.

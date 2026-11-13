@@ -1,4 +1,20 @@
-# v0.1.0-preview.5 - proposed corrective draft, unpublished
+# v0.1.0-preview.5 - retained failed public tag, no application release
+
+Signed tag object `9740f94d5ce966483336f4178b0cca18a94cb0d7` points to source
+`8c4494ad945c52a1b389348e2030b9aea1f8368b`, tree
+`06cc02aef341db2ecaf2491de39d43905a16ce11`.
+[Attempt 1](https://github.com/pouriajamali/fenced-shard-ownership-lab/actions/runs/43358736179)
+passed policy and Linux verify/prepare/native runtime; Windows verification failed
+and aggregation skipped. Retained Windows command01 locked restore exited0 in
+5.062s with timedOut=false and typed terminal0. The worker failed with CapError
+OWNED_DESCENDANTS_REAP. Command02 process.json is absent; its exit/unit result and
+the descendant identity remain UNKNOWN. This does not establish a compiler daemon.
+The tag/run stays immutable. No application release or main promotion followed.
+The next proposal is the separately gated [preview.6 candidate](RELEASE-v0.1.0-preview.6.md).
+
+## Historical preview.5 proposal (retained verbatim)
+The following reflects its draft stage, not current delivery status.
+
 
 This draft is based on clean signed commit `ada3a259f1d92606c954476a2da295d4731a6b91`
 and tree `5a902f650e78f609bd026628e0a074b91797fb5a`. No source application,
