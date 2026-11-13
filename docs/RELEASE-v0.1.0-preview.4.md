@@ -1,4 +1,21 @@
-# v0.1.0-preview.4 - corrective source candidate, unpublished
+# v0.1.0-preview.4 - retained failed public tag, no application release
+
+Signed tag `v0.1.0-preview.4` remains at `ada3a259f1d92606c954476a2da295d4731a6b91`
+(tree `5a902f650e78f609bd026628e0a074b91797fb5a`, sole parent preview.3).
+[Attempt 1](https://github.com/pouriajamali/fenced-shard-ownership-lab/actions/runs/43325824877)
+verified the official Windows SDK404 raw bytes, all5578 files and ten full notices
+under the existing4GiB/twoCPU/64-process Job. Staging took15.953s; first locked
+restore exited1 after0.735s. The raw nested error was not retained by that run.
+Linux image20261101.360.1 passed fixed environment/source/own InvocationID and
+generic64 guards, then held on its preinstalled404 file guard before an SDK
+target. Earlier image inventory20261111.370.1 was metadata, not that actual VM.
+Aggregation/release did not complete; no application release or promotion followed.
+This failed tag is immutable; no retry, replacement or deletion is authorized.
+The next candidate is the separately gated [preview.5 draft](RELEASE-v0.1.0-preview.5.md).
+
+## Historical preview.4 proposal (retained verbatim)
+The following describes its proposal at authoring time, not current delivery status.
+
 
 This is the next immutable version proposed after failed preview.3. No corrected
 commit, signed tag, native CI, package, release or download has been created by

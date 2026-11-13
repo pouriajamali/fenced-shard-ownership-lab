@@ -1,3 +1,5 @@
 * text=auto eol=lf
 *.zip binary
 *.tar.gz binary
+# Preserve the exact accepted byte-pinned Linux SDK catalog (CRLF).
+tools/ci-sdk404-linux.lock.json -text -eol

@@ -19,9 +19,29 @@ def need(v,why):
 def write(path,value):
  with path.open('x',encoding='utf-8',newline='\n') as f:json.dump(value,f,indent=2);f.write('\n');f.flush();os.fsync(f.fileno())
 
+
+# Windows-only fixed nonsecret machine-path allowlist. Linux service keys stay unchanged.
+WINDOWS_MACHINE_PATH_KEYS=('PROGRAMFILES(X86)','PROGRAMFILES')
+
+def validated_windows_machine_paths():
+ if os.name!='nt':return {}
+ values={}
+ for key in WINDOWS_MACHINE_PATH_KEYS:
+  value=os.environ.get(key)
+  need(type(value) is str and 0<len(value)<=4096 and value==value.strip() and not any(c in value for c in ('\0','\r','\n')),'WINDOWS_MACHINE_PATH_VALUE')
+  need(re.fullmatch(r'[A-Za-z]:[\\/].+',value) and not value.startswith('\\\\'),'WINDOWS_MACHINE_PATH_LOCAL_ABSOLUTE')
+  path=Path(value);need(path.is_absolute() and str(path)!=path.anchor and '..' not in path.parts,'WINDOWS_MACHINE_PATH_NAMESPACE')
+  try:
+   for ancestor in (path,*path.parents):
+    info=ancestor.lstat();need(stat.S_ISDIR(info.st_mode) and not stat.S_ISLNK(info.st_mode) and not getattr(info,'st_file_attributes',0)&0x400,'WINDOWS_MACHINE_PATH_ORDINARY_DIRECTORY')
+  except OSError:raise RuntimeError('HOLD_WINDOWS_MACHINE_PATH_DIRECTORY_READ') from None
+  values[key]=value
+ return values
+
 def env_for_child():
  names=['PATH','SystemRoot','WINDIR','COMSPEC','PATHEXT','HOME','USERPROFILE','APPDATA','LOCALAPPDATA','LANG','GITHUB_ACTIONS','GITHUB_EVENT_NAME','GITHUB_REF','GITHUB_SHA','GITHUB_EVENT_PATH','GITHUB_OUTPUT','GITHUB_STEP_SUMMARY','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_JOB','GITHUB_WORKSPACE','RUNNER_TEMP','RUNNER_OS']
  env={k:os.environ[k] for k in names if k in os.environ}
+ if os.name=='nt':env.update(validated_windows_machine_paths())
  cache=ART/'ci-cache'
  for name in ['home','packages','http','plugins','tmp']:(cache/name).mkdir(parents=True,exist_ok=True)
  for k,name in [('DOTNET_CLI_HOME','home'),('NUGET_PACKAGES','packages'),('NUGET_HTTP_CACHE_PATH','http'),('NUGET_PLUGINS_CACHE_PATH','plugins'),('TEMP','tmp'),('TMP','tmp')]:env[k]=str(cache/name)
@@ -50,10 +70,8 @@ def sdk(env):
  if os.name=='nt':
   from ci_windows_sdk import stage_sdk
   return stage_sdk(env)
- exe=shutil.which('dotnet',path=env['PATH']);need(exe,'PREINSTALLED_SDK_REQUIRED_NO_SETUP_FALLBACK')
- exe=Path(exe).resolve();need((exe.parent/'sdk/10.0.404/dotnet.dll').is_file(),'PREINSTALLED_404_REQUIRED_NO_INSTALL')
- # First project SDK invocation is the bounded locked restore, never a health probe.
- return str(exe)
+ from ci_linux_sdk import stage_sdk
+ return stage_sdk(env)
 
 def current_caps(stage):
  if stage=='runtime':return native_runtime('native-linux-16')
@@ -166,7 +184,14 @@ def worker(stage,rid,commit,phase,token,unit):
  if stage=='policy':
   run([python,'-m','unittest','discover','-s','.github/ci','-p','test_policy.py','-v'],60);run(py('.github/ci/policy.py','gate'),30);run(py('tools/build_actionlint.py','prepare-ci-sealed','--target','windows-amd64'),180);run(py('.github/ci/policy.py','lint'),90)
  elif stage=='verify':
-  dotnet=sdk(env);run([dotnet,'restore','tests/Ownership.Tests/Ownership.Tests.csproj','--locked-mode'],300)
+  dotnet=sdk(env)
+  try:run([dotnet,'restore','tests/Ownership.Tests/Ownership.Tests.csproj','--locked-mode'],300)
+  except Exception:
+   try:
+    from ci_restore_failure_facts import write_facts
+    write_facts(phase/'command-01',phase/'restore-failure-facts.json')
+   except Exception:pass  # Keep the original SDK/guard error; never echo raw logs.
+   raise
   run([dotnet,'run','--project','tests/Ownership.Tests/Ownership.Tests.csproj','-c','Release','--no-restore','--','-noLogo','-xml','artifacts/unit.xml'],300)
   run(py('tools/test_receipt_oracle.py','--out','artifacts/receipt-oracle-normal'),60,{'PYTHONOPTIMIZE':'0'});run(py('tools/test_receipt_oracle.py','--out','artifacts/receipt-oracle-optimized'),60,{'PYTHONOPTIMIZE':'1'})
   run(py('tools/package.py','--rid',rid,'--commit',commit,'--work','artifacts/build','--out','artifacts/delivery','--dotnet',dotnet),600)  # No --local-candidate.
@@ -182,10 +207,10 @@ def worker(stage,rid,commit,phase,token,unit):
  elif stage=='runtime':
   need(sys.platform=='linux','LINUX_RUNTIME_ONLY');package=package_root()
   run([python,'-B',str(package/'tools/integration.py'),'--runtime-profile','native-linux-16','--fixtures',str(ART/'services'),'--cli',str(package/'ownership'),'--out',str(ART/'integration')],1020)
- elif stage=='aggregate':run(py('tools/check_release.py','--directory','artifacts/release','--commit',commit,'--tag','v0.1.0-preview.4'),480)
+ elif stage=='aggregate':run(py('tools/check_release.py','--directory','artifacts/release','--commit',commit,'--tag','v0.1.0-preview.5'),480)
  if os.name!='nt':
   summary=stageWatch.finish();write(phase/'resource-summary.json',summary);validate_resource_counters(summary)
- write(phase/'worker.json',dict(status='PASS',stage=stage,commands=count,sourceCommit=commit,python=sys.version,sdkPolicy='Windows exact official404 private ephemeral Job staging; Linux existing404 only; global.json404/disable; first SDK target locked restore; no SDK health/global install'))
+ write(phase/'worker.json',dict(status='PASS',stage=stage,commands=count,sourceCommit=commit,python=sys.version,sdkPolicy='Windows/Linux exact official404 private ephemeral staging inside existing Job/generic64 worker; global.json404/disable; first SDK target locked restore; no SDK health/global install'))
 
 def bus_environment():
  uid=os.getuid();need(uid!=0,'NONROOT_EXISTING_USER_REQUIRED');base=Path('/run/user')/str(uid);bus=base/'bus'

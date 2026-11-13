@@ -10,7 +10,7 @@ No app release, main promotion or About update followed. The failed tag and
 its evidence are retained; it must never be retagged, deleted or retried as
 corrected source. Historical preview.1/2 releases and the separately accepted
 support tag/payload are unchanged. The following local evidence retains its
-original source boundary. The next correction is preview.4, with separate gates.
+original source boundary. Preview.4 also failed its native attempt and is retained unchanged; the next proposed correction is the separately gated preview.5 draft.
 
 The source adds an independent complete four-field receipt oracle and one
 composed lost-ACK/cutover case, preserving the previous15 cases, five effects

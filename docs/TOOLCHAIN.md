@@ -64,7 +64,7 @@ The same-commit etcd rebuild with Go1.26.11 and a separately pinned advisory too
 The E DrvFS mode mismatch is recorded as a preserved failed attempt. A narrowly approved private native workspace in the existing E-backed WSL VHD preserves source modes; no mount/configuration/security setting changed. SDK admission does not admit the separate analyzer, module graphs, source-built fixture or public workflow. Initial Windows synthetic archive/admission controls passed11 tests and95 rejected vectors per normal/-O/PYTHONOPTIMIZE=1 mode. Linux held-image checks, complete source-build negatives and real admitted positive controls remain pending.
 
 
-## Corrective preview.4 policy and evidence boundary
+## Historical preview.4 policy and evidence boundary
 
 The preview.3 tag at91469504bbdfd116da9af49058559072fbfc5461 is now a retained
 failed native-CI attempt, not an application release. Earlier sections are
@@ -91,3 +91,46 @@ checked through final writes and before the first SDK target. Socket I/O has
 a20s timeout; these checks are not fully preemptive I/O deadlines. The enclosing
 verify Job retains its existing900s hard process wall. Workspace acceptance
 remains4GiB and is not a filesystem quota.
+
+## Proposed preview.5 policy and current boundary
+
+Preview.4 is now a retained failed tag at `ada3a259f1d92606c954476a2da295d4731a6b91`.
+Windows private SDK staging passed, then first restore failed; Linux reached its
+existing404 file guard and held. No new application release resulted. A controlled
+local Windows pair supports adding validated PROGRAMFILES(X86) and PROGRAMFILES
+only on Windows. Hosted Windows repair remains unproven. The accepted safe facts
+collector retains bounded structural facts and UNKNOWN root cause, never raw logs.
+
+The preview.5 Linux helper is a draft for the existing nonroot generic64 verify
+worker, not an alternate runner or global install. Before network it binds actual
+source, lease, PID/start, unit, InvocationID and kernel4GiB/twoCPU/64/swap0.
+The fixed builds.dotnet.microsoft.com HTTPS URL, raw243138887 bytes and both pinned
+SHA512/SHA256 precede gzip parsing. Per-hop host checks, no proxy, socket20s,
+input512MiB, unpacked2GiB and total ART4GiB acceptance apply. Download180s and
+entire stage300s are elapsed acceptance guards including final flush/fsync,
+notices, workspace and receipts, not preemptive I/O or filesystem quotas.
+The existing verify900s hard wall and workflow20m remain.
+
+Before creating the SDK target, strict framing/checksum/type/size/order/padding/
+end checks validate all5631 typed members (4907 files,724 directories), exact
+expanded644980579 bytes,1913 separate GNU-L payload identities, final resolved
+names, every file hash and ten original notices. PAX is empty. UID/GID2001/2001
+and approved644/744/755 modes are data-only E0; output is owned by the nonroot
+worker with explicit approved chmod only. There is no extraction API, archived
+ownership/timestamp restoration, link/special/sparse/ACL/xattr application.
+Streamed copy and a complete final byte-map check precede the existing locked
+restore, which remains the first SDK command. Full notices stay private.
+
+Windows route/map, shared fixture support, runtime15 notices, managed/Go locks,
+generic64 and explicit native-linux-16 runtime128 selector remain unchanged.
+Only two safe Linux JSON receipt paths are added to accepted artifact globs;
+SDK/cache/archive directories stay private. package.py reads the version from
+Directory.Build.props; check_release.py already binds exact tag/version, source
+commit/tree/bytes, native host/RID and localCandidate=false. These predicates
+remain unchanged; only the aggregate caller's proposed tag changes to preview.5.
+Linux stage/restore/runtime and hosted repair remain UNKNOWN. No candidate test,
+SDK archive open or public event was performed to prepare this draft.
+
+The accepted Linux source catalog retains its exact CRLF byte identity.
+A narrow .gitattributes -text -eol rule for that catalog prevents Git LF
+normalization from silently changing the helper's accepted source-lock pin.

@@ -23,3 +23,12 @@ The copied etcd audit records in vendor/etcd-admission also retain Go Vulnerabil
 
 
 CI build-tool boundary: corrective Windows verification may privately stage the exact official .NET SDK 10.0.404 ZIP. Its full original SDK license and third-party notice files are retained and byte-checked in that private SDK tree before the first SDK target. The SDK is not installed globally, bundled with this application, cached, uploaded or publicly redistributed. Application Core runtime notices remain separately included under vendor/notices. Archive SHA identity is not a code-signature or general security certification.
+
+Proposed Linux CI build-tool boundary: the preview.5 draft may privately stage
+the exact official .NET SDK10.0.404 Linux tar.gz only after a separate execution
+gate. All ten full original SDK license/third-party notice files must be
+byte-verified before SDK target creation and retained in the private SDK tree.
+The source lock catalogs identities, not redistributed SDK notice substitutes.
+The SDK is not installed globally, bundled with the application, cached, uploaded
+or publicly redistributed. Application runtime15 notices and their byte maps
+remain unchanged. Raw digest identity is not a vendor signature or security claim.

@@ -140,6 +140,9 @@ jobs:
             artifacts/integration/host/stopped.json
             artifacts/ci-fixture/transport-receipt.json
             artifacts/ci-caps/*/sdk404.json
+            artifacts/ci-caps/*/sdk404-linux.json
+            artifacts/ci-caps/*/sdk404-linux-resources.json
+            artifacts/ci-caps/*/restore-failure-facts.json
             artifacts/ci-caps/*/phase.json
             artifacts/ci-caps/*/unit-owner.json
             artifacts/ci-caps/*/worker-failure.json
@@ -157,6 +160,9 @@ jobs:
           retention-days: 3
           path: |
             artifacts/ci-caps/*/sdk404.json
+            artifacts/ci-caps/*/sdk404-linux.json
+            artifacts/ci-caps/*/sdk404-linux-resources.json
+            artifacts/ci-caps/*/restore-failure-facts.json
             artifacts/ci-caps/*/phase.json
             artifacts/ci-caps/*/unit-owner.json
             artifacts/ci-caps/*/worker-failure.json
