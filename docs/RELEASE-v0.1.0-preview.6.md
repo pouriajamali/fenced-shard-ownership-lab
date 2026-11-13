@@ -1,44 +1,9 @@
-# v0.1.0-preview.6 - proposed corrective source candidate, unpublished
+# v0.1.0-preview.6 - retained failed public tag, unpublished application
 
-This proposal is based on clean signed source8c4494ad945c52a1b389348e2030b9aea1f8368b,
-tree06cc02aef341db2ecaf2491de39d43905a16ce11. Candidate commit/tag/native CI,
-packages and public downloads are not created by draft preparation. A future
-gate must bind the exact reviewed tree and new known-key signed sole-parent8c4494
-commit before any source application or public event. Tag/version6 is proposed
-only; collision is HOLD, never replacement, deletion or an alternate tag.
+Immutable source: `aa6c468613268bf3cf88125b27e160c6cfde6d7e`.
+Signed tag object: `8be758ca88044530b20a04822e6fb82d387b430d`.
+[Native attempt1](https://github.com/pouriajamali/fenced-shard-ownership-lab/actions/runs/43365910180) concluded failure. Policy and Linux succeeded; Windows command07, `test_verifier.py`, exited1 without timeout and with typed terminal0. Windows restore01 and unit command02 exited0 without timeout and with typed terminal0. The Windows phase released its Job and verified owned terminal0, but had HOLD/exit1. No Windows XML or nested verifier exception/receipt was retained; those facts remain UNKNOWN. Linux XML has41 passes, its verifier has8 tests/27 scenarios PASS and its native integration has16 cases PASS. Aggregate was skipped. No application release or main promotion resulted.
 
-One build policy changes: Directory.Build.props declares the unconditional
-project-scoped UseSharedCompilation=false for core, CLI and test projects.
-This overrides the shared-compilation default as a proposed mitigation for owned
-compiler descendants. It adds no global machine/SDK setting or environment key.
-The diagnosis remains bounded: preview.5 restore01 succeeded, but the actual
-command02 completion/unit result and descendant identity are UNKNOWN. A shared
-compiler daemon is a hypothesis. No root-cause or successful-fix claim is made.
+This candidate retained SDK404/runtime15 and introduced project-scoped UseSharedCompilation=false. The new Windows command02 completion is observed; shared compiler identity or causation is not proven. A later controlled local same-source/same-SSH pair supports adding validated PROGRAMDATA: baseline SSH exit255, adding only the key gives8 tests/27 scenarios PASS. Hosted inner failure and SSH identity remain UNKNOWN. Neither controlled result is a preview.7 test or hosted repair proof.
 
-The existing commands and process/resource/teardown guards stay intact. In
-particular the ten-second own Job descendant reap guard is neither disabled nor
-relaxed. No global kill, process-name cleanup, build-server shutdown, new SDK
-probe/health command or bootstrap/fixture is introduced. Only the proposed app
-version and aggregate tag argument move to preview.6; generic package/release
-version/source/native-host/localCandidate=false predicates stay unchanged.
-
-SDK404/runtime15, both SDK byte maps/full notices, Windows machine paths, Linux
-staging, managed/Go/fixture locks, C#/SQL/M1 algorithms and receipt semantics,
-four clients/16 cases/five effects/total165, source signing identity, generic64
-and explicit runtime128, deadlines and artifact globs remain unchanged.
-Accepted93 finite, one actual sealed lint and healthy SDK-stage evidence is
-closed and reused, not replayed or relabeled as new-source validation.
-
-The proposed static regression reads actual Git/pre/post XML and callers only;
-it creates no fixtures and invokes no SDK. Future new-source acceptance must
-observe command02 process.json with integer exit0, timedOut=false, unit XML and
-typed activeProcessesAtTeardown0, plus normal phase ownership/release/counter
-evidence. Missing process.json remains UNKNOWN/HOLD. If descendant identity or
-effective Csc parameter tracing is required, it needs a separate bounded gate;
-no extra diagnostic SDK command is silently added to this proposal.
-
-Failed preview.3/4/5 tags and preview.2 published downloads remain immutable.
-Future release needs separate actual native/package/source/notice/SQL/attestation/
-known-key six-file download verification and exact final authorization. Main/
-About/release changes are not granted. Public raw budget287/6300s spent,6013s
-remaining; this draft grants0. Existing Wave2 only, then STOP; no Wave3.
+The next proposal is [preview.7](RELEASE-v0.1.0-preview.7.md). Failed tags3/4/5/6 and their evidence are immutable. Existing public application downloads remain preview.2. No replay, retag or retry is implied.

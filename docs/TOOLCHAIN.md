@@ -109,7 +109,7 @@ SHA512/SHA256 precede gzip parsing. Per-hop host checks, no proxy, socket20s,
 input512MiB, unpacked2GiB and total ART4GiB acceptance apply. Download180s and
 entire stage300s are elapsed acceptance guards including final flush/fsync,
 notices, workspace and receipts, not preemptive I/O or filesystem quotas.
-The existing verify900s hard wall and workflow20m remain.
+The existing verify900s hard wall remains; preview.7 separately proposes workflow15m.
 
 Before creating the SDK target, strict framing/checksum/type/size/order/padding/
 end checks validate all5631 typed members (4907 files,724 directories), exact
@@ -155,3 +155,34 @@ Static XML/inheritance/caller/version/unchanged-byte regression is proposed for
 a later exact gate. Actual compiler/process/unit/terminal behavior requires the
 normal exact new-source validation path, with first SDK target still locked
 restore. Missing command02 process evidence is UNKNOWN/HOLD. See preview.6 notes.
+
+
+## Proposed preview.7 Windows PROGRAMDATA and workflow budget
+
+Append validated PROGRAMDATA as the third Windows machine-path key; the two
+existing keys and validator body are unchanged. No Linux allowlist change or
+global environment import is proposed. SDK404/runtime15/maps, UseSharedCompilation
+false, locked restore, C#/SQL, fixtures, ten-second descendant guard and caps stay
+fixed. Version and aggregate tag argument alone become preview.7.
+
+Preview.6 actual command01/02 completed exit0/timedOut=false/terminal0; Windows
+command07 failed exit1 and Windows XML/hosted inner SSH cause remain UNKNOWN.
+Linux41 XML units and16 runtime cases passed. The closed controlled local pair
+on AA6 and identical SSH supports PROGRAMDATA (baseline SSH255; only validated
+parent PROGRAMDATA added gives8 tests/27 scenarios PASS). This is local behavior,
+not hosted repair or compiler identity proof; no replay is included.
+
+The sole proposed workflow delta reduces native job timeout20 to15 minutes,
+including setup/post-actions/uploads. Policy5m, probe5m and aggregate10m are
+unchanged; trigger/permissions/actions/matrix order remain fixed. Tag maximum2700
+and possible main maximum2100 sum4800 raw job seconds, leaving1011 of5811.
+This is a reservation calculation only; neither event is authorized here.
+
+Inner walls verify900/prepare240/runtime1080/aggregate480 remain unchanged.
+The15m host deadline can preempt inner walls and finally/cleanup; the Linux
+sequential inner maxima2220 exceed900. No teardown or artifact reserve is
+guaranteed. Timeout, missing typed terminal/released/counter evidence or partial
+proof is HOLD, never implicit cleanup success. No guard/cap relaxation or retry.
+Fresh exact-workflow sealed YAML lint and the separate narrow PROGRAMDATA finite
+gate are required before source/native execution; old lint and closed successful
+proofs are not reused as new-source results. See preview.7 candidate notes.

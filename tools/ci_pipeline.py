@@ -21,7 +21,7 @@ def write(path,value):
 
 
 # Windows-only fixed nonsecret machine-path allowlist. Linux service keys stay unchanged.
-WINDOWS_MACHINE_PATH_KEYS=('PROGRAMFILES(X86)','PROGRAMFILES')
+WINDOWS_MACHINE_PATH_KEYS=('PROGRAMFILES(X86)','PROGRAMFILES','PROGRAMDATA')
 
 def validated_windows_machine_paths():
  if os.name!='nt':return {}
@@ -207,7 +207,7 @@ def worker(stage,rid,commit,phase,token,unit):
  elif stage=='runtime':
   need(sys.platform=='linux','LINUX_RUNTIME_ONLY');package=package_root()
   run([python,'-B',str(package/'tools/integration.py'),'--runtime-profile','native-linux-16','--fixtures',str(ART/'services'),'--cli',str(package/'ownership'),'--out',str(ART/'integration')],1020)
- elif stage=='aggregate':run(py('tools/check_release.py','--directory','artifacts/release','--commit',commit,'--tag','v0.1.0-preview.6'),480)
+ elif stage=='aggregate':run(py('tools/check_release.py','--directory','artifacts/release','--commit',commit,'--tag','v0.1.0-preview.7'),480)
  if os.name!='nt':
   summary=stageWatch.finish();write(phase/'resource-summary.json',summary);validate_resource_counters(summary)
  write(phase/'worker.json',dict(status='PASS',stage=stage,commands=count,sourceCommit=commit,python=sys.version,sdkPolicy='Windows/Linux exact official404 private ephemeral staging inside existing Job/generic64 worker; global.json404/disable; first SDK target locked restore; no SDK health/global install'))
