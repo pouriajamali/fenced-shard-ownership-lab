@@ -1,5 +1,14 @@
 # Reviewed toolchain and evidence boundary
 
+## Current verified runtime and publication boundary
+
+Runtime `v0.1.0-preview.7` is source `bff39cd89822ceba07fce68c4dcdbf5819f09254`, tree `86b1d92d1d4f90a3842b436f6bd4b099c7da3d2d`. [Exact native CI attempt1](https://github.com/pouriajamali/fenced-shard-ownership-lab/actions/runs/43372419271) passed with SDK10.0.404 and self-contained Core10.0.15. Both native packages have localCandidate=false; exact source bytes,347 payload files per OS, full18-component licenses/copyright and SBOM/runtime identity were independently inspected. The source ZIP matches104 Git blobs. The published [release and all six assets](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.7) were checked by actual download, digest and known-key SSH signature.
+
+Each OS supplied41 C# units and verifier8 tests/27 scenarios, plus native CLI help/version/endpoint checks. Fresh16 integration cases and21 SQL snapshots are nativeLinux only. Historical Windows integration and earlier local SDK/proposal checkpoints below remain separate. The historical pending/blocked wording below records those dates and is superseded only within this exact new-source scope.
+
+The immutable runtime tag/archive README is a tested build-time snapshot. Documentation-only main revisions have a separate SHA from runtimeTagSource `bff39cd89822ceba07fce68c4dcdbf5819f09254`; no docs-only repack/rebuild is intended. Original MIT and upstream notices are unchanged. Included-leaf DSSE math/SAN/subjects/source/run were checked; independent Fulcio-root/Rekor trust was not verified. No general security/SLSA/HA/latency/production claim follows.
+
+
 - Original five-project technology review: 2026-11-09, proposal SHA256 686c06536e2b2fc49f95948fe192986cd714452800ee091fc29d5ca484dcf1b9. Direct owner implementation and original MIT/publication approval were separately verified in the coordinating chat; only this first independent project is implemented here.
 - Frozen preview.2 used SDK 10.0.403 / runtime 10.0.14 / C# 14. global.json and explicit stable dependencies plus packages.lock.json freeze compiler/runtime/package choices. All Windows/Linux runtime identifiers are represented consistently in restore.
 - Npgsql 10.0.3, OpenTelemetry 1.20.1, xUnit.net v3 package 4.0.3. The last is a stable patch newer than the proposal's 4.0.2 snapshot. Official NuGet version metadata was rechecked at the authorized freeze; no preview was selected.
@@ -10,7 +19,7 @@
 This document records source/tool choices, not executable compatibility proof. Exact commit/tree, actual test/XML/package/fault receipts, CI jobs and downloaded asset verification establish the later delivery boundary. Local Linux cross-publishing is labelled as such; public Linux binaries require a native Linux CI build. No performance result, physical fault-domain redundancy, SLSA-level certification or independent people-leadership history is inferred.
 
 
-## Current-source servicing checkpoint — 2026-11-11
+## Historical servicing checkpoint — 2026-11-11
 
 The selected preview.3 source uses observed SDK10.0.404/Core and ASP.NET10.0.15
 on native Windows x64 and existing non-root Ubuntu24.04/WSL Linux x64. This does
@@ -57,11 +66,13 @@ assets stay unchanged. The affected prebuilt etcd pin is retained as a historica
 reference and removed from the default download list; the same-commit source-build
 lock is still unadmitted. No public preview.3 exists from this checkpoint.
 
-## Resumed local work boundary
+## Historical resumed local work boundary
 
-The same-commit etcd rebuild with Go1.26.11 and a separately pinned advisory tool now has a complete local scope approval, including direct-entry admission and optimized-mode guards. Approval is not security acceptance. Exact Go/source archives and the pinned auditor source have now been acquired and fully inventoried. The actual Go1.26.11 SDK completed current source/backport/target/init advisory review and one native identity command after all 15,048 regular file hashes/modes were checked. Auditor/fixture source and binary admission is still pending. The prior Linux instance was removed during owner-directed storage work; its successful .NET/Linux SDK/unit observations remain historical. The replacement now has fresh actual aggregate cgroup and scoped Go SDK qualification. The Windows SDK starts from the migrated task root, and a separate owned Windows Job Object confirmed a 4GiB aggregate committed-memory limit, CPU limit and process limit. This is a resource-control observation, not a fixture or release result.
+The following preserves the status of that earlier checkpoint. Its pending admissions and positive controls are historical; current preview.7 results are recorded above.
 
-The E DrvFS mode mismatch is recorded as a preserved failed attempt. A narrowly approved private native workspace in the existing E-backed WSL VHD preserves source modes; no mount/configuration/security setting changed. SDK admission does not admit the separate analyzer, module graphs, source-built fixture or public workflow. Initial Windows synthetic archive/admission controls passed11 tests and95 rejected vectors per normal/-O/PYTHONOPTIMIZE=1 mode. Linux held-image checks, complete source-build negatives and real admitted positive controls remain pending.
+The same-commit etcd rebuild with Go1.26.11 and a separately pinned advisory tool now has a complete local scope approval, including direct-entry admission and optimized-mode guards. Approval is not security acceptance. Exact Go/source archives and the pinned auditor source have now been acquired and fully inventoried. The actual Go1.26.11 SDK completed current source/backport/target/init advisory review and one native identity command after all 15,048 regular file hashes/modes were checked. At that earlier checkpoint, auditor/fixture source and binary admission were still pending. The prior Linux instance was removed during owner-directed storage work; its successful .NET/Linux SDK/unit observations remain historical. The replacement now has fresh actual aggregate cgroup and scoped Go SDK qualification. The Windows SDK starts from the migrated task root, and a separate owned Windows Job Object confirmed a 4GiB aggregate committed-memory limit, CPU limit and process limit. This is a resource-control observation, not a fixture or release result.
+
+The E DrvFS mode mismatch is recorded as a preserved failed attempt. A narrowly approved private native workspace in the existing E-backed WSL VHD preserves source modes; no mount/configuration/security setting changed. SDK admission does not admit the separate analyzer, module graphs, source-built fixture or public workflow. Initial Windows synthetic archive/admission controls passed11 tests and95 rejected vectors per normal/-O/PYTHONOPTIMIZE=1 mode. At that earlier checkpoint, Linux held-image checks, complete source-build negatives and real admitted positive controls were pending; these are not current preview.7 pending items.
 
 
 ## Historical preview.4 policy and evidence boundary
@@ -92,7 +103,7 @@ a20s timeout; these checks are not fully preemptive I/O deadlines. The enclosing
 verify Job retains its existing900s hard process wall. Workspace acceptance
 remains4GiB and is not a filesystem quota.
 
-## Proposed preview.5 policy and current boundary
+## Historical preview.5 proposal and failure boundary
 
 Preview.4 is now a retained failed tag at `ada3a259f1d92606c954476a2da295d4731a6b91`.
 Windows private SDK staging passed, then first restore failed; Linux reached its
@@ -135,7 +146,7 @@ The accepted Linux source catalog retains its exact CRLF byte identity.
 A narrow .gitattributes -text -eol rule for that catalog prevents Git LF
 normalization from silently changing the helper's accepted source-lock pin.
 
-## Proposed preview.6 bounded compiler policy
+## Historical preview.6 bounded compiler proposal
 
 The candidate declares project-scoped UseSharedCompilation=false once in
 Directory.Build.props for all three actual SDK projects. Existing unit-run and
@@ -157,32 +168,10 @@ normal exact new-source validation path, with first SDK target still locked
 restore. Missing command02 process evidence is UNKNOWN/HOLD. See preview.6 notes.
 
 
-## Proposed preview.7 Windows PROGRAMDATA and workflow budget
+## Preview.7 actual Windows paths and workflow ceiling
 
-Append validated PROGRAMDATA as the third Windows machine-path key; the two
-existing keys and validator body are unchanged. No Linux allowlist change or
-global environment import is proposed. SDK404/runtime15/maps, UseSharedCompilation
-false, locked restore, C#/SQL, fixtures, ten-second descendant guard and caps stay
-fixed. Version and aggregate tag argument alone become preview.7.
+PROGRAMDATA is the third validated Windows machine-path key; the two prior keys and the validator body remain fixed. The Linux service allowlist/unset list and actual source/owner/PID/start/InvocationID/kernel binding are unchanged. SDK404 maps/full notices, runtime15, UseSharedCompilation=false, first locked restore, C#/SQL, fixture/bootstrap and10s own-descendant guard remain fixed.
 
-Preview.6 actual command01/02 completed exit0/timedOut=false/terminal0; Windows
-command07 failed exit1 and Windows XML/hosted inner SSH cause remain UNKNOWN.
-Linux41 XML units and16 runtime cases passed. The closed controlled local pair
-on AA6 and identical SSH supports PROGRAMDATA (baseline SSH255; only validated
-parent PROGRAMDATA added gives8 tests/27 scenarios PASS). This is local behavior,
-not hosted repair or compiler identity proof; no replay is included.
+Fresh Windows command01/02/07 process receipts are integer exit0, timedOut=false and typed terminal0. Its XML has41 passes, and original verifier receipt has8 tests/27 scenarios PASS. Linux XML has41 passes; prepare/native16/SQL and owned terminal/release/counters succeeded. All evidence is from [run43372419271 attempt1](https://github.com/pouriajamali/fenced-shard-ownership-lab/actions/runs/43372419271); successful closed local controls were not replayed for documentation/signature preparation. The old hosted inner SSH exception and compiler identity remain UNKNOWN.
 
-The sole proposed workflow delta reduces native job timeout20 to15 minutes,
-including setup/post-actions/uploads. Policy5m, probe5m and aggregate10m are
-unchanged; trigger/permissions/actions/matrix order remain fixed. Tag maximum2700
-and possible main maximum2100 sum4800 raw job seconds, leaving1011 of5811.
-This is a reservation calculation only; neither event is authorized here.
-
-Inner walls verify900/prepare240/runtime1080/aggregate480 remain unchanged.
-The15m host deadline can preempt inner walls and finally/cleanup; the Linux
-sequential inner maxima2220 exceed900. No teardown or artifact reserve is
-guaranteed. Timeout, missing typed terminal/released/counter evidence or partial
-proof is HOLD, never implicit cleanup success. No guard/cap relaxation or retry.
-Fresh exact-workflow sealed YAML lint and the separate narrow PROGRAMDATA finite
-gate are required before source/native execution; old lint and closed successful
-proofs are not reused as new-source results. See preview.7 candidate notes.
+The native matrix ceiling is15m per job, including setup/phases/post-actions/uploads. Policy/probe5m and aggregate10m remain distinct. Inner verify900/prepare240/runtime1080/aggregate480-second walls do not provide a teardown reserve or worst-case schedulability guarantee; incomplete actual proof means HOLD. Main validation is separate from runtime-tag CI; aggregation is selected only by version tags or the explicit verification input. The frozen runtime archives remain unchanged by documentation revisions.
