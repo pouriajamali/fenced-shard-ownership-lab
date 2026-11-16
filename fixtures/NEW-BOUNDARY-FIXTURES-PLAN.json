@@ -1,0 +1,201 @@
+{
+  "state": "INERT_VECTORS_NOT_EXECUTED",
+  "sdkTargets": 0,
+  "denialCount": 27,
+  "controlCount": 2,
+  "denials": [
+    {
+      "id": "D01",
+      "singleChangedBoundary": "producer state NOT_READY",
+      "expectedDenialPrefix": "CANONICAL_FACT_SCHEMA"
+    },
+    {
+      "id": "D02",
+      "singleChangedBoundary": "localR3 fact instead of LinuxCI",
+      "expectedDenialPrefix": "CANONICAL_FACT_SCHEMA"
+    },
+    {
+      "id": "D03",
+      "singleChangedBoundary": "Windows26H2 client fact",
+      "expectedDenialPrefix": "PRODUCER_HOST_RID_SCOPE"
+    },
+    {
+      "id": "D04",
+      "singleChangedBoundary": "producer repository05",
+      "expectedDenialPrefix": "CANONICAL_FACT_SCHEMA"
+    },
+    {
+      "id": "D05",
+      "singleChangedBoundary": "manager producer digest mismatch",
+      "expectedDenialPrefix": "INDEPENDENT_MANAGER_FACT_BINDING"
+    },
+    {
+      "id": "D06",
+      "singleChangedBoundary": "SDK10 or preview",
+      "expectedDenialPrefix": "CANONICAL_FACT_SCHEMA"
+    },
+    {
+      "id": "D07",
+      "singleChangedBoundary": "archive rawSHA512 wrong frame",
+      "expectedDenialPrefix": "CANONICAL_FACT_SCHEMA"
+    },
+    {
+      "id": "D08",
+      "singleChangedBoundary": "archive bytes512MiB+1",
+      "expectedDenialPrefix": "SDK_RAW_INPUT_BOUND"
+    },
+    {
+      "id": "D09",
+      "singleChangedBoundary": "catalog/tree/critical/notices wrong identity",
+      "expectedDenialPrefix": "MEMBER_MANIFEST_BINDING"
+    },
+    {
+      "id": "D10",
+      "singleChangedBoundary": "qualifiedOn source/controller malformed",
+      "expectedDenialPrefix": "CANONICAL_FACT_SCHEMA"
+    },
+    {
+      "id": "D11",
+      "singleChangedBoundary": "producer8-command receipt incomplete",
+      "expectedDenialPrefix": "CANONICAL_FACT_SCHEMA"
+    },
+    {
+      "id": "D12",
+      "singleChangedBoundary": "producer residual population nonzero/bool",
+      "expectedDenialPrefix": "CANONICAL_FACT_SCHEMA"
+    },
+    {
+      "id": "D13",
+      "singleChangedBoundary": "wrong own project/contract",
+      "expectedDenialPrefix": "OWN_CONTRACT"
+    },
+    {
+      "id": "D14",
+      "singleChangedBoundary": "self-hosted/container/localVM",
+      "expectedDenialPrefix": "OWN_OBSERVED_SUPPORTED_VM"
+    },
+    {
+      "id": "D15",
+      "singleChangedBoundary": "actual wrong OS/image or CPU-v2 unknown",
+      "expectedDenialPrefix": "OWN_OS_CPU_OBSERVATION"
+    },
+    {
+      "id": "D16",
+      "singleChangedBoundary": "own rerun attempt2",
+      "expectedDenialPrefix": "OWN_ATTEMPT"
+    },
+    {
+      "id": "D17",
+      "singleChangedBoundary": "own job/source/controller/checkout mismatch",
+      "expectedDenialPrefix": "OWN_SOURCE_PROFILE_BINDING"
+    },
+    {
+      "id": "D18",
+      "singleChangedBoundary": "dirty own source/tree mismatch",
+      "expectedDenialPrefix": "CLEAN_EXACT_SOURCE"
+    },
+    {
+      "id": "D19",
+      "singleChangedBoundary": "own RID/hostclass mismatch",
+      "expectedDenialPrefix": "OWN_HOST_RID"
+    },
+    {
+      "id": "D20",
+      "singleChangedBoundary": "borrow producer kernel instead of own observed kernel",
+      "expectedDenialPrefix": "OWN_ACTUAL_KERNEL_HELD_CHILD"
+    },
+    {
+      "id": "D21",
+      "singleChangedBoundary": "no held child membership before target",
+      "expectedDenialPrefix": "OWN_ACTUAL_KERNEL_HELD_CHILD"
+    },
+    {
+      "id": "D22",
+      "singleChangedBoundary": "missing owner/start/token/typed-terminal contract",
+      "expectedDenialPrefix": "OWN_OWNER_TERMINAL_CONTRACT"
+    },
+    {
+      "id": "D23",
+      "singleChangedBoundary": "remaining job budget<=0 or>900",
+      "expectedDenialPrefix": "ONE_REMAINING_900S_DEADLINE"
+    },
+    {
+      "id": "D24",
+      "singleChangedBoundary": "root worker/hardcoded1000 mismatch",
+      "expectedDenialPrefix": "ACTUAL_RUNNER_USER_GROUP"
+    },
+    {
+      "id": "D25",
+      "singleChangedBoundary": "128 on verify/compiler/audit/default",
+      "expectedDenialPrefix": "NO_128_COMPILER_AUDIT_OR_GENERIC"
+    },
+    {
+      "id": "D26",
+      "singleChangedBoundary": "arbitrary shell/root argv or wrong controller path",
+      "expectedDenialPrefix": "EXACT_SOURCE_BOUND06_WORKER_ARGV"
+    },
+    {
+      "id": "D27",
+      "singleChangedBoundary": "duplicate/nonfinite/oversized inputJSON",
+      "expectedDenialPrefix": "DUPLICATE_FIELD"
+    }
+  ],
+  "controls": [
+    {
+      "id": "C01",
+      "host": "GitHubHostedWindowsServer2025x64",
+      "producerJob": "producer-verify-win",
+      "consumerJob": "verify-win",
+      "sameJobRequired": false,
+      "expected": "ACCEPT_METADATA_ONLY_AFTER_ALL_REAL_OWN_PROOFS"
+    },
+    {
+      "id": "C02",
+      "host": "GitHubHostedUbuntu24.04x64",
+      "producerJob": "producer-verify-linux",
+      "consumerJob": "verify-linux",
+      "sameJobRequired": false,
+      "expected": "ACCEPT_METADATA_ONLY_AFTER_ALL_REAL_OWN_PROOFS"
+    }
+  ],
+  "inputBudget": {
+    "maxSingleFixtureBytes": 16384,
+    "maxTotalFixtureBytes": 524288,
+    "maxJsonBytes": 1048576,
+    "wallSecondsPerMode": 30,
+    "modes": [
+      "normal",
+      "-O",
+      "PYTHONOPTIMIZE=1"
+    ],
+    "attemptsPerCasePerMode": 1,
+    "maximumCaseEvaluations": 87,
+    "SDKCalls": 0,
+    "networkAcquisition": 0
+  },
+  "fixtureObjects": "Exact29 TEST_ONLY vectors and SDK0 harness supplied. No actual producer fact/admission fabricated; not executed.",
+  "healthyOldProofs": "144/96 and five06 controls retained at original scope; no replay/relabel.",
+  "exactCaseObjects": "SDK0-BOUNDARY-CASES.json",
+  "actualCaseCount": 29,
+  "actualInputBytes": 325709,
+  "canonicalSchemaSha256": "63e04fa5d270c87b93e6e1f4c38bfbcf336b950b39fe1854dc4e514f0661f14c",
+  "shared06ChangedWiringOnly": {
+    "newFixture": {
+      "path": "E:/Codex WorkSpace/Git Projects/fenced-shard-ownership-lab/outputs/ci-host-route-sourceprep-20261116/postimages/fixtures/SDK0-SHARED06-WIRING-CASES.json",
+      "sha256": "e1f3efa94e1a7acf836f186322734a15738bb69b6c1d3f7208a4fa9efc675216",
+      "bytes": 6358
+    },
+    "denials": 6,
+    "control": 1,
+    "maximumNewEvaluations": 21,
+    "modes": [
+      "normal",
+      "-O",
+      "unmaskedPYTHONOPTIMIZE=1"
+    ],
+    "perModeSecondsMax": 30,
+    "futureArgv": "{python} [-O] -B tools/test_technology_refresh.py --suite shared06 --mode {normal|O|env1} --out {freshOwnOutput}",
+    "old29OrProducerHealthyRerunRequired": false,
+    "executionNow": 0
+  }
+}

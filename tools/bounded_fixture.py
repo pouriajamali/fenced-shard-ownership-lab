@@ -82,6 +82,10 @@ def kernel_limits(pid="self", *, runtime_profile=None):
     names = [x[3:] for x in membership.splitlines() if x.startswith("0::")]
     require(len(names) == 1 and names[0] != "/", "DELEGATED_CGROUP_REQUIRED")
     group = Path("/sys/fs/cgroup") / names[0].lstrip("/")
+    if runtime_profile is not None and names[0].startswith('/system.slice/'):
+        from ci_supported_kernel06 import system_caps
+        unit = names[0].removeprefix('/system.slice/').removesuffix('.service')
+        return system_caps(unit, runtime_profile)
     if runtime_profile is not None:
         prefix = f"/user.slice/user-{os.getuid()}.slice/user@{os.getuid()}.service/app.slice/"
         require(names[0].startswith(prefix) and

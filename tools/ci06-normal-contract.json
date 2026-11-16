@@ -1,0 +1,31 @@
+{
+  "schema": "ci06-original-scope-supported-normal-contract/v1",
+  "projectId": "06",
+  "repository": "pouriajamali/fenced-shard-ownership-lab",
+  "m0Sha256": "50625c030b8f6c9a875fa67bc4f12e86464a6b89bfb8fa3378437e30aece4875",
+  "supportedHostSourceDesignSha256": "9b3e0f376c5381b623f6a0f007bf6a6bb44f3dcbd1c2e4654de949a1eb97eec8",
+  "sharedInterfaceSha256": "7758af794c41c5caf6a567283e479a826b53b93511d1f6704fcd040121cb78a5",
+  "sharedSourcePins": {
+    "tools/check_dotnet11.py": "d9c690d8c82825b018c04089c279036829d3baf2534c2634bba84910c415a37d",
+    "tools/sdk11-normal-inputs.lock.json": "686c6c778f7841e6015fa401f3892b853df80e3341fbb5d02b27c682887c1c78",
+    "tools/dotnet11-host-qualification.schema.json": "63e04fa5d270c87b93e6e1f4c38bfbcf336b950b39fe1854dc4e514f0661f14c",
+    "tools/sdk11-normal/accepted-linux-fact.json": "757abf2d3dde65d10cd895cfc97eaeccb7fc11e8685b94ad046e6a8ec8829007",
+    "tools/sdk11-normal/accepted-linux-acceptance.json": "0452e1f3b4f2662d57e9b273428bb37ab0c5a733551a92394ca2a4e8b9b4ac08",
+    "tools/qualification_input_guard.py": "7420b08d78d3b1476be41385d179a42212a2a7e1a965a8d8ea3b67bb14da7925",
+    "tools/materialize_qualification_linux.py": "5f0dbb951cbe615d8c6dd9edbb63b11143cc457319bdcc9000ea9a486f660fb8",
+    "tools/sdk11-normal/.gitattributes": "f2fe153ebc992e87b4c933eb9b28bcf862fccb814c3e3bbe920239ee95b34360"
+  },
+  "originalNativeRowSeconds": 900,
+  "scope": [
+    "R01..R09/P0..P8",
+    "41 original units plus9 literal tests",
+    "original packaged16 and original SQL/receipt oracle",
+    "generic64 and native-linux16-only128",
+    "R06 exact CI-built self-contained Windowsbinary plus existingWSL paired1GiB16+3GiB48 CPU1+1"
+  ],
+  "noLocalSdkBuildQualification": true,
+  "noGlobalSdkReady": true,
+  "sourceOnlyRuntimeGatesStillRequired": true,
+  "windowsNormal": "DENIED_NO_ACCEPTED_PRODUCER_FACT",
+  "linuxInputOnly": "Exact757ab/0452 scope; own admission/kernel/product acceptance separate."
+}

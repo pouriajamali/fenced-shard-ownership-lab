@@ -39,7 +39,7 @@ def validated_windows_machine_paths():
  return values
 
 def env_for_child():
- names=['PATH','SystemRoot','WINDIR','COMSPEC','PATHEXT','HOME','USERPROFILE','APPDATA','LOCALAPPDATA','LANG','GITHUB_ACTIONS','GITHUB_EVENT_NAME','GITHUB_REF','GITHUB_SHA','GITHUB_EVENT_PATH','GITHUB_OUTPUT','GITHUB_STEP_SUMMARY','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_JOB','GITHUB_WORKSPACE','RUNNER_TEMP','RUNNER_OS']
+ names=['PATH','SystemRoot','WINDIR','COMSPEC','PATHEXT','HOME','USERPROFILE','APPDATA','LOCALAPPDATA','LANG','GITHUB_ACTIONS','GITHUB_EVENT_NAME','GITHUB_REF','GITHUB_SHA','GITHUB_EVENT_PATH','GITHUB_OUTPUT','GITHUB_STEP_SUMMARY','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_JOB','GITHUB_WORKSPACE','RUNNER_TEMP','RUNNER_OS','RUNNER_ENVIRONMENT','RUNNER_NAME','GITHUB_REPOSITORY','ImageOS','ImageVersion']
  env={k:os.environ[k] for k in names if k in os.environ}
  if os.name=='nt':env.update(validated_windows_machine_paths())
  cache=ART/'ci-cache'
@@ -52,7 +52,7 @@ def env_for_child():
 
 
 # Explicit per-service values only. No manager import-environment/set-environment.
-SERVICE_ENV_ALLOWLIST=frozenset(('PATH','SystemRoot','WINDIR','COMSPEC','PATHEXT','HOME','USERPROFILE','APPDATA','LOCALAPPDATA','LANG','GITHUB_ACTIONS','GITHUB_EVENT_NAME','GITHUB_REF','GITHUB_SHA','GITHUB_EVENT_PATH','GITHUB_OUTPUT','GITHUB_STEP_SUMMARY','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_JOB','GITHUB_WORKSPACE','RUNNER_TEMP','RUNNER_OS','DOTNET_CLI_HOME','NUGET_PACKAGES','NUGET_HTTP_CACHE_PATH','NUGET_PLUGINS_CACHE_PATH','TEMP','TMP','TMPDIR','DOTNET_CLI_TELEMETRY_OPTOUT','DOTNET_GENERATE_ASPNET_CERTIFICATE','DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE','MSBuildEnableWorkloadResolver','DOTNET_CLI_USE_MSBUILD_SERVER','MSBUILDDISABLENODEREUSE','DOTNET_PROCESSOR_COUNT','DOTNET_MULTILEVEL_LOOKUP','DisableTransitiveFrameworkReferenceDownloads','PYTHONOPTIMIZE'))
+SERVICE_ENV_ALLOWLIST=frozenset(('PATH','SystemRoot','WINDIR','COMSPEC','PATHEXT','HOME','USERPROFILE','APPDATA','LOCALAPPDATA','LANG','GITHUB_ACTIONS','GITHUB_EVENT_NAME','GITHUB_REF','GITHUB_SHA','GITHUB_EVENT_PATH','GITHUB_OUTPUT','GITHUB_STEP_SUMMARY','GITHUB_RUN_ID','GITHUB_RUN_ATTEMPT','GITHUB_JOB','GITHUB_WORKSPACE','RUNNER_TEMP','RUNNER_OS','RUNNER_ENVIRONMENT','RUNNER_NAME','GITHUB_REPOSITORY','ImageOS','ImageVersion','DOTNET_CLI_HOME','NUGET_PACKAGES','NUGET_HTTP_CACHE_PATH','NUGET_PLUGINS_CACHE_PATH','TEMP','TMP','TMPDIR','DOTNET_CLI_TELEMETRY_OPTOUT','DOTNET_GENERATE_ASPNET_CERTIFICATE','DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE','MSBuildEnableWorkloadResolver','DOTNET_CLI_USE_MSBUILD_SERVER','MSBUILDDISABLENODEREUSE','DOTNET_PROCESSOR_COUNT','DOTNET_MULTILEVEL_LOOKUP','DisableTransitiveFrameworkReferenceDownloads','PYTHONOPTIMIZE'))
 SERVICE_ENV_UNSET=('GITHUB_TOKEN','GH_TOKEN','ACTIONS_RUNTIME_TOKEN','ACTIONS_ID_TOKEN_REQUEST_TOKEN','OWNERSHIP_LAB_DB','HTTP_PROXY','HTTPS_PROXY','ALL_PROXY','http_proxy','https_proxy','all_proxy','PYTHONPATH','PYTHONHOME','PYTHONSTARTUP')
 
 def service_environment_flags(env,commit):
@@ -66,12 +66,10 @@ def service_environment_flags(env,commit):
 
 def sdk(env):
  pin=json.loads((ROOT/'global.json').read_bytes())
- need(pin=={'sdk':{'version':'10.0.404','rollForward':'disable'}},'SDK_SOURCE_PIN')
- if os.name=='nt':
-  from ci_windows_sdk import stage_sdk
-  return stage_sdk(env)
- from ci_linux_sdk import stage_sdk
- return stage_sdk(env)
+ need(pin=={'sdk':{'version':'11.0.100','rollForward':'disable','allowPrerelease':False}},'SDK_SOURCE_PIN')
+ from ci_supported_host06 import consume_sdk
+ return consume_sdk(ROOT,'win-x64' if os.name=='nt' else 'linux-x64',env)
+
 
 def current_caps(stage):
  if stage=='runtime':return native_runtime('native-linux-16')
@@ -108,6 +106,8 @@ def runtime_command(argv,env,evidence,seconds):
  return (evidence/'stdout.log').read_bytes()
 
 def command(argv,env,folder,seconds,stage):
+ from ci_supported_kernel06 import remaining
+ seconds=min(seconds,max(.1,remaining(ART/'ci-caps'/stage)-10))
  folder.mkdir(exist_ok=False);bounds.workspace_limit([ART])
  if os.name=='nt':
   job.run(argv,cwd=ROOT,env=env,timeout=seconds,evidence=folder/'job')
@@ -173,6 +173,9 @@ def check_phase_owner(observed,expected):
 
 def worker(stage,rid,commit,phase,token,unit):
  holder=json.loads((ART/'ci-lane.json').read_bytes());expected=dict(projectId='06',ownerPID=holder.get('ownerPID'),ownerProcessStartIdentity=holder.get('ownerProcessStartIdentity'),randomToken=token,phase=stage,sourceCommit=commit,ownerOS=os.name,nativeUnit=unit);check_phase_owner(holder,expected);need(os.name!='nt' or unit is None,'NO_WINDOWS_NATIVE_UNIT')
+ if os.name!='nt':
+  from ci_supported_kernel06 import worker_entry
+  worker_entry(stage,commit,phase,token,unit)
  env=env_for_child();python=str(Path(sys.executable).resolve());count=0
  if os.name!='nt':
   caps=current_caps(stage);need(holder.get('nativeUnit')==unit and re.fullmatch('ownershiplab-ci-[0-9a-f]{16}-'+stage,unit) and caps['group'].endswith('/'+unit+'.service'),'OWN_WORKER_UNIT');need(os.environ.get('INVOCATION_ID'),'OWN_INVOCATION');stageWatch=ResourceWatch(caps)
@@ -207,10 +210,10 @@ def worker(stage,rid,commit,phase,token,unit):
  elif stage=='runtime':
   need(sys.platform=='linux','LINUX_RUNTIME_ONLY');package=package_root()
   run([python,'-B',str(package/'tools/integration.py'),'--runtime-profile','native-linux-16','--fixtures',str(ART/'services'),'--cli',str(package/'ownership'),'--out',str(ART/'integration')],1020)
- elif stage=='aggregate':run(py('tools/check_release.py','--directory','artifacts/release','--commit',commit,'--tag','v0.1.0-preview.7'),480)
+ elif stage=='aggregate':run(py('tools/check_release.py','--directory','artifacts/release','--commit',commit,'--tag','v0.1.0-preview.8'),480)
  if os.name!='nt':
   summary=stageWatch.finish();write(phase/'resource-summary.json',summary);validate_resource_counters(summary)
- write(phase/'worker.json',dict(status='PASS',stage=stage,commands=count,sourceCommit=commit,python=sys.version,sdkPolicy='Windows/Linux exact official404 private ephemeral staging inside existing Job/generic64 worker; global.json404/disable; first SDK target locked restore; no SDK health/global install'))
+ write(phase/'worker.json',dict(status='PASS',stage=stage,commands=count,sourceCommit=commit,python=sys.version,sdkPolicy='Exact host-typed independently admitted producer04 fact plus own source/input/held-child/cap/terminal binding; no local/globalREADY or repeated qualification'))
 
 def bus_environment():
  uid=os.getuid();need(uid!=0,'NONROOT_EXISTING_USER_REQUIRED');base=Path('/run/user')/str(uid);bus=base/'bus'
@@ -221,7 +224,8 @@ def bus_environment():
  return env
 
 def group_for(unit):
- uid=os.getuid();return Path('/sys/fs/cgroup')/f'user.slice/user-{uid}.slice/user@{uid}.service/app.slice'/f'{unit}.service'
+ from ci_supported_kernel06 import group_for as own_system_group
+ return own_system_group(unit)
 
 def terminal(group):
  if not group.exists():return dict(populated=0,observation='ACTUAL_OWN_CGROUP_REMOVED')
@@ -235,7 +239,10 @@ def main():
  need(a.stage!='policy' or os.name=='nt','POLICY_WINDOWS_ONLY')
  # Read-only Git identification, not a downloaded SDK/tool target.
  actual=subprocess.check_output(['git','-C',str(ROOT),'rev-parse','HEAD'],text=True).strip();need(actual==a.commit and os.environ.get('GITHUB_SHA')==a.commit,'EXACT_CHECKOUT_SHA')
- ART.mkdir(exist_ok=True);phase=ART/'ci-caps'/a.stage
+ ART.mkdir(exist_ok=True)
+ from ci_supported_kernel06 import deadline
+ deadline(ROOT)
+ phase=ART/'ci-caps'/a.stage
  if a.worker:
   need(a.token and re.fullmatch('[0-9a-f]{64}',a.token),'WORKER_TOKEN')
   try:worker(a.stage,a.rid,a.commit,phase,a.token,a.unit)
@@ -256,18 +263,12 @@ def main():
     if file.exists():
      observed=json.loads(file.read_bytes());value=observed.get('actualCap',{}).get('activeProcessesAtTeardown');safe=type(value) is int and value==0;code=observed.get('exitCode',125);record['actualCap']=observed.get('actualCap',{})
   else:
-   unit=unit_name;group=group_for(unit);need(not group.exists(),'FRESH_OWN_UNIT_ONLY');safe=True;env=bus_environment();argv+=['--unit',unit];safe=False;service_env=env_for_child();service_flags=service_environment_flags(service_env,a.commit)
-   args=['/usr/bin/systemd-run','--user','--wait','--collect','--pipe','--quiet','--slice=app.slice','--expand-environment=no',*service_flags,'--unit='+unit,'--property=MemoryMax=4294967296','--property=MemorySwapMax=0','--property=CPUQuota=200%','--property=TasksMax='+('128' if a.stage=='runtime' else '64'),'--property=RuntimeMaxSec='+str(WALL[a.stage]),'--property=TimeoutStopSec=5','--property=KillMode=control-group','--property=WorkingDirectory='+str(ROOT),*argv]
-   child=subprocess.Popen(args,env=env,cwd=ROOT)
-   try:code=child.wait(timeout=WALL[a.stage]+15)
-   except subprocess.TimeoutExpired:
-    owner=json.loads((phase/'unit-owner.json').read_bytes());need(owner['token']==token and owner['unit']==unit and owner['stage']==a.stage and owner['sourceCommit']==a.commit and owner['group']==str(group) and owner['bootId']==Path('/proc/sys/kernel/random/boot_id').read_text().strip() and type(owner['pid']) is int and owner['pid']>0 and owner['processStart']==job._start_identity(owner['pid']),'OWN_INVOCATION_RECORD_ONLY')
-    active=subprocess.run(['/usr/bin/systemctl','--user','show',unit,'--property=InvocationID','--value'],env=env,capture_output=True,text=True,timeout=3);need(active.returncode==0 and active.stdout.strip()==owner['invocationId'],'NEVER_STOP_FOREIGN_INVOCATION')
-    subprocess.run(['/usr/bin/systemctl','--user','stop',unit],env=env,check=True,timeout=15);code=child.wait(timeout=10)
-   state=terminal(group);safe=type(state['populated']) is int and state['populated']==0;record.update(unit=unit,actualNativeTerminal=state)
-   owner_path=phase/'unit-owner.json'
-   if owner_path.exists():
-    owner=json.loads(owner_path.read_bytes());need(owner.get('token')==token and owner.get('unit')==unit and owner.get('stage')==a.stage and owner.get('sourceCommit')==a.commit,'EXACT_COMPLETED_UNIT_RECORD');record['actualCap']=owner.get('actualCaps',{})
+   from ci_supported_kernel06 import run_linux
+   argv+=['--unit',unit_name]
+   service_flags=service_environment_flags(env_for_child(),a.commit)
+   code,state,caps=run_linux(argv,a.stage,a.commit,phase,token,unit_name,service_flags)
+   safe=state.get('terminal') is True and type(state.get('populated')) is int and state['populated']==0 and state.get('MainPID')==0 and state.get('ControlPID')==0
+   record.update(unit=unit_name,actualNativeTerminal=state,actualCap=caps)
   need(type(code) is int and code==0,'NEW_STAGE_FAILURE_STOP_NO_RETRY');need(safe,'ACTUAL_OWNED_TERMINAL_REQUIRED')
   complete=json.loads((phase/'worker.json').read_bytes());need(complete.get('status')=='PASS' and complete.get('sourceCommit')==a.commit and complete.get('stage')==a.stage and type(complete.get('commands')) is int and complete['commands']=={'policy':4,'verify':13,'prepare':2,'runtime':1,'aggregate':1}[a.stage],'COMPLETE_FIXED_STAGE_REQUIRED');record['status']='PASS'
  except Exception as ex:

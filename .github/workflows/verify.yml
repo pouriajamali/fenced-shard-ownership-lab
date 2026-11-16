@@ -77,6 +77,15 @@ jobs:
     outputs:
       native: ${{ steps.scope.outputs.native }}
     steps:
+      - name: Preserve original job deadline before checkout
+        shell: python -I -B {0}
+        run: |
+          import json,os,sys,time
+          from pathlib import Path
+          if sys.version_info[:2] != (3,12): raise RuntimeError('EXISTING_PYTHON312_REQUIRED')
+          start=time.monotonic_ns()
+          data=dict(sourceCommit=os.environ['GITHUB_SHA'],runId=os.environ['GITHUB_RUN_ID'],jobId=os.environ['GITHUB_JOB'],rowStartedMonotonicNs=start,deadlineMonotonicNs=start+300*1000000000,rowSeconds=300)
+          with (Path(os.environ['RUNNER_TEMP'])/'ci06-row-deadline.json').open('x',encoding='utf-8') as stream: json.dump(data,stream);stream.flush();os.fsync(stream.fileno())
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 0
@@ -92,19 +101,28 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - os: windows-latest
+          - os: windows-2025
             rid: win-x64
           - os: ubuntu-24.04
             rid: linux-x64
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     steps:
+      - name: Preserve original job deadline before checkout
+        shell: python -I -B {0}
+        run: |
+          import json,os,sys,time
+          from pathlib import Path
+          if sys.version_info[:2] != (3,12): raise RuntimeError('EXISTING_PYTHON312_REQUIRED')
+          start=time.monotonic_ns()
+          data=dict(sourceCommit=os.environ['GITHUB_SHA'],runId=os.environ['GITHUB_RUN_ID'],jobId=os.environ['GITHUB_JOB'],rowStartedMonotonicNs=start,deadlineMonotonicNs=start+900*1000000000,rowSeconds=900)
+          with (Path(os.environ['RUNNER_TEMP'])/'ci06-row-deadline.json').open('x',encoding='utf-8') as stream: json.dump(data,stream);stream.flush();os.fsync(stream.fileno())
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 0
           persist-credentials: false
-      # Python3.12 must already exist. Windows stages only source-pinned private SDK404.
-      # Linux still requires existing404/manager/delegation; absence remains HOLD.
+      # Supported-CI route proposal only; exact producer fact and own source/input/kernel
+      # admission are mandatory. Local26H2/WSL and aggregate SDK READY remain excluded.
       - name: Existing source, native package, notices, verifier and advisory gates
         run: python -I -B tools/ci_pipeline.py --stage verify --rid ${{ matrix.rid }} --commit ${{ github.sha }}
       - name: Consume exact closed fixture bundle under generic64
@@ -143,6 +161,10 @@ jobs:
             artifacts/ci-caps/*/sdk404-linux.json
             artifacts/ci-caps/*/sdk404-linux-resources.json
             artifacts/ci-caps/*/restore-failure-facts.json
+            artifacts/ci-caps/*/typed-host-handshake.json
+            artifacts/ci-caps/*/sdk11-own-cap-evidence.json
+            artifacts/ci-caps/*/sdk11-consumer-admission.json
+            artifacts/ci-caps/*/supported-system-terminal.json
             artifacts/ci-caps/*/phase.json
             artifacts/ci-caps/*/unit-owner.json
             artifacts/ci-caps/*/worker-failure.json
@@ -163,6 +185,10 @@ jobs:
             artifacts/ci-caps/*/sdk404-linux.json
             artifacts/ci-caps/*/sdk404-linux-resources.json
             artifacts/ci-caps/*/restore-failure-facts.json
+            artifacts/ci-caps/*/typed-host-handshake.json
+            artifacts/ci-caps/*/sdk11-own-cap-evidence.json
+            artifacts/ci-caps/*/sdk11-consumer-admission.json
+            artifacts/ci-caps/*/supported-system-terminal.json
             artifacts/ci-caps/*/phase.json
             artifacts/ci-caps/*/unit-owner.json
             artifacts/ci-caps/*/worker-failure.json
@@ -182,6 +208,15 @@ jobs:
       id-token: write
       attestations: write
     steps:
+      - name: Preserve original job deadline before checkout
+        shell: python -I -B {0}
+        run: |
+          import json,os,sys,time
+          from pathlib import Path
+          if sys.version_info[:2] != (3,12): raise RuntimeError('EXISTING_PYTHON312_REQUIRED')
+          start=time.monotonic_ns()
+          data=dict(sourceCommit=os.environ['GITHUB_SHA'],runId=os.environ['GITHUB_RUN_ID'],jobId=os.environ['GITHUB_JOB'],rowStartedMonotonicNs=start,deadlineMonotonicNs=start+600*1000000000,rowSeconds=600)
+          with (Path(os.environ['RUNNER_TEMP'])/'ci06-row-deadline.json').open('x',encoding='utf-8') as stream: json.dump(data,stream);stream.flush();os.fsync(stream.fileno())
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           fetch-depth: 0

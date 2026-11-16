@@ -208,6 +208,7 @@ def _windows_run(argv,cwd,env,timeout,evidence):
             _checked(K.CreateProcessW(None,line,None,None,True,0x4|0x400|0x08000000,block,str(cwd),ctypes.byref(si),ctypes.byref(process)))
             os.set_handle_inheritable(oh,False); os.set_handle_inheritable(eh,False)
             _checked(K.AssignProcessToJobObject(job,process.process)); member=W.BOOL(); _checked(K.IsProcessInJob(process.process,job,ctypes.byref(member))); need(bool(member.value),'ACTUAL_CHILD_JOB_MEMBERSHIP')
+            _write_json(evidence/'held-child.json',{'schema':'ci06-held-child/v1','pid':int(process.pid),'processStart':_start_identity(int(process.pid)),'sourceCommit':env.get('GITHUB_SHA'),'membershipBeforeResume':True,'memoryMax':int(actual.JobMemory),'processMax':int(actual.Basic.ActiveProcesses),'cpuRate':int(actualcpu.Rate)})
             _checked(K.ResumeThread(process.thread)!=0xffffffff)
             while K.WaitForSingleObject(process.process,100)==0x102:
                 if time.monotonic()-start>timeout or out.tell()+err.tell()>128*1024*1024:

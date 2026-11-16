@@ -1,0 +1,623 @@
+{
+  "schema": "sdk11-own-source-pins/v1",
+  "state": "EXACT_SOURCE_REVIEWED",
+  "projectId": "06",
+  "repository": "pouriajamali/fenced-shard-ownership-lab",
+  "sourcePins": [
+    {
+      "path": ".gitattributes",
+      "mode": "100644",
+      "gitBlob": "b41106906d349d05f47dd8fd6d92bef2274c1dc3"
+    },
+    {
+      "path": ".github/ci/policy.py",
+      "mode": "100644",
+      "gitBlob": "548a09fac1ffb1bdd2519ec0c211444f25b3e252"
+    },
+    {
+      "path": ".github/ci/test_policy.py",
+      "mode": "100644",
+      "gitBlob": "5b55309879e4a5b19e1e2c2924ed353a971fc862"
+    },
+    {
+      "path": ".github/workflows/verify.yml",
+      "mode": "100644",
+      "gitBlob": "b142604a705e8f3f9464a7ebe8be68e00ab1c9fb"
+    },
+    {
+      "path": ".gitignore",
+      "mode": "100644",
+      "gitBlob": "99ce22393effa0f48c01ec785d115e51c5490cbf"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "mode": "100644",
+      "gitBlob": "17987f4d2bd8e6f577dd4261f92a7277f2d2f053"
+    },
+    {
+      "path": "Directory.Build.props",
+      "mode": "100644",
+      "gitBlob": "d9116b71210f0480bf94ff2e0058eac84bab5858"
+    },
+    {
+      "path": "LICENSE",
+      "mode": "100644",
+      "gitBlob": "e67e64a5ab7fcec5def82845d73fc7f96f82c9ba"
+    },
+    {
+      "path": "NOTICE.md",
+      "mode": "100644",
+      "gitBlob": "6dd037f69be8503b4df526d724114a7bdc8db658"
+    },
+    {
+      "path": "NuGet.Config",
+      "mode": "100644",
+      "gitBlob": "ab4e9a37a301fd8df501f3d27da3d2cecdeee666"
+    },
+    {
+      "path": "PROVENANCE.md",
+      "mode": "100644",
+      "gitBlob": "a3641d50fc45421fe8d12b8f0331b231414c52bc"
+    },
+    {
+      "path": "README.md",
+      "mode": "100644",
+      "gitBlob": "313758027bd07ed718ac79bf8e435c1fdb9afad0"
+    },
+    {
+      "path": "SIGNING-PUBLIC-KEY.pub",
+      "mode": "100644",
+      "gitBlob": "260690d2d8ede6631c0792fe61d2883c383f5466"
+    },
+    {
+      "path": "docs/ACTIONLINT-BUILD.md",
+      "mode": "100644",
+      "gitBlob": "bc0732e48392ca22579b53ba71e992d99915abc1"
+    },
+    {
+      "path": "docs/ADR-001.md",
+      "mode": "100644",
+      "gitBlob": "14dd8f81053f525efd6082f6811c2e6403e4ba3b"
+    },
+    {
+      "path": "docs/ARCHITECTURE-CASE-STUDY.md",
+      "mode": "100644",
+      "gitBlob": "f1dedf3794916291c31c4cc48c0d64eb039dfcd1"
+    },
+    {
+      "path": "docs/CI-HOST-ROUTE-PREPARATION.md",
+      "mode": "100644",
+      "gitBlob": "258df8b9e6073545df6bad24dcad4ed61bcaadf8"
+    },
+    {
+      "path": "docs/CI-POLICY.md",
+      "mode": "100644",
+      "gitBlob": "921d29b7cb325089dd9365b9ccb51507364c3448"
+    },
+    {
+      "path": "docs/CONTRACT.md",
+      "mode": "100644",
+      "gitBlob": "6d973922acc52b6260d405a54be55c2485c00d5e"
+    },
+    {
+      "path": "docs/ETCD-FIXTURE-BUILD.md",
+      "mode": "100644",
+      "gitBlob": "819a8efdc116f3c8fa2709d9bd972bf5a56a55a4"
+    },
+    {
+      "path": "docs/FAILURE-MATRIX.md",
+      "mode": "100644",
+      "gitBlob": "dbc467bb012d4bb37dab708bbae76593e441e665"
+    },
+    {
+      "path": "docs/FLAGSHIP-EVIDENCE.json",
+      "mode": "100644",
+      "gitBlob": "c161d46cd2b3a764327b42dd86de544b9d777efb"
+    },
+    {
+      "path": "docs/RELEASE-v0.1.0-preview.1.md",
+      "mode": "100644",
+      "gitBlob": "980c298b806809a9e7765987fb29500b8cd274f3"
+    },
+    {
+      "path": "docs/RELEASE-v0.1.0-preview.2.md",
+      "mode": "100644",
+      "gitBlob": "e29b4cf636d5c5eead24a0d3d7de2355b1b11d40"
+    },
+    {
+      "path": "docs/RELEASE-v0.1.0-preview.3.md",
+      "mode": "100644",
+      "gitBlob": "b03f823d60c4b20522bc72b772f49640bd657894"
+    },
+    {
+      "path": "docs/RELEASE-v0.1.0-preview.4.md",
+      "mode": "100644",
+      "gitBlob": "4775aa2a2866349f6b8ee9701e5baa9c2840c1c9"
+    },
+    {
+      "path": "docs/RELEASE-v0.1.0-preview.5.md",
+      "mode": "100644",
+      "gitBlob": "b1d7ef0dc85bc5c02b395ed3057fc1207d4361f3"
+    },
+    {
+      "path": "docs/RELEASE-v0.1.0-preview.6.md",
+      "mode": "100644",
+      "gitBlob": "11cb2f5d9ab2df96cb0fa252f3799645c8de209a"
+    },
+    {
+      "path": "docs/RELEASE-v0.1.0-preview.7.md",
+      "mode": "100644",
+      "gitBlob": "e77d11dc75b93955522430f10c2f6ec58be51d0b"
+    },
+    {
+      "path": "docs/RELEASE-v0.1.0-preview.8.md",
+      "mode": "100644",
+      "gitBlob": "638766eb490a8e92399d1f210f2c7c243c494ca1"
+    },
+    {
+      "path": "docs/RUNBOOK.md",
+      "mode": "100644",
+      "gitBlob": "9c364652f94c7ec4d97f0617260eebe5d4deca6c"
+    },
+    {
+      "path": "docs/TOOLCHAIN.md",
+      "mode": "100644",
+      "gitBlob": "e8e21c20de0e6f2c0ef589c96e35a2ca01041043"
+    },
+    {
+      "path": "docs/W2-M1-RECEIPT-EVIDENCE.md",
+      "mode": "100644",
+      "gitBlob": "7a4537d09dfc30ded661225d212248bad484de85"
+    },
+    {
+      "path": "fixtures/NEW-BOUNDARY-FIXTURES-PLAN.json",
+      "mode": "100644",
+      "gitBlob": "b5097392d7dc8e7fc952d2308be1272a3e38b6fa"
+    },
+    {
+      "path": "fixtures/SDK0-BOUNDARY-CASES.json",
+      "mode": "100644",
+      "gitBlob": "b87ef7ab511aad2433c245b1b9844aa4bb8b7275"
+    },
+    {
+      "path": "fixtures/SDK0-SHARED06-WIRING-CASES.json",
+      "mode": "100644",
+      "gitBlob": "890837042916ff0fb71971ebcc22360eccb478d1"
+    },
+    {
+      "path": "global.json",
+      "mode": "100644",
+      "gitBlob": "358949390c3e30f6a7f3ad491a914ecd69d437a2"
+    },
+    {
+      "path": "profiles/ci06-normal-input-profile.json",
+      "mode": "100644",
+      "gitBlob": "ac52fe2ad63734c21d1fb62c34ebee302e79899a"
+    },
+    {
+      "path": "src/Ownership.Cli/LabTelemetry.cs",
+      "mode": "100644",
+      "gitBlob": "54183204ad372e05e4c528468bc6c400133c8aa9"
+    },
+    {
+      "path": "src/Ownership.Cli/Ownership.Cli.csproj",
+      "mode": "100644",
+      "gitBlob": "83b7e087f6ae75ca7f1601f0edfa87186b0533cc"
+    },
+    {
+      "path": "src/Ownership.Cli/Program.cs",
+      "mode": "100644",
+      "gitBlob": "056a4f9adbc722ba80a1e5e764605d2a3d4a54b4"
+    },
+    {
+      "path": "src/Ownership.Cli/packages.lock.json",
+      "mode": "100644",
+      "gitBlob": "a2733493f6e400d15f0390e2144eb49266ba6482"
+    },
+    {
+      "path": "src/Ownership/Contract.cs",
+      "mode": "100644",
+      "gitBlob": "da9c8a8bcdd5c91e4171b61970cfaaaf26caee5f"
+    },
+    {
+      "path": "src/Ownership/EtcdGateway.cs",
+      "mode": "100644",
+      "gitBlob": "d342cd1a922db84e7af1d5ac8b26d7c06510f636"
+    },
+    {
+      "path": "src/Ownership/Ownership.csproj",
+      "mode": "100644",
+      "gitBlob": "a8b299a10eda31c624376e6c748ca7bfe7abf3ea"
+    },
+    {
+      "path": "src/Ownership/PostgresSink.cs",
+      "mode": "100644",
+      "gitBlob": "0646eb719b91af1bc967d5abb3b7b4662a3284c1"
+    },
+    {
+      "path": "src/Ownership/packages.lock.json",
+      "mode": "100644",
+      "gitBlob": "fadd4e9bb15fbee5d3f7f978ab72bdfd4a50a15e"
+    },
+    {
+      "path": "tests/Ownership.Tests/ContractTests.cs",
+      "mode": "100644",
+      "gitBlob": "5119c93ab146053e2da2d882ce33e8fc957c2a14"
+    },
+    {
+      "path": "tests/Ownership.Tests/GatewayTests.cs",
+      "mode": "100644",
+      "gitBlob": "60919995417a421212c845e1e5ebd03efc5441d5"
+    },
+    {
+      "path": "tests/Ownership.Tests/Ownership.Tests.csproj",
+      "mode": "100644",
+      "gitBlob": "ded9747c1eaa856c55d30675367dff7521e72ede"
+    },
+    {
+      "path": "tests/Ownership.Tests/TechnologyRefreshTests.cs",
+      "mode": "100644",
+      "gitBlob": "5fab6c5b6c6e8534c910d622f18e408f66fd2de5"
+    },
+    {
+      "path": "tests/Ownership.Tests/packages.lock.json",
+      "mode": "100644",
+      "gitBlob": "adf53206b574002f295c5946a3f72240e559bc91"
+    },
+    {
+      "path": "tests/provenance-fixture/SHA256SUMS.txt",
+      "mode": "100644",
+      "gitBlob": "383c0b9695297ce407f2a1622cfc677a18eecb00"
+    },
+    {
+      "path": "tests/provenance-fixture/SHA256SUMS.txt.sig",
+      "mode": "100644",
+      "gitBlob": "7679a69f7bfee52e07ff025b30927d9567c52368"
+    },
+    {
+      "path": "tests/provenance-fixture/fixture.zip",
+      "mode": "100644",
+      "gitBlob": "4561b7cdb956801e75e105f1ab4f58f0930d3b03"
+    },
+    {
+      "path": "tools/actionlint-build.lock.json",
+      "mode": "100644",
+      "gitBlob": "e70f64edbf0ed741718b96c8371f5932d6d22d20"
+    },
+    {
+      "path": "tools/actionlint-notices.json",
+      "mode": "100644",
+      "gitBlob": "bb5665179a8c6debf242cbe9fca2ebfbe5097286"
+    },
+    {
+      "path": "tools/audit_dependencies.py",
+      "mode": "100644",
+      "gitBlob": "4fc5ef14e60fe9d82bbd3895841c064b36808672"
+    },
+    {
+      "path": "tools/bounded_actionlint.py",
+      "mode": "100644",
+      "gitBlob": "406fd7f9c5f1de606c3dd81ec680f04d851cfeb7"
+    },
+    {
+      "path": "tools/bounded_fixture.py",
+      "mode": "100644",
+      "gitBlob": "ac5900e171efefa5fc26e0a434be77c201e171ac"
+    },
+    {
+      "path": "tools/build_actionlint.py",
+      "mode": "100644",
+      "gitBlob": "cebead054994a7b0321586ff741e09a9874096e1"
+    },
+    {
+      "path": "tools/build_etcd_fixture.py",
+      "mode": "100644",
+      "gitBlob": "8ba0e17b6b35595f903d40681ec16d962b0f93e5"
+    },
+    {
+      "path": "tools/check_actionlint.py",
+      "mode": "100644",
+      "gitBlob": "1c95a8bababa608048a78ed725262f8a59c0045d"
+    },
+    {
+      "path": "tools/check_dotnet11.py",
+      "mode": "100644",
+      "gitBlob": "313e6978edca571d32e1092d222f3aae54c40b27"
+    },
+    {
+      "path": "tools/check_etcd_fixture.py",
+      "mode": "100644",
+      "gitBlob": "d06d3924047367c6fa5307293452871ce0ddd5ad"
+    },
+    {
+      "path": "tools/check_package.py",
+      "mode": "100644",
+      "gitBlob": "4dd3f758ae1800508da7da5c46cef7dc8c8cac9f"
+    },
+    {
+      "path": "tools/check_release.py",
+      "mode": "100644",
+      "gitBlob": "c2f4cc87cc491cb4aaf4e28f7000516375efafc3"
+    },
+    {
+      "path": "tools/check_sbom_archives.py",
+      "mode": "100644",
+      "gitBlob": "6a2f9d787c6c823e9c42d20f55baa05808cd659c"
+    },
+    {
+      "path": "tools/ci-sdk404-linux.lock.json",
+      "mode": "100644",
+      "gitBlob": "645663d6162bad817f7123628ea24e6abe960759"
+    },
+    {
+      "path": "tools/ci-sdk404-win.lock.json",
+      "mode": "100644",
+      "gitBlob": "636dbe65f57610f55546f81e93d125e185eb57bf"
+    },
+    {
+      "path": "tools/ci06-normal-contract.json",
+      "mode": "100644",
+      "gitBlob": "84fe8042adcd85710da4f83c1e682eac65bb0489"
+    },
+    {
+      "path": "tools/ci_linux_sdk.py",
+      "mode": "100644",
+      "gitBlob": "d2b31488c890ce6b54bfbdf78157e6a0c8d436bb"
+    },
+    {
+      "path": "tools/ci_pipeline.py",
+      "mode": "100644",
+      "gitBlob": "a59e65aa7e0d787db82d95e52638984d2520becc"
+    },
+    {
+      "path": "tools/ci_restore_failure_facts.py",
+      "mode": "100644",
+      "gitBlob": "d4c97806a24b641ab16f49198a80474dfd6991e9"
+    },
+    {
+      "path": "tools/ci_supported_host06.py",
+      "mode": "100644",
+      "gitBlob": "0e9250ab571b00012efbcc396d5c4163a14f402a"
+    },
+    {
+      "path": "tools/ci_supported_kernel06.py",
+      "mode": "100644",
+      "gitBlob": "9761005126c47e4b3e9e657b038af57059c14b63"
+    },
+    {
+      "path": "tools/ci_windows_sdk.py",
+      "mode": "100644",
+      "gitBlob": "3a024e65c139eb9b26aba0c5b93562970a944e23"
+    },
+    {
+      "path": "tools/dotnet11-host-qualification.schema.json",
+      "mode": "100644",
+      "gitBlob": "4c505869b03dbf79c194bf8c7ca7b376ceee0223"
+    },
+    {
+      "path": "tools/etcd-build.inputs.json",
+      "mode": "100644",
+      "gitBlob": "51202af2cb5618d711ecdf2bc751fd81a9f29d55"
+    },
+    {
+      "path": "tools/etcd-build.lock.json",
+      "mode": "100644",
+      "gitBlob": "7f894ba5ddd75474e277aef447425c6bebb5aba2"
+    },
+    {
+      "path": "tools/etcd_inputs.py",
+      "mode": "100644",
+      "gitBlob": "0963b4447ff621f33830fba4c60c4f26bbea6c64"
+    },
+    {
+      "path": "tools/extract_package.py",
+      "mode": "100644",
+      "gitBlob": "c73f70446c5868ee2f1521a768c37cedb137ee3b"
+    },
+    {
+      "path": "tools/fetch_services.py",
+      "mode": "100644",
+      "gitBlob": "c8259b9f02553f2527d2b52aaca606f747b9deb9"
+    },
+    {
+      "path": "tools/integration.py",
+      "mode": "100644",
+      "gitBlob": "e3899d7205bab8b0b80676aa14db35b22101d117"
+    },
+    {
+      "path": "tools/linux_host.py",
+      "mode": "100644",
+      "gitBlob": "02d460a3f82d81eb5f974694e9773f304c103a07"
+    },
+    {
+      "path": "tools/materialize_qualification_linux.py",
+      "mode": "100644",
+      "gitBlob": "16e4e7ef7b2e7747a17714e4f6a551c40c9a4829"
+    },
+    {
+      "path": "tools/notices.py",
+      "mode": "100644",
+      "gitBlob": "4455e1bb1c342671e61e41b0df7c898a2f99c1f6"
+    },
+    {
+      "path": "tools/package.py",
+      "mode": "100644",
+      "gitBlob": "fc8823ccd4cf00d254a1487244661330dec526f4"
+    },
+    {
+      "path": "tools/prepare_linux.py",
+      "mode": "100644",
+      "gitBlob": "f267fc7d4f4031fbcf1f0ed2e1c8cfe94b07fa1e"
+    },
+    {
+      "path": "tools/profile_limits.py",
+      "mode": "100644",
+      "gitBlob": "5727ff6c682371a9fbbc13bbfca7c9cec0cdce64"
+    },
+    {
+      "path": "tools/qualification_input_guard.py",
+      "mode": "100644",
+      "gitBlob": "ebc36eade0d00b3d419aa995f4913117ba64abd6"
+    },
+    {
+      "path": "tools/receipt_oracle.py",
+      "mode": "100644",
+      "gitBlob": "d77c33c01e149cb7761d7622a5d8013821032dfa"
+    },
+    {
+      "path": "tools/run_actionlint.py",
+      "mode": "100644",
+      "gitBlob": "069ad3a3e772027d476975cb0ff58680c6fe22f1"
+    },
+    {
+      "path": "tools/sdk11-normal-inputs.lock.json",
+      "mode": "100644",
+      "gitBlob": "67eed2c29e0b11a3cc4b405994dfe41e7808f45d"
+    },
+    {
+      "path": "tools/sdk11-normal/.gitattributes",
+      "mode": "100644",
+      "gitBlob": "bbd7984e8d8399fecf37567807fd2c32c7489081"
+    },
+    {
+      "path": "tools/sdk11-normal/accepted-linux-acceptance.json",
+      "mode": "100644",
+      "gitBlob": "9ed6ac75a97db595caa5c6d9b84e03b7f21e7f2e"
+    },
+    {
+      "path": "tools/sdk11-normal/accepted-linux-fact.json",
+      "mode": "100644",
+      "gitBlob": "391173426f2a48f2fb9797d70cc7cb618bd5ffaf"
+    },
+    {
+      "path": "tools/test_actionlint_admission.py",
+      "mode": "100644",
+      "gitBlob": "ed8d9360be2d9c88440dc9364d35653d82b1074f"
+    },
+    {
+      "path": "tools/test_etcd_fixture.py",
+      "mode": "100644",
+      "gitBlob": "ade0582ae9df2bad2f62a6a079391fccababed2a"
+    },
+    {
+      "path": "tools/test_etcd_inputs.py",
+      "mode": "100644",
+      "gitBlob": "5bfd190212a60f4c78d6499094a197d0e17a7654"
+    },
+    {
+      "path": "tools/test_fixture_resources.py",
+      "mode": "100644",
+      "gitBlob": "9c934c6f09a704268794778d24c8a863f051c346"
+    },
+    {
+      "path": "tools/test_notices.py",
+      "mode": "100644",
+      "gitBlob": "490eb323b541a1decb315cb0e32217d30c1b7848"
+    },
+    {
+      "path": "tools/test_profile_limits.py",
+      "mode": "100644",
+      "gitBlob": "22f93b0f164a1e1221af6f93b69eca5c42bc3cd9"
+    },
+    {
+      "path": "tools/test_receipt_oracle.py",
+      "mode": "100644",
+      "gitBlob": "5cee0b8ae02cad336ebf74e2c68b53b0705754ed"
+    },
+    {
+      "path": "tools/test_sbom_archives.py",
+      "mode": "100644",
+      "gitBlob": "6f80c9b0c27fc165d7cc4ba50e4f8b4d816deea6"
+    },
+    {
+      "path": "tools/test_technology_refresh.py",
+      "mode": "100644",
+      "gitBlob": "b79d8bc1317440c3488ea7f83e2103dc97bc7b84"
+    },
+    {
+      "path": "tools/test_verifier.py",
+      "mode": "100644",
+      "gitBlob": "d8209900946705cee166aa22a05d6cd45744014e"
+    },
+    {
+      "path": "tools/upstream.lock.json",
+      "mode": "100644",
+      "gitBlob": "edb94ffb63c94e9e60d2da3ab98e61762f5c2be0"
+    },
+    {
+      "path": "tools/verify_downloads.py",
+      "mode": "100644",
+      "gitBlob": "f799020e91fa9a4248f129dad0fb988b541a18af"
+    },
+    {
+      "path": "tools/wsl_host_entry.py",
+      "mode": "100644",
+      "gitBlob": "41ffbc18f85dabea4fffe3cba71bdbe8dad1882f"
+    },
+    {
+      "path": "vendor/etcd-admission/advisory-snapshot.json",
+      "mode": "100644",
+      "gitBlob": "6d3317ebdbaa4f0b16b23614e91a5c212777249d"
+    },
+    {
+      "path": "vendor/etcd-admission/binary-audit.jsonl",
+      "mode": "100644",
+      "gitBlob": "255c341dd082a5dd301fe8339e87d2caa3d3396f"
+    },
+    {
+      "path": "vendor/etcd-admission/buildinfo.json",
+      "mode": "100644",
+      "gitBlob": "ea1b3feedf97ddfb2e7fbfd746c01d91b1ab7ea4"
+    },
+    {
+      "path": "vendor/etcd-admission/licenses.json",
+      "mode": "100644",
+      "gitBlob": "080ab6dc348bde79aa08a0e202d66e232e039ee7"
+    },
+    {
+      "path": "vendor/etcd-admission/module-graph.json",
+      "mode": "100644",
+      "gitBlob": "6bfc644ba84daa4676f1a38449b8468f1a39f15f"
+    },
+    {
+      "path": "vendor/etcd-admission/reproducibility.json",
+      "mode": "100644",
+      "gitBlob": "11fe293c14e86b0ea808e67189399d7da5c1581f"
+    },
+    {
+      "path": "vendor/etcd-admission/source-audit.jsonl",
+      "mode": "100644",
+      "gitBlob": "9696eca96c174fe42cf67fed1346581d60cd833e"
+    },
+    {
+      "path": "vendor/notices/ETCD-FIXTURE-SOURCES.json",
+      "mode": "100644",
+      "gitBlob": "080ab6dc348bde79aa08a0e202d66e232e039ee7"
+    },
+    {
+      "path": "vendor/notices/GO-VULNDB-LICENSE.txt",
+      "mode": "100644",
+      "gitBlob": "6ea5988e83c45fac18cd4463b938a2aba65e166e"
+    },
+    {
+      "path": "vendor/notices/NOTICE-SOURCES.json",
+      "mode": "100644",
+      "gitBlob": "93ca480d76f381212f3d8f6758aad085b79281b0"
+    },
+    {
+      "path": "vendor/notices/Npgsql-10.0.3-LICENSE.txt",
+      "mode": "100644",
+      "gitBlob": "c551cb7b0c921b082c2424f213e12fb6b84a864c"
+    },
+    {
+      "path": "vendor/notices/VULNDB-ATTRIBUTION.txt",
+      "mode": "100644",
+      "gitBlob": "68a084857b1be3b8cc19dfab1bc8de149e05f5fa"
+    },
+    {
+      "path": "vendor/notices/dotnet-10.0.0-LICENSE.txt",
+      "mode": "100644",
+      "gitBlob": "984713a49622a96da110443c15477613bc12656b"
+    }
+  ]
+}

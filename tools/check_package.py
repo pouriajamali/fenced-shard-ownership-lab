@@ -45,18 +45,18 @@ def main():
     require(manifest['rid'] in ('win-x64','linux-x64'), 'Supported native RID required')
     runtime_id='Microsoft.NETCore.App.Runtime.'+manifest['rid']
     runtime=[d for d in dependencies if d['id'].startswith('Microsoft.NETCore.App.Runtime.')]
-    require(len(runtime)==1 and runtime[0]['id']==runtime_id and runtime[0]['version']=='10.0.15',
+    require(len(runtime)==1 and runtime[0]['id']==runtime_id and runtime[0]['version']=='11.0.0',
             'Exact serviced Core runtime/RID required')
     runtimeconfig=json.loads((package/'ownership.runtimeconfig.json').read_text(encoding='utf-8'))
     options=runtimeconfig['runtimeOptions']
-    require(options.get('tfm')=='net10.0' and options.get('includedFrameworks')==
-            [{'name':'Microsoft.NETCore.App','version':'10.0.15'}],
-            'Self-contained runtimeconfig must record Core10.0.15')
+    require(options.get('tfm')=='net11.0' and options.get('includedFrameworks')==
+            [{'name':'Microsoft.NETCore.App','version':'11.0.0'}],
+            'Self-contained runtimeconfig must record Core11.0.0')
     shipped=json.loads((package/'ownership.deps.json').read_text(encoding='utf-8'))['libraries']
     runtimepacks={name.removeprefix('runtimepack.') for name,entry in shipped.items()
                   if entry['type']=='runtimepack' or name.startswith('runtimepack.')}
-    require(runtimepacks=={runtime_id+'/10.0.15'}, 'Shipped runtimepack identity mismatch')
-    checks.append('actual-self-contained-core-runtime-10.0.15-and-native-rid')
+    require(runtimepacks=={runtime_id+'/11.0.0'}, 'Shipped runtimepack identity mismatch')
+    checks.append('actual-self-contained-core-runtime-11.0.0-and-native-rid')
     for dep in dependencies:
         relative=PurePosixPath(dep['licenseFile']);require(not relative.is_absolute() and '..' not in relative.parts, 'Validation failed: check_package.py:18')
         license_file=package/relative;require(license_file.stat().st_size>=300 and hashlib.sha256(license_file.read_bytes()).hexdigest()==dep['licenseSha256'] and dep['copyright'], 'Validation failed: check_package.py:19')

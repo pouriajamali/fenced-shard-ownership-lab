@@ -24,3 +24,10 @@ A host deadline includes checkout, all phases, post-actions and uploads. Inner v
 Normal source/PR checks retain the original native validation without uploading large delivery bundles; finite proof receipts remain. Tag/manual review routes retain native bundles. Ordinary proof retention is3 days, tag/manual artifacts7 days, and safe failure facts3 days. These are temporary Actions artifacts; published archives/SUMS/signatures/public key are a distinct immutable delivery boundary. No old artifact/cache deletion, paid capacity, self-hosted runner, permission/protection/security or account-budget change is authorized.
 
 The published [preview.7 release](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.7) has six assets verified by actual download, digest and known-key SSH signature. The archives retain the tested build-time README/source snapshot; current repo docs/release notes give later publication status. Runtime SDK404/Core15 and exact-source manifests/notices remain the archive boundary. Included-leaf DSSE math/SAN/subjects/source/run were checked; independent Fulcio-root and Rekor trust was not verified. No SLSA level/general security/HA/latency claim follows. Current artifact sizes and raw job seconds do not certify billing/storage usage.
+
+
+## Technology maintenance source-preparation boundary
+
+The net11/C#15 branch is source-only. Its SDK11 entry intentionally holds before invoking a target while shared producer admission, consumer transport and exact06 worktree/kernel binding remain absent. No workflow or receipt globs are changed in this preparation, and no trigger is authorized. Current source-defined resource/time/permission predicates remain fixed.
+
+The previous Wave2 raw envelope/spend/remaining values are historical, not this maintenance's budget or quota authority. A manager must allocate a new finite zero-additional-cost CI/storage envelope after current account/protection checks. No paid override, extra probe/dispatch/rerun, automatic retry or healthy historical/shared bootstrap replay follows from the source approval.

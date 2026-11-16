@@ -1,5 +1,16 @@
 # Reviewed toolchain and evidence boundary
 
+## Unexecuted net11/C#15 source preparation
+
+The maintenance branch proposes SDK11.0.100/net11.0/C#15.0/Core11.0.0 for preview.8. These are source pins, not acquisition, execution or compatibility evidence. No new language feature, AOT/trimming/R2R, behavior, SQL/schema or vendor change is introduced. Independent literal tests cover current runtime/JSON/int64/uint64/culture/digest/endpoint contracts without deriving expected values from candidate outputs; none has run.
+
+Producer04 owns the shared SDK11 admission. Its actual byte/member/notice/native identities and hosted consumer transport are not yet bound here. The SDK entry fails closed, and the old404 staging helpers are not invoked as fallback. No SDK11 catalog or Core11 notice mapping is fabricated. Existing lock files remain the old net10 graph until an explicitly approved deliberate net11 regeneration; this branch is not a runnable candidate.
+
+The intended x64 host boundary must account for the shared official review's x86-64-v2 requirement and actual native qualification. A newer version is not proof of performance or compatibility. Existing64-task compiler/audit/default caps and the explicit native-linux16 128-task exception are unchanged. Exact06 worktree binding and positive real kernel/terminal evidence precede execution; wrappers06 are not portable authority for other projects.
+
+The current accepted runtime evidence below describes preview.7/BFF with SDK404/Core15. It is historical input for this maintenance and is not relabeled as net11 PASS. New tests/packages, dependency license/raw NuGet identities, exact CI and actual downloads remain pending separate gates.
+
+
 ## Current verified runtime and publication boundary
 
 Runtime `v0.1.0-preview.7` is source `bff39cd89822ceba07fce68c4dcdbf5819f09254`, tree `86b1d92d1d4f90a3842b436f6bd4b099c7da3d2d`. [Exact native CI attempt1](https://github.com/pouriajamali/fenced-shard-ownership-lab/actions/runs/43372419271) passed with SDK10.0.404 and self-contained Core10.0.15. Both native packages have localCandidate=false; exact source bytes,347 payload files per OS, full18-component licenses/copyright and SBOM/runtime identity were independently inspected. The source ZIP matches104 Git blobs. The published [release and all six assets](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.7) were checked by actual download, digest and known-key SSH signature.

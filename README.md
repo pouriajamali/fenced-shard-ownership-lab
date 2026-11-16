@@ -8,6 +8,22 @@ Synthetic, local and single-machine only. No exchange, market data, orders, acco
 
 Read the [architecture case study](docs/ARCHITECTURE-CASE-STUDY.md) for the decision, rejected alternatives, failure examples, frozen-release evidence and short English/Persian introductions. Follow the [30-minute four-project review](https://github.com/pouriajamali/trading-execution-lab/blob/main/docs/FLAGSHIP-REVIEW.md) for a guided discussion. The [evidence index](docs/FLAGSHIP-EVIDENCE.json) separates runtime/tag CI from later documentation commits.
 
+## Technology refresh source preparation
+
+This branch contains source-only preparation for **0.1.0-preview.8**: SDK11.0.100, net11.0, explicit stable C#15.0 and Core11.0.0. It has not been restored, compiled, tested, packaged or published. No SDK11 acquisition/runtime compatibility or speed improvement is claimed. The delivered preview.7 below remains the last verified release and stays immutable.
+
+The SDK11 consuming entry deliberately stops before any SDK target until the shared producer identity and consumer transport are admitted. Core11 runtime notice records and new SDK catalogs are absent, not placeholders labelled verified. Existing net10 lock files are retained pending deliberate approved regeneration; do not infer that a locked restore for this branch is ready. Nine independent literal C# migration tests are authored but unexecuted. Application C#/SQL, wire/schema, original receipt oracle and native fixtures remain unchanged.
+
+Do not run this branch's build, helper, package or workflow commands until its execution dependencies and exact worktree/kernel controls are approved. See [preview.8 preparation notes](docs/RELEASE-v0.1.0-preview.8.md). The installation and provenance links below refer only to verified preview.7; no preview.8 download exists.
+
+## Inert supported-CI SDK11 input route
+
+The proposed maintenance source binds the identical producer04 `check_dotnet11.py` transport (`d9c690d8...`) and distinct normal input catalog (`686c6c77...`). This preparation is not applied or executed. Linux input qualification fact `757abf2d...` and acceptance `0452e1f3...` retain only their producer scope; the consumer must independently prove its own clean source, tracked contract/profile/full source pins, current held MainPID, UID/GID, kernel limits, original deadline and typed terminal. Producer and consumer job IDs may differ. No global SDK readiness follows.
+
+Normal Windows SDK transport currently denies because no accepted corresponding producer fact exists. Local Windows26H2 SDK/build/qualification and local LinuxR3 SDK targets remain excluded. Original R06 is retained as a separately gated compatibility experiment using the exact supported-CI-built self-contained Windows binary with existing WSL services, original paired budgets and original SQL/receipt oracle. It is not SDK or OS support proof.
+
+The Linux input worker retains generic4GiB/CPU2/tasks64/swap0; only the original explicit native-linux-16 runtime uses128 tasks. Existing verify rows remain900seconds/max-parallel1, with one monotonic deadline captured before checkout and no transport clock reset. Core/Host native-pack metadata is reused; the actual06 console/library graph does not require ASP.NET. Package bytes/signatures/normalized identities/full notices/audits and all original product/native/scenario/release gates remain necessary. No published preview.8 package is claimed here.
+
 ## Runtime preview and publication status
 
 The published native runtime is **0.1.0-preview.7**, built from signed source `bff39cd89822ceba07fce68c4dcdbf5819f09254` and tree `86b1d92d1d4f90a3842b436f6bd4b099c7da3d2d` with SDK **10.0.404** and self-contained Core runtime **10.0.15**. [Exact tag CI, attempt1](https://github.com/pouriajamali/fenced-shard-ownership-lab/actions/runs/43372419271) passed policy, native Windows/Linux and aggregate validation. The [release](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.7) provides all six assets; their downloaded hashes and known-key SSH signature were verified.
