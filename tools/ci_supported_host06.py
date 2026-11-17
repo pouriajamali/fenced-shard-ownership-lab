@@ -1,6 +1,6 @@
-"""INERT REVIEW POSTIMAGE. Own06 typed supported-CI handshake, SDK calls absent.
+"""Own06 typed supported-CI handshake; no SDK calls in this module.
 
-This file is not installed in a checkout and is not an admission or producer fact.
+Tracked source wiring alone is not a current consumer admission or producer fact.
 qualifiedOn is immutable producer history; currentConsumer is a different job.
 """
 import hashlib,json,os,platform,re,sys,time
@@ -162,13 +162,13 @@ def validate_shared_context_values(context):
 
 def consume_sdk(root,rid,env):
  """Own06 wiring only; exact common transport remains byte-identical."""
- need(rid=='linux-x64','WINDOWS_NORMAL_DENIED_NO_ACCEPTED_PRODUCER_FACT')
+ need(rid=='linux-x64','WINDOWS_NORMAL_DENIED_NO_OWN06_CURRENT_JOB_ADMISSION')
  root=Path(root);phase=root/'artifacts/ci-caps/verify'
  record,_=read_data(phase/'sdk11-shared-context.json');context=record['context']
  validate_shared_context_values(context)
  need(Path(context['controller'])==root/'tools/ci_pipeline.py' and Path(context['checkout'])==root,'OWN_TRACKED_MAIN_CONTROLLER')
  common=root/'tools/check_dotnet11.py'
- need(hashlib.sha256(common.read_bytes()).hexdigest()=='d9c690d8c82825b018c04089c279036829d3baf2534c2634bba84910c415a37d','IDENTICAL_COMMON_TRANSPORT_SOURCE')
+ need(hashlib.sha256(common.read_bytes()).hexdigest()=='c37e2f48ee21ef1f02e4afb2bb1cd0af397781e487265c31e43fe06ea182befd','IDENTICAL_COMMON_TRANSPORT_SOURCE')
  from check_dotnet11 import transport
  # No arbitrary output directory; one fresh direct child of this runner.temp.
  import secrets
