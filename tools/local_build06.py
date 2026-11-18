@@ -17,6 +17,9 @@ def admission(root,now):
  need(v.get('inputContractSha256')==I.digest(root/'tools/local06-input-contract.json'),'EXACT_INPUT_CONTRACT')
  advisory=v.get('advisory',{});observed=advisory.get('observedAtUnix');expires=advisory.get('expiresAtUnix')
  need(type(observed) is int and type(expires) is int and observed<=now<expires<=observed+86400 and expires-now>=300,'REAL_ADVISORY_FRESHNESS_NO_EXTENSION')
+ pki=v.get('certificateWindow',{});verified=pki.get('nativeVerifiedAtUnix');valid=pki.get('expiresAtUnix');crls=pki.get('inputCRLs',[])
+ need(type(verified) is int and type(valid) is int and verified<=now<valid<=verified+86400 and valid-now>=300 and type(crls) is list and bool(crls),'CURRENT_CERTIFICATE_PROOF_WINDOW')
+ for crl in crls:need(type(crl.get('thisUpdate')) is int and type(crl.get('nextUpdate')) is int and crl['thisUpdate']<=now<crl['nextUpdate'] and valid<=crl['nextUpdate'],'CURRENT_EXACT_CRL_TIME_WINDOW')
  expected={(x['id'].lower(),x['version']):x for x in I.read(root/'tools/local06-input-contract.json')['packages']};rows=v.get('packages',[])
  need(len(rows)==38 and len(expected)==38 and {(x['id'].lower(),x['version']) for x in rows}==set(expected),'EXACT_34_MANAGED_PLUS4_COREHOST')
  for x in rows:
@@ -27,8 +30,19 @@ def admission(root,now):
   need(type(x.get('bytes')) is int and 0<x['bytes']<=67108864 and x.get('notices') and x.get('producerProjectId')=='04','EXACT_PROVIDER_INPUT_AND_NOTICES')
  return v
 
+def retained_posix_path(value):
+ text=str(value)
+ if len(text)>3 and text[1]==':' and text[2] in ('/',chr(92)):
+  drive=text[0].lower();tail=text[3:].replace(chr(92),'/');need(drive in ('c','e') and '..' not in tail.split('/'),'EXACT_RETAINED_INPUT_DRIVE')
+  return '/mnt/'+drive+'/'+tail
+ return text
+
+def input_path(value):
+ return Path(retained_posix_path(value) if os.name=='posix' else value)
+
+
 def verify_file(row,pathkey,hashkey,limit):
- p=Path(row[pathkey]);I.ordinary(p);need(p.is_file() and p.stat().st_size<=limit,'RETAINED_PROOF_BYTES')
+ p=input_path(row[pathkey]);I.ordinary(p);need(p.is_file() and p.stat().st_size<=limit,'RETAINED_PROOF_BYTES')
  need(I.digest(p)==row[hashkey],'RETAINED_PROOF_SHA');return p
 
 def producer_record(x):
@@ -42,9 +56,10 @@ def prepare_feed(root,out,v):
  """Recheck exact admitted bytes in this phase, then stage only the finite feed."""
  feed=out/'feed';feed.mkdir()
  verify_file(v['advisory'],'receiptPath','receiptSha256',1048576)
+ verify_file(v['certificateWindow'],'receiptPath','receiptSha256',1048576)
  for x in v['packages']:
   producer_record(x)
-  raw=Path(x['path']);I.ordinary(raw);need(raw.is_file() and raw.stat().st_size==x['bytes'],'CURRENT_RAW_PACKAGE_SIZE')
+  raw=input_path(x['path']);I.ordinary(raw);need(raw.is_file() and raw.stat().st_size==x['bytes'],'CURRENT_RAW_PACKAGE_SIZE')
   with raw.open('rb') as f:need(hashlib.file_digest(f,'sha512').hexdigest()==x['rawSha512'],'CURRENT_RAW_SIGNED_PACKAGE_IDENTITY')
   for notice in x['notices']:verify_file(notice,'path','sha256',1048576)
   dest=feed/(x['id'].lower()+'.'+x['version'].lower()+'.nupkg');shutil.copyfile(raw,dest)
@@ -81,6 +96,13 @@ def current_input(root,controller,out,s,j):
  ctx={'projectId':'06','repository':I.REPOSITORY,'checkout':str(root),'controller':str(controller),'contract':str(contract),'profile':str(profile),'sourcePins':str(pins),'admission':str(ap),'capsEvidence':str(cp),'expectedSourceCommit':s['commit'],'expectedSourceTree':s['tree'],'rowStartedMonotonicNs':s['startNs'],'deadlineMonotonicNs':s['endNs'],'supervisorPID':s['supervisorPID'],'supervisorStartIdentity':s['supervisorStartIdentity']}
  facade=I.load(root,'local_sdk11_input',I.FACADE_SHA);sdk=Path(I.read(I.FACT)['SDKPath']);receipt=facade.inspect_sdk('win-x64',sdk,ctx);I.write(out/'current-sdk-input.json',receipt);return sdk/'dotnet.exe'
 
+def sdk_pool_postcondition(root,sdk,rid):
+ # Recheck read-only reuse after the actual phase; no qualification target replay.
+ f=I.load(root,'local_sdk11_input',I.FACADE_SHA);name,expected=f.CATALOGS[rid];catalog=root/'tools'/name;need(I.digest(catalog)==expected,'UNCHANGED_QUALIFIED_MEMBER_CATALOG');members=f.C._read(catalog)['members']
+ if rid=='linux-x64':f.C._load('materialize_qualification_linux',f.C.PINS['materializerSha256']).verify_physical(sdk,members)
+ else:f.C._load('qualification_input_guard',f.C.PINS['guardSha256']).verify_tree(sdk,members,rid,full=True)
+ return {'state':'EXACT_SHARED_SDK_POOL_BYTES_UNCHANGED_AFTER_PHASE','rid':rid,'catalogSha256':expected,'qualificationCommandsReplayed':0,'SDK_READY':False,'scope':'Postcondition after actual SDK commands, not a repeated qualification or product admission.'}
+
 def graph(root,admitted):
  allowed={(x['id'].lower(),x['version']):x['normalizedContentHash'] for x in admitted['packages']};result=[]
  for project in PROJECTS:
@@ -95,22 +117,23 @@ def graph(root,admitted):
 def unit_count(path):
  tree=ET.parse(path);assemblies=[n for n in tree.iter('assembly')];need(assemblies and sum(int(n.get('total','0')) for n in assemblies)==50 and sum(int(n.get('failed','0'))+int(n.get('errors','0'))+int(n.get('skipped','0')) for n in assemblies)==0,'ORIGINAL41_PLUS9_ALL_PASS')
 
-def post_verify(root,out,commit,dotnet,config,cache,run):
+def post_verify(root,out,commit,dotnet,config,cache,run,rid='win-x64'):
  # Original verify tools/oracles, under this same own Job and original phase clock.
  py=lambda name,*args:[sys.executable,'-B',str(root/'tools'/name),*map(str,args)]
  run(py('test_receipt_oracle.py','--out',out/'receipt-oracle-normal'),extra={'PYTHONOPTIMIZE':'0'})
  run(py('test_receipt_oracle.py','--out',out/'receipt-oracle-optimized'),extra={'PYTHONOPTIMIZE':'1'})
- run(py('package.py','--rid','win-x64','--commit',commit,'--work',out/'build','--out',out/'delivery','--dotnet',dotnet,'--restore-config',config,'--packages',cache/'packages'))
+ need(rid in ('win-x64','linux-x64'),'FIXED_NATIVE_PACKAGE_RID')
+ run(py('package.py','--rid',rid,'--commit',commit,'--work',out/'build','--out',out/'delivery','--dotnet',dotnet,'--restore-config',config,'--packages',cache/'packages'))
  run(py('test_notices.py','--out',out/'notices-tests'));run(py('test_verifier.py','--out',out/'verifier-tests'))
  run(py('audit_dependencies.py','--dotnet',dotnet,'--out',out/'dependency-advisories.json'))
- archives=list((out/'delivery').iterdir());need(len(archives)==1 and archives[0].is_file() and archives[0].suffix=='.zip','ONE_NATIVE_WINDOWS_ARCHIVE')
+ archives=list((out/'delivery').iterdir());need(len(archives)==1 and archives[0].is_file() and archives[0].name.endswith('.zip' if rid=='win-x64' else '.tar.gz'),'ONE_NATIVE_PLATFORM_ARCHIVE')
  run(py('extract_package.py','--archive',archives[0],'--out',out/'extracted with spaces'))
  folders=list((out/'extracted with spaces').iterdir());need(len(folders)==1 and folders[0].is_dir(),'ONE_NATIVE_PACKAGE_ROOT');package=folders[0]
  run(py('check_package.py','--package',package,'--commit',commit,'--out',out/'package-checks.json'))
  rec=run([str(dotnet),'nuget','locals','global-packages','--list']);location=Path(rec['evidence'])/'stdout.log';text=location.read_text(encoding='utf-8-sig').strip();need(text.startswith('global-packages: ') and Path(text[len('global-packages: '):].strip()).resolve()==(cache/'packages').resolve(),'ACTUAL_OWN_NUGET_ARCHIVES')
  run(py('check_sbom_archives.py','--package',package,'--nuget-root',cache/'packages','--out',out/'sbom-archive-checks.json'))
  run(py('test_sbom_archives.py','--out',out/'sbom-regressions'))
- return {'archive':str(archives[0]),'sha256':I.digest(archives[0]),'package':str(package),'gate':'WINDOWS_ORIGINAL_PACKAGE_NOTICES_ADVISORY_SBOM_VERIFIERS_PASS','runtimeAcceptance':False}
+ return {'archive':str(archives[0]),'sha256':I.digest(archives[0]),'package':str(package),'rid':rid,'gate':'ORIGINAL_NATIVE_PACKAGE_NOTICES_ADVISORY_SBOM_VERIFIERS_PASS','runtimeAcceptance':False}
 
 def worker(root,controller,path):
  need(os.name=='nt','STAGE_WINDOWS_ONLY');s=I.read(path);validate_spec(s,time.monotonic_ns());need(Path(s['checkout']).resolve()==root.resolve() and s['controllerSha256']==I.digest(controller),'STAGE_EXACT_SOURCE')
@@ -133,6 +156,7 @@ def worker(root,controller,path):
  locks=graph(root,v);package=None
  if s['stage']=='verify':
   unit_count(out/'unit.xml');package=post_verify(root,out,s['commit'],dotnet,config,cache,run)
+ I.write(out/'sdk-pool-postcondition.json',sdk_pool_postcondition(root,dotnet.parent,'win-x64'));j.current_witness(s['jobName'])
  admission(root,int(time.time()));lease(s);I.write(out/'worker-result.json',{'state':'OWN06_LOCAL_'+s['stage'].upper()+'_COMMANDS_PASSED','stage':s['stage'],'sourceCommit':s['commit'],'sourceTree':s['tree'],'SDKExecutions':3 if s['stage']=='locks' else 10,'commandGroups':len(records),'nativeWindowsPackage':package,'actualLocks':locks,'inputAdmissionSha256':s['inputAdmissionSha256'],'productAdmission':False,'scope':'Own Windows lock/build/unit/package/notices/current-advisory/SBOM tools only. Signed release, original nativeLinux/packaged16/SQL/runtime-oracles/five resource profiles and direct public delivery remain separately required.'})
 
 def main(root,controller,argv):

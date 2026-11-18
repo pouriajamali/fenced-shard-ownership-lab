@@ -135,6 +135,28 @@
     "Actions": 0,
     "SDKExecutionsObserved": 0,
     "inputAdmission": "PENDING_PRODUCER04_ACTUAL_PROOFS",
-    "productAdmission": false
+    "productAdmission": false,
+    "actualProofFreshness": "Both current advisory and actual native PKI proof windows remain <=24h; every applicable CRL thisUpdate/nextUpdate must contain now and bound acceptance expiry. No fabricated time extension."
+  },
+  "localLinuxProductRoute": {
+    "controller": "tools/local_linux_build06.py",
+    "profile": "profiles/local-linux-build06.json",
+    "stage": "verify",
+    "seconds": 900,
+    "memoryMaxBytes": 4294967296,
+    "cpuCores": 2,
+    "tasksMax": 64,
+    "swapMaxBytes": 0,
+    "workerUID": 1000,
+    "workerGID": 1000,
+    "rootRole": "Existing OS systemd starter only; no root SDK or product",
+    "heldMain": "Actual stopped state + retained pidfd + MainPID/start/InvocationID/cgroup + all UID/GID fields checked before continue",
+    "inputAdmission": "Same actual reviewed38-input source manifest; current own local Linux facade context required",
+    "SDKCommandsExpectedWhenActuallyAdmitted": 10,
+    "SDKExecutionsObserved": 0,
+    "runtime128": "Not exposed by this entry; nativeLinux16 remains a separate original runtime phase",
+    "Actions": 0,
+    "productAdmission": false,
+    "currentNativeDependencyGuard": "Reuse exact qualified ELF/loader dependency evidence and require current physical library hashes; no loader CLI replay or invented ELF signature."
   }
 }

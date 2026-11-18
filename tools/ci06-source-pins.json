@@ -62,7 +62,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "1e6a87c060449fd739c22ecab44e30c539f35f5c"
+      "gitBlob": "ef31b240c437534d7409d99d6aab0662e90d8fac"
     },
     {
       "path": "SIGNING-PUBLIC-KEY.pub",
@@ -87,7 +87,7 @@
     {
       "path": "docs/CI-HOST-ROUTE-PREPARATION.md",
       "mode": "100644",
-      "gitBlob": "5dc5d0ce748d3d2adaec98828cc16245dd48b553"
+      "gitBlob": "cfb8229bf075c0e35681e56eade7f7c644f0b5b3"
     },
     {
       "path": "docs/CI-POLICY.md",
@@ -152,7 +152,7 @@
     {
       "path": "docs/RELEASE-v0.1.0-preview.8.md",
       "mode": "100644",
-      "gitBlob": "bed284e882ed84a6953cdf13bc345f306180874e"
+      "gitBlob": "c2beee18cc85971313f5eb42ab645ccaf6009fcc"
     },
     {
       "path": "docs/RUNBOOK.md",
@@ -203,6 +203,11 @@
       "path": "profiles/ci06-normal-input-profile.json",
       "mode": "100644",
       "gitBlob": "ac52fe2ad63734c21d1fb62c34ebee302e79899a"
+    },
+    {
+      "path": "profiles/local-linux-build06.json",
+      "mode": "100644",
+      "gitBlob": "024185055b228057682f733d15f52d3cf59c385e"
     },
     {
       "path": "profiles/local-windows-build06.json",
@@ -377,7 +382,7 @@
     {
       "path": "tools/ci06-normal-contract.json",
       "mode": "100644",
-      "gitBlob": "fa5f8f35150d93c3ad8f013aaf8d70f628ae6b50"
+      "gitBlob": "dc30158322451ddc098ea97531855765c9566d71"
     },
     {
       "path": "tools/ci_linux_sdk.py",
@@ -387,7 +392,7 @@
     {
       "path": "tools/ci_pipeline.py",
       "mode": "100644",
-      "gitBlob": "952386d1861bc4d48b9c87b470be2b21dd4ab1fc"
+      "gitBlob": "10f9a70b9d73ceb4f9a783944926b056b5f5df41"
     },
     {
       "path": "tools/ci_restore_failure_facts.py",
@@ -467,12 +472,17 @@
     {
       "path": "tools/local_build06.py",
       "mode": "100644",
-      "gitBlob": "1c8387bdc813546e97f3b4de48a7744003a7d3ac"
+      "gitBlob": "787ac5ad3f145609a8401f6ff74073aa4da2c8a4"
     },
     {
       "path": "tools/local_input06.py",
       "mode": "100644",
       "gitBlob": "a124a32ee6503980ce39fd353725cb13c2e2dbd3"
+    },
+    {
+      "path": "tools/local_linux_build06.py",
+      "mode": "100644",
+      "gitBlob": "2d4afa6431e6061f49bc4b775ad1320591d30561"
     },
     {
       "path": "tools/local_sdk11_input.py",
@@ -822,7 +832,7 @@
     {
       "path": "tools/test_local_build06.py",
       "mode": "100644",
-      "gitBlob": "14da2e8772c02e575db46a44be463de8c7f176e3"
+      "gitBlob": "b67c26de20dc318a8e517a4d6bfd7715c8614dd5"
     },
     {
       "path": "tools/test_local_input06.py",

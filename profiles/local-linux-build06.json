@@ -1,0 +1,20 @@
+{
+  "schema": "sdk11-own-normal-input-profile/v1",
+  "state": "ADMITTED_SOURCE_PROFILE",
+  "projectId": "06",
+  "repository": "pouriajamali/fenced-shard-ownership-lab",
+  "rowSeconds": 900,
+  "memoryMaxBytes": 4294967296,
+  "tasksMax": 64,
+  "cpuQuotaMicros": 200000,
+  "cpuPeriodMicros": 100000,
+  "swapMaxBytes": 0,
+  "ownedUnitPrefix": "ownershiplab-ci-",
+  "localInputRoute": {
+    "rid": "linux-x64",
+    "role": "generic",
+    "readOnlyExistingPool": true,
+    "qualifiedFactSha256": "ad63c4ad44af1844e1c937152294b07cdce9faccf2e2e7899cc221f2e485fb3c"
+  },
+  "purpose": "Own nonroot local Ubuntu24 P3 restore/unit/build/package only. Generic64, no runtime128, no SDK qualification replay or global admission."
+}
