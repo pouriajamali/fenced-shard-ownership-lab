@@ -7,7 +7,7 @@
     {
       "path": ".gitattributes",
       "mode": "100644",
-      "gitBlob": "b41106906d349d05f47dd8fd6d92bef2274c1dc3"
+      "gitBlob": "280f5608f426801adc2c3e767b38c15e44a77c06"
     },
     {
       "path": ".github/ci/policy.py",
@@ -62,7 +62,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "2914dc3b5e67f9205f23a69adfb9d9b42ef9f045"
+      "gitBlob": "0e040f264b9e60adb7e2f31ecb92c15b93a6aa5f"
     },
     {
       "path": "SIGNING-PUBLIC-KEY.pub",
@@ -87,7 +87,7 @@
     {
       "path": "docs/CI-HOST-ROUTE-PREPARATION.md",
       "mode": "100644",
-      "gitBlob": "01657c3983064eb98bc883ed7911f4f7b430a29c"
+      "gitBlob": "4bf7815373c9e6b4d86fae95083b1cbd37e4ee4d"
     },
     {
       "path": "docs/CI-POLICY.md",
@@ -152,12 +152,17 @@
     {
       "path": "docs/RELEASE-v0.1.0-preview.8.md",
       "mode": "100644",
-      "gitBlob": "068d5228376d9b1fbb9ac645e4aa8997d24fd46a"
+      "gitBlob": "c70d7173ab729a9a8d7bf4153f629c605edfc147"
     },
     {
       "path": "docs/RUNBOOK.md",
       "mode": "100644",
       "gitBlob": "9c364652f94c7ec4d97f0617260eebe5d4deca6c"
+    },
+    {
+      "path": "docs/SDK11_LOCAL_INPUT_INTERFACE.md",
+      "mode": "100644",
+      "gitBlob": "9f17ba2d125c98dd71ed8970a45eb82276bce172"
     },
     {
       "path": "docs/SDK11_SHARED_INPUT_INTERFACE.json",
@@ -198,6 +203,11 @@
       "path": "profiles/ci06-normal-input-profile.json",
       "mode": "100644",
       "gitBlob": "ac52fe2ad63734c21d1fb62c34ebee302e79899a"
+    },
+    {
+      "path": "profiles/local-windows-input06.json",
+      "mode": "100644",
+      "gitBlob": "d1d4c2e643f37db15f10ba436128d711bb7400c5"
     },
     {
       "path": "src/Ownership.Cli/LabTelemetry.cs",
@@ -362,7 +372,7 @@
     {
       "path": "tools/ci06-normal-contract.json",
       "mode": "100644",
-      "gitBlob": "f0197aea43bc5e2a0acd5af38cd0b2c5f75cfc43"
+      "gitBlob": "22cc3d7aa1ca133b50b27f5f723e9437b628dd4e"
     },
     {
       "path": "tools/ci_linux_sdk.py",
@@ -372,7 +382,7 @@
     {
       "path": "tools/ci_pipeline.py",
       "mode": "100644",
-      "gitBlob": "a59e65aa7e0d787db82d95e52638984d2520becc"
+      "gitBlob": "4ebc3f431379c1a7dc319bdd5c21e6d2f1f95634"
     },
     {
       "path": "tools/ci_restore_failure_facts.py",
@@ -398,6 +408,16 @@
       "path": "tools/dotnet11-host-qualification.schema.json",
       "mode": "100644",
       "gitBlob": "4c505869b03dbf79c194bf8c7ca7b376ceee0223"
+    },
+    {
+      "path": "tools/dotnet11-linux-qualification-inputs.lock.json",
+      "mode": "100644",
+      "gitBlob": "af87c7b188e6268cbd00153acde4545654883a3c"
+    },
+    {
+      "path": "tools/dotnet11-qualification-inputs.lock.json",
+      "mode": "100644",
+      "gitBlob": "9c5f5955c2068141e5f69eb06a066953cd2fef9e"
     },
     {
       "path": "tools/etcd-build.inputs.json",
@@ -433,6 +453,16 @@
       "path": "tools/linux_host.py",
       "mode": "100644",
       "gitBlob": "02d460a3f82d81eb5f974694e9773f304c103a07"
+    },
+    {
+      "path": "tools/local_input06.py",
+      "mode": "100644",
+      "gitBlob": "a124a32ee6503980ce39fd353725cb13c2e2dbd3"
+    },
+    {
+      "path": "tools/local_sdk11_input.py",
+      "mode": "100644",
+      "gitBlob": "11f9c244207e6033b90b13adaaf8e6354146e897"
     },
     {
       "path": "tools/materialize_qualification_linux.py",
@@ -775,6 +805,11 @@
       "gitBlob": "9c934c6f09a704268794778d24c8a863f051c346"
     },
     {
+      "path": "tools/test_local_input06.py",
+      "mode": "100644",
+      "gitBlob": "aa0e4cca9532e7e355acaa7548e0afdf084d3ec4"
+    },
+    {
       "path": "tools/test_notices.py",
       "mode": "100644",
       "gitBlob": "490eb323b541a1decb315cb0e32217d30c1b7848"
@@ -818,6 +853,11 @@
       "path": "tools/verify_downloads.py",
       "mode": "100644",
       "gitBlob": "f799020e91fa9a4248f129dad0fb988b541a18af"
+    },
+    {
+      "path": "tools/windows_qualification_job_local.py",
+      "mode": "100644",
+      "gitBlob": "1f96f743a771a848420bf00b668af8b76ee15b3f"
     },
     {
       "path": "tools/wsl_host_entry.py",

@@ -87,5 +87,31 @@
     "tree": "07ddff85d62e51312ebe50f1d15b93ebe638287d",
     "handoffSha256": "a5b406c91efacb40420e7549a2cc308db85b8e164bae4ba0b9d9b9dcd673ac13",
     "scope": "Identical common source and historical producer facts only; no own06 input/runtime admission."
+  },
+  "localInputSource": {
+    "manifestSha256": "28dd74fd3f0d36b3c643ff130184ebe127b41bf042313ce2851ec82a3610776d",
+    "producerFacadeCommit": "9fe8f25e2056e245889b391902264e269e6c8f14",
+    "producerLaunchCommit": "306e1d6791deb769b5aca100261a74383944c560",
+    "facadeSHA256": "efb3d151725e1ab8dd86d3ac5c2bab2d270f8086eafd576818730e0f44a5a345",
+    "localJobHelperSHA256": "e14e6feb51d1dfd0ea1865df36a4432ccf397dcd19849038d9b4e69cf7402d1e",
+    "entryScope": "P0/60s/SDK0 own current Windows input only; native/graph/lock/product/publication gates remain closed.",
+    "R06": "Separate binary-only paired scenario, SDK role explicitly denied.",
+    "baseManifestSha256": "28dd74fd3f0d36b3c643ff130184ebe127b41bf042313ce2851ec82a3610776d",
+    "signedLocalDeltaComponents": [
+      {
+        "path": "tools/local_sdk11_input.py",
+        "bytes": 17562,
+        "sha256": "efb3d151725e1ab8dd86d3ac5c2bab2d270f8086eafd576818730e0f44a5a345",
+        "gitBlob": "11f9c244207e6033b90b13adaaf8e6354146e897"
+      },
+      {
+        "path": "docs/SDK11_LOCAL_INPUT_INTERFACE.md",
+        "bytes": 12241,
+        "sha256": "4d9355a27107abd79231f58c22f00ed8b120b89e83e17c21f0701c78cd113de0",
+        "gitBlob": "9f17ba2d125c98dd71ed8970a45eb82276bce172"
+      }
+    ],
+    "producerDeliveryAtIntake": "SIGNED_LOCAL_9FE; remote branch observed306e, no claim9fe public handoff/delivery.",
+    "sourceChildPolicy": "Fixed Windows local Git detached/Unicode; frozen62 W.git unchanged."
   }
 }

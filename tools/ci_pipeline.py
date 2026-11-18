@@ -5,6 +5,10 @@ import argparse,hashlib,json,os,platform,re,selectors,secrets,shutil,signal,sock
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
+if __name__=='__main__' and ('--local-windows-input' in sys.argv or '--local-input-worker' in sys.argv):
+ from local_input06 import main as local_input_main
+ raise SystemExit(local_input_main(ROOT,Path(__file__),sys.argv[1:]))
+
 import bounded_actionlint as job
 import bounded_fixture as bounds
 from profile_limits import native_runtime,ResourceWatch,validate_resource_counters

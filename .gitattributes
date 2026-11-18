@@ -3,3 +3,7 @@
 *.tar.gz binary
 # Preserve the exact accepted byte-pinned Linux SDK catalog (CRLF).
 tools/ci-sdk404-linux.lock.json -text -eol
+
+# Preserve the exact shared qualification-catalog input bytes.
+tools/dotnet11-linux-qualification-inputs.lock.json -text
+tools/dotnet11-qualification-inputs.lock.json -text
