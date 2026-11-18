@@ -9,6 +9,12 @@ MANIFEST='tools/local06-input-admission.json'
 REPOSITORY_SIGNERS=frozenset(('0e5f38f57dc1bcc806d8494f4f90fbcedd988b46760709cbeec6f4219aa6157d','5a2901d6ada3d18260b9c6dfe2133c95d74b9eef6ae0e5dc334c8454d1477df4','1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d'))
 MANAGED_MODE='STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE'
 
+def windows_base_environment():
+ # Same existing validated nonsecret machine paths as the original CI controller.
+ from ci_pipeline import validated_windows_machine_paths
+ names=('SystemRoot','WINDIR','COMSPEC','PATHEXT','USERPROFILE','APPDATA','LOCALAPPDATA')
+ env={k:os.environ[k] for k in names if k in os.environ};env.update(validated_windows_machine_paths());env.update(PATH='C:/Windows/System32;C:/Windows',PYTHONDONTWRITEBYTECODE='1');return env
+
 def seconds(stage):
  need(stage in BUDGETS,'FINITE_LOCAL_STAGE');return BUDGETS[stage]
 
@@ -160,10 +166,10 @@ def worker(root,controller,path):
  need(os.name=='nt','STAGE_WINDOWS_ONLY');s=I.read(path);validate_spec(s,time.monotonic_ns());need(Path(s['checkout']).resolve()==root.resolve() and s['controllerSha256']==I.digest(controller),'STAGE_EXACT_SOURCE')
  out=path.parent;need(out.parent==root.parents[1]/'state/execution-evidence/net11-local-build06' and str(out)==s['receiptDirectory'],'OWN_STAGE_DIRECTORY');lease(s);j=I.load(root,'windows_qualification_job_local',I.HELPER_SHA)
  dotnet=current_input(root,controller,out,s,j);need(I.digest(root/MANIFEST)==s['inputAdmissionSha256'],'STAGE_ADMISSION_SOURCE_BYTES');v=admission(root,int(time.time()));config=prepare_feed(root,out,v)
- cache=out/'cache';cache.mkdir();env={k:os.environ[k] for k in ('SystemRoot','WINDIR','COMSPEC','PATHEXT','USERPROFILE') if k in os.environ}
+ cache=out/'cache';cache.mkdir();env=windows_base_environment()
  for key,name in [('DOTNET_CLI_HOME','home'),('NUGET_PACKAGES','packages'),('NUGET_HTTP_CACHE_PATH','http'),('NUGET_PLUGINS_CACHE_PATH','plugins'),('TEMP','tmp'),('TMP','tmp')]:
   p=cache/name;p.mkdir(exist_ok=True);env[key]=str(p)
- env.update(PATH=str(dotnet.parent)+';C:/Program Files/Git/cmd;C:/Windows/System32;C:/Windows',DOTNET_ROOT=str(dotnet.parent),DOTNET_MULTILEVEL_LOOKUP='0',DOTNET_CLI_TELEMETRY_OPTOUT='1',DOTNET_GENERATE_ASPNET_CERTIFICATE='false',DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE='true',MSBuildEnableWorkloadResolver='false',DOTNET_CLI_USE_MSBUILD_SERVER='0',MSBUILDDISABLENODEREUSE='1',DOTNET_PROCESSOR_COUNT='2',PYTHONDONTWRITEBYTECODE='1')
+ env.update(PATH=str(dotnet.parent)+';C:/Program Files/Git/cmd;C:/Windows/System32;C:/Windows',DOTNET_ROOT=str(dotnet.parent),DOTNET_MULTILEVEL_LOOKUP='0',DOTNET_CLI_TELEMETRY_OPTOUT='1',DOTNET_GENERATE_ASPNET_CERTIFICATE='false',DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE='true',MSBuildEnableWorkloadResolver='false',DOTNET_CLI_USE_MSBUILD_SERVER='0',MSBUILDDISABLENODEREUSE='1',DOTNET_PROCESSOR_COUNT='1',DisableTransitiveFrameworkReferenceDownloads='true',PYTHONDONTWRITEBYTECODE='1')
  from bounded_fixture import workspace_limit
  commands=plan(s['stage'],dotnet,config,cache/'packages',out/'unit.xml');records=[]
  def run(argv,extra=None):
@@ -195,7 +201,7 @@ def main(root,controller,argv):
  start=time.monotonic_ns();tick=j.tick();end=start+budget*10**9;result={'state':'HOLD','sourceCommit':head,'sourceTree':tree,'Actions':0,'productAdmission':False,'released':False};record={}
  try:
   spec=out/'private-spec.json';value={'purpose':'OWN06_LOCAL_WINDOWS_LOCK_BUILD','stage':a.local_windows_stage,'projectId':'06','repository':I.REPOSITORY,'checkout':str(root),'commit':head,'tree':tree,'controllerSha256':I.digest(controller),'helperSha256':I.HELPER_SHA,'facadeSha256':I.FACADE_SHA,'startNs':start,'endNs':end,'supervisorPID':os.getpid(),'supervisorStartIdentity':identity,'receiptDirectory':str(out),'leaseToken':token,'leaseSHA256':I.digest(I.LEASE),'inputAdmissionSha256':I.digest(root/MANIFEST)}
-  env={k:os.environ[k] for k in ('SystemRoot','WINDIR','COMSPEC','PATHEXT','USERPROFILE') if k in os.environ};env.update(PATH='C:/Windows/System32;C:/Windows',PYTHONDONTWRITEBYTECODE='1')
+  env=windows_base_environment();env.update(PATH='C:/Windows/System32;C:/Windows',PYTHONDONTWRITEBYTECODE='1')
   record=j.run_job([sys.executable,'-I','-S','-B',str(controller),'--local-build-worker',str(spec)],root,env,tick+(budget-30)*1000,out/'job',job_name='Local\\ownership06-net11-build-'+secrets.token_hex(12),ready_spec={'path':spec,'value':value},local_console_mode='DETACHED_LOCAL_CONSOLE_FREE_V1')
   value=I.read(out/'worker-result.json');need(value['state']=='OWN06_LOCAL_'+a.local_windows_stage.upper()+'_COMMANDS_PASSED' and value['sourceCommit']==head,'ACTUAL_OWN_STAGE_RESULT');result.update(value)
  except Exception as exc:

@@ -477,7 +477,7 @@
     {
       "path": "tools/local_build06.py",
       "mode": "100644",
-      "gitBlob": "1e43873d1c22f22b447ceac80809391fa98b30c9"
+      "gitBlob": "3ad522c740f91106d7313222fe2f3eb19ee5f9cb"
     },
     {
       "path": "tools/local_input06.py",
@@ -837,7 +837,7 @@
     {
       "path": "tools/test_local_build06.py",
       "mode": "100644",
-      "gitBlob": "df6743cfa040ede76b1b16a70c58847ac84e8812"
+      "gitBlob": "9402e8c2e35a2acf989f4c88e0bcdb9bd957abe1"
     },
     {
       "path": "tools/test_local_input06.py",

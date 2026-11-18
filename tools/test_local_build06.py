@@ -188,4 +188,15 @@ class ManagedProofMethodBoundary(unittest.TestCase):
   with self.assertRaises(RuntimeError):B.crypto_row(x,1000)
   x.update(cmsPublisherVerified=True,RFC3161Verified=True,revocationCoverageVerified=True);B.crypto_row(x,1000)
 
+class WindowsEnvironmentBinding(unittest.TestCase):
+ def test_required_original_machine_paths_cross_both_layers_without_secrets(self):
+  from unittest.mock import patch
+  import ci_pipeline as C
+  allowed={'PROGRAMFILES':'C:/Program Files','PROGRAMFILES(X86)':'C:/Program Files (x86)','PROGRAMDATA':'C:/ProgramData'}
+  values={'SystemRoot':'C:/Windows','USERPROFILE':'C:/Users/Office','APPDATA':'C:/Users/Office/AppData/Roaming','LOCALAPPDATA':'C:/Users/Office/AppData/Local','GITHUB_TOKEN':'secret','HTTPS_PROXY':'secret','GITHUB_ACTIONS':'true'}
+  with patch.dict(B.os.environ,values,clear=True),patch.object(C,'validated_windows_machine_paths',return_value=allowed) as call:
+   env=B.windows_base_environment();call.assert_called_once()
+  self.assertTrue(all(env[k]==v for k,v in allowed.items()));self.assertEqual(env['APPDATA'],values['APPDATA']);self.assertEqual(env['LOCALAPPDATA'],values['LOCALAPPDATA'])
+  self.assertTrue(all(k not in env for k in ('GITHUB_TOKEN','HTTPS_PROXY','GITHUB_ACTIONS')))
+
 if __name__=='__main__':unittest.main()
