@@ -24,3 +24,8 @@ The local Windows verify binding also calls the original receipt oracles, native
 The own local Linux verify binding uses the existing root OS starter for a fixed nonroot UID/GID 1000 system unit, a real stopped main and retained pidfd, source/current local SDK input binding, and the original 900-second 4 GiB/CPU 2/64-task/swap-zero envelope. It runs the same original native package gates for `linux-x64`. This entry exposes no runtime128 or R06 role. Its source has not started a guest, unit, SDK or product target; real package input admission and actual OS tests remain pending.
 
 Both local OS bindings also require an actually current native certificate/CRL proof window alongside the advisory window. Linux compares the current physical native dependencies with retained qualification evidence instead of rerunning loader or SDK qualification commands. These are input gates; they add no runtime or release acceptance.
+
+
+### Native input data received 2026-11-18
+
+The four exact Core/Host11 Linux/Windows input records were reconciled with producer04 actual NuGet normalized-hash/CMS/RFC3161 reports and its current native PKI/CRL proof. The two shipped Core11 runtime notice mappings now use the actual raw-signed and normalized hashes, original MIT license/copyright and dotnet repository commit from those packages. Original successful verification was reused; no SDK qualification or runtime execution was replayed by06. Managed/test34 cryptographic/normalized input acceptance remains pending, and the complete own input-admission file has not been created. This is package data only, not own source/host/caps/graph/runtime or publication acceptance.

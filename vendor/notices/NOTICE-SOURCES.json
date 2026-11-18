@@ -17,7 +17,7 @@
       "id": "Microsoft.Extensions.Configuration.Abstractions",
       "version": "10.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
       "nugetContentHash": "d2kDKnCsJvY7mBVhcjPSp9BkJk48DsaHPg5u+Oy4f8XaOqnEedRy/USyvnpHL92wpJ6DrTPy7htppUUzskbCXQ==",
       "repository": {
         "type": "git",
@@ -36,7 +36,7 @@
       "id": "Microsoft.Extensions.Configuration.Binder",
       "version": "10.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
       "nugetContentHash": "tMF9wNh+hlyYDWB8mrFCQHQmWHlRosol1b/N2Jrefy1bFLnuTlgSYmPyHNmz8xVQgs7DpXytBRWxGhG+mSTp0g==",
       "repository": {
         "type": "git",
@@ -55,7 +55,7 @@
       "id": "Microsoft.Extensions.Configuration.EnvironmentVariables",
       "version": "10.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
       "nugetContentHash": "TmFegsI/uCdwMBD4yKpmO+OkjVNHQL49Dh/ep83NI5rPUEoBK9OdsJo1zURc1A2FuS/R/Pos3wsTjlyLnguBLA==",
       "repository": {
         "type": "git",
@@ -74,7 +74,7 @@
       "id": "Microsoft.Extensions.Configuration",
       "version": "10.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
       "nugetContentHash": "H4SWETCh/cC5L1WtWchHR6LntGk3rDTTznZMssr4cL8IbDmMWBxY+MOGDc/ASnqNolLKPIWHWeuC1ddiL/iNPw==",
       "repository": {
         "type": "git",
@@ -93,7 +93,7 @@
       "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
       "version": "10.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
       "nugetContentHash": "L3AdmZ1WOK4XXT5YFPEwyt0ep6l8lGIPs7F5OOBZc77Zqeo01Of7XXICy47628sdVl0v/owxYJTe86DTgFwKCA==",
       "repository": {
         "type": "git",
@@ -112,7 +112,7 @@
       "id": "Microsoft.Extensions.DependencyInjection",
       "version": "10.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
       "nugetContentHash": "f0RBabswJq+gRu5a+hWIobrLWiUYPKMhCD9WO3sYBAdSy3FFH14LMvLVFZc2kPSCimBLxSuitUhsd6tb0TAY6A==",
       "repository": {
         "type": "git",
@@ -131,7 +131,7 @@
       "id": "Microsoft.Extensions.Diagnostics.Abstractions",
       "version": "10.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
       "nugetContentHash": "SfK89ytD61S7DgzorFljSkUeluC1ncn6dtZgwc0ot39f/BEYWBl5jpgvodxduoYAs1d9HG8faCDRZxE95UMo2A==",
       "repository": {
         "type": "git",
@@ -150,7 +150,7 @@
       "id": "Microsoft.Extensions.Logging.Abstractions",
       "version": "10.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
       "nugetContentHash": "FU/IfjDfwaMuKr414SSQNTIti/69bHEMb+QKrskRb26oVqpx3lNFXMjs/RC9ZUuhBhcwDM2BwOgoMw+PZ+beqQ==",
       "repository": {
         "type": "git",
@@ -169,7 +169,7 @@
       "id": "Microsoft.Extensions.Logging.Configuration",
       "version": "10.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
       "nugetContentHash": "j8zcwhS6bYB6FEfaY3nYSgHdpiL2T+/V3xjpHtslVAegyI1JUbB9yAt/BFdvZdsNbY0Udm4xFtvfT/hUwcOOOg==",
       "repository": {
         "type": "git",
@@ -188,7 +188,7 @@
       "id": "Microsoft.Extensions.Logging",
       "version": "10.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
       "nugetContentHash": "BStFkd5CcnEtarlcgYDBcFzGYCuuNMzPs02wN3WBsOFoYIEmYoUdAiU+au6opzoqfTYJsMTW00AeqDdnXH2CvA==",
       "repository": {
         "type": "git",
@@ -207,7 +207,7 @@
       "id": "Microsoft.Extensions.Options.ConfigurationExtensions",
       "version": "10.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
       "nugetContentHash": "tL9cSl3maS5FPzp/3MtlZI21ExWhni0nnUCF8HY4npTsINw45n9SNDbkKXBMtFyUFGSsQep25fHIDN4f/Vp3AQ==",
       "repository": {
         "type": "git",
@@ -226,7 +226,7 @@
       "id": "Microsoft.Extensions.Options",
       "version": "10.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
       "nugetContentHash": "8oCAgXOow5XDrY9HaXX1QmH3ORsyZO/ANVHBlhLyCeWTH5Sg4UuqZeOTWJi6484M+LqSx0RqQXDJtdYy2BNiLQ==",
       "repository": {
         "type": "git",
@@ -245,7 +245,7 @@
       "id": "Microsoft.Extensions.Primitives",
       "version": "10.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
       "nugetContentHash": "inRnbpCS0nwO/RuoZIAqxQUuyjaknOOnCEZB55KSMMjRhl0RQDttSmLSGsUJN3RQ3ocf5NDLFd2mOQViHqMK5w==",
       "repository": {
         "type": "git",
@@ -264,7 +264,7 @@
       "id": "Npgsql",
       "version": "10.0.3",
       "license": "PostgreSQL",
-      "copyright": "Copyright 2025 \u00a9 The Npgsql Development Team",
+      "copyright": "Copyright 2025 © The Npgsql Development Team",
       "nugetContentHash": "7nb5YzXuvWWJxB0J8DiyL3we+X4FOctZrt0fIBnucOIaIevFEEwGQVZKtiu9olXdlNAK1eNgqSral6r/jlhI4w==",
       "repository": {
         "type": "git",
@@ -335,33 +335,39 @@
     },
     {
       "id": "Microsoft.NETCore.App.Runtime.linux-x64",
-      "version": "10.0.15",
+      "version": "11.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
-      "nugetContentHash": "ALsQzH86bVhGmWjv/sESo973cpasVCDicswfJt3bDB7/IUkEs17ilOCyxXbiAGDyCFylNDSAEaFyNwdoU/mAQw==",
-      "rawSignedNupkgSha512Base64": "Ak6y3EEqwNT/ZL5WEAoGbjxju8MisXpnRxYRynRifotaKEadhhWk5/z2KTvNbnRyAvMqrbN21TSnJY4NxZShxQ==",
-      "repositoryCommit": "8e0f8ed2312954727f8919d7d1c2f78b483b4ee7",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "WTqFNKlUfzbporrlDrd4zKoddHECrKAh1I5Ms54ksoq/H6A5bfedZVefcRYrFiAlF0FBaOf0RCxSyuWmaNcq2w==",
+      "rawSignedNupkgSha512Base64": "92vCWKQbiW9T2QgCRTwiHVHpxpv8fDAOiCRUnlO9QkLhd2oWGKJt9zhHN4mbd7Al/WmBwD+tF0Jt8Ux5Ofox7g==",
+      "repositoryCommit": "297acf930fb0f5c07fd4e51d78e521b4ad2e5d1f",
       "licenseSource": {
         "kind": "package",
         "file": "LICENSE.TXT",
         "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.netcore.app.runtime.linux-x64/10.0.15/microsoft.netcore.app.runtime.linux-x64.10.0.15.nupkg"
-      }
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.netcore.app.runtime.linux-x64/11.0.0/microsoft.netcore.app.runtime.linux-x64.11.0.0.nupkg"
+      },
+      "verificationSourceCommit": "7d226868b932356dd7499c5597b22d4c9bce91cf",
+      "actualSDKContentHashEvidenceSha256": "3d5343aa2b80d0eed1f2e337c6b4efcaebd05a1e677521af3026eca4ca6e21b7",
+      "actualCertificateProofSha256": "996a67617210f0021f022d8febab64d00d464ef4fa7226cf2179213c24548954"
     },
     {
       "id": "Microsoft.NETCore.App.Runtime.win-x64",
-      "version": "10.0.15",
+      "version": "11.0.0",
       "license": "MIT",
-      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
-      "nugetContentHash": "vzCVKwBmeXZ31VkaU956oQE1zda/pweaw1q0vtnRWzivoPa4jyz9zVrmhrora1UJlPkzfBteQHf9bOYAF2ZuVw==",
-      "rawSignedNupkgSha512Base64": "MEGAkRGHrAXYA2t/Lo0mDxH+/O5NLqgWTcVh70iOZJTpoOCL/jKfOgDqYoDi3W9WcnviL4DhMl+5lWC8cxttSw==",
-      "repositoryCommit": "8e0f8ed2312954727f8919d7d1c2f78b483b4ee7",
+      "copyright": "© Microsoft Corporation. All rights reserved.",
+      "nugetContentHash": "nAsnzl0M8c9nqmkmC/+eIgTsfLadtoCMkSYlerf3fuasvKYNhVXmbxpi2bJzpx3kW343wuH4HI38DDZ8QeAA4A==",
+      "rawSignedNupkgSha512Base64": "ZZQq6Upo0OyYCtNDsF/n4msWEOetdGlbPim6KMdKVQpJ+6pliMmVcw8sIIf7WJZhbc5FQAA9q9Xavs0I/RubSA==",
+      "repositoryCommit": "297acf930fb0f5c07fd4e51d78e521b4ad2e5d1f",
       "licenseSource": {
         "kind": "package",
         "file": "LICENSE.TXT",
         "sha256": "d7a68596ab69b06f51ca278a6545148e4269a9381c26d597c13df5d88e08cf5b",
-        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.netcore.app.runtime.win-x64/10.0.15/microsoft.netcore.app.runtime.win-x64.10.0.15.nupkg"
-      }
+        "url": "https://api.nuget.org/v3-flatcontainer/microsoft.netcore.app.runtime.win-x64/11.0.0/microsoft.netcore.app.runtime.win-x64.11.0.0.nupkg"
+      },
+      "verificationSourceCommit": "7d226868b932356dd7499c5597b22d4c9bce91cf",
+      "actualSDKContentHashEvidenceSha256": "621a93f807dcdb7857996d363594843404a38069a5470a8b1925f78ffbb93f5f",
+      "actualCertificateProofSha256": "996a67617210f0021f022d8febab64d00d464ef4fa7226cf2179213c24548954"
     }
   ],
   "checksumPolicy": "nugetContentHash is normalized restore identity excluding signatures; rawSignedNupkgSha512Base64 hashes actual signed archive bytes. Raw file checksum only is emitted in SPDX."
