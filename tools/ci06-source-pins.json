@@ -152,7 +152,7 @@
     {
       "path": "docs/RELEASE-v0.1.0-preview.8.md",
       "mode": "100644",
-      "gitBlob": "cefc003da4fc3e61a5cb8b893fa863ec7b97fb92"
+      "gitBlob": "74bc36076492d9d3f48772479e55db984b53ee03"
     },
     {
       "path": "docs/RUNBOOK.md",
@@ -477,7 +477,7 @@
     {
       "path": "tools/local_build06.py",
       "mode": "100644",
-      "gitBlob": "d3431691c1ce76b40620c2e51751ef8eee4ad363"
+      "gitBlob": "8e6d657acb19bd080757202b83e8d2ba7c97133a"
     },
     {
       "path": "tools/local_input06.py",

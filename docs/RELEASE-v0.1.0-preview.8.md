@@ -51,3 +51,6 @@ The local source-admission contract permits the next own bounded stages; it is n
 ### First native Windows verification observation
 
 At source3d60114 the original50 C# units passed, CLI build had0 warnings/errors, both receipt-oracle modes passed and the real native Windows archive was built. The phase then stopped at the original notice regression fixture: default Windows text decoding changed the copyright character while the unchanged production notice resolver read UTF-8 correctly. Its actual Job ended with population0 and exact lease release after158.437seconds. The local child environment now fixes PYTHONUTF8=1 explicitly for existing Python tools; package input/security predicates and source C#/SQL are unchanged. This is a concrete cause correction, not product acceptance.
+
+
+The UTF-8-corrected phase passed the full notice regressions and stopped before verifier execution because the private fixed PATH omitted the already installed Windows OpenSSH directory. Its actual Job ended with population0 and exact lease release after185.516seconds. The local worker PATH now includes only the explicit existing System32/OpenSSH location in addition to the qualified SDK/Git/Windows paths; no install, key change or inherited PATH is used.

@@ -169,7 +169,7 @@ def worker(root,controller,path):
  cache=out/'cache';cache.mkdir();env=windows_base_environment()
  for key,name in [('DOTNET_CLI_HOME','home'),('NUGET_PACKAGES','packages'),('NUGET_HTTP_CACHE_PATH','http'),('NUGET_PLUGINS_CACHE_PATH','plugins'),('TEMP','tmp'),('TMP','tmp')]:
   p=cache/name;p.mkdir(exist_ok=True);env[key]=str(p)
- env.update(PATH=str(dotnet.parent)+';C:/Program Files/Git/cmd;C:/Windows/System32;C:/Windows',DOTNET_ROOT=str(dotnet.parent),DOTNET_MULTILEVEL_LOOKUP='0',DOTNET_CLI_TELEMETRY_OPTOUT='1',DOTNET_GENERATE_ASPNET_CERTIFICATE='false',DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE='true',MSBuildEnableWorkloadResolver='false',DOTNET_CLI_USE_MSBUILD_SERVER='0',MSBUILDDISABLENODEREUSE='1',DOTNET_PROCESSOR_COUNT='1',DisableTransitiveFrameworkReferenceDownloads='true',PYTHONDONTWRITEBYTECODE='1')
+ env.update(PATH=str(dotnet.parent)+';C:/Program Files/Git/cmd;C:/Windows/System32/OpenSSH;C:/Windows/System32;C:/Windows',DOTNET_ROOT=str(dotnet.parent),DOTNET_MULTILEVEL_LOOKUP='0',DOTNET_CLI_TELEMETRY_OPTOUT='1',DOTNET_GENERATE_ASPNET_CERTIFICATE='false',DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE='true',MSBuildEnableWorkloadResolver='false',DOTNET_CLI_USE_MSBUILD_SERVER='0',MSBUILDDISABLENODEREUSE='1',DOTNET_PROCESSOR_COUNT='1',DisableTransitiveFrameworkReferenceDownloads='true',PYTHONDONTWRITEBYTECODE='1')
  from bounded_fixture import workspace_limit
  commands=plan(s['stage'],dotnet,config,cache/'packages',out/'unit.xml');records=[]
  def run(argv,extra=None):
