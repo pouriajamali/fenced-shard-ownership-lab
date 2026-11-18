@@ -62,7 +62,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "d048b21a896093888b3b7545466bee1707c23cf7"
+      "gitBlob": "4ece55041d4552476f38275f708c9778647b2bf0"
     },
     {
       "path": "SIGNING-PUBLIC-KEY.pub",
@@ -152,7 +152,7 @@
     {
       "path": "docs/RELEASE-v0.1.0-preview.8.md",
       "mode": "100644",
-      "gitBlob": "2e802cd32432ecb4f89cd8dc567f7c37cba40368"
+      "gitBlob": "43a2f32b53264f940cda1dffbb2e57b64dad5ccf"
     },
     {
       "path": "docs/RUNBOOK.md",
@@ -237,7 +237,7 @@
     {
       "path": "src/Ownership.Cli/packages.lock.json",
       "mode": "100644",
-      "gitBlob": "a2733493f6e400d15f0390e2144eb49266ba6482"
+      "gitBlob": "f370ed2a59ed777428c09217c5db1828337e92f8"
     },
     {
       "path": "src/Ownership/Contract.cs",
@@ -262,7 +262,7 @@
     {
       "path": "src/Ownership/packages.lock.json",
       "mode": "100644",
-      "gitBlob": "fadd4e9bb15fbee5d3f7f978ab72bdfd4a50a15e"
+      "gitBlob": "056b57425d57b3f82ec529363e159446bf280223"
     },
     {
       "path": "tests/Ownership.Tests/ContractTests.cs",
@@ -287,7 +287,7 @@
     {
       "path": "tests/Ownership.Tests/packages.lock.json",
       "mode": "100644",
-      "gitBlob": "adf53206b574002f295c5946a3f72240e559bc91"
+      "gitBlob": "13e430b49fc59e076ae9b88cbe0899b394f08501"
     },
     {
       "path": "tests/provenance-fixture/SHA256SUMS.txt",

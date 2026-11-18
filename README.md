@@ -8,13 +8,13 @@ Synthetic, local and single-machine only. No exchange, market data, orders, acco
 
 Read the [architecture case study](docs/ARCHITECTURE-CASE-STUDY.md) for the decision, rejected alternatives, failure examples, frozen-release evidence and short English/Persian introductions. Follow the [30-minute four-project review](https://github.com/pouriajamali/trading-execution-lab/blob/main/docs/FLAGSHIP-REVIEW.md) for a guided discussion. The [evidence index](docs/FLAGSHIP-EVIDENCE.json) separates runtime/tag CI from later documentation commits.
 
-## Technology refresh source preparation
+## Technology refresh in progress
 
-This branch contains source-only preparation for **0.1.0-preview.8**: SDK11.0.100, net11.0, explicit stable C#15.0 and Core11.0.0. The net11 C#/native product has not been restored, compiled, tested, packaged or published. No SDK11 acquisition/runtime compatibility or speed improvement is claimed. The delivered preview.7 below remains the last verified release and stays immutable.
+The preview.8 branch targets SDK11.0.100, net11.0, stable C#15.0 and self-contained Core11.0.0 on Windows x64 and Linux x64. Producer04's exact 38 signed package inputs and actual Core11 runtime notice mappings are bound to the local consumer contract. Three real SDK-generated net11/both-RID lock files replace the historical net10 locks. Direct package versions stay Npgsql10.0.3, OpenTelemetry1.20.1 and xUnit4.0.3.
 
-The SDK11 consuming entry deliberately stops before any SDK target until the current consumer host/input admission is established. Shared SDK11 catalogs and historical producer facts are tracked; Core11 runtime notice records and new net11 package locks remain absent. No missing identity is labelled verified. Existing net10 lock files are retained pending deliberate approved regeneration; do not infer that a locked restore for this branch is ready. Nine independent literal C# migration tests are authored but unexecuted. Application C#/SQL, wire/schema, original receipt oracle and native fixtures remain unchanged.
+The first bounded Windows lock phase passed all three restores in55.016seconds under its original600-second/4GiB/CPU2/64-task envelope; actual owned population reached0 and the canonical lease was released. The SDK's actual packagesToPrune metadata removes framework-provided abstractions; no dependency graph was manually relabelled. This is restore evidence only. The50 C# tests, both native packages, original16-case SQL/runtime scenarios, five effects/resource profiles and signed publication remain required.
 
-Only the explicit SDK0 local input operator entry below is available after exact source binding. Product restore/build/package commands require actual package/input admission and unchanged kernel controls. GitHub Actions remain prohibited. See [preview.8 preparation notes](docs/RELEASE-v0.1.0-preview.8.md). The installation and provenance links below refer only to verified preview.7; no preview.8 download exists.
+GitHub Actions remain prohibited. Local operators bind current clean source, original phase clocks, actual kernel controls and exact producer inputs through the existing controller. Preview.7 below remains the latest verified downloadable release; no preview.8 download is claimed. See [preview.8 delivery notes](docs/RELEASE-v0.1.0-preview.8.md).
 
 ## SDK11 shared input source and current execution boundary
 

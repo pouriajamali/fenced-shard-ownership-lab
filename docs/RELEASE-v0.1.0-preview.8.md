@@ -1,4 +1,14 @@
-# v0.1.0-preview.8 - source preparation only, unpublished
+# v0.1.0-preview.8 - delivery in progress, unpublished
+
+## Current observed state, 2026-11-18
+
+Exact38 producer inputs and Core11 runtime notices are bound. The first actual own Windows lock phase passed three SDK restores in55.016seconds within600seconds, with unchanged qualified SDK bytes, actual terminal population0 and exact-owner lease release. All three SDK-generated net11 locks include both RID sections. Their base graph row counts are1/12/19; RID test rows add two packages. The actual SDK packagesToPrune metadata explains the smaller graph through framework-provided abstractions. Direct package pins and source C#/SQL remain unchanged.
+
+Actual CLI restore assets already contain Core11 linux host and both runtime pack download dependencies, and their real cache directories exist. No extra unlocked restore or successful qualification replay is required. Both native verification/build/package stages and original runtime/SQL/five-effect/signature/publication gates remain pending; no preview.8 binary is released. Actions stay prohibited.
+
+## Historical preparation snapshots
+
+The following entries describe their earlier source-only points in time; the current state above supersedes their pending input/lock statements.
 
 Proposed pins: SDK11.0.100, net11.0, explicit stable C#15.0, Core runtime11.0.0; native win-x64/linux-x64. This source is uncompiled and untested. No .NET SDK target, product restore/build/test/package, CI or release publication was performed to prepare it. The additive own06 P0 Windows input entry is SDK0; its current source/Job/clock receipt cannot be treated as product acceptance. There is a signed source candidate; no preview.8 signed tag, archive, runtime notice identity or verified download exists.
 
