@@ -207,4 +207,18 @@ class RepackageBoundary(unittest.TestCase):
  def test_package_only_plan_is_locked_and_does_not_replay_units(self):
   rows=B.plan('package','sdk','config','packages','unit.xml');self.assertEqual(len(rows),1);self.assertEqual(rows[0][1:4],['restore',B.PROJECTS[2],'--locked-mode'])
 
+class GitNamespaceBoundary(unittest.TestCase):
+ def test_windows_packager_keeps_original_git_argv(self):
+  import package as P
+  from unittest.mock import patch
+  from types import SimpleNamespace
+  with patch.object(P,'os',SimpleNamespace(name='nt')):self.assertEqual(P.git_argv(),['git','-C',str(P.ROOT)])
+ def test_linux_packager_uses_validated_shared_namespace_mapping(self):
+  import package as P
+  import local_sdk11_input as L
+  from unittest.mock import patch
+  from types import SimpleNamespace
+  with patch.object(P,'os',SimpleNamespace(name='posix')),patch.object(L,'git_prefix',return_value=['fixed-git-prefix']) as f:
+   self.assertEqual(P.git_argv(),['fixed-git-prefix']);f.assert_called_once_with(P.ROOT,B.I.REPOSITORY)
+
 if __name__=='__main__':unittest.main()

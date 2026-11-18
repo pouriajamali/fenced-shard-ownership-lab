@@ -1,6 +1,7 @@
 """Verify the extracted bytes and execute that package's native apphost."""
 import argparse,hashlib,json,os,platform,subprocess
 from pathlib import Path,PurePosixPath
+from package import git_argv
 
 def require(condition,message='Validation failed'):
     if not condition:raise ValueError(message)
@@ -8,7 +9,7 @@ def require(condition,message='Validation failed'):
 def verify_profile_helpers(package,commit):
     require(len(commit)==40 and all(c in '0123456789abcdef' for c in commit),'EXACT_SOURCE_COMMIT_FORMAT')
     for name in ['bounded_fixture.py','linux_host.py','integration.py','profile_limits.py','test_profile_limits.py','check_package.py']:
-        original=subprocess.check_output(['git','-C',str(Path(__file__).resolve().parents[1]),'show',commit+':tools/'+name])
+        original=subprocess.check_output([*git_argv(),'show',commit+':tools/'+name])
         require((package/'tools'/name).read_bytes()==original,'Exact native-runtime helper Git blob differs: '+name)
 
 

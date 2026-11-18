@@ -11,7 +11,13 @@ def raw_sha512(path):
     with path.open('rb') as stream:
         for block in iter(lambda:stream.read(1024*1024),b''):digest.update(block)
     return digest.hexdigest()
-def git(*args):return subprocess.check_output(['git','-C',str(ROOT),*args],text=True).strip()
+def git_argv():
+    if os.name=='posix':
+        import local_sdk11_input as local
+        return local.git_prefix(ROOT,'pouriajamali/fenced-shard-ownership-lab')
+    return ['git','-C',str(ROOT)]
+
+def git(*args):return subprocess.check_output([*git_argv(),*args],text=True).strip()
 
 def require(condition,message='Validation failed'):
     if not condition:raise ValueError(message)

@@ -105,16 +105,31 @@ def plan(stage,dotnet,config,packages,unit):
 WINDOWS_VERIFY_REFERENCE='state/execution-evidence/net11-local-build06/verify-04c81c1ee0484045a4bc6625/receipt.json'
 WINDOWS_VERIFY_SHA='097e8ab7bed1803117d76800700698b57b18ce34205c4aeeed098a84c72b7a31'
 WINDOWS_VERIFY_COMMIT='48d7ec83c89c7def191a560d49d4b5e00c181e98'
-REPACKAGE_ONLY_CHANGES=frozenset(('tools/local_build06.py','tools/local_linux_build06.py','tools/test_local_build06.py','tools/ci06-source-pins.json','docs/RELEASE-v0.1.0-preview.8.md','README.md'))
+GIT_NAMESPACE_ADAPTER_PINS={'tools/package.py': 'ac3f8dda78645e2d29d5b599229303d0988161483a63766afd676daa94c22cf6', 'tools/check_package.py': '5dda44cc7d9eaf33e5a33777a5e763304f7381ac48227576663e3d92754773f0'}
+REPACKAGE_ONLY_CHANGES=frozenset(('tools/local_build06.py','tools/local_linux_build06.py','tools/test_local_build06.py','tools/ci06-source-pins.json','docs/RELEASE-v0.1.0-preview.8.md','README.md','tools/package.py','tools/check_package.py','tools/ci_pipeline.py'))
 
-def repackage_changes(names):
+def repackage_changes(names,adapter_hashes=None):
  need(set(names)<=REPACKAGE_ONLY_CHANGES,'REPACKAGE_APPLICATION_OR_VALIDATOR_SOURCE_CHANGED')
+ need(all((adapter_hashes or {}).get(n)==GIT_NAMESPACE_ADAPTER_PINS[n] for n in set(names)&set(GIT_NAMESPACE_ADAPTER_PINS)),'REPACKAGE_APPLICATION_OR_VALIDATOR_SOURCE_CHANGED')
 
 def prior_windows_verification(root):
  p=root.parents[1]/WINDOWS_VERIFY_REFERENCE;need(I.digest(p)==WINDOWS_VERIFY_SHA,'EXACT_PRIOR_WINDOWS_VERIFY_RECEIPT');v=I.read(p)
  need(v['state']=='OWN06_LOCAL_VERIFY_COMMANDS_PASSED' and v['sourceCommit']==WINDOWS_VERIFY_COMMIT and v['released'] is True and v['wholePhaseBudgetMet'] is True and v['process']['actualCap']['activeProcessesAtTeardown']==0,'CLOSED_PRIOR_WINDOWS_VERIFY')
- changed=subprocess.check_output(['C:/Program Files/Git/cmd/git.exe','-C',str(root),'diff','--name-only',WINDOWS_VERIFY_COMMIT,'HEAD'],timeout=10).decode().splitlines();repackage_changes(changed)
- return {'sourceCommit':WINDOWS_VERIFY_COMMIT,'receipt':str(p),'receiptSha256':WINDOWS_VERIFY_SHA,'scope':'Prior real50 units/original oracle,notice,signature-verifier and SBOM regressions reused only with unchanged application/SQL/locks/target/notices/validators; new source archive rebuilt and checked.'}
+ changed=subprocess.check_output(['C:/Program Files/Git/cmd/git.exe','-C',str(root),'diff','--name-only',WINDOWS_VERIFY_COMMIT,'HEAD'],timeout=10).decode().splitlines();repackage_changes(changed,{n:I.digest(root/n) for n in set(changed)&set(GIT_NAMESPACE_ADAPTER_PINS)})
+ return {'sourceCommit':WINDOWS_VERIFY_COMMIT,'receipt':str(p),'receiptSha256':WINDOWS_VERIFY_SHA,'scope':'Prior real50 units/original oracle,notice,signature-verifier and SBOM regressions reused only with unchanged application/SQL/locks/target/notices and original validation predicates; exact reviewed Git namespace adapter hashes are separately required; new archive rebuilt and checked.'}
+
+LINUX_UNITS_REFERENCE='/home/ubuntu/.ownership06-local-verify/verify-ca0035ab696485feb379027b'
+LINUX_UNITS_COMMIT='6e24ca82b171a409f774e38cf49a8451c889ef02'
+LINUX_UNITS_PINS={'receipt.json': 'c3526ff79ecd33ccd0ec42a9671643d5a22a2ddb9556cce556f353a731f0c4d8', 'unit.xml': 'e0de80c45894483a1b1cc0ad666a68d8c1689e4c57739511b4003690dd577cb6', 'command-01/process.json': 'e8e83ca66e9d36ad8f47e07bed588219d854730436291fd13f92478ac4011fce', 'command-02/process.json': '8db175c0dc059584cedb58ef6ee4157a90e96318af8794c67084c0db7b4e4ff8', 'command-03/process.json': '4f8b41a94535a7f89bbf6f7fb5b60d56906fefcb63a6eeb18b0169edc7c6f1d1', 'command-04/process.json': '060df910e4d6a9677c2d8bd5be421636babc6b7ddfde69009077eb9c62ab21c7', 'command-05/process.json': 'b850b85489cee8245bd24c168cc26809cea4c90c3d4ab816f9153f244da9cb01', 'command-06/process.json': '6c02d3fcce509fc8ca81d4488e3899a5327d4b251ed1bfc282809b6584f7a457', 'command-07/process.json': '0c219adb9748603c4d3af24669225745dffb4186eafbff14b684a369e380d6a6'}
+
+def prior_linux_units(root):
+ p=Path(LINUX_UNITS_REFERENCE)
+ for name,expected in LINUX_UNITS_PINS.items():need(I.digest(p/name)==expected,'EXACT_COMPLETED_LINUX_UNITS_PROOF')
+ v=I.read(p/'receipt.json');need(v['sourceCommit']==LINUX_UNITS_COMMIT and v['state']=='HOLD' and v['released'] is True and v['whole900Met'] is True and v['terminal']['verified'] is True and type(v['terminal']['population']) is int and v['terminal']['population']==0,'CLOSED_PARTIAL_LINUX_PHASE')
+ for i in range(1,8):
+  row=I.read(p/('command-'+str(i).zfill(2))/'process.json');need(type(row.get('exitCode')) is int and row['exitCode']==0,'COMPLETED_LINUX_UNIT_ORACLE_COMMAND')
+ unit_count(p/'unit.xml');local=I.load(root,'local_sdk11_input',I.FACADE_SHA);changed=subprocess.check_output([*local.git_prefix(root,I.REPOSITORY),'diff','--name-only',LINUX_UNITS_COMMIT,'HEAD'],timeout=10).decode().splitlines();repackage_changes(changed,{n:I.digest(root/n) for n in set(changed)&set(GIT_NAMESPACE_ADAPTER_PINS)})
+ return {'sourceCommit':LINUX_UNITS_COMMIT,'receipt':str(p/'receipt.json'),'proofPins':LINUX_UNITS_PINS,'scope':'Reuse only actual completed50 units and two oracle modes with unchanged C#/SQL/locks. Prior Linux phase package failed; no package/notice/verifier/SBOM PASS is inherited.'}
 
 def lease(s):
  need(I.digest(I.LEASE)==s['leaseSHA256'],'CURRENT_STAGE_LEASE_BYTES');h=I.read(I.LEASE)
@@ -159,10 +174,10 @@ def graph(root,admitted):
 def unit_count(path):
  tree=ET.parse(path);assemblies=[n for n in tree.iter('assembly')];need(assemblies and sum(int(n.get('total','0')) for n in assemblies)==50 and sum(int(n.get('failed','0'))+int(n.get('errors','0'))+int(n.get('skipped','0')) for n in assemblies)==0,'ORIGINAL41_PLUS9_ALL_PASS')
 
-def post_verify(root,out,commit,dotnet,config,cache,run,rid='win-x64',regressions=True):
+def post_verify(root,out,commit,dotnet,config,cache,run,rid='win-x64',regressions=True,oracles=True):
  # Original verify tools/oracles, under this same own Job and original phase clock.
  py=lambda name,*args:[sys.executable,'-B',str(root/'tools'/name),*map(str,args)]
- if regressions:
+ if oracles:
   run(py('test_receipt_oracle.py','--out',out/'receipt-oracle-normal'),extra={'PYTHONOPTIMIZE':'0'})
   run(py('test_receipt_oracle.py','--out',out/'receipt-oracle-optimized'),extra={'PYTHONOPTIMIZE':'1'})
  need(rid in ('win-x64','linux-x64'),'FIXED_NATIVE_PACKAGE_RID')
@@ -200,7 +215,7 @@ def worker(root,controller,path):
  if s['stage']=='verify':
   unit_count(out/'unit.xml');package=post_verify(root,out,s['commit'],dotnet,config,cache,run)
  elif s['stage']=='package':
-  reused=prior_windows_verification(root);package=post_verify(root,out,s['commit'],dotnet,config,cache,run,regressions=False)
+  reused=prior_windows_verification(root);package=post_verify(root,out,s['commit'],dotnet,config,cache,run,regressions=False,oracles=False)
  I.write(out/'sdk-pool-postcondition.json',sdk_pool_postcondition(root,dotnet.parent,'win-x64'));j.current_witness(s['jobName'])
  admission(root,int(time.time()));lease(s);I.write(out/'worker-result.json',{'state':'OWN06_LOCAL_'+s['stage'].upper()+'_COMMANDS_PASSED','stage':s['stage'],'sourceCommit':s['commit'],'sourceTree':s['tree'],'SDKExecutions':3 if s['stage']=='locks' else 6 if s['stage']=='package' else 10,'reusedVerification':reused,'commandGroups':len(records),'nativeWindowsPackage':package,'actualLocks':locks,'inputAdmissionSha256':s['inputAdmissionSha256'],'productAdmission':False,'scope':'Own Windows lock/build/unit/package/notices/current-advisory/SBOM tools only. Signed release, original nativeLinux/packaged16/SQL/runtime-oracles/five resource profiles and direct public delivery remain separately required.'})
 

@@ -13,7 +13,7 @@ if __name__=='__main__' and ('--local-windows-stage' in sys.argv or '--local-bui
  from local_build06 import main as local_build_main
  raise SystemExit(local_build_main(ROOT,Path(__file__),sys.argv[1:]))
 
-if __name__=='__main__' and ('--local-linux-verify' in sys.argv or '--local-linux-worker' in sys.argv):
+if __name__=='__main__' and ('--local-linux-verify' in sys.argv or '--local-linux-package' in sys.argv or '--local-linux-worker' in sys.argv):
  from local_linux_build06 import main as local_linux_build_main
  raise SystemExit(local_linux_build_main(ROOT,Path(__file__),sys.argv[1:]))
 
