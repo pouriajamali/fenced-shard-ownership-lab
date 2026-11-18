@@ -56,10 +56,9 @@ class LocalBuildBoundary(unittest.TestCase):
 
 class AdmissionBoundary(unittest.TestCase):
  def fixture(self,root):
-  (root/'tools').mkdir();contract={'packages':[{'id':'P'+str(i),'version':'1.0.0','normalizedContentHash':None} for i in range(38)]};(root/'tools/local06-input-contract.json').write_text(json.dumps(contract))
-  v={'schema':'own06-verified-product-inputs/v1','state':'PRODUCER04_PROOFS_REVIEWED_OWN06_INPUTS_ADMITTED','projectId':'06','repository':B.I.REPOSITORY,'inputContractSha256':B.I.digest(root/'tools/local06-input-contract.json'),'advisory':{'observedAtUnix':900,'expiresAtUnix':2000,'receiptPath':str(root/'missing-advisory'),'receiptSha256':'0'*64},'packages':[]}
-  v['certificateWindow']={'nativeVerifiedAtUnix':900,'expiresAtUnix':2000,'inputCRLs':[{'thisUpdate':800,'nextUpdate':3000}],'receiptPath':str(root/'missing-pki'),'receiptSha256':'0'*64}
-  for row in contract['packages']:v['packages'].append({**row,'normalizedContentHash':base64.b64encode(bytes(64)).decode(),'cryptographicAdmission':True,'cmsPublisherVerified':True,'RFC3161Verified':True,'revocationCoverageVerified':True,'rawSha512':'0'*128,'verificationReceiptSha256':'0'*64,'bytes':1,'notices':[{'path':'missing','sha256':'0'*64}],'producerProjectId':'04'})
+  (root/'tools').mkdir();ids=['P'+str(i) for i in range(34)]+['Microsoft.NETCore.App.'+k+'.'+r for k in ('Host','Runtime') for r in ('linux-x64','win-x64')];contract={'packages':[{'id':i,'version':'1.0.0','normalizedContentHash':None} for i in ids]};(root/'tools/local06-input-contract.json').write_text(json.dumps(contract))
+  v={'schema':'own06-verified-product-inputs/v1','state':'PRODUCER04_PROOFS_REVIEWED_OWN06_INPUTS_ADMITTED','projectId':'06','repository':B.I.REPOSITORY,'inputContractSha256':B.I.digest(root/'tools/local06-input-contract.json'),'advisory':{'observedAtUnix':900,'expiresAtUnix':2000,'receiptPath':str(root/'missing-advisory'),'receiptSha256':'0'*64},'certificateWindow':{'nativeVerifiedAtUnix':900,'expiresAtUnix':2000,'inputCRLs':[{'thisUpdate':800,'nextUpdate':3000}],'receiptPath':str(root/'missing-pki'),'receiptSha256':'0'*64},'packages':[]}
+  for i,row in enumerate(contract['packages']):v['packages'].append({**row,'kind':'managed' if i<34 else 'native-corehost','normalizedContentHash':base64.b64encode(bytes(64)).decode(),'cryptographicAdmission':True,'cmsPublisherVerified':True,'RFC3161Verified':True,'revocationCoverageVerified':True,'rawSha512':'0'*128,'verificationReceiptSha256':'0'*64,'bytes':1,'retainedData':[{'path':'missing','sha256':'0'*64}],'producerProjectId':'04','verificationMode':B.MANAGED_MODE,'actualPackageSuccess':True,'reportedIssueCount':0,'sdkReportedRepositoryLeaf':'1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d','originalVerificationObservedAtUnix':900,'actualGlobalCommandExitCode':0,'reusedActualPackageSuccess':False})
   return v
  def check_denied(self,edit,error):
   with tempfile.TemporaryDirectory() as d:
@@ -75,7 +74,7 @@ class AdmissionBoundary(unittest.TestCase):
    self.check_denied(lambda v:v['certificateWindow']['inputCRLs'][0].__setitem__(key,value),'EXACT_CRL_TIME_WINDOW')
  def test_each_crypto_gate_required_as_real_boolean_true(self):
   for field in ['cryptographicAdmission','cmsPublisherVerified','RFC3161Verified','revocationCoverageVerified']:
-   self.check_denied(lambda v:v['packages'][0].__setitem__(field,False),'ACTUAL_CRYPTO')
+   self.check_denied(lambda v:v['packages'][34].__setitem__(field,False),'ACTUAL_CRYPTO')
  def test_foreign_duplicate_or_unhashed_input_is_denied(self):
   self.check_denied(lambda v:v['packages'][0].__setitem__('id','foreign'),'EXACT_34')
   self.check_denied(lambda v:v['packages'].__setitem__(0,copy.deepcopy(v['packages'][1])),'EXACT_34')
@@ -173,5 +172,20 @@ class NativeLinuxProofBoundary(unittest.TestCase):
     return {}
    with self.assertRaisesRegex(RuntimeError,'ONE_NATIVE_PLATFORM_ARCHIVE'):B.post_verify(root,out,'source','sdk',out/'config',out/'cache',run,rid='linux-x64')
    self.assertFalse(any('extract_package.py' in ' '.join(x) for x in calls))
+
+class ManagedProofMethodBoundary(unittest.TestCase):
+ def sample(self):
+  return {'kind':'managed','cryptographicAdmission':True,'verificationMode':B.MANAGED_MODE,'actualPackageSuccess':True,'reportedIssueCount':0,'sdkReportedRepositoryLeaf':'1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d','originalVerificationObservedAtUnix':900,'actualGlobalCommandExitCode':0,'reusedActualPackageSuccess':False}
+ def test_independent_success_does_not_relabel_global_exit_one(self):
+  x=self.sample();B.crypto_row(x,1000);x.update(actualGlobalCommandExitCode=1,reusedActualPackageSuccess=True);B.crypto_row(x,1000)
+  for field,value in [('actualPackageSuccess',False),('reusedActualPackageSuccess',False),('actualGlobalCommandExitCode',True)]:
+   with self.assertRaises(RuntimeError):B.crypto_row({**x,field:value},1000)
+ def test_online_observation_needs_no_issue_exact_repo_and_original_clock(self):
+  for field,value in [('reportedIssueCount',1),('sdkReportedRepositoryLeaf','0'*64),('originalVerificationObservedAtUnix',1001),('originalVerificationObservedAtUnix',-90000),('verificationMode','STRUCTURAL_ONLY')]:
+   with self.assertRaises(RuntimeError):B.crypto_row({**self.sample(),field:value},1000)
+ def test_native_current_crl_flags_are_not_substituted_by_managed_method(self):
+  x={**self.sample(),'kind':'native-corehost'}
+  with self.assertRaises(RuntimeError):B.crypto_row(x,1000)
+  x.update(cmsPublisherVerified=True,RFC3161Verified=True,revocationCoverageVerified=True);B.crypto_row(x,1000)
 
 if __name__=='__main__':unittest.main()

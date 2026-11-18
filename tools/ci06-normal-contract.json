@@ -134,9 +134,17 @@
     "clock": "Execution clock begins immediately after successful atomic own canonical claim; waiting is outside that clock. Whole phase includes terminal/release reserve.",
     "Actions": 0,
     "SDKExecutionsObserved": 0,
-    "inputAdmission": "PENDING_PRODUCER04_ACTUAL_PROOFS",
+    "inputAdmission": "EXACT38_ACTUAL_PRODUCER_PROOFS_BOUND_OWN_CURRENT_GATES_REQUIRED",
     "productAdmission": false,
-    "actualProofFreshness": "Both current advisory and actual native PKI proof windows remain <=24h; every applicable CRL thisUpdate/nextUpdate must contain now and bound acceptance expiry. No fabricated time extension."
+    "actualProofFreshness": "Both current advisory and actual native PKI proof windows remain <=24h; every applicable CRL thisUpdate/nextUpdate must contain now and bound acceptance expiry. No fabricated time extension.",
+    "sourceInputEvidence": {
+      "file": "tools/local06-input-admission.json",
+      "producerCommit": "ebe8358b3abed35cbf5881276df8278f5c8f3f50",
+      "handoffSHA256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "nativeNormalizedPendingFieldsResolved": 4,
+      "managedMode": "Standard online SDK with actual repository-leaf checks; no blanket current-validity claim for historic signing certificates",
+      "earlierGlobalExit1Preserved": true
+    }
   },
   "localLinuxProductRoute": {
     "controller": "tools/local_linux_build06.py",

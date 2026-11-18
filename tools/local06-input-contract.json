@@ -176,26 +176,31 @@
     {
       "id": "Microsoft.NETCore.App.Runtime.win-x64",
       "version": "11.0.0",
-      "normalizedContentHash": null
+      "normalizedContentHash": "nAsnzl0M8c9nqmkmC/+eIgTsfLadtoCMkSYlerf3fuasvKYNhVXmbxpi2bJzpx3kW343wuH4HI38DDZ8QeAA4A=="
     },
     {
       "id": "Microsoft.NETCore.App.Runtime.linux-x64",
       "version": "11.0.0",
-      "normalizedContentHash": null
+      "normalizedContentHash": "WTqFNKlUfzbporrlDrd4zKoddHECrKAh1I5Ms54ksoq/H6A5bfedZVefcRYrFiAlF0FBaOf0RCxSyuWmaNcq2w=="
     },
     {
       "id": "Microsoft.NETCore.App.Host.win-x64",
       "version": "11.0.0",
-      "normalizedContentHash": null
+      "normalizedContentHash": "iAr5yCMlI0tNvg6t51vg+FCD+t3LuP77Ct8yoL3tkHr8DxTRwQgkabi1AX0PLPFPJD0a1rkIaLBFe+YYqBOfVg=="
     },
     {
       "id": "Microsoft.NETCore.App.Host.linux-x64",
       "version": "11.0.0",
-      "normalizedContentHash": null
+      "normalizedContentHash": "TDrPTaVbpOUJI6n1tFlcPsFrvRAasdzJB9ZrkVQ6yNqc1FazgwbzxSFZlB2xjZPen3chGd8zWYB63QSNfF9vbQ=="
     }
   ],
   "SDK": "11.0.100",
   "runtime": "11.0.0",
   "admissionState": "NOT_ADMITTED_BY_THIS_CONTRACT",
-  "sourceScope": "Original managed/test identities plus applicable Core/Host only. Actual producer crypto, raw/normalized identities, notices, current advisory and own graph/locks remain separate gates."
+  "sourceScope": "Original managed/test identities plus applicable Core/Host only. Actual producer crypto, raw/normalized identities, notices, current advisory and own graph/locks remain separate gates.",
+  "nativeNormalizedHashSource": {
+    "producerCommit": "ebe8358b3abed35cbf5881276df8278f5c8f3f50",
+    "handoffSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+    "basis": "Actual official SDK GetContentHash observations for these exact four signed raw archives; no local formula."
+  }
 }

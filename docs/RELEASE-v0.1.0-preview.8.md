@@ -29,3 +29,10 @@ Both local OS bindings also require an actually current native certificate/CRL p
 ### Native input data received 2026-11-18
 
 The four exact Core/Host11 Linux/Windows input records were reconciled with producer04 actual NuGet normalized-hash/CMS/RFC3161 reports and its current native PKI/CRL proof. The two shipped Core11 runtime notice mappings now use the actual raw-signed and normalized hashes, original MIT license/copyright and dotnet repository commit from those packages. Original successful verification was reused; no SDK qualification or runtime execution was replayed by06. Managed/test34 cryptographic/normalized input acceptance remains pending, and the complete own input-admission file has not been created. This is package data only, not own source/host/caps/graph/runtime or publication acceptance.
+
+
+## Exact input contract bound on 2026-11-18
+
+All38 signed input identities now have producer evidence:34 managed/test plus four Core/Host11 inputs. The four native normalized hashes come from actual SDK GetContentHash observations. Managed verification uses the standard online SDK method and exact reported repository signer; it does not assert that every historical signing certificate is currently valid. Four explicit successful package blocks from an earlier globally failed batch are retained with that original global exit1/HOLD. Native current certificate/CRL times and all original advisory/signature clocks are preserved. Retained nuspec/CMS/any original notice data is distinct from the unchanged packager full-license requirement for the actual shipped graph.
+
+The local source-admission contract permits the next own bounded stages; it is not a global SDK-ready flag or product acceptance. Actual own raw input bytes, current source/host/PID/caps/deadline, generated net11/RID locks, both platform builds and original runtime/SQL/five-effect gates still have to pass before a signed release may be published. Earlier source-only preparation statements above describe their dated snapshots.

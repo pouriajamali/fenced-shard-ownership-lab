@@ -62,7 +62,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "ef31b240c437534d7409d99d6aab0662e90d8fac"
+      "gitBlob": "d048b21a896093888b3b7545466bee1707c23cf7"
     },
     {
       "path": "SIGNING-PUBLIC-KEY.pub",
@@ -87,7 +87,7 @@
     {
       "path": "docs/CI-HOST-ROUTE-PREPARATION.md",
       "mode": "100644",
-      "gitBlob": "cfb8229bf075c0e35681e56eade7f7c644f0b5b3"
+      "gitBlob": "6e4d43a6082ea01f3b5221cb3724d2bf05fb0247"
     },
     {
       "path": "docs/CI-POLICY.md",
@@ -152,7 +152,7 @@
     {
       "path": "docs/RELEASE-v0.1.0-preview.8.md",
       "mode": "100644",
-      "gitBlob": "4afad4ecb5dea0813a51db8ca91338bf2ee9c75d"
+      "gitBlob": "2e802cd32432ecb4f89cd8dc567f7c37cba40368"
     },
     {
       "path": "docs/RUNBOOK.md",
@@ -382,7 +382,7 @@
     {
       "path": "tools/ci06-normal-contract.json",
       "mode": "100644",
-      "gitBlob": "dc30158322451ddc098ea97531855765c9566d71"
+      "gitBlob": "1e5118baab61460b8d87c1716dec02674398da33"
     },
     {
       "path": "tools/ci_linux_sdk.py",
@@ -465,14 +465,19 @@
       "gitBlob": "02d460a3f82d81eb5f974694e9773f304c103a07"
     },
     {
+      "path": "tools/local06-input-admission.json",
+      "mode": "100644",
+      "gitBlob": "dd95f331863ca7d7d8b001dff15d6064f64e6f26"
+    },
+    {
       "path": "tools/local06-input-contract.json",
       "mode": "100644",
-      "gitBlob": "744ce0b9a64d425ec095b20398062ff86d6fd38c"
+      "gitBlob": "b7f53d044e55ab4ed0e80e7bc2f923e494b30528"
     },
     {
       "path": "tools/local_build06.py",
       "mode": "100644",
-      "gitBlob": "787ac5ad3f145609a8401f6ff74073aa4da2c8a4"
+      "gitBlob": "1e43873d1c22f22b447ceac80809391fa98b30c9"
     },
     {
       "path": "tools/local_input06.py",
@@ -832,7 +837,7 @@
     {
       "path": "tools/test_local_build06.py",
       "mode": "100644",
-      "gitBlob": "b67c26de20dc318a8e517a4d6bfd7715c8614dd5"
+      "gitBlob": "df6743cfa040ede76b1b16a70c58847ac84e8812"
     },
     {
       "path": "tools/test_local_input06.py",

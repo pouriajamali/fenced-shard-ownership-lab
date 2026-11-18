@@ -1,14 +1,25 @@
 """Fixed own06 local Windows lock/build stages; no acquisition or generic command CLI."""
-import argparse,base64,datetime,hashlib,json,os,secrets,shutil,subprocess,sys,time,xml.etree.ElementTree as ET
+import argparse,base64,datetime,hashlib,json,os,re,secrets,shutil,subprocess,sys,time,xml.etree.ElementTree as ET
 from pathlib import Path
 import local_input06 as I
 need=I.need
 PROJECTS=('src/Ownership/Ownership.csproj','src/Ownership.Cli/Ownership.Cli.csproj','tests/Ownership.Tests/Ownership.Tests.csproj')
 BUDGETS={'locks':600,'verify':900}
 MANIFEST='tools/local06-input-admission.json'
+REPOSITORY_SIGNERS=frozenset(('0e5f38f57dc1bcc806d8494f4f90fbcedd988b46760709cbeec6f4219aa6157d','5a2901d6ada3d18260b9c6dfe2133c95d74b9eef6ae0e5dc334c8454d1477df4','1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d'))
+MANAGED_MODE='STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE'
 
 def seconds(stage):
  need(stage in BUDGETS,'FINITE_LOCAL_STAGE');return BUDGETS[stage]
+
+def crypto_row(x,now):
+ need(x.get('cryptographicAdmission') is True,'ACTUAL_CRYPTO_PROOF_REQUIRED')
+ if x.get('kind')=='native-corehost':
+  need(x.get('cmsPublisherVerified') is True and x.get('RFC3161Verified') is True and x.get('revocationCoverageVerified') is True,'ACTUAL_CRYPTO_PROOF_REQUIRED')
+ else:
+  need(x.get('kind')=='managed' and x.get('verificationMode')==MANAGED_MODE and x.get('actualPackageSuccess') is True and type(x.get('reportedIssueCount')) is int and x['reportedIssueCount']==0 and x.get('sdkReportedRepositoryLeaf') in REPOSITORY_SIGNERS,'ACTUAL_MANAGED_SDK_PACKAGE_PROOF')
+  observed=x.get('originalVerificationObservedAtUnix');need(type(observed) is int and 0<=now-observed<=86400,'ORIGINAL_MANAGED_SIGNATURE_WINDOW')
+  code=x.get('actualGlobalCommandExitCode');need(type(code) is int and (code==0 and x.get('reusedActualPackageSuccess') is False or code==1 and x.get('reusedActualPackageSuccess') is True),'PRESERVE_PARTIAL_BATCH_GLOBAL_HOLD')
 
 def admission(root,now):
  """Source-reviewed data gate. It supplies no invented NuGet normalization formula."""
@@ -23,11 +34,12 @@ def admission(root,now):
  expected={(x['id'].lower(),x['version']):x for x in I.read(root/'tools/local06-input-contract.json')['packages']};rows=v.get('packages',[])
  need(len(rows)==38 and len(expected)==38 and {(x['id'].lower(),x['version']) for x in rows}==set(expected),'EXACT_34_MANAGED_PLUS4_COREHOST')
  for x in rows:
-  need(x.get('cryptographicAdmission') is True and x.get('cmsPublisherVerified') is True and x.get('RFC3161Verified') is True and x.get('revocationCoverageVerified') is True,'ACTUAL_CRYPTO_PROOF_REQUIRED')
+  crypto_row(x,now)
   for key,size in [('rawSha512',128),('verificationReceiptSha256',64)]:need(type(x.get(key)) is str and len(x[key])==size and all(c in '0123456789abcdef' for c in x[key]),'INPUT_HASH_ENCODING')
   norm=x.get('normalizedContentHash');need(type(norm) is str and len(base64.b64decode(norm,validate=True))==64,'ACTUAL_NORMALIZED_HASH_REQUIRED')
+  need(x.get('kind')==('native-corehost' if x['id'].lower().startswith('microsoft.netcore.app.') else 'managed'),'EXACT_PACKAGE_VERIFICATION_KIND')
   old=expected[(x['id'].lower(),x['version'])]['normalizedContentHash'];need(old is None or norm==old,'UNCHANGED_MANAGED_LOCK_IDENTITY')
-  need(type(x.get('bytes')) is int and 0<x['bytes']<=67108864 and x.get('notices') and x.get('producerProjectId')=='04','EXACT_PROVIDER_INPUT_AND_NOTICES')
+  need(type(x.get('bytes')) is int and 0<x['bytes']<=67108864 and x.get('retainedData') and x.get('producerProjectId')=='04','EXACT_PROVIDER_INPUT_AND_NOTICES')
  return v
 
 def retained_posix_path(value):
@@ -50,7 +62,15 @@ def producer_record(x):
  rows=proof.get('packages',[]);matches=[row for row in rows if row.get('id','').lower()==x['id'].lower() and row.get('version')==x['version']]
  need(len(matches)==1,'EXACT_PRODUCER_PACKAGE_PROOF');row=matches[0];raw=row.get('rawSignedArchive',row)
  need(raw.get('sha512')==x['rawSha512'] and raw.get('bytes')==x['bytes'] and row.get('normalizedNuGetContentHash')==x['normalizedContentHash'],'PRODUCER_RAW_NORMALIZED_PROOF_BINDING')
+ if x.get('kind')=='managed':
+  actual=row.get('actualSDKVerification',{});need(actual.get('actualPackageSuccess') is True and actual.get('reportedSignatureOutcome')=='ACTUAL_PACKAGE_VERIFIED_NO_REPORTED_ISSUE' and actual.get('rawSHA256')==x['rawSha256'] and actual.get('actualSDKLogSHA256')==x['actualSDKBlockSha256'] and actual.get('sdkReportedRepositoryLeaf',{}).get('certificateSHA256')==x['sdkReportedRepositoryLeaf'] and actual.get('actualGlobalCommandExitCode')==x['actualGlobalCommandExitCode'],'ACTUAL_MANAGED_RECORD_BINDING')
  return row
+
+def managed_report(x):
+ p=verify_file(x,'actualSDKBlockPath','actualSDKBlockSha256',1048576);text=p.read_text(encoding='utf-8-sig');identity=x['id']+'.'+x['version']
+ need(text.count('Content hash: '+x['normalizedContentHash'])==1 and text.count("Successfully verified package '"+identity+"'.")==1 and not re.search(r'\b(?:warning|error|unknown)\b|\bNU[0-9]{4}\b|validation failed',text,re.I),'ACTUAL_MANAGED_REPORT_BLOCK')
+ need(x['sdkReportedRepositoryLeaf'].lower() in text.lower().replace(':',''),'ACTUAL_REPOSITORY_CERTIFICATE_REPORT')
+
 
 def prepare_feed(root,out,v):
  """Recheck exact admitted bytes in this phase, then stage only the finite feed."""
@@ -61,7 +81,8 @@ def prepare_feed(root,out,v):
   producer_record(x)
   raw=input_path(x['path']);I.ordinary(raw);need(raw.is_file() and raw.stat().st_size==x['bytes'],'CURRENT_RAW_PACKAGE_SIZE')
   with raw.open('rb') as f:need(hashlib.file_digest(f,'sha512').hexdigest()==x['rawSha512'],'CURRENT_RAW_SIGNED_PACKAGE_IDENTITY')
-  for notice in x['notices']:verify_file(notice,'path','sha256',1048576)
+  if x['kind']=='managed':managed_report(x)
+  for datum in x['retainedData']:verify_file(datum,'path','sha256',1048576)
   dest=feed/(x['id'].lower()+'.'+x['version'].lower()+'.nupkg');shutil.copyfile(raw,dest)
   with dest.open('rb') as f:need(hashlib.file_digest(f,'sha512').hexdigest()==x['rawSha512'],'COPIED_FEED_BYTES')
  config=out/'NuGet.Config';tree=ET.Element('configuration');sources=ET.SubElement(tree,'packageSources');ET.SubElement(sources,'clear');ET.SubElement(sources,'add',key='own06-verified-local',value=str(feed))

@@ -24,3 +24,10 @@ The local Windows verify binding also calls the original receipt oracles, native
 The own local Linux verify binding uses the existing root OS starter for a fixed nonroot UID/GID 1000 system unit, a real stopped main and retained pidfd, source/current local SDK input binding, and the original 900-second 4 GiB/CPU 2/64-task/swap-zero envelope. It runs the same original native package gates for `linux-x64`. This entry exposes no runtime128 or R06 role. Its source has not started a guest, unit, SDK or product target; real package input admission and actual OS tests remain pending.
 
 Both local OS bindings also require an actually current native certificate/CRL proof window alongside the advisory window. Linux compares the current physical native dependencies with retained qualification evidence instead of rerunning loader or SDK qualification commands. These are input gates; they add no runtime or release acceptance.
+
+
+## Exact input contract bound on 2026-11-18
+
+All38 signed input identities now have producer evidence:34 managed/test plus four Core/Host11 inputs. The four native normalized hashes come from actual SDK GetContentHash observations. Managed verification uses the standard online SDK method and exact reported repository signer; it does not assert that every historical signing certificate is currently valid. Four explicit successful package blocks from an earlier globally failed batch are retained with that original global exit1/HOLD. Native current certificate/CRL times and all original advisory/signature clocks are preserved. Retained nuspec/CMS/any original notice data is distinct from the unchanged packager full-license requirement for the actual shipped graph.
+
+The local source-admission contract permits the next own bounded stages; it is not a global SDK-ready flag or product acceptance. Actual own raw input bytes, current source/host/PID/caps/deadline, generated net11/RID locks, both platform builds and original runtime/SQL/five-effect gates still have to pass before a signed release may be published. Earlier source-only preparation statements above describe their dated snapshots.

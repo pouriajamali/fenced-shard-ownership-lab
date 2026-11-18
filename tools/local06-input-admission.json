@@ -1,0 +1,1848 @@
+{
+  "schema": "own06-verified-product-inputs/v1",
+  "state": "PRODUCER04_PROOFS_REVIEWED_OWN06_INPUTS_ADMITTED",
+  "projectId": "06",
+  "repository": "pouriajamali/fenced-shard-ownership-lab",
+  "inputContractSha256": "9b8f1ab246c29238e939dcbe51edd959012f8fadc7f1086524ef8e3b826fed05",
+  "producerSource": {
+    "commit": "ebe8358b3abed35cbf5881276df8278f5c8f3f50",
+    "tree": "a3df3df9f2065bf888108eccb7502ec892f614a5"
+  },
+  "producerFullHandoff": {
+    "path": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+    "sha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+    "bytes": 747560
+  },
+  "advisory": {
+    "observedAtUnix": 1795005781,
+    "expiresAtUnix": 1795092181,
+    "receiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+    "receiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+    "originalObservedAtUnix": 1795005781.9317174,
+    "originalExpiresAtUnix": 1795092181.9317174,
+    "rounding": "Both integer boundaries rounded down only; original floating timestamps preserved, never extended."
+  },
+  "certificateWindow": {
+    "nativeVerifiedAtUnix": 1795019349,
+    "expiresAtUnix": 1795105749,
+    "inputCRLs": [
+      {
+        "sha256": "ec80f6afd1fd52e7b59eedbaf07a24c33c622e208e4a7c3c21636962d30c62e9",
+        "AKI": "45eba2aff492cb82312d518ba7a7219df36dc80f",
+        "issuerDER_SHA256": "ca022c70a9410a6af9e797acde44619a47b3aa2f308dd95262ff5020ad62426d",
+        "thisUpdate": 1794527240,
+        "nextUpdate": 1796341640
+      },
+      {
+        "sha256": "d869c75b91d2117ceab34cfe7908097916d28e300c39805414f9ea036f181ace",
+        "AKI": "6837e0ebb63bf85f1186fbfe617b088865f44e42",
+        "issuerDER_SHA256": "2d55ef75a192662f27804a15e26972b21ed1c57664beed97ebf0e4b069ea157d",
+        "thisUpdate": 1795014479,
+        "nextUpdate": 1795619279
+      },
+      {
+        "sha256": "41e687c3f7c0316762c0933d2475e7b5256e478042e87592d1fcfe926342f244",
+        "AKI": "ef6f534ae9e4067c7acae29056f62fd449eccb4e",
+        "issuerDER_SHA256": "b98f7ad614bcbb12d3f828cead63975906782470985b7cf42a6590feffb05c46",
+        "thisUpdate": 1794415226,
+        "nextUpdate": 1796229626
+      },
+      {
+        "sha256": "057cf252d73ef58e8188da588da4eccc7e7aa2b7708b9455da6e7b42c8c1c594",
+        "AKI": "ecd7e382d2715d644cdf2e673fe7ba98ae1c0f4f",
+        "issuerDER_SHA256": "88a9c037ef37d041b8e82ecfdef270b51c412937a7e05cb9e15a4fef53d5d297",
+        "thisUpdate": 1794591755,
+        "nextUpdate": 1796406155
+      },
+      {
+        "sha256": "d869c75b91d2117ceab34cfe7908097916d28e300c39805414f9ea036f181ace",
+        "AKI": "6837e0ebb63bf85f1186fbfe617b088865f44e42",
+        "issuerDER_SHA256": "2d55ef75a192662f27804a15e26972b21ed1c57664beed97ebf0e4b069ea157d",
+        "thisUpdate": 1795014479,
+        "nextUpdate": 1795619279
+      }
+    ],
+    "receiptPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\windows-native-fresh-once-20261118-05\\CURRENT-PKI-RENEWAL.json",
+    "receiptSha256": "996a67617210f0021f022d8febab64d00d464ef4fa7226cf2179213c24548954",
+    "scope": "Exact native eight-certificate pool only. Managed historical certificates use separately recorded standard online SDK package-verification observations."
+  },
+  "managedPolicy": {
+    "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\SDK-NUGET-EXACT-VERIFY-POLICY-IL.json",
+    "bytes": 3054,
+    "sha256": "a758f486bee16f4a3d56c5ccbc33dcae5c50bc4f9bd38b3147c2dfd1d8492a84"
+  },
+  "signatureFreshnessBoundary": "Original actual per-package SDK observation windows and native PKI clocks are preserved. Current standard Windows online verification is the managed method; OS certificate network request count and raw CRL originals were not independently enumerated. No assertion that all historic signing certificates are currently valid. Consumer must enforce its own current freshness/host/source/caps/deadline/graph.",
+  "packages": [
+    {
+      "id": "Microsoft.ApplicationInsights",
+      "version": "2.23.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.applicationinsights.2.23.0.nupkg",
+      "bytes": 1737910,
+      "rawSha256": "e6c7f76e0ec26598c7b1e2be1777e839c84486655e8a878fc4c655bd2e918dbd",
+      "rawSha512": "dd497bfad0c65e54a4f78d2a1644f3d0854d4cd01dd83ba506f8d5d53635e28152c7c13210dd5dd3985780aab146a7620de3ebaead8ef12c6f87088676c2157f",
+      "normalizedContentHash": "nWArUZTdU7iqZLycLKWe0TDms48KKGE6pONH2terYNa8REXiqixrMOkf1sk5DHGMaUTqONU2YkS4SAXBhLStgw==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-0\\original-1-nuspec.data",
+          "sha256": "184c649613d487d2b11466882ad83e375bf94f6aa228afae78dd4005bb0bb2a0",
+          "bytes": 2313,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-0\\original-14-cms.data",
+          "sha256": "1e9781ba812b702fcd4bfcbf4009cac880eb17215844c7cdfd840a6d9bb62197",
+          "bytes": 25615,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-0.log",
+      "actualSDKBlockSha256": "4016a0f009a96b1c345a84e08c755c3c07ef369a43eef895b003e3c9e1581345",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Bcl.AsyncInterfaces",
+      "version": "6.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.bcl.asyncinterfaces.6.0.0.nupkg",
+      "bytes": 76354,
+      "rawSha256": "e3df87fe2170a7e01f0880af59caa8f6eb380b3c40a4f282dfb43912aaf0f895",
+      "rawSha512": "221a05a0c910f7a87b620d8f3831ed392b4eb95d112bee274d35f27009ad2a26445de9d7cd235fe6fb4a03f2550874bda3be3dddd96edaf9c0852a9c23d7b099",
+      "normalizedContentHash": "UcSjPsst+DfAdJGVDsu346FX0ci0ah+lw3WRtn18NUwEqRt70HaOQ7lI72vy3+1LxtqI3T5GWwV39rQSrCzAeg==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-1\\original-1-nuspec.data",
+          "sha256": "3a965c424d56f1cee169d88cc9c04f2c04f01bd65f20147b26ac093d761beec9",
+          "bytes": 1559,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-1\\original-9-notice.data",
+          "sha256": "d7a68596ab69b06f51ca278a6545148e4269a9381c26d597c13df5d88e08cf5b",
+          "bytes": 1139,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-1\\original-10-notice.data",
+          "sha256": "a6344bfb229bc08d1071cec400eea216e307439f961c5943ec1b56d2245acb95",
+          "bytes": 46990,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-1\\original-14-cms.data",
+          "sha256": "1be128d1337424fcd896cd7ce872698c714bc998ffa6793eacf50bcf4d6e92f2",
+          "bytes": 18702,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "5a2901d6ada3d18260b9c6dfe2133c95d74b9eef6ae0e5dc334c8454d1477df4",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-1.log",
+      "actualSDKBlockSha256": "78a0d07205638fdf68d20696fe1cc514a2095e565ae666791acfdd3b2581cfbb",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Extensions.Configuration",
+      "version": "10.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.extensions.configuration.10.0.0.nupkg",
+      "bytes": 188338,
+      "rawSha256": "32c2ec9153e9902be8bf9f835886802c2b75a9f4515f8bb6dbc787c6fa44d1d8",
+      "rawSha512": "7148bfe7a41903421db7c49ec8c12c8c79175f9e6c994a869d60ecb45a3606868aa0429b1d8e7f78e32a895193b1ce8e76c5eae49cbd7d22ce391861912e4b35",
+      "normalizedContentHash": "H4SWETCh/cC5L1WtWchHR6LntGk3rDTTznZMssr4cL8IbDmMWBxY+MOGDc/ASnqNolLKPIWHWeuC1ddiL/iNPw==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-2\\original-1-nuspec.data",
+          "sha256": "34693997ad3738ce76702051669f5380fb7c6614804804102b10ec7a704a6ca1",
+          "bytes": 2432,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-2\\original-15-notice.data",
+          "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21",
+          "bytes": 78041,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-2\\original-22-cms.data",
+          "sha256": "8f5cff57d49d3dce8e679af57defc177466a0c84253c71133959f080c6630c9e",
+          "bytes": 25748,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-2.log",
+      "actualSDKBlockSha256": "4de51d91e90b8c39bbeb2457cc6dd59fc6c603ddcbc4eb469ed8f6dd4a70ccda",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Extensions.Configuration.Abstractions",
+      "version": "10.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.extensions.configuration.abstractions.10.0.0.nupkg",
+      "bytes": 146564,
+      "rawSha256": "19c82b9d302278257b0154f5df3c8e8dfc302fce9ef7d8a23bf32230ec4f186d",
+      "rawSha512": "63c407e088d6927a64ecd84ddea7e87735c5164ea4f3a877435ba6de1f35e83a1f0d565a2179ca7c7eaadebcfccc50692aece10e0212a7c3d5803229446c6e16",
+      "normalizedContentHash": "d2kDKnCsJvY7mBVhcjPSp9BkJk48DsaHPg5u+Oy4f8XaOqnEedRy/USyvnpHL92wpJ6DrTPy7htppUUzskbCXQ==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-3\\original-1-nuspec.data",
+          "sha256": "d8124af5988bf172eff7d8469a0e16bf7c5253530440b4ca6ba18a4890740f9c",
+          "bytes": 1992,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-3\\original-15-notice.data",
+          "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21",
+          "bytes": 78041,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-3\\original-22-cms.data",
+          "sha256": "50c353c5399c93ca89c43866c04a19323a0c49ef46c64205d7e261ed9860d1d3",
+          "bytes": 25748,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-3.log",
+      "actualSDKBlockSha256": "49e08aeb71298968c73e27883bd942b2ab2a85c39187870337e8a484814dd780",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Extensions.Configuration.Binder",
+      "version": "10.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.extensions.configuration.binder.10.0.0.nupkg",
+      "bytes": 392767,
+      "rawSha256": "612896a00dd5411db693af9b484014a9e1bb503cd99497c75834ee6d43b957c5",
+      "rawSha512": "6c7f803bf2a5afaf13239dd495f8f25663e36fae42d7840416619c13976cfd294de2c4b4728206194dd0b38ee831089a81f3f63e8ba536c60d1b7fd5b97691d0",
+      "normalizedContentHash": "tMF9wNh+hlyYDWB8mrFCQHQmWHlRosol1b/N2Jrefy1bFLnuTlgSYmPyHNmz8xVQgs7DpXytBRWxGhG+mSTp0g==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-4\\original-1-nuspec.data",
+          "sha256": "10a186eb097268352bfaa01d9e78256557f8c3ef7fc0a370d05fc8952b03dca4",
+          "bytes": 2860,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-4\\original-30-notice.data",
+          "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21",
+          "bytes": 78041,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-4\\original-33-cms.data",
+          "sha256": "631aeada3ec5c3f471254ae99270be68d073c1153a8d7535a137f0af2de1beb5",
+          "bytes": 25747,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-4.log",
+      "actualSDKBlockSha256": "93e0573a57e1fbb954e191ad0c8e3db901bed05eb8f3cf1cf3af6e8934ccc272",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Extensions.Configuration.EnvironmentVariables",
+      "version": "10.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.extensions.configuration.environmentvariables.10.0.0.nupkg",
+      "bytes": 122080,
+      "rawSha256": "51ac9f7aaac098dc9f3a4ba170129f8fc5298d0a95fd932a5ab0f2c42486d4c0",
+      "rawSha512": "4dcbacdb9f69dc3bcb7bba603be1950fea154379f61412d2c85e0185963f31cf36387b848d549e95eddf8cac5550fd2593de110ae19b8a8c82987fa6997ce29b",
+      "normalizedContentHash": "TmFegsI/uCdwMBD4yKpmO+OkjVNHQL49Dh/ep83NI5rPUEoBK9OdsJo1zURc1A2FuS/R/Pos3wsTjlyLnguBLA==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-5\\original-1-nuspec.data",
+          "sha256": "d983844f640f57fe17180056f9720d4380ace835d4d66e79747b04357862e7f9",
+          "bytes": 2712,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-5\\original-15-notice.data",
+          "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21",
+          "bytes": 78041,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-5\\original-22-cms.data",
+          "sha256": "8e4e664d6c477398d7b213f04486b7d6fff0b98958cebb5291c1e25b9f273cab",
+          "bytes": 25748,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-5.log",
+      "actualSDKBlockSha256": "74b6a4a7f94bb111de618e0ea3b171f0bbb0662ec8aee67145e9206fefad3bf3",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Extensions.DependencyInjection",
+      "version": "10.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.extensions.dependencyinjection.10.0.0.nupkg",
+      "bytes": 351239,
+      "rawSha256": "2d89bd855968fd1f5cd9a00a1ec0d8279bd8f54d3edc9bdc9667b7a2edc1b6f4",
+      "rawSha512": "8ca54e7dfcb35bbcaa9a292f0107faf6808a8cf94c8879a7aafe31ae841174d29009895421ce2bbc9bfafd86d0caabd402bbebcc84f1961774740dcc155229bb",
+      "normalizedContentHash": "f0RBabswJq+gRu5a+hWIobrLWiUYPKMhCD9WO3sYBAdSy3FFH14LMvLVFZc2kPSCimBLxSuitUhsd6tb0TAY6A==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-6\\original-1-nuspec.data",
+          "sha256": "0f3b7bc57edb81ae05a1c59b0828d99cd2c1bd6b5de34dcce9b7519081461904",
+          "bytes": 2509,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-6\\original-17-notice.data",
+          "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21",
+          "bytes": 78041,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-6\\original-24-cms.data",
+          "sha256": "8239aefd36a3063a82b194e205252aeb0e2f959a7bc41c09e4fde5ec069f855e",
+          "bytes": 25748,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-6.log",
+      "actualSDKBlockSha256": "2dc88432c8771f6d7a20e9bbc1bf9082dacfc444fc4f89da9d8de22ca45d7656",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Extensions.DependencyInjection.Abstractions",
+      "version": "10.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.extensions.dependencyinjection.abstractions.10.0.0.nupkg",
+      "bytes": 285647,
+      "rawSha256": "f62a1d5cfdfd62a831a269ce3cec5dfe6cdb1b425f3925f3168354de8993d8fb",
+      "rawSha512": "475254983871f35cd70118fbff743049ec623bd94d1363c13d7c8ae3bb1b9521883a5e0977ad222d8f30b6627f3738695ed3c1892393327d8a158b9fed069123",
+      "normalizedContentHash": "L3AdmZ1WOK4XXT5YFPEwyt0ep6l8lGIPs7F5OOBZc77Zqeo01Of7XXICy47628sdVl0v/owxYJTe86DTgFwKCA==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-7\\original-1-nuspec.data",
+          "sha256": "9e13d9b543405e86955f6b047a1d7680684fa37f4ec094f4bad6e33ba775c0db",
+          "bytes": 1741,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-7\\original-17-notice.data",
+          "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21",
+          "bytes": 78041,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-7\\original-24-cms.data",
+          "sha256": "bfda77d7091e58c19a264192b79e657414f44e26763635ddc520c2b771412f0d",
+          "bytes": 25746,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-7.log",
+      "actualSDKBlockSha256": "0b0531e5405beead27bea68ddac4c8602e959497485edb83a93bea7332a94545",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Extensions.Diagnostics.Abstractions",
+      "version": "10.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.extensions.diagnostics.abstractions.10.0.0.nupkg",
+      "bytes": 151857,
+      "rawSha256": "722c7b43143f837b23eab797bb78e7d1c46fd918a3cdc79a2cb91c844193b791",
+      "rawSha512": "f1d913e7baab3def34ac48ed910a68f2673a678731d4b905d0b6c3174876b86520405262bd7aae684a495723181a90d99d6f4ba6b0cdec802a7fb335f1bc05e8",
+      "normalizedContentHash": "SfK89ytD61S7DgzorFljSkUeluC1ncn6dtZgwc0ot39f/BEYWBl5jpgvodxduoYAs1d9HG8faCDRZxE95UMo2A==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-8\\original-1-nuspec.data",
+          "sha256": "341c0a1750db316a932c601ec1282596eae2c478fd39ed877eeb1f3802cad23f",
+          "bytes": 3499,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-8\\original-14-notice.data",
+          "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21",
+          "bytes": 78041,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-8\\original-21-cms.data",
+          "sha256": "64ef5c3b2170ffe88cf5fc26c13fb2f742b2c491c7d94588aaedc169c7f18d8b",
+          "bytes": 25739,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-8.log",
+      "actualSDKBlockSha256": "77774598091328386e77b1b896caad87f1b7e6f81727cfa97d5e9c78ac5c02a1",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Extensions.Logging",
+      "version": "10.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.extensions.logging.10.0.0.nupkg",
+      "bytes": 229881,
+      "rawSha256": "3feccf01a74b2fade4fc6a8adf8fea0a1a908d8f5a211c597f1941f65aac4abb",
+      "rawSha512": "e14f295d608f7d8523ffae4b623593e1e89ce3e6d04d5d653b45fa3a6c3cec033c6e9e4521299745615347ff071c258ae898ad59d7274235e4a955fcb64da729",
+      "normalizedContentHash": "BStFkd5CcnEtarlcgYDBcFzGYCuuNMzPs02wN3WBsOFoYIEmYoUdAiU+au6opzoqfTYJsMTW00AeqDdnXH2CvA==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-9\\original-1-nuspec.data",
+          "sha256": "a98260030de003de5c14cb84e56a8bbc9937df42e3174e627e683fe64beace23",
+          "bytes": 3899,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-9\\original-17-notice.data",
+          "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21",
+          "bytes": 78041,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-9\\original-24-cms.data",
+          "sha256": "33a8fe85c53ace557243fcf12504fd54cbf562d122c7c3f9fb02a5c98a998b61",
+          "bytes": 25747,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-9.log",
+      "actualSDKBlockSha256": "40a7812798798795432bbd3bbc416c1253bf34d7a71a9008efd0cdb1c19d4202",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Extensions.Logging.Abstractions",
+      "version": "10.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.extensions.logging.abstractions.10.0.0.nupkg",
+      "bytes": 822954,
+      "rawSha256": "067860199734d47c134b1a206afabb51eab857b88c037c0f9db7d1c10e118469",
+      "rawSha512": "0849462f3ea2ee5a06d8ab8a8b13f05f3cf466de66ebbc6a0a9cac4befc91ceb180ae03c42089ab0ca7a26ca7fe5b4ed1a8f73e235e1308d9997c9529c369dd1",
+      "normalizedContentHash": "FU/IfjDfwaMuKr414SSQNTIti/69bHEMb+QKrskRb26oVqpx3lNFXMjs/RC9ZUuhBhcwDM2BwOgoMw+PZ+beqQ==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-10\\original-1-nuspec.data",
+          "sha256": "126d33e134dcbe6a65a969b93e2faa3dcf73dbc460c307e783b4f719eed12688",
+          "bytes": 2990,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-10\\original-60-notice.data",
+          "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21",
+          "bytes": 78041,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-10\\original-65-cms.data",
+          "sha256": "16fd1bab7fe3beb142bf0739423c4302d250a2c23f28bf97653c2aeb34a92a3f",
+          "bytes": 25746,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-10.log",
+      "actualSDKBlockSha256": "8f3dff5b7fc14d8d5dfcedce86ea0928d568dc15e3c88dcc8bd9d6f318faf5a4",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Extensions.Logging.Configuration",
+      "version": "10.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.extensions.logging.configuration.10.0.0.nupkg",
+      "bytes": 142164,
+      "rawSha256": "eff4d63b56aaf217606dc4c42830562238120bd2a914dde4467317fb5d9b3a45",
+      "rawSha512": "8a5642d3c8c8fa67b124fafcd6403f0a5bd032fa297591f1868b7d08cf6100e398739a9194c19bc2f2853453c3f0df9ee5553d579c3f2899e0fc1de8ac9b76ec",
+      "normalizedContentHash": "j8zcwhS6bYB6FEfaY3nYSgHdpiL2T+/V3xjpHtslVAegyI1JUbB9yAt/BFdvZdsNbY0Udm4xFtvfT/hUwcOOOg==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-11\\original-1-nuspec.data",
+          "sha256": "d19e44fe80416905850f91045907bcfb23de39a8cb9b96b9d6a55a795ddf3807",
+          "bytes": 5746,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-11\\original-14-notice.data",
+          "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21",
+          "bytes": 78041,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-11\\original-21-cms.data",
+          "sha256": "3895fdc5923777a28da6d0e330688d9bd545ed620f89e775816ee9867db93df6",
+          "bytes": 25747,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-11.log",
+      "actualSDKBlockSha256": "cda2b83b0f116ebc5c1d2c9721f11d4e64ad92412d81f56aedddf9c5c306e3b0",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Extensions.Options",
+      "version": "10.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.extensions.options.10.0.0.nupkg",
+      "bytes": 497970,
+      "rawSha256": "8f930ea9948a794b71c739998f364c1b2d2f10b1ddbcfadaab04d0410355b180",
+      "rawSha512": "a2582f2659912b3c4d580097b5b4533500528fd22f00743326d84f1596c74542d5551835c0af7c956a76d3351618278f3ed1c411190a8363b91ba4466750b363",
+      "normalizedContentHash": "8oCAgXOow5XDrY9HaXX1QmH3ORsyZO/ANVHBlhLyCeWTH5Sg4UuqZeOTWJi6484M+LqSx0RqQXDJtdYy2BNiLQ==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-12\\original-1-nuspec.data",
+          "sha256": "7209d42974a0de402e1eec4c5099c48c6f1f83d08b36016c710e8dc23c9e1eff",
+          "bytes": 3182,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-12\\original-34-notice.data",
+          "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21",
+          "bytes": 78041,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-12\\original-39-cms.data",
+          "sha256": "ef65828b3d0d7fdcbe0e7474a6931d950fbf6069bb2ebb649cbd99c75b7b2d0b",
+          "bytes": 25746,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-12.log",
+      "actualSDKBlockSha256": "b6e60109ae8bb77e4c5246dbffcdb7ca54a8d73ab1f501ea8fafc2e1ffdd6455",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Extensions.Options.ConfigurationExtensions",
+      "version": "10.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.extensions.options.configurationextensions.10.0.0.nupkg",
+      "bytes": 132970,
+      "rawSha256": "5c602ce43c4cbd69e68d7f1da91c0a634becb92e34487bec7c9a81d6b3b82fb9",
+      "rawSha512": "136d8f07248e7185e5d68d6a30ce8c9cc2eef476fbe6c0957a61aecbfeeeb965456c1c99d1ddc51e66621f8d63f4fe48ce2df966ebec7d364f5242e1ae057a83",
+      "normalizedContentHash": "tL9cSl3maS5FPzp/3MtlZI21ExWhni0nnUCF8HY4npTsINw45n9SNDbkKXBMtFyUFGSsQep25fHIDN4f/Vp3AQ==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-13\\original-1-nuspec.data",
+          "sha256": "30ba601042f9ea75eef8de3826fa8fbdd41f1bd935c38c76dc0ebc74d828cb07",
+          "bytes": 4095,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-13\\original-15-notice.data",
+          "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21",
+          "bytes": 78041,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-13\\original-22-cms.data",
+          "sha256": "10c761ecd567188fa56454570d9fc5afd018b73e1c484c66ba8884b87d809e83",
+          "bytes": 25747,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-13.log",
+      "actualSDKBlockSha256": "58745c38856e7a16b4f184cf04163f340f648f3968311e5d53abe37f07e14d0c",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Extensions.Primitives",
+      "version": "10.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.extensions.primitives.10.0.0.nupkg",
+      "bytes": 208365,
+      "rawSha256": "0eea74f0a729b4b8e59e9379b79ffffa9e27f0551381102ae27ff0d6ceaeb3e2",
+      "rawSha512": "abb05f3f99ab4df467b8cd2a04587e556a576ae13c2d3cd7b482f549983487f33239818b2a7b0f3db5eb451d28747718c40e4e9f721074a2dda9338c34093b6d",
+      "normalizedContentHash": "inRnbpCS0nwO/RuoZIAqxQUuyjaknOOnCEZB55KSMMjRhl0RQDttSmLSGsUJN3RQ3ocf5NDLFd2mOQViHqMK5w==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-14\\original-1-nuspec.data",
+          "sha256": "01892e3b694e60d0fbbc2920f600a3344be647bdf9c046f7acf69272e4fa968f",
+          "bytes": 1755,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-14\\original-15-notice.data",
+          "sha256": "6d15e10a101c6bfff2ab4429ed061bf76c456fc4b23ad6b03e0d0f8377148a21",
+          "bytes": 78041,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-14\\original-22-cms.data",
+          "sha256": "5a6d3ed87e5b73f36a69f2a3edb76164a70d93008596a886c82a086cd5526492",
+          "bytes": 25747,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-14.log",
+      "actualSDKBlockSha256": "136b4c3b23b4ea6e7797cd0cc18c933d519535aac235542359dbf19d2a437e84",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.NETCore.App.Host.linux-x64",
+      "version": "11.0.0",
+      "kind": "native-corehost",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\data-admission-gate\\outputs\\tech-refresh-m0-20261114\\own04-common-normal-wiring-db748-sdk0-20261116\\private-cas-local-20261116\\curation-stage-a-20261116\\STAGE-B-DISCOVERY-ONCE\\raw\\microsoft.netcore.app.host.linux-x64.11.0.0.nupkg",
+      "bytes": 5085644,
+      "rawSha256": "a152b2d7ebb7fb9431ab96490e4c35c86af564419c20d81745e71760a4465469",
+      "rawSha512": "a7d54c6d254dd2f5807f5a23f8d4e6d98ba48b9954fbb7af26994f7a26760bcf41d762fa63626b4c0773bc44c5285cc73f19ffe1c466cb9b48e2d27f11de616c",
+      "normalizedContentHash": "TDrPTaVbpOUJI6n1tFlcPsFrvRAasdzJB9ZrkVQ6yNqc1FazgwbzxSFZlB2xjZPen3chGd8zWYB63QSNfF9vbQ==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-verify-report-full-input-once-20261117\\proof-linux-x64\\sdk11-curation-linux-x64\\curation\\original-data\\1-1.data",
+          "sha256": "d6cf0867b865f014b38f79408c7303c580eaa03736e114071f90c4ce6f96cadb",
+          "bytes": 1000,
+          "kind": "Microsoft.NETCore.App.Host.linux-x64.nuspec"
+        },
+        {
+          "path": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-verify-report-full-input-once-20261117\\proof-linux-x64\\sdk11-curation-linux-x64\\curation\\original-data\\1-4.data",
+          "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+          "bytes": 1116,
+          "kind": "LICENSE.TXT"
+        },
+        {
+          "path": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-verify-report-full-input-once-20261117\\proof-linux-x64\\sdk11-curation-linux-x64\\curation\\original-data\\1-6.data",
+          "sha256": "4790bb15f0edd1b105aecb05174fc6c589d4d9fad0c50616ef5f7dc365f1c8a6",
+          "bytes": 91918,
+          "kind": "THIRD-PARTY-NOTICES.TXT"
+        },
+        {
+          "path": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-verify-report-full-input-once-20261117\\proof-linux-x64\\sdk11-curation-linux-x64\\curation\\original-data\\1-18.data",
+          "sha256": "e6b246d5bf927b4dcfc7655aa0605c8ed10885cbd708cc96ad21f0d55e21e6b7",
+          "bytes": 25995,
+          "kind": ".signature.p7s"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "cmsPublisherVerified": true,
+      "RFC3161Verified": true,
+      "revocationCoverageVerified": true,
+      "verificationMode": "EXACT_NATIVE_POOL_CURRENT_CRL_PLUS_ACTUAL_PACKAGE_NUGET_VERIFICATION"
+    },
+    {
+      "id": "Microsoft.NETCore.App.Host.win-x64",
+      "version": "11.0.0",
+      "kind": "native-corehost",
+      "path": "C:\\Users\\Office\\Documents\\ChatGPT\\Git Projects\\frl01-local-inputs-20261117\\feed\\microsoft.netcore.app.host.win-x64.11.0.0.nupkg",
+      "bytes": 5824607,
+      "rawSha256": "5d89e190bda6185fb17f7b2a264b57406fac9a03fdcd079673b853c0f2b49334",
+      "rawSha512": "ecba38ae85b4a367b74a53764a429152fa58bf689b562774be034617294ba468cd4b0030191fc57b9d2ebea76d485d5374a5cc3aeb7d3fcf19de74e5b5100bee",
+      "normalizedContentHash": "iAr5yCMlI0tNvg6t51vg+FCD+t3LuP77Ct8yoL3tkHr8DxTRwQgkabi1AX0PLPFPJD0a1rkIaLBFe+YYqBOfVg==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary01-five-originals-once-20261117\\package-1\\original-1-nuspec.data",
+          "sha256": "b7f3c7ada7ee50c61b9fbd1bfc4254c33147d9cf67d94ebc60342e385050d543",
+          "bytes": 1018,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary01-five-originals-once-20261117\\package-1\\original-4-notice.data",
+          "sha256": "d7a68596ab69b06f51ca278a6545148e4269a9381c26d597c13df5d88e08cf5b",
+          "bytes": 1139,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary01-five-originals-once-20261117\\package-1\\original-6-notice.data",
+          "sha256": "e3a241a6cf35167d82bf7e081de9641c59d10d2dbd8824409817bed31980d407",
+          "bytes": 93617,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary01-five-originals-once-20261117\\package-1\\original-24-cms.data",
+          "sha256": "cdf6e72eb840b6a2e3889c461c6085eb3e94091da6474319aa42b1ec765e0b91",
+          "bytes": 25995,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "cmsPublisherVerified": true,
+      "RFC3161Verified": true,
+      "revocationCoverageVerified": true,
+      "verificationMode": "EXACT_NATIVE_POOL_CURRENT_CRL_PLUS_ACTUAL_PACKAGE_NUGET_VERIFICATION"
+    },
+    {
+      "id": "Microsoft.NETCore.App.Runtime.linux-x64",
+      "version": "11.0.0",
+      "kind": "native-corehost",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\data-admission-gate\\outputs\\tech-refresh-m0-20261114\\own04-common-normal-wiring-db748-sdk0-20261116\\private-cas-local-20261116\\curation-stage-a-20261116\\range-source-amendment-20261116\\RANGE-DISCOVERY-ONCE\\raw\\runtime-linux-x64-byte-candidate.nupkg",
+      "bytes": 42270532,
+      "rawSha256": "458f0a7e0de107e4c08b3f375b920cd9427bbb5463870187b5f8afff0eb8664f",
+      "rawSha512": "f76bc258a41b896f53d90802453c221d51e9c69bfc7c300e8824549e53bd4242e1776a1618a26df7384737899b77b025fd6981c03fad17426df14c7939fa31ee",
+      "normalizedContentHash": "WTqFNKlUfzbporrlDrd4zKoddHECrKAh1I5Ms54ksoq/H6A5bfedZVefcRYrFiAlF0FBaOf0RCxSyuWmaNcq2w==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-verify-report-full-input-once-20261117\\proof-linux-x64\\sdk11-curation-linux-x64\\curation\\original-data\\2-1.data",
+          "sha256": "b018757b94b545a3e12a6e655541eec0af12fd425cf077191c5b13d023df8244",
+          "bytes": 1003,
+          "kind": "Microsoft.NETCore.App.Runtime.linux-x64.nuspec"
+        },
+        {
+          "path": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-verify-report-full-input-once-20261117\\proof-linux-x64\\sdk11-curation-linux-x64\\curation\\original-data\\2-4.data",
+          "sha256": "cfc21f5e8bd655ae997eec916138b707b1d290b83272c02a95c9f821b8c87310",
+          "bytes": 1116,
+          "kind": "LICENSE.TXT"
+        },
+        {
+          "path": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-verify-report-full-input-once-20261117\\proof-linux-x64\\sdk11-curation-linux-x64\\curation\\original-data\\2-6.data",
+          "sha256": "4790bb15f0edd1b105aecb05174fc6c589d4d9fad0c50616ef5f7dc365f1c8a6",
+          "bytes": 91918,
+          "kind": "THIRD-PARTY-NOTICES.TXT"
+        },
+        {
+          "path": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-verify-report-full-input-once-20261117\\proof-linux-x64\\sdk11-curation-linux-x64\\curation\\original-data\\2-210.data",
+          "sha256": "e5d89bd848a1a32e8f18aa47dd04273d81fb045472ca5d6c6be4ddadf2003fbe",
+          "bytes": 25994,
+          "kind": ".signature.p7s"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "cmsPublisherVerified": true,
+      "RFC3161Verified": true,
+      "revocationCoverageVerified": true,
+      "verificationMode": "EXACT_NATIVE_POOL_CURRENT_CRL_PLUS_ACTUAL_PACKAGE_NUGET_VERIFICATION"
+    },
+    {
+      "id": "Microsoft.NETCore.App.Runtime.win-x64",
+      "version": "11.0.0",
+      "kind": "native-corehost",
+      "path": "C:\\Users\\Office\\Documents\\ChatGPT\\Git Projects\\frl01-local-inputs-20261117\\feed\\microsoft.netcore.app.runtime.win-x64.11.0.0.nupkg",
+      "bytes": 43769220,
+      "rawSha256": "1acb5da59cd994d3d50c9c52a9701bc8342948a1d8e4165f49bedf267c286b36",
+      "rawSha512": "65942ae94a68d0ec980ad343b05fe7e26b1610e7ad74695b3e29ba28c74a550a49fbaa6588c995730f2c2087fb5896616dce4540003dabd5dabecd08fd1b9b48",
+      "normalizedContentHash": "nAsnzl0M8c9nqmkmC/+eIgTsfLadtoCMkSYlerf3fuasvKYNhVXmbxpi2bJzpx3kW343wuH4HI38DDZ8QeAA4A==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary01-five-originals-once-20261117\\package-2\\original-1-nuspec.data",
+          "sha256": "e4af04a4e90157a52e824c8cbe99d9483aaf121f89a93f25da86e6f2f0b9a4e4",
+          "bytes": 1021,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary01-five-originals-once-20261117\\package-2\\original-4-notice.data",
+          "sha256": "d7a68596ab69b06f51ca278a6545148e4269a9381c26d597c13df5d88e08cf5b",
+          "bytes": 1139,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary01-five-originals-once-20261117\\package-2\\original-6-notice.data",
+          "sha256": "e3a241a6cf35167d82bf7e081de9641c59d10d2dbd8824409817bed31980d407",
+          "bytes": 93617,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary01-five-originals-once-20261117\\package-2\\original-209-cms.data",
+          "sha256": "174add7e442122447e5c3c0a970ef54df236386913e0ba7c354a23bf45a4ad14",
+          "bytes": 25995,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "cmsPublisherVerified": true,
+      "RFC3161Verified": true,
+      "revocationCoverageVerified": true,
+      "verificationMode": "EXACT_NATIVE_POOL_CURRENT_CRL_PLUS_ACTUAL_PACKAGE_NUGET_VERIFICATION"
+    },
+    {
+      "id": "Microsoft.Testing.Extensions.Telemetry",
+      "version": "2.5.2",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.testing.extensions.telemetry.2.5.2.nupkg",
+      "bytes": 517775,
+      "rawSha256": "fdc508edfbba0741f92d0c298b4688129c200b979ae1d057debc5f88565c458a",
+      "rawSha512": "9a372a18499687500c9f33fd324450d7f6fc96f78ac86be08b7f39f5bc2f7cd9137eb6513550df82d2b6be4d03cddbf82dc4873cf098e4d3bd0d38bf8338c99c",
+      "normalizedContentHash": "j1XGKCBrmfNm0tmotMa05GlqVtb2cW5UaMkKCFHPyyFHz5rdOy7TD0SVXnZJ+QMrjPAHjRoRqn5qcsUjICSWwg==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-15\\original-1-nuspec.data",
+          "sha256": "8f99a0209f490ec2473a14ad2e9cd9279601781fd2be938828bf9ab4f4827aea",
+          "bytes": 2195,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-15\\original-61-cms.data",
+          "sha256": "c478464a1e34bb7e377310a84e38afca108678d8a4a38319595eaea888416c64",
+          "bytes": 25995,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-15.log",
+      "actualSDKBlockSha256": "15a16eb0ccd57f4ecad6a5da64ecb54eefcc6749cda061fed71d95b994102dc9",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Testing.Extensions.TrxReport.Abstractions",
+      "version": "2.5.2",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.testing.extensions.trxreport.abstractions.2.5.2.nupkg",
+      "bytes": 114290,
+      "rawSha256": "915a82acf3d3af17ca0ff856adb8a536d01a134a443a462946d9564a08b22e9d",
+      "rawSha512": "74fbdeaf0f237c21dd5eb8edbf5dffa5b7c46625d2d2b29eb26e172d19002e31b476aa8a51dd5bfa560ea241830ec6b710974fd63f719950a16cc741b2e6ac28",
+      "normalizedContentHash": "+xTIaIU9H44GxOyjrfieMSZnxltGvleA3jCRtdEAzlXKb85pMmVYMLUv2JS8KwD+U2wQHUgvy5YfQfWoPEfVdQ==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-16\\original-1-nuspec.data",
+          "sha256": "0ce29b1408241b94222a6b8a954322fa285b7733c41ad778acf5b55b92a495ee",
+          "bytes": 1948,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-16\\original-15-cms.data",
+          "sha256": "af3626d703c32776298be8f9a7aa4bb2a6df7ed8004f50cacdbafd9aaa8de00b",
+          "bytes": 25995,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-16.log",
+      "actualSDKBlockSha256": "fcb08f3741dc4c390a51870af5cdf1c6e940d0111ceb076f0ead08af6e684a23",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Testing.Platform",
+      "version": "2.5.2",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.testing.platform.2.5.2.nupkg",
+      "bytes": 3792942,
+      "rawSha256": "9ac2d8d4ff97a506eeba446ba1bc5b7a77e882d1823fb45373a60dfd0b7d2463",
+      "rawSha512": "e8aa808d280c15589f50e11bb9191bd5b81a797ed7d7c24286933ef8d596d6e001a5c9b9665712de50a7f4454cbd35faf84d8f610316840313efe41e1ad1fd7a",
+      "normalizedContentHash": "ocX0rgGY78dKfmZlZe4hB0/dvlh7wJgUAWS+KfwrqxB9DpNsjshnne9dppCKnFNEOkX4QYsrdUU++NInFPiCBw==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-17\\original-1-nuspec.data",
+          "sha256": "07061c3f0b5df19f88a0a476a19d885c647da32a76fa1f3410ef5d3c2705742e",
+          "bytes": 1442,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-17\\original-68-cms.data",
+          "sha256": "5dea3881a71249bdef669ef9181b2a604f59b0a517184b10ab7a49ab4f043144",
+          "bytes": 25994,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-17.log",
+      "actualSDKBlockSha256": "7fcd55a9ba5683364d22dbefbabea2ec7b2c964bf5bba1e931fa4ab02fde4d53",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Testing.Platform.MSBuild",
+      "version": "2.5.2",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.testing.platform.msbuild.2.5.2.nupkg",
+      "bytes": 2279673,
+      "rawSha256": "04616888e7eee8e5e6e042354eeb41f5ad34d60bfb015681596a372a0f904e64",
+      "rawSha512": "08afa4b6a9a8709b22ec1f8b35a56c859c6fec269c561e0dca3eedbec8eec6615e6b9d8e7739b127b115eed705c8809fa92ab13e643595e9a85ff6dcecd39174",
+      "normalizedContentHash": "Jey2v0hd7WHHa7pr6MRNKtA07FvxcOMTCtIhTI7uBZ/qR5m1mgCVCo5L1rtVAtqgMhGA205bUwq9+is4LiCzpw==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-18\\original-1-nuspec.data",
+          "sha256": "26203820dcae0e0410fd9856822f166b8feb8b6ea295f40bb249be748abc470b",
+          "bytes": 1827,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-18\\original-97-cms.data",
+          "sha256": "e1ff42502ea5f5885dbdf83c99353be6556a8bdcc0da032f575a7c8560bccaf6",
+          "bytes": 25996,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-18.log",
+      "actualSDKBlockSha256": "73f56d79428c82f67b71e65ea2fce6f6a9502f18928210ea7004b6a559bd9a3a",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Microsoft.Win32.Registry",
+      "version": "5.0.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\microsoft.win32.registry.5.0.0.nupkg",
+      "bytes": 354731,
+      "rawSha256": "f64ca53c67ca65ce7cc85a8d29aefbb2da2672836731e1115e8cd62730dc5080",
+      "rawSha512": "471e66567ce59cc86475aece7815d05261264ce114e0c1688ba2551dd51494901fa72dd7a8f74f8e8f0f3dba74af8595f177552f3c06abb4bfce76692197076e",
+      "normalizedContentHash": "dDoKi0PnDz31yAyETfRntsLArTlVAVzUzCIvvEDsDsucrl33Dl8pIJG06ePTJTI3tGpeyHS9Cq7Foc/s4EeKcg==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-19\\original-1-nuspec.data",
+          "sha256": "eb8c4b9d4ebe62d8528dec6ab2a752c2e3488f28f882a6c45a33dcc21eacc58e",
+          "bytes": 5003,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-19\\original-2-notice.data",
+          "sha256": "d7a68596ab69b06f51ca278a6545148e4269a9381c26d597c13df5d88e08cf5b",
+          "bytes": 1139,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-19\\original-3-notice.data",
+          "sha256": "78e22d4d24a710d2a09426c09060f3448204778ed506b1da55447a6089b54fae",
+          "bytes": 44279,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-19\\original-37-cms.data",
+          "sha256": "eb36362b3b0f9390d9b29f618f0dd3a9adf2bf72309a7b25e8b87439dfc8b781",
+          "bytes": 18703,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "0e5f38f57dc1bcc806d8494f4f90fbcedd988b46760709cbeec6f4219aa6157d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-19.log",
+      "actualSDKBlockSha256": "3f6ee2073f7188b35fef2588a7563f4b684ccbc70aea848cc43ba24a6e6b1f42",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "Npgsql",
+      "version": "10.0.3",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\npgsql.10.0.3.nupkg",
+      "bytes": 1847911,
+      "rawSha256": "75d0970923a8c9fcbbd37e4ebe72fee0b10362a1e36723e86777df1b6728316d",
+      "rawSha512": "f70658951eabd6e2c69c0c41b943ce0a681b4ba483b552b21a4674b4318f6811d86db7440c46a30f4544aeaf96fdd9f78077c9dd6bce75968d34dc9b9c50aea4",
+      "normalizedContentHash": "7nb5YzXuvWWJxB0J8DiyL3we+X4FOctZrt0fIBnucOIaIevFEEwGQVZKtiu9olXdlNAK1eNgqSral6r/jlhI4w==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-20\\original-1-nuspec.data",
+          "sha256": "ae37839d2561cd05c88e1180bcc36304a10837e121dc5cde1ffaf440f10402d1",
+          "bytes": 1601,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-20\\original-12-cms.data",
+          "sha256": "c4185aa46a06e88ab56972f6efa9e9d007ae053863876c12a678707a4977d51b",
+          "bytes": 13005,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "PostgreSQL",
+      "copyright": "Copyright 2025 \u00a9 The Npgsql Development Team",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795033655,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T20:27:35.404049+00:00",
+      "actualGlobalCommandExitCode": 1,
+      "reusedActualPackageSuccess": true,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-first-four-successes-20261118\\Npgsql.log",
+      "actualSDKBlockSha256": "110eade0ec486aecdc6a7af88716eeb287a3c0e1ea6f49f32c751c80ee4d184b",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "OpenTelemetry",
+      "version": "1.20.1",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\opentelemetry.1.20.1.nupkg",
+      "bytes": 1186102,
+      "rawSha256": "ad27a8c7a882339c675cc1c89b68bee7c1bfa0092e26a05963ebad97b3c14a04",
+      "rawSha512": "2da889951df55a39f0d2681122e9e0d047f26d85d9445562e4beb64147cd88299860ee3ebd5cb62669302f89f8f8371b93e83e9d3aa7038d9fcfc112e7aa2729",
+      "normalizedContentHash": "+XDw3fYbiv1a40aFnDJSQleeuUJciXuhoIA19XmcGhT47Hy/xZRqk8NCjHUDKrg72Ixjthicecp8ygBDNeH/Jw==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-21\\original-1-nuspec.data",
+          "sha256": "7e0d985272fe5fecbf92a0663ce0ee803e1be909f385e70abc9a07113b86f5b6",
+          "bytes": 4501,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-21\\original-4-notice.data",
+          "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+          "bytes": 11558,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-21\\original-5-notice.data",
+          "sha256": "3e8336cb4ab3ad8ecd2433c871648df7da03a2a7d62311896b25a0226a309fd3",
+          "bytes": 2183,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-21\\original-26-cms.data",
+          "sha256": "6cefcaf17aa2a325f6efe715e2ffc8e7ad255303a6dc07875c78905ad5809b5f",
+          "bytes": 12987,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "Apache-2.0",
+      "copyright": "Copyright The OpenTelemetry Authors",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795033655,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T20:27:35.404049+00:00",
+      "actualGlobalCommandExitCode": 1,
+      "reusedActualPackageSuccess": true,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-first-four-successes-20261118\\OpenTelemetry.log",
+      "actualSDKBlockSha256": "332c3858e993d4a632f55c75e13f23e6e99bb3bbe45a0448baedf9aeda83570b",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "OpenTelemetry.Api",
+      "version": "1.20.1",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\opentelemetry.api.1.20.1.nupkg",
+      "bytes": 308362,
+      "rawSha256": "0bb52964b123c2bdd943115c91ca9a2be0102464d6961f0141216c8c6fdca2ee",
+      "rawSha512": "35b4778a4756298158c4b3c7aa701e48057fcebc214fb4ccdcff5ddf498728a198e93164cd951941e58cbe2d486db0a5fe1dceb7d2ae2b7e38d1dc7925729d46",
+      "normalizedContentHash": "QO9hlwadOdJGR4vDpJyDnl9B62v7epIBSTIHUA4C+bCtrRaB4TWmYSnu3QVOIe7caH8dt7NaHRei6zebESJJyw==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-22\\original-1-nuspec.data",
+          "sha256": "2aa4688df96dd444f0c711b5d3663b084a4697845c258c81e4d373adbbac636a",
+          "bytes": 2006,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-22\\original-4-notice.data",
+          "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+          "bytes": 11558,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-22\\original-5-notice.data",
+          "sha256": "3e8336cb4ab3ad8ecd2433c871648df7da03a2a7d62311896b25a0226a309fd3",
+          "bytes": 2183,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-22\\original-23-cms.data",
+          "sha256": "0d3d040738f754d6e8b646ec67df5d6df1e842496b3500f23bf11b169b15e78d",
+          "bytes": 12987,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "Apache-2.0",
+      "copyright": "Copyright The OpenTelemetry Authors",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795033655,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T20:27:35.404049+00:00",
+      "actualGlobalCommandExitCode": 1,
+      "reusedActualPackageSuccess": true,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-first-four-successes-20261118\\OpenTelemetry.Api.log",
+      "actualSDKBlockSha256": "8bac89199cc45d0b1f4787fcca1c5c5df820b96825b6593332e9fbbf7de4bfc9",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "OpenTelemetry.Api.ProviderBuilderExtensions",
+      "version": "1.20.1",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\opentelemetry.api.providerbuilderextensions.1.20.1.nupkg",
+      "bytes": 120256,
+      "rawSha256": "ccd63762c4688c8e68ec459a4dc55b24b0564e0904b254e950df99282713faa5",
+      "rawSha512": "83a4a3ea1fb28bccf70139e100ce276e716a5e6266b7779d2a6f229793fb8c0e394fefc90ce0778303fa8658a6027b50a7c2bc12b142067cdb70d9c45410757d",
+      "normalizedContentHash": "eDzDY/jTBqRytkYECmVKF7ZP5sKmCIqv1SSnA5BSWltIIvc3931TOMRyCW1qCGNIgmtldtJhISnsmFNxOCfauQ==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-23\\original-1-nuspec.data",
+          "sha256": "7d9b33d12ebb8170c3052f3963defaae6df95ae0eb12f55054bbf99840d82abe",
+          "bytes": 2804,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-23\\original-4-notice.data",
+          "sha256": "1eb85fc97224598dad1852b5d6483bbcf0aa8608790dcc657a5a2a761ae9c8c6",
+          "bytes": 11558,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-23\\original-5-notice.data",
+          "sha256": "3e8336cb4ab3ad8ecd2433c871648df7da03a2a7d62311896b25a0226a309fd3",
+          "bytes": 2183,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-23\\original-23-cms.data",
+          "sha256": "600e732838efef3349eef951a2b7e4e7996bb227653dafc19698b411203396fc",
+          "bytes": 12987,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "Apache-2.0",
+      "copyright": "Copyright The OpenTelemetry Authors",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795033655,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T20:27:35.404049+00:00",
+      "actualGlobalCommandExitCode": 1,
+      "reusedActualPackageSuccess": true,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-first-four-successes-20261118\\OpenTelemetry.Api.ProviderBuilderExtensions.log",
+      "actualSDKBlockSha256": "79dec0bb48ede8ffe0c26f1d32e4fc967b069ec677180f0d862392479aff4859",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "System.Security.AccessControl",
+      "version": "6.0.1",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\system.security.accesscontrol.6.0.1.nupkg",
+      "bytes": 235270,
+      "rawSha256": "462e26f796417e8a4350655a85bbd4233b94cbd0f7150c1c5e9acfd88e885141",
+      "rawSha512": "e1beba70b45f8cc5ae06fdecf365f0bb5b58b9af6d7c79accfef15b5a7c7bbef65e10cf9f299418eb413aac86ffefaa0eab9d91650ce77cc398d390f0597ed42",
+      "normalizedContentHash": "IQ4NXP/B3Ayzvw0rDQzVTYsCKyy0Jp9KI6aYcK7UnGVlR9+Awz++TIPCQtPYfLJfOpm8ajowMR09V7quD3sEHw==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-24\\original-1-nuspec.data",
+          "sha256": "2fb3325fbcea2d5eee1eb5666fd391fac8498f7acefe34f922aaceafea5e9df3",
+          "bytes": 1564,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-24\\original-15-notice.data",
+          "sha256": "d7a68596ab69b06f51ca278a6545148e4269a9381c26d597c13df5d88e08cf5b",
+          "bytes": 1139,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-24\\original-16-notice.data",
+          "sha256": "7e96bfbc9187981d10b946a1f2c26609d968e645dd7521e6129389d03473e519",
+          "bytes": 47729,
+          "kind": "notice"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-24\\original-22-cms.data",
+          "sha256": "1ffaa791e75a090ba956931b6126399b2a7aef8bd289bee689ca90656b7f6556",
+          "bytes": 25629,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "MIT",
+      "copyright": "\u00a9 Microsoft Corporation. All rights reserved.",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-20.log",
+      "actualSDKBlockSha256": "d7c6529e05614c86b0c19c2ee765f5d9415761bd235eeec307c545b2ea09460f",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "xunit.analyzers",
+      "version": "2.3.0",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\xunit.analyzers.2.3.0.nupkg",
+      "bytes": 341517,
+      "rawSha256": "9a61efc10e4b2e99306ca34b61733af7db0d5eaf750eb6d7902064539a7bf9f7",
+      "rawSha512": "0a9a735543bcc89eaf52b2b84c0cfabd914a9e040377fedc16ab8d73ce6ef66b782b710bf69077dfabae0ae5c4c842d1850f803f7ace0436c399231b5a69d232",
+      "normalizedContentHash": "FcuLqoNBgQA4MmQXOdNWsDnlw+LBysWUcWOql6MCTXXFJZPn+qjbxHA9F9KBRiPH0Y97MLr1VE6LxdH8MgKUoQ==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-25\\original-1-nuspec.data",
+          "sha256": "c91da39b3ee8ddd66c205a9d9bc7df5d07e7f5b3d800c27f4d59cdf409b9d80f",
+          "bytes": 1361,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-25\\original-10-cms.data",
+          "sha256": "16d96a1810014a3aa02bceca6c4a6f3cb902f915215345ee9416d0acadb286f4",
+          "bytes": 25936,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "Apache-2.0",
+      "copyright": "Copyright (C) .NET Foundation",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-21.log",
+      "actualSDKBlockSha256": "155a404a4a35ad9324d8dfaac033a02d26119727c2ee2c444a536114984580d9",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "xunit.v3",
+      "version": "4.0.3",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\xunit.v3.4.0.3.nupkg",
+      "bytes": 32099,
+      "rawSha256": "cc54f2fa01f64df2c7e25cc826e81db08f9e1d9ebce2f41fd22adcb11d39eb8e",
+      "rawSha512": "72910d8c1348d6122b4c9ac373818ac7ce7df1aed3d578077fc03dd533844a3ed10929eacaec9c2e10d884a79d08ab9d7ae6074bca5954faea4113662b459803",
+      "normalizedContentHash": "GxBopTuV5aU7NS0iE1P6I6YCQscIAP0iIyyZqZhs1c8Ry3cdiOouEtQQpX8cA7E1gEnKGRMNA+7NlhBy13AEyg==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-26\\original-1-nuspec.data",
+          "sha256": "bb15fdb9065cf8e21b07c2cc0ad10a67be952c2177e5c70bfa2c0d425807ebcc",
+          "bytes": 1416,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-26\\original-8-cms.data",
+          "sha256": "94e6a1a583585d36403d7a6c40ab6cf8237010b21b29b1848130551f1af975e6",
+          "bytes": 25937,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "Apache-2.0",
+      "copyright": "Copyright (C) .NET Foundation",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-22.log",
+      "actualSDKBlockSha256": "c9fe73f3cc12ac7d8b002ba51508e202085cae726dec118ae626591a62eea23f",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "xunit.v3.assert",
+      "version": "4.0.3",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\xunit.v3.assert.4.0.3.nupkg",
+      "bytes": 293921,
+      "rawSha256": "46cbfedd6f8970cccd49e11730f045b8f2017872fcf370c463224e41f3babaa9",
+      "rawSha512": "177366f17701e99d5ee6d8cbec8065818cd1ef28023e012616620f5f034f1e9bdf5ccdb62d5a2052b70be4c007a5359484fd3b0830de6b8ace68b9f73256666b",
+      "normalizedContentHash": "RrlWQ3yXla+ud9JBWDIY9GnUS/DS44r3ObqqV7wdWt1GhS+SveCe0MBDL238VXYoV2mWnX/DhO2LdTq5FTlT7g==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-27\\original-1-nuspec.data",
+          "sha256": "73a6a4f033f24abcb48b7ecbd5cdf1babcc80b063772a13e87cb829792a3719d",
+          "bytes": 1280,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-27\\original-10-cms.data",
+          "sha256": "71e98b1da0d196791f72b03c6d452f3fb695638787d391d39f11c7f8c89a0c2b",
+          "bytes": 25938,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "Apache-2.0",
+      "copyright": "Copyright (C) .NET Foundation",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-23.log",
+      "actualSDKBlockSha256": "ceda91386980c5c9a83aa48fe6a08ded9706ef2e391177aa5c8d3b86604d91f5",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "xunit.v3.common",
+      "version": "4.0.3",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\xunit.v3.common.4.0.3.nupkg",
+      "bytes": 170002,
+      "rawSha256": "21f09821aad3f50e9f99231f61b67a5b5689bc448a9aabe06a1dcd6e9d59e91d",
+      "rawSha512": "d3bee9c5d2a6b9b38f8a665892cf2f9e32cd148a8d6d6290017c559cda941bbe421d4124d5b40f528095141d182188ec5cb4a2a9c3d038410b3ff916751c0aa4",
+      "normalizedContentHash": "+2qGz3rcveIxzbXeZVHU8dhMyaawt01mgm/zv1FJH2FPcvJpfTUqc1vQ3hK2V5zVt8QEDddA+B6fkf9/LWf/Pg==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-28\\original-1-nuspec.data",
+          "sha256": "0c3f782a8f7f787bc33a8856da029b037eef88bbd22449eb71787fa8464f4fb3",
+          "bytes": 1187,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-28\\original-8-cms.data",
+          "sha256": "b10f318a8dec4d53007f0caec24e0222ee319f2a7f18ec60b09d49994cf9b82f",
+          "bytes": 25937,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "Apache-2.0",
+      "copyright": "Copyright (C) .NET Foundation",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-24.log",
+      "actualSDKBlockSha256": "07e830b4bf6934738eb7ad9e61e19aadbda3bc51aad45db7721bcd44cf97851b",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "xunit.v3.core.mtp-v2",
+      "version": "4.0.3",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\xunit.v3.core.mtp-v2.4.0.3.nupkg",
+      "bytes": 434468,
+      "rawSha256": "fd5c27e51806ff166887948b15d9e52f22bb2ea1490ce446e04a1b38d2ab89c3",
+      "rawSha512": "8f01179acb34758aeb620a0a26a3842e0c7c75d8db44cad726d574b97f0b480bb00bb55c652a144b228cc1856a7fcc7f9fd57c9f7cfef2f0748ae2d7030e413a",
+      "normalizedContentHash": "CsmxEanMln1chMExl6TUjnH5kF0XUDb/SqWKXqnGD8UjpkZARAXi8JDtsUYdxuROcIIdwEfs3iHZeHmTeA8DUA==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-29\\original-1-nuspec.data",
+          "sha256": "c4cc53ababdb3c025658ce96d43bfbc012b11cb9b18b9f22d39a4089ed33a10c",
+          "bytes": 2288,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-29\\original-22-cms.data",
+          "sha256": "1377efea846909a5eab097004d17b7c767d9d0236b214f380aa3ebd9934311bb",
+          "bytes": 25937,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "Apache-2.0",
+      "copyright": "Copyright (C) .NET Foundation",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-25.log",
+      "actualSDKBlockSha256": "93794547d52cac7f55d5ac290259f2f9574209bc638f424d35a19b106997a361",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "xunit.v3.extensibility.core",
+      "version": "4.0.3",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\xunit.v3.extensibility.core.4.0.3.nupkg",
+      "bytes": 383461,
+      "rawSha256": "333b23b0a2ead5314ba03e88e07fd7365f745ae72faf22fecb2d2fd5749c47aa",
+      "rawSha512": "3f514cd8afaada1a22864fa845cdb3ab7b7d74f7585cead3e4d6eddbfac1ece4835b418dac964c7c83ced9370bc033ca953f6e44c499f4a2e28b1bd85b9eeefa",
+      "normalizedContentHash": "TBYqQKyT+XBDLSHjG6PnmQpooqatflBcWvNiESVS5ptQxWXVf/FGlkUfkNyHKRCUDSCxxHIJNgwO+SRosUmZEw==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-30\\original-1-nuspec.data",
+          "sha256": "c51a05d488aa7362c188fb39271c0656aabdc14437075d78bda7c19358b25d43",
+          "bytes": 1242,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-30\\original-8-cms.data",
+          "sha256": "2005610cee6a5fff013ddccf65fd618c0bf0935280bf031d6d267594e56627fa",
+          "bytes": 25938,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "Apache-2.0",
+      "copyright": "Copyright (C) .NET Foundation",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-26.log",
+      "actualSDKBlockSha256": "e788197d8d8315d56eda0205320cf119cb16c93db90e675c22b00778bb370fc2",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "xunit.v3.mtp-v2",
+      "version": "4.0.3",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\xunit.v3.mtp-v2.4.0.3.nupkg",
+      "bytes": 32233,
+      "rawSha256": "95aa4b3557071c076bb030474aa120e35b3458da82f8a025e91b045c0cadc9b7",
+      "rawSha512": "04bc0703bd22cc59c8719d5ca3e680dc5008f8cdeb865d46b930f20dbdfa059c77bdcacecf804d4a0d6920099ae76929c439ebc428fa234e38817f0c1a31a1e3",
+      "normalizedContentHash": "lad1hGmodKkfp3AgIwHVVIYeA9GfW125tnkYj7HvOyiwbDH8gpMKPPhzHRC1wc0w4a+0UsOHx2Ero/DtLXvtqA==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-31\\original-1-nuspec.data",
+          "sha256": "1e1f0960fd3c6a1b1ab28cc20ec3a64a9b55755b989898d00640ba10f3758e30",
+          "bytes": 1761,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-31\\original-8-cms.data",
+          "sha256": "ad21043712a9d07043088b3f44bf77a320629d512e32287e86a55ab26ba5dbb3",
+          "bytes": 25937,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "Apache-2.0",
+      "copyright": "Copyright (C) .NET Foundation",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-27.log",
+      "actualSDKBlockSha256": "679a66688e2a117039f41f93f90108ff88795bc3198b5e582aa9526f55b8d61c",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "xunit.v3.runner.common",
+      "version": "4.0.3",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\xunit.v3.runner.common.4.0.3.nupkg",
+      "bytes": 531944,
+      "rawSha256": "e19f2f84b3a22d915d20cf29f69b3e2b91d390c0dc82e9071d3f278a160a615a",
+      "rawSha512": "c490d10b8f110b27625975a6e7e0add5d1eee269f844483fe5f01a0ae50ffa12d591c29550553cfca4f50ebdfc4c2fdfa2c1d50ead2940ffb15b8543240eac26",
+      "normalizedContentHash": "J/kkhBgJg3wu1xI8gY2Esm3oRE47gNrGmKpT/XZDPOzZ3/F33yTK/ZH1CM6qDpAHoTT3GY/JgrVbS4T1JEKYiQ==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-32\\original-1-nuspec.data",
+          "sha256": "169dd2d6456bce2b17b853fca5b2e293b5931c0046603350f30d20be12cd21b2",
+          "bytes": 1410,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-32\\original-8-cms.data",
+          "sha256": "a863f6241c86d2820d16ddf812b7a30b6acbf29c9a223e0b316eaca74276abb5",
+          "bytes": 25938,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "Apache-2.0",
+      "copyright": "Copyright (C) .NET Foundation",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-28.log",
+      "actualSDKBlockSha256": "afd651d4bbd2218f2616d360eb28cd18d398a0abb19b26933e50a40fe23ac0e7",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    },
+    {
+      "id": "xunit.v3.runner.inproc.console",
+      "version": "4.0.3",
+      "kind": "managed",
+      "path": "E:\\Codex WorkSpace\\Git Projects\\fenced-shard-ownership-lab\\state\\acquisition-raw-cache-01\\archives\\xunit.v3.runner.inproc.console.4.0.3.nupkg",
+      "bytes": 134619,
+      "rawSha256": "7fe4577b94c5a044aab93c61b84441cb3076906a70769096f2987c9ffe949799",
+      "rawSha512": "2eaadc0e4acf32baa403bfad007eeff518134e6602c819037c0e8c814b37cd7c86081e04725e102872d5eb5e224fc054010813a5c028097fd5bec14f968644ca",
+      "normalizedContentHash": "lDvNs5exa8rBdWXX/wdapPTp81SNCvUarXC5iXzr1qvO168+Sx/Ytrk9VSLbSD3Y9KNK8PcOjMl1q7JfCoo3LQ==",
+      "verificationReceiptPath": "E:\\Codex WorkSpace\\Git Projects\\portfolio-management\\development-management-20261110\\wave4-state\\project04-shared-normal-final-20261117\\CONSUMER06-EXACT38-FINAL-INPUT-HANDOFF-20261118.json",
+      "verificationReceiptSha256": "57ac35195530230d6c639e8d38353490009821565606c378109b8f0605cc7860",
+      "producerProjectId": "04",
+      "cryptographicAdmission": true,
+      "retainedData": [
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-33\\original-1-nuspec.data",
+          "sha256": "094d81bd2e97a89fdb053b48df26d27faa45e573843605aaa0525bb52916ea14",
+          "bytes": 1519,
+          "kind": "nuspec"
+        },
+        {
+          "path": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\ordinary06-existing34-data-once-20261118\\package-33\\original-10-cms.data",
+          "sha256": "967d9037780c61f4050c64da302242afb0fad74766116dfa8947f29888f7776e",
+          "bytes": 25937,
+          "kind": "cms"
+        }
+      ],
+      "declaredLicense": "Apache-2.0",
+      "copyright": "Copyright (C) .NET Foundation",
+      "shippingLicenseBoundary": "Original metadata/CMS/any supplied full notices retained here; actual shipped graph still requires unchanged notices.resolve full-text gate. An expression is not relabelled a full license.",
+      "verificationMode": "STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE",
+      "actualPackageSuccess": true,
+      "reportedIssueCount": 0,
+      "sdkReportedRepositoryLeaf": "1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d",
+      "originalVerificationObservedAtUnix": 1795035946,
+      "originalVerificationWindowStartedAtUtc": "2026-11-18T21:05:46.335606+00:00",
+      "actualGlobalCommandExitCode": 0,
+      "reusedActualPackageSuccess": false,
+      "actualSDKBlockPath": "C:\\Users\\Office\\.codex\\visualizations\\2026\\11\\10\\01a1c661-2773-7f81-9ae7-c5756abd8095\\metadata-framing\\managed06-windows-sdk11-verify-once-20261118-02\\package-report-29.log",
+      "actualSDKBlockSha256": "3b3d7f6599e77e75fb25dc8d34b4a761a75e0cb8f1e94cc038de4844b4b43594",
+      "currentHistoricalCertificateValidity": "NOT_CLAIMED"
+    }
+  ],
+  "rawTotalBytes": 115548639,
+  "SDK_READY": false,
+  "productAdmission": false,
+  "Actions": 0,
+  "scope": "Reviewed package input identities/provenance only. Actual own source/current host/PID/caps/clock/graph/runtime/publication gates remain."
+}
