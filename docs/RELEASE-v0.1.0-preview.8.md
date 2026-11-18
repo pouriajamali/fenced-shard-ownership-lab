@@ -54,3 +54,10 @@ At source3d60114 the original50 C# units passed, CLI build had0 warnings/errors,
 
 
 The UTF-8-corrected phase passed the full notice regressions and stopped before verifier execution because the private fixed PATH omitted the already installed Windows OpenSSH directory. Its actual Job ended with population0 and exact lease release after185.516seconds. The local worker PATH now includes only the explicit existing System32/OpenSSH location in addition to the qualified SDK/Git/Windows paths; no install, key change or inherited PATH is used.
+
+
+### Completed Windows build and Linux restore cause
+
+Windows source48d7ec8 passed the full original native verify phase in207.953seconds:50 C# units, original oracle modes, notice/verifier/SBOM regressions, current advisory queries and412-file native Windows package checks. Actual Job population0 and exact lease release were observed. The first Linux phase stopped at its first locked restore after59.191seconds with actual pidfd/cgroup/manager terminal and exact release: the local environment omitted the original DisableTransitiveFrameworkReferenceDownloads=true property and therefore requested unrelated ASP.NET runtime packs. The Linux fixed environment now preserves that original property; no ASP.NET dependency or network fallback is added.
+
+A fixed package-only Windows continuation reuses the identity-bound completed source48d7ec8 unit/regression receipt only while application, SQL, target settings, locks, notices and validators remain byte-identical. It permits only the named local harness/documentation changes, rebuilds the native archive from the new exact clean source and reruns actual archive/notices/advisory/SBOM checks under the same original900-second caps. It does not replay the completed application tests.

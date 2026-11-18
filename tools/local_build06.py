@@ -4,7 +4,7 @@ from pathlib import Path
 import local_input06 as I
 need=I.need
 PROJECTS=('src/Ownership/Ownership.csproj','src/Ownership.Cli/Ownership.Cli.csproj','tests/Ownership.Tests/Ownership.Tests.csproj')
-BUDGETS={'locks':600,'verify':900}
+BUDGETS={'locks':600,'verify':900,'package':900}
 MANIFEST='tools/local06-input-admission.json'
 REPOSITORY_SIGNERS=frozenset(('0e5f38f57dc1bcc806d8494f4f90fbcedd988b46760709cbeec6f4219aa6157d','5a2901d6ada3d18260b9c6dfe2133c95d74b9eef6ae0e5dc334c8454d1477df4','1f4b311d9acc115c8dc8018b5a49e00fce6da8e2855f9f014ca6f34570bc482d'))
 MANAGED_MODE='STANDARD_ONLINE_WINDOWS_SDK_VERIFICATION_NO_REPORTED_UNKNOWN_OR_ISSUE'
@@ -99,7 +99,22 @@ def prepare_feed(root,out,v):
 def plan(stage,dotnet,config,packages,unit):
  seconds(stage);restore=lambda p,mode:[str(dotnet),'restore',p,mode,'--configfile',str(config),'--packages',str(packages)]
  if stage=='locks':return [restore(p,'--force-evaluate')+['--use-lock-file'] for p in PROJECTS]
+ if stage=='package':return [restore(PROJECTS[2],'--locked-mode')]
  return [restore(p,'--locked-mode') for p in PROJECTS]+[[str(dotnet),'run','--project',PROJECTS[2],'-c','Release','--no-restore','--','-noLogo','-xml',str(unit)],[str(dotnet),'build',PROJECTS[1],'-c','Release','--no-restore']]
+
+WINDOWS_VERIFY_REFERENCE='state/execution-evidence/net11-local-build06/verify-04c81c1ee0484045a4bc6625/receipt.json'
+WINDOWS_VERIFY_SHA='097e8ab7bed1803117d76800700698b57b18ce34205c4aeeed098a84c72b7a31'
+WINDOWS_VERIFY_COMMIT='48d7ec83c89c7def191a560d49d4b5e00c181e98'
+REPACKAGE_ONLY_CHANGES=frozenset(('tools/local_build06.py','tools/local_linux_build06.py','tools/test_local_build06.py','tools/ci06-source-pins.json','docs/RELEASE-v0.1.0-preview.8.md','README.md'))
+
+def repackage_changes(names):
+ need(set(names)<=REPACKAGE_ONLY_CHANGES,'REPACKAGE_APPLICATION_OR_VALIDATOR_SOURCE_CHANGED')
+
+def prior_windows_verification(root):
+ p=root.parents[1]/WINDOWS_VERIFY_REFERENCE;need(I.digest(p)==WINDOWS_VERIFY_SHA,'EXACT_PRIOR_WINDOWS_VERIFY_RECEIPT');v=I.read(p)
+ need(v['state']=='OWN06_LOCAL_VERIFY_COMMANDS_PASSED' and v['sourceCommit']==WINDOWS_VERIFY_COMMIT and v['released'] is True and v['wholePhaseBudgetMet'] is True and v['process']['actualCap']['activeProcessesAtTeardown']==0,'CLOSED_PRIOR_WINDOWS_VERIFY')
+ changed=subprocess.check_output(['C:/Program Files/Git/cmd/git.exe','-C',str(root),'diff','--name-only',WINDOWS_VERIFY_COMMIT,'HEAD'],timeout=10).decode().splitlines();repackage_changes(changed)
+ return {'sourceCommit':WINDOWS_VERIFY_COMMIT,'receipt':str(p),'receiptSha256':WINDOWS_VERIFY_SHA,'scope':'Prior real50 units/original oracle,notice,signature-verifier and SBOM regressions reused only with unchanged application/SQL/locks/target/notices/validators; new source archive rebuilt and checked.'}
 
 def lease(s):
  need(I.digest(I.LEASE)==s['leaseSHA256'],'CURRENT_STAGE_LEASE_BYTES');h=I.read(I.LEASE)
@@ -144,14 +159,15 @@ def graph(root,admitted):
 def unit_count(path):
  tree=ET.parse(path);assemblies=[n for n in tree.iter('assembly')];need(assemblies and sum(int(n.get('total','0')) for n in assemblies)==50 and sum(int(n.get('failed','0'))+int(n.get('errors','0'))+int(n.get('skipped','0')) for n in assemblies)==0,'ORIGINAL41_PLUS9_ALL_PASS')
 
-def post_verify(root,out,commit,dotnet,config,cache,run,rid='win-x64'):
+def post_verify(root,out,commit,dotnet,config,cache,run,rid='win-x64',regressions=True):
  # Original verify tools/oracles, under this same own Job and original phase clock.
  py=lambda name,*args:[sys.executable,'-B',str(root/'tools'/name),*map(str,args)]
- run(py('test_receipt_oracle.py','--out',out/'receipt-oracle-normal'),extra={'PYTHONOPTIMIZE':'0'})
- run(py('test_receipt_oracle.py','--out',out/'receipt-oracle-optimized'),extra={'PYTHONOPTIMIZE':'1'})
+ if regressions:
+  run(py('test_receipt_oracle.py','--out',out/'receipt-oracle-normal'),extra={'PYTHONOPTIMIZE':'0'})
+  run(py('test_receipt_oracle.py','--out',out/'receipt-oracle-optimized'),extra={'PYTHONOPTIMIZE':'1'})
  need(rid in ('win-x64','linux-x64'),'FIXED_NATIVE_PACKAGE_RID')
  run(py('package.py','--rid',rid,'--commit',commit,'--work',out/'build','--out',out/'delivery','--dotnet',dotnet,'--restore-config',config,'--packages',cache/'packages'))
- run(py('test_notices.py','--out',out/'notices-tests'));run(py('test_verifier.py','--out',out/'verifier-tests'))
+ if regressions:run(py('test_notices.py','--out',out/'notices-tests'));run(py('test_verifier.py','--out',out/'verifier-tests'))
  run(py('audit_dependencies.py','--dotnet',dotnet,'--out',out/'dependency-advisories.json'))
  archives=list((out/'delivery').iterdir());need(len(archives)==1 and archives[0].is_file() and archives[0].name.endswith('.zip' if rid=='win-x64' else '.tar.gz'),'ONE_NATIVE_PLATFORM_ARCHIVE')
  run(py('extract_package.py','--archive',archives[0],'--out',out/'extracted with spaces'))
@@ -159,7 +175,7 @@ def post_verify(root,out,commit,dotnet,config,cache,run,rid='win-x64'):
  run(py('check_package.py','--package',package,'--commit',commit,'--out',out/'package-checks.json'))
  rec=run([str(dotnet),'nuget','locals','global-packages','--list']);location=Path(rec['evidence'])/'stdout.log';text=location.read_text(encoding='utf-8-sig').strip();need(text.startswith('global-packages: ') and Path(text[len('global-packages: '):].strip()).resolve()==(cache/'packages').resolve(),'ACTUAL_OWN_NUGET_ARCHIVES')
  run(py('check_sbom_archives.py','--package',package,'--nuget-root',cache/'packages','--out',out/'sbom-archive-checks.json'))
- run(py('test_sbom_archives.py','--out',out/'sbom-regressions'))
+ if regressions:run(py('test_sbom_archives.py','--out',out/'sbom-regressions'))
  return {'archive':str(archives[0]),'sha256':I.digest(archives[0]),'package':str(package),'rid':rid,'gate':'ORIGINAL_NATIVE_PACKAGE_NOTICES_ADVISORY_SBOM_VERIFIERS_PASS','runtimeAcceptance':False}
 
 def worker(root,controller,path):
@@ -180,11 +196,13 @@ def worker(root,controller,path):
  for i,argv in enumerate(commands,1):
   run(argv)
   if s['stage']=='verify' and i==3:graph(root,v)
- locks=graph(root,v);package=None
+ locks=graph(root,v);package=None;reused=None
  if s['stage']=='verify':
   unit_count(out/'unit.xml');package=post_verify(root,out,s['commit'],dotnet,config,cache,run)
+ elif s['stage']=='package':
+  reused=prior_windows_verification(root);package=post_verify(root,out,s['commit'],dotnet,config,cache,run,regressions=False)
  I.write(out/'sdk-pool-postcondition.json',sdk_pool_postcondition(root,dotnet.parent,'win-x64'));j.current_witness(s['jobName'])
- admission(root,int(time.time()));lease(s);I.write(out/'worker-result.json',{'state':'OWN06_LOCAL_'+s['stage'].upper()+'_COMMANDS_PASSED','stage':s['stage'],'sourceCommit':s['commit'],'sourceTree':s['tree'],'SDKExecutions':3 if s['stage']=='locks' else 10,'commandGroups':len(records),'nativeWindowsPackage':package,'actualLocks':locks,'inputAdmissionSha256':s['inputAdmissionSha256'],'productAdmission':False,'scope':'Own Windows lock/build/unit/package/notices/current-advisory/SBOM tools only. Signed release, original nativeLinux/packaged16/SQL/runtime-oracles/five resource profiles and direct public delivery remain separately required.'})
+ admission(root,int(time.time()));lease(s);I.write(out/'worker-result.json',{'state':'OWN06_LOCAL_'+s['stage'].upper()+'_COMMANDS_PASSED','stage':s['stage'],'sourceCommit':s['commit'],'sourceTree':s['tree'],'SDKExecutions':3 if s['stage']=='locks' else 6 if s['stage']=='package' else 10,'reusedVerification':reused,'commandGroups':len(records),'nativeWindowsPackage':package,'actualLocks':locks,'inputAdmissionSha256':s['inputAdmissionSha256'],'productAdmission':False,'scope':'Own Windows lock/build/unit/package/notices/current-advisory/SBOM tools only. Signed release, original nativeLinux/packaged16/SQL/runtime-oracles/five resource profiles and direct public delivery remain separately required.'})
 
 def main(root,controller,argv):
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--local-windows-stage',choices=tuple(BUDGETS));p.add_argument('--local-build-worker',type=Path);p.add_argument('--expected-commit');a=p.parse_args(argv);root=Path(root);controller=Path(controller).resolve()
@@ -192,6 +210,7 @@ def main(root,controller,argv):
  need(a.local_windows_stage in BUDGETS and a.expected_commit and os.name=='nt','FINITE_LOCAL_WINDOWS_BUILD_ENTRY');need(not any(os.environ.get(k) for k in ('GITHUB_ACTIONS','GITHUB_RUN_ID','RUNNER_ENVIRONMENT')),'NO_CI_IMPERSONATION')
  def git(*args):return subprocess.check_output(['C:/Program Files/Git/cmd/git.exe','-C',str(root),*args],timeout=10,creationflags=0x08000000).decode().strip()
  head=git('rev-parse','HEAD');tree=git('rev-parse','HEAD^{tree}');need(head==a.expected_commit and not git('status','--porcelain=v1','--untracked-files=all'),'CLEAN_EXPECTED_LOCAL_STAGE_SOURCE');admission(root,int(time.time()))
+ if a.local_windows_stage=='package':prior_windows_verification(root)
  need(I.digest(I.FACT)==I.FACT_SHA and sys.version_info[:3]==(3,12,10) and I.digest(sys.executable)==I.read(I.FACT)['bootstrap']['pythonExeSha256'],'QUALIFIED_EXISTING_STAGE_BOOTSTRAP')
  need(I.digest(I.LEASE.with_name('LEASE-PROTOCOL.json'))==I.PROTOCOL_SHA,'CANONICAL_STAGE_PROTOCOL');j=I.load(root,'windows_qualification_job_local',I.HELPER_SHA)
  base=root.parents[1]/'state/execution-evidence/net11-local-build06';I.ordinary(base);base.mkdir(exist_ok=True);out=base/(a.local_windows_stage+'-'+secrets.token_hex(12));out.mkdir();identity=j._start_identity(os.getpid());token=secrets.token_hex(32);budget=seconds(a.local_windows_stage)

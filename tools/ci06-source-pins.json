@@ -152,7 +152,7 @@
     {
       "path": "docs/RELEASE-v0.1.0-preview.8.md",
       "mode": "100644",
-      "gitBlob": "74bc36076492d9d3f48772479e55db984b53ee03"
+      "gitBlob": "c14b774bd38510cd1e3d083fc1b44b4fabc97750"
     },
     {
       "path": "docs/RUNBOOK.md",
@@ -477,7 +477,7 @@
     {
       "path": "tools/local_build06.py",
       "mode": "100644",
-      "gitBlob": "8e6d657acb19bd080757202b83e8d2ba7c97133a"
+      "gitBlob": "6a4907a2b3666906fef0b023e68caf9a4564570b"
     },
     {
       "path": "tools/local_input06.py",
@@ -487,7 +487,7 @@
     {
       "path": "tools/local_linux_build06.py",
       "mode": "100644",
-      "gitBlob": "2d4afa6431e6061f49bc4b775ad1320591d30561"
+      "gitBlob": "c7a33135527509178a92f66f6f1a75412f83ff74"
     },
     {
       "path": "tools/local_sdk11_input.py",
@@ -837,7 +837,7 @@
     {
       "path": "tools/test_local_build06.py",
       "mode": "100644",
-      "gitBlob": "80944628048047f2b3d6ceccd350e4b86ae347da"
+      "gitBlob": "7f89f684756ca509b051d8c18f897861c0c9e3f1"
     },
     {
       "path": "tools/test_local_input06.py",

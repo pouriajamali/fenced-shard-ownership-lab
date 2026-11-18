@@ -67,7 +67,7 @@ def worker(root,controller,spec):
  ctx,sdk=context(root,controller,out,s,caps,held);fact=I.read(B.input_path(I.FACT.parent/'LOCAL-LINUX-HOST-FACT.json'));I.write(out/'current-native-dependency-bytes.json',retained_dependencies(sdk,fact));local=I.load(root,'local_sdk11_input',I.FACADE_SHA);receipt=local.inspect_sdk('linux-x64',sdk,ctx);I.write(out/'current-sdk-input.json',receipt);v=B.admission(root,int(time.time()));need(I.digest(root/B.MANIFEST)==s['inputAdmissionSha256'],'OWN_LINUX_ADMISSION_BYTES');config=B.prepare_feed(root,out,v);dotnet=sdk/'dotnet';cache=out/'cache';cache.mkdir();env=dict(OS_ENV)
  for key,name in [('DOTNET_CLI_HOME','home'),('NUGET_PACKAGES','packages'),('NUGET_HTTP_CACHE_PATH','http'),('NUGET_PLUGINS_CACHE_PATH','plugins'),('TEMP','tmp'),('TMP','tmp')]:
   p=cache/name;p.mkdir(exist_ok=True);env[key]=str(p)
- env.update(PATH=str(sdk)+':/usr/bin:/bin',TMPDIR=str(cache/'tmp'),DOTNET_ROOT=str(sdk),DOTNET_MULTILEVEL_LOOKUP='0',DOTNET_CLI_TELEMETRY_OPTOUT='1',DOTNET_GENERATE_ASPNET_CERTIFICATE='false',DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE='true',MSBuildEnableWorkloadResolver='false',DOTNET_CLI_USE_MSBUILD_SERVER='0',MSBUILDDISABLENODEREUSE='1',DOTNET_PROCESSOR_COUNT='2')
+ env.update(PATH=str(sdk)+':/usr/bin:/bin',TMPDIR=str(cache/'tmp'),DOTNET_ROOT=str(sdk),DOTNET_MULTILEVEL_LOOKUP='0',DOTNET_CLI_TELEMETRY_OPTOUT='1',DOTNET_GENERATE_ASPNET_CERTIFICATE='false',DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE='true',MSBuildEnableWorkloadResolver='false',DOTNET_CLI_USE_MSBUILD_SERVER='0',MSBUILDDISABLENODEREUSE='1',DOTNET_PROCESSOR_COUNT='2',DisableTransitiveFrameworkReferenceDownloads='true')
  import bounded_fixture as bounds
  from profile_limits import ResourceWatch,validate_resource_counters
  records=[];watch=ResourceWatch(caps)

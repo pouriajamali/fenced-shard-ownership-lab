@@ -9,7 +9,7 @@ def spec(stage='locks'):
 
 class LocalBuildBoundary(unittest.TestCase):
  def test_only_original_finite_stages_and_clocks(self):
-  for stage,limit in [('locks',600),('verify',900)]:
+  for stage,limit in [('locks',600),('verify',900),('package',900)]:
    self.assertEqual(B.seconds(stage),limit);B.validate_spec(spec(stage),200)
    v=spec(stage);v['endNs']+=1
    with self.assertRaises(RuntimeError):B.validate_spec(v,200)
@@ -198,5 +198,13 @@ class WindowsEnvironmentBinding(unittest.TestCase):
    env=B.windows_base_environment();call.assert_called_once()
   self.assertTrue(all(env[k]==v for k,v in allowed.items()));self.assertEqual(env['APPDATA'],values['APPDATA']);self.assertEqual(env['LOCALAPPDATA'],values['LOCALAPPDATA'])
   self.assertTrue(all(k not in env for k in ('GITHUB_TOKEN','HTTPS_PROXY','GITHUB_ACTIONS')));self.assertEqual(env['PYTHONUTF8'],'1')
+
+class RepackageBoundary(unittest.TestCase):
+ def test_application_or_validator_change_requires_fresh_verification(self):
+  B.repackage_changes(['tools/local_linux_build06.py','tools/local_build06.py'])
+  for name in ['src/Ownership/Fence.cs','Directory.Build.props','src/Ownership.Cli/packages.lock.json','tools/package.py','tools/notices.py','tools/test_verifier.py','vendor/notices/NOTICE-SOURCES.json']:
+   with self.assertRaisesRegex(RuntimeError,'APPLICATION_OR_VALIDATOR_SOURCE_CHANGED'):B.repackage_changes([name])
+ def test_package_only_plan_is_locked_and_does_not_replay_units(self):
+  rows=B.plan('package','sdk','config','packages','unit.xml');self.assertEqual(len(rows),1);self.assertEqual(rows[0][1:4],['restore',B.PROJECTS[2],'--locked-mode'])
 
 if __name__=='__main__':unittest.main()
