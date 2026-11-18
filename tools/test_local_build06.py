@@ -197,6 +197,6 @@ class WindowsEnvironmentBinding(unittest.TestCase):
   with patch.dict(B.os.environ,values,clear=True),patch.object(C,'validated_windows_machine_paths',return_value=allowed) as call:
    env=B.windows_base_environment();call.assert_called_once()
   self.assertTrue(all(env[k]==v for k,v in allowed.items()));self.assertEqual(env['APPDATA'],values['APPDATA']);self.assertEqual(env['LOCALAPPDATA'],values['LOCALAPPDATA'])
-  self.assertTrue(all(k not in env for k in ('GITHUB_TOKEN','HTTPS_PROXY','GITHUB_ACTIONS')))
+  self.assertTrue(all(k not in env for k in ('GITHUB_TOKEN','HTTPS_PROXY','GITHUB_ACTIONS')));self.assertEqual(env['PYTHONUTF8'],'1')
 
 if __name__=='__main__':unittest.main()

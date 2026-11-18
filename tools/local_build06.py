@@ -13,7 +13,7 @@ def windows_base_environment():
  # Same existing validated nonsecret machine paths as the original CI controller.
  from ci_pipeline import validated_windows_machine_paths
  names=('SystemRoot','WINDIR','COMSPEC','PATHEXT','USERPROFILE','APPDATA','LOCALAPPDATA')
- env={k:os.environ[k] for k in names if k in os.environ};env.update(validated_windows_machine_paths());env.update(PATH='C:/Windows/System32;C:/Windows',PYTHONDONTWRITEBYTECODE='1');return env
+ env={k:os.environ[k] for k in names if k in os.environ};env.update(validated_windows_machine_paths());env.update(PATH='C:/Windows/System32;C:/Windows',PYTHONDONTWRITEBYTECODE='1',PYTHONUTF8='1');return env
 
 def seconds(stage):
  need(stage in BUDGETS,'FINITE_LOCAL_STAGE');return BUDGETS[stage]
