@@ -11,3 +11,10 @@ The prior21/21 SDK0 context-value checks and five prior native control probes re
 ## Additive local Windows input route
 
 The explicit own06 input-only entry is wired through the existing ci_pipeline controller and tools/local_input06.py. It consumes the identical signed-local9fe8f25 facade, both full catalogs and the306e1d67 optional fixed detached Job helper. It has its own local-windows-input06 profile, contract and full tracked-source table. Producer04 controller/profile/sourcePins are not copied. The canonical lane is acquired atomically and released only for exact ownership after positive integer terminal population0. Original parent and held main identities bind the same60-second P0 clock; a smaller worker window retains cleanup time. No SDK target, package access, source mutation or service operation is exposed by this entry. Its live validation and current receipt are separate from the retained launch proof and from all product gates. The hosted API/frozen63e and62common files are unchanged. A current-input success does not close native crypto, graph/lock, tests or runtime gates.
+
+
+## Bounded local Windows lock/build stages
+
+The existing controller now exposes fixed local `locks` (600 seconds) and `verify` (900 seconds) dispatches through `tools/local_build06.py`. They preserve own held-main/current-source/4 GiB/CPU 2/64-task bindings, inherited child Jobs, canonical exact-owner release and terminal proof. The phase clock begins after atomic claim. The read-only Windows P0 remains a separate completed input observation.
+
+Execution is closed until the tracked `tools/local06-input-admission.json` contains reviewed actual producer04 cryptographic, normalized-hash, notice and current-advisory proofs for the exact 34 managed/test plus four Core/Host identities. The input contract itself admits no package. No such admission or actual net11 locks are supplied by this source change, and no SDK target, build, package, runtime test, Actions run or preview.8 binary release is claimed. Package/runtime/oracle/five-profile/signing and public-delivery gates remain separate.

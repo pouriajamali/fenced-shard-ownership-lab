@@ -1,0 +1,22 @@
+{
+  "schema": "sdk11-own-normal-input-profile/v1",
+  "state": "ADMITTED_SOURCE_PROFILE",
+  "projectId": "06",
+  "repository": "pouriajamali/fenced-shard-ownership-lab",
+  "rowSeconds": 900,
+  "memoryMaxBytes": 4294967296,
+  "tasksMax": 64,
+  "cpuCores": 2,
+  "swapMaxBytes": null,
+  "ownedJobPrefix": "Local\\ownership06-net11-build-",
+  "localInputRoute": {
+    "rid": "win-x64",
+    "role": "P3_WINDOWS_BUILD",
+    "phase": "P3",
+    "readOnlyExistingPool": true,
+    "authorityId": "01a1ea8f-e946-71b0-b4a7-40cd30723b0f",
+    "formalDotnet11Support": "NOT_CONFIRMED",
+    "qualifiedFactSha256": "841b508658a3a843f7d194b089b355b3e2e572873b4301349f3b545255086339"
+  },
+  "purpose": "Own bounded P2 lock generation600s or P3 Windows build/unit900s. Native inputs are admitted separately; no R06 SDK role or full product acceptance."
+}

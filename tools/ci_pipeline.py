@@ -9,6 +9,10 @@ if __name__=='__main__' and ('--local-windows-input' in sys.argv or '--local-inp
  from local_input06 import main as local_input_main
  raise SystemExit(local_input_main(ROOT,Path(__file__),sys.argv[1:]))
 
+if __name__=='__main__' and ('--local-windows-stage' in sys.argv or '--local-build-worker' in sys.argv):
+ from local_build06 import main as local_build_main
+ raise SystemExit(local_build_main(ROOT,Path(__file__),sys.argv[1:]))
+
 import bounded_actionlint as job
 import bounded_fixture as bounds
 from profile_limits import native_runtime,ResourceWatch,validate_resource_counters

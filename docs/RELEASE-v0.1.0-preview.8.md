@@ -11,3 +11,10 @@ The next executable stage requires an admitted own06 current host/input route, e
 After genuine new native tests/packages and unchanged oracle checks, the established signing/direct-publication and exact source/tag/public gates remain required, provided no operation triggers Actions. Until then [preview.7](RELEASE-v0.1.0-preview.7.md) is the accepted immutable release; it is not replaced or repacked by this preparation.
 
 The local facade/catalogs are supplied by the base66-file0ab12264 manifest plus the signed-local9fe8f25 facade/document delta; the optional306e1d67 local launch helper is additional byte-identical source. Only source/profile/contract/pins owned by06 may bind the current input. The P0 input check uses60seconds/4GiB/CPU2/64 including terminal reserve and never activates SDK targets. Native Windows Core/Host crypto, managed graph/locks and all original tests/runtime/signature/publication checks remain required. R06 stays binary-only and independently paired; producer04 qualification is reused only as SDK-byte history.
+
+
+## Bounded local Windows lock/build stages
+
+The existing controller now exposes fixed local `locks` (600 seconds) and `verify` (900 seconds) dispatches through `tools/local_build06.py`. They preserve own held-main/current-source/4 GiB/CPU 2/64-task bindings, inherited child Jobs, canonical exact-owner release and terminal proof. The phase clock begins after atomic claim. The read-only Windows P0 remains a separate completed input observation.
+
+Execution is closed until the tracked `tools/local06-input-admission.json` contains reviewed actual producer04 cryptographic, normalized-hash, notice and current-advisory proofs for the exact 34 managed/test plus four Core/Host identities. The input contract itself admits no package. No such admission or actual net11 locks are supplied by this source change, and no SDK target, build, package, runtime test, Actions run or preview.8 binary release is claimed. Package/runtime/oracle/five-profile/signing and public-delivery gates remain separate.

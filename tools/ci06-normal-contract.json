@@ -113,5 +113,28 @@
     ],
     "producerDeliveryAtIntake": "SIGNED_LOCAL_9FE; remote branch observed306e, no claim9fe public handoff/delivery.",
     "sourceChildPolicy": "Fixed Windows local Git detached/Unicode; frozen62 W.git unchanged."
+  },
+  "localProductRoute": {
+    "controller": "tools/local_build06.py",
+    "profile": "profiles/local-windows-build06.json",
+    "inputContract": "tools/local06-input-contract.json",
+    "mandatoryActualAdmission": "tools/local06-input-admission.json (not supplied before real proof review)",
+    "stages": {
+      "locks": {
+        "seconds": 600,
+        "SDKCommands": 3,
+        "purpose": "One actual generation per named project; no hand-labelled locks"
+      },
+      "verify": {
+        "seconds": 900,
+        "SDKCommands": 5,
+        "purpose": "Three locked restores then original50-unit run and CLI build; remaining package/runtime gates separate"
+      }
+    },
+    "clock": "Execution clock begins immediately after successful atomic own canonical claim; waiting is outside that clock. Whole phase includes terminal/release reserve.",
+    "Actions": 0,
+    "SDKExecutionsObserved": 0,
+    "inputAdmission": "PENDING_PRODUCER04_ACTUAL_PROOFS",
+    "productAdmission": false
   }
 }

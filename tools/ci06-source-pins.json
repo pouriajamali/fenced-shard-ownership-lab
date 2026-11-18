@@ -62,7 +62,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "0e040f264b9e60adb7e2f31ecb92c15b93a6aa5f"
+      "gitBlob": "20970d77e4efdae83f41b3ec9b91b5b9e9af2540"
     },
     {
       "path": "SIGNING-PUBLIC-KEY.pub",
@@ -87,7 +87,7 @@
     {
       "path": "docs/CI-HOST-ROUTE-PREPARATION.md",
       "mode": "100644",
-      "gitBlob": "4bf7815373c9e6b4d86fae95083b1cbd37e4ee4d"
+      "gitBlob": "fc933ccec5ed1a3a8e4e3ecf3c5022368b0ddc47"
     },
     {
       "path": "docs/CI-POLICY.md",
@@ -152,7 +152,7 @@
     {
       "path": "docs/RELEASE-v0.1.0-preview.8.md",
       "mode": "100644",
-      "gitBlob": "c70d7173ab729a9a8d7bf4153f629c605edfc147"
+      "gitBlob": "fb55a35696f450b1eb9c71c373060f15587d9f3c"
     },
     {
       "path": "docs/RUNBOOK.md",
@@ -203,6 +203,11 @@
       "path": "profiles/ci06-normal-input-profile.json",
       "mode": "100644",
       "gitBlob": "ac52fe2ad63734c21d1fb62c34ebee302e79899a"
+    },
+    {
+      "path": "profiles/local-windows-build06.json",
+      "mode": "100644",
+      "gitBlob": "7f689c9c342294d6c6a859b42667aea6d64ae184"
     },
     {
       "path": "profiles/local-windows-input06.json",
@@ -372,7 +377,7 @@
     {
       "path": "tools/ci06-normal-contract.json",
       "mode": "100644",
-      "gitBlob": "22cc3d7aa1ca133b50b27f5f723e9437b628dd4e"
+      "gitBlob": "30601d84ba0d733547f3baf754f6e5237438a578"
     },
     {
       "path": "tools/ci_linux_sdk.py",
@@ -382,7 +387,7 @@
     {
       "path": "tools/ci_pipeline.py",
       "mode": "100644",
-      "gitBlob": "4ebc3f431379c1a7dc319bdd5c21e6d2f1f95634"
+      "gitBlob": "952386d1861bc4d48b9c87b470be2b21dd4ab1fc"
     },
     {
       "path": "tools/ci_restore_failure_facts.py",
@@ -453,6 +458,16 @@
       "path": "tools/linux_host.py",
       "mode": "100644",
       "gitBlob": "02d460a3f82d81eb5f974694e9773f304c103a07"
+    },
+    {
+      "path": "tools/local06-input-contract.json",
+      "mode": "100644",
+      "gitBlob": "744ce0b9a64d425ec095b20398062ff86d6fd38c"
+    },
+    {
+      "path": "tools/local_build06.py",
+      "mode": "100644",
+      "gitBlob": "c450e1233ee5ccd23cc278c3e88b76c7dd47984d"
     },
     {
       "path": "tools/local_input06.py",
@@ -803,6 +818,11 @@
       "path": "tools/test_fixture_resources.py",
       "mode": "100644",
       "gitBlob": "9c934c6f09a704268794778d24c8a863f051c346"
+    },
+    {
+      "path": "tools/test_local_build06.py",
+      "mode": "100644",
+      "gitBlob": "9a9fdab9fba62a5381d04859516e04c1b0a5972a"
     },
     {
       "path": "tools/test_local_input06.py",
