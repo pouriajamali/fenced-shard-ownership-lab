@@ -127,8 +127,8 @@
       },
       "verify": {
         "seconds": 900,
-        "SDKCommands": 5,
-        "purpose": "Three locked restores then original50-unit run and CLI build; remaining package/runtime gates separate"
+        "SDKCommands": 10,
+        "purpose": "Three locked restores, original50 units and CLI build; original package.py, receipt oracles in both optimization modes, notices/verifier/advisory/SBOM tools under same900s Job. Package restore explicitly uses the admitted local feed and own package root. Linux/runtime/signing/public delivery remain separate."
       }
     },
     "clock": "Execution clock begins immediately after successful atomic own canonical claim; waiting is outside that clock. Whole phase includes terminal/release reserve.",

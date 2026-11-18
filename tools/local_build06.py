@@ -95,6 +95,23 @@ def graph(root,admitted):
 def unit_count(path):
  tree=ET.parse(path);assemblies=[n for n in tree.iter('assembly')];need(assemblies and sum(int(n.get('total','0')) for n in assemblies)==50 and sum(int(n.get('failed','0'))+int(n.get('errors','0'))+int(n.get('skipped','0')) for n in assemblies)==0,'ORIGINAL41_PLUS9_ALL_PASS')
 
+def post_verify(root,out,commit,dotnet,config,cache,run):
+ # Original verify tools/oracles, under this same own Job and original phase clock.
+ py=lambda name,*args:[sys.executable,'-B',str(root/'tools'/name),*map(str,args)]
+ run(py('test_receipt_oracle.py','--out',out/'receipt-oracle-normal'),extra={'PYTHONOPTIMIZE':'0'})
+ run(py('test_receipt_oracle.py','--out',out/'receipt-oracle-optimized'),extra={'PYTHONOPTIMIZE':'1'})
+ run(py('package.py','--rid','win-x64','--commit',commit,'--work',out/'build','--out',out/'delivery','--dotnet',dotnet,'--restore-config',config,'--packages',cache/'packages'))
+ run(py('test_notices.py','--out',out/'notices-tests'));run(py('test_verifier.py','--out',out/'verifier-tests'))
+ run(py('audit_dependencies.py','--dotnet',dotnet,'--out',out/'dependency-advisories.json'))
+ archives=list((out/'delivery').iterdir());need(len(archives)==1 and archives[0].is_file() and archives[0].suffix=='.zip','ONE_NATIVE_WINDOWS_ARCHIVE')
+ run(py('extract_package.py','--archive',archives[0],'--out',out/'extracted with spaces'))
+ folders=list((out/'extracted with spaces').iterdir());need(len(folders)==1 and folders[0].is_dir(),'ONE_NATIVE_PACKAGE_ROOT');package=folders[0]
+ run(py('check_package.py','--package',package,'--commit',commit,'--out',out/'package-checks.json'))
+ rec=run([str(dotnet),'nuget','locals','global-packages','--list']);location=Path(rec['evidence'])/'stdout.log';text=location.read_text(encoding='utf-8-sig').strip();need(text.startswith('global-packages: ') and Path(text[len('global-packages: '):].strip()).resolve()==(cache/'packages').resolve(),'ACTUAL_OWN_NUGET_ARCHIVES')
+ run(py('check_sbom_archives.py','--package',package,'--nuget-root',cache/'packages','--out',out/'sbom-archive-checks.json'))
+ run(py('test_sbom_archives.py','--out',out/'sbom-regressions'))
+ return {'archive':str(archives[0]),'sha256':I.digest(archives[0]),'package':str(package),'gate':'WINDOWS_ORIGINAL_PACKAGE_NOTICES_ADVISORY_SBOM_VERIFIERS_PASS','runtimeAcceptance':False}
+
 def worker(root,controller,path):
  need(os.name=='nt','STAGE_WINDOWS_ONLY');s=I.read(path);validate_spec(s,time.monotonic_ns());need(Path(s['checkout']).resolve()==root.resolve() and s['controllerSha256']==I.digest(controller),'STAGE_EXACT_SOURCE')
  out=path.parent;need(out.parent==root.parents[1]/'state/execution-evidence/net11-local-build06' and str(out)==s['receiptDirectory'],'OWN_STAGE_DIRECTORY');lease(s);j=I.load(root,'windows_qualification_job_local',I.HELPER_SHA)
@@ -105,15 +122,18 @@ def worker(root,controller,path):
  env.update(PATH=str(dotnet.parent)+';C:/Program Files/Git/cmd;C:/Windows/System32;C:/Windows',DOTNET_ROOT=str(dotnet.parent),DOTNET_MULTILEVEL_LOOKUP='0',DOTNET_CLI_TELEMETRY_OPTOUT='1',DOTNET_GENERATE_ASPNET_CERTIFICATE='false',DOTNET_CLI_WORKLOAD_UPDATE_NOTIFY_DISABLE='true',MSBuildEnableWorkloadResolver='false',DOTNET_CLI_USE_MSBUILD_SERVER='0',MSBUILDDISABLENODEREUSE='1',DOTNET_PROCESSOR_COUNT='2',PYTHONDONTWRITEBYTECODE='1')
  from bounded_fixture import workspace_limit
  commands=plan(s['stage'],dotnet,config,cache/'packages',out/'unit.xml');records=[]
- for i,argv in enumerate(commands,1):
+ def run(argv,extra=None):
   lease(s);workspace_limit([out,root/'artifacts',root/'src',root/'tests']);need(time.monotonic_ns()<s['endNs']-30*10**9,'ORIGINAL_STAGE_CLEANUP_RESERVE')
-  deadline=min(j.tick()+300000,j.tick()+(s['endNs']-time.monotonic_ns())//1000000-30000)
-  records.append(j.run_job(argv,root,env,deadline,out/('command-'+str(i).zfill(2)),inherited_job_name=s['jobName']))
-  workspace_limit([out,root/'artifacts',root/'src',root/'tests'])
+  deadline=min(j.tick()+300000,j.tick()+(s['endNs']-time.monotonic_ns())//1000000-30000);folder=out/('command-'+str(len(records)+1).zfill(2));local=dict(env);local.update(extra or {})
+  rec=j.run_job(argv,root,local,deadline,folder,inherited_job_name=s['jobName']);rec['evidence']=str(folder);records.append(rec)
+  workspace_limit([out,root/'artifacts',root/'src',root/'tests']);return rec
+ for i,argv in enumerate(commands,1):
+  run(argv)
   if s['stage']=='verify' and i==3:graph(root,v)
- locks=graph(root,v)
- if s['stage']=='verify':unit_count(out/'unit.xml')
- admission(root,int(time.time()));lease(s);I.write(out/'worker-result.json',{'state':'OWN06_LOCAL_'+s['stage'].upper()+'_COMMANDS_PASSED','stage':s['stage'],'sourceCommit':s['commit'],'sourceTree':s['tree'],'SDKExecutions':len(records),'actualLocks':locks,'inputAdmissionSha256':s['inputAdmissionSha256'],'productAdmission':False,'scope':'Bounded lock/build/unit step only. Package, signatures, original packaged16/SQL/oracles/five resource profiles and direct public delivery still require their original gates.'})
+ locks=graph(root,v);package=None
+ if s['stage']=='verify':
+  unit_count(out/'unit.xml');package=post_verify(root,out,s['commit'],dotnet,config,cache,run)
+ admission(root,int(time.time()));lease(s);I.write(out/'worker-result.json',{'state':'OWN06_LOCAL_'+s['stage'].upper()+'_COMMANDS_PASSED','stage':s['stage'],'sourceCommit':s['commit'],'sourceTree':s['tree'],'SDKExecutions':3 if s['stage']=='locks' else 10,'commandGroups':len(records),'nativeWindowsPackage':package,'actualLocks':locks,'inputAdmissionSha256':s['inputAdmissionSha256'],'productAdmission':False,'scope':'Own Windows lock/build/unit/package/notices/current-advisory/SBOM tools only. Signed release, original nativeLinux/packaged16/SQL/runtime-oracles/five resource profiles and direct public delivery remain separately required.'})
 
 def main(root,controller,argv):
  p=argparse.ArgumentParser(description=__doc__);p.add_argument('--local-windows-stage',choices=tuple(BUDGETS));p.add_argument('--local-build-worker',type=Path);p.add_argument('--expected-commit');a=p.parse_args(argv);root=Path(root);controller=Path(controller).resolve()

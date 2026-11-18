@@ -93,4 +93,27 @@ class ProducerProofBoundary(unittest.TestCase):
     p.write_text(json.dumps({'packages':rows}));x['verificationReceiptSha256']=B.I.digest(p)
     with self.assertRaisesRegex(RuntimeError,'EXACT_PRODUCER_PACKAGE_PROOF'):B.producer_record(x)
 
+
+class PackageRestoreBoundary(unittest.TestCase):
+ def test_existing_restore_default_and_local_pair_required(self):
+  import package as P
+  self.assertEqual(P.restore_command('dotnet'),['dotnet','restore','src/Ownership.Cli/Ownership.Cli.csproj','--locked-mode'])
+  with tempfile.TemporaryDirectory() as d:
+   config=Path(d)/'with spaces'/'NuGet.Config';packages=Path(d)/'own packages'
+   self.assertEqual(P.restore_command('sdk',config,packages)[-4:],['--configfile',str(config),'--packages',str(packages)])
+   for a,b in [(config,None),(None,packages),(Path('relative'),packages),(config,Path('relative'))]:
+    with self.assertRaises(ValueError):P.restore_command('sdk',a,b)
+ def test_foreign_global_package_cache_blocks_final_package_gate(self):
+  with tempfile.TemporaryDirectory() as d:
+   root=Path(d);out=root/'out';out.mkdir();cache=out/'cache';calls=[]
+   def run(argv,extra=None):
+    calls.append(argv);folder=out/('command-'+str(len(calls)));folder.mkdir()
+    if len(argv)>2 and Path(argv[2]).name=='package.py':
+     (out/'delivery').mkdir();(out/'delivery'/'native.zip').write_bytes(b'unit-test-only-placeholder')
+    if len(argv)>2 and Path(argv[2]).name=='extract_package.py':(out/'extracted with spaces'/'native').mkdir(parents=True)
+    if 'nuget' in argv:(folder/'stdout.log').write_text('global-packages: '+str(root/'foreign-cache'))
+    return {'evidence':str(folder)}
+   with self.assertRaisesRegex(RuntimeError,'ACTUAL_OWN_NUGET_ARCHIVES'):B.post_verify(root,out,'source','sdk',out/'config',cache,run)
+   self.assertFalse(any('check_sbom_archives.py' in ' '.join(x) for x in calls))
+
 if __name__=='__main__':unittest.main()

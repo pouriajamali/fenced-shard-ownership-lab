@@ -27,17 +27,26 @@ def runtime_notice_record(records,runtime_id):
     require(record.get('license')=='MIT' and type(record.get('copyright')) is str and bool(record['copyright']), 'Actual Core11 license/copyright identity is required')
     return record
 
+def restore_command(dotnet,config=None,packages=None):
+    require((config is None)==(packages is None),'Local restore config and package root must be supplied together')
+    argv=[dotnet,'restore','src/Ownership.Cli/Ownership.Cli.csproj','--locked-mode']
+    if config is not None:
+        require(Path(config).is_absolute() and Path(packages).is_absolute(),'Local restore inputs must be absolute')
+        argv+=['--configfile',str(config),'--packages',str(packages)]
+    return argv
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     for name in ['commit','rid','work','out']:parser.add_argument('--'+name,required=True)
-    parser.add_argument('--dotnet',default='dotnet');parser.add_argument('--local-candidate',action='store_true');a=parser.parse_args()
+    parser.add_argument('--dotnet',default='dotnet');parser.add_argument('--local-candidate',action='store_true');parser.add_argument('--restore-config',type=Path);parser.add_argument('--packages',type=Path);a=parser.parse_args()
+    restore=restore_command(a.dotnet,a.restore_config,a.packages)
     require(a.rid in ['win-x64','linux-x64'] and git('rev-parse','HEAD')==a.commit, 'Validation failed: package.py:14')
     require(not git('status','--porcelain'), 'Exact clean source required')
     if not a.local_candidate:require(platform.system()==('Windows' if a.rid=='win-x64' else 'Linux'), 'Public build OS must match RID')
     runtime_notice=runtime_notice_record(json.loads((ROOT/'vendor/notices/NOTICE-SOURCES.json').read_text()),'Microsoft.NETCore.App.Runtime.'+a.rid)
     work=Path(a.work).resolve();work.mkdir(parents=True,exist_ok=False);out=Path(a.out).resolve();out.mkdir(parents=True,exist_ok=True)
     published=work/'published';log=work/'build.log'
-    commands=[[a.dotnet,'restore','src/Ownership.Cli/Ownership.Cli.csproj','--locked-mode'],
+    commands=[restore,
       [a.dotnet,'publish','src/Ownership.Cli/Ownership.Cli.csproj','-c','Release','-r',a.rid,'--self-contained','true','--no-restore',
        '-p:RuntimeFrameworkVersion=11.0.0','-p:PublishTrimmed=false','-p:PublishAot=false','-p:PublishReadyToRun=false',
        '-p:DebugType=None','-p:DebugSymbols=false','-p:SourceRevisionId='+a.commit,'-o',str(published)]]

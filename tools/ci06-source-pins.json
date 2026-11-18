@@ -62,7 +62,7 @@
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "20970d77e4efdae83f41b3ec9b91b5b9e9af2540"
+      "gitBlob": "1e6a87c060449fd739c22ecab44e30c539f35f5c"
     },
     {
       "path": "SIGNING-PUBLIC-KEY.pub",
@@ -87,7 +87,7 @@
     {
       "path": "docs/CI-HOST-ROUTE-PREPARATION.md",
       "mode": "100644",
-      "gitBlob": "fc933ccec5ed1a3a8e4e3ecf3c5022368b0ddc47"
+      "gitBlob": "5dc5d0ce748d3d2adaec98828cc16245dd48b553"
     },
     {
       "path": "docs/CI-POLICY.md",
@@ -152,7 +152,7 @@
     {
       "path": "docs/RELEASE-v0.1.0-preview.8.md",
       "mode": "100644",
-      "gitBlob": "fb55a35696f450b1eb9c71c373060f15587d9f3c"
+      "gitBlob": "bed284e882ed84a6953cdf13bc345f306180874e"
     },
     {
       "path": "docs/RUNBOOK.md",
@@ -377,7 +377,7 @@
     {
       "path": "tools/ci06-normal-contract.json",
       "mode": "100644",
-      "gitBlob": "30601d84ba0d733547f3baf754f6e5237438a578"
+      "gitBlob": "fa5f8f35150d93c3ad8f013aaf8d70f628ae6b50"
     },
     {
       "path": "tools/ci_linux_sdk.py",
@@ -467,7 +467,7 @@
     {
       "path": "tools/local_build06.py",
       "mode": "100644",
-      "gitBlob": "c450e1233ee5ccd23cc278c3e88b76c7dd47984d"
+      "gitBlob": "1c8387bdc813546e97f3b4de48a7744003a7d3ac"
     },
     {
       "path": "tools/local_input06.py",
@@ -497,7 +497,7 @@
     {
       "path": "tools/package.py",
       "mode": "100644",
-      "gitBlob": "fc8823ccd4cf00d254a1487244661330dec526f4"
+      "gitBlob": "2abcd18f4facfd40f66fce8fa4739c7847d02b66"
     },
     {
       "path": "tools/prepare_linux.py",
@@ -822,7 +822,7 @@
     {
       "path": "tools/test_local_build06.py",
       "mode": "100644",
-      "gitBlob": "9a9fdab9fba62a5381d04859516e04c1b0a5972a"
+      "gitBlob": "14da2e8772c02e575db46a44be463de8c7f176e3"
     },
     {
       "path": "tools/test_local_input06.py",
