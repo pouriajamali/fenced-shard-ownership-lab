@@ -3,7 +3,7 @@
   "state": "PRODUCER04_PROOFS_REVIEWED_OWN06_INPUTS_ADMITTED",
   "projectId": "06",
   "repository": "pouriajamali/fenced-shard-ownership-lab",
-  "inputContractSha256": "9b8f1ab246c29238e939dcbe51edd959012f8fadc7f1086524ef8e3b826fed05",
+  "inputContractSha256": "77209ce9dfed8e7cad9a3388100f90cb55d358db011c3a4c289a13eee4d6f244",
   "producerSource": {
     "commit": "ebe8358b3abed35cbf5881276df8278f5c8f3f50",
     "tree": "a3df3df9f2065bf888108eccb7502ec892f614a5"
