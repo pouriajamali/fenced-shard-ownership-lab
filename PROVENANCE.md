@@ -8,9 +8,9 @@ SHA256:AgU5bZlJSjUu0KsWMmVEEr+BfXpcMVNroTA33bHcQdU
 
 Confirm it through a previously trusted checkout or independent maintainer channel. A key and fingerprint downloaded together are not independent identity proof. The private key is never distributed. Signed Git commits/annotated tags, exact-source archives, manifests, signed SHA256SUMS.txt and public-key assets are the provenance boundary. An unsigned checksum alone does not authenticate a release.
 
-The preview.7 release provides all six assets. Downloaded bytes and the known-key SSH signature were verified; the examples below select that same explicit release.
+The preview.8 release provides all six assets. Downloaded bytes and the known-key SSH signature were verified; the examples below select that same explicit release.
 
-After downloading the source archive, SHA256SUMS.txt, SHA256SUMS.txt.sig and SIGNING-PUBLIC-KEY.pub from the [same explicit release](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.7), run tools/verify_downloads.py from a trusted checkout. Do not execute a newly downloaded verification script before establishing that trust.
+After downloading the source archive, SHA256SUMS.txt, SHA256SUMS.txt.sig and SIGNING-PUBLIC-KEY.pub from the [same explicit release](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.8), run tools/verify_downloads.py from a trusted checkout. Do not execute a newly downloaded verification script before establishing that trust.
 
 ## PowerShell
 
@@ -19,8 +19,8 @@ From a fresh directory, using a previously trusted checkout's tools/verify_downl
 ```powershell
 $ErrorActionPreference = 'Stop'
 $repo = 'pouriajamali/fenced-shard-ownership-lab'
-$tag = 'v0.1.0-preview.7'
-$archive = 'fenced-shard-ownership-lab-v0.1.0-preview.7-source.zip'
+$tag = 'v0.1.0-preview.8'
+$archive = 'fenced-shard-ownership-lab-v0.1.0-preview.8-source.zip'
 foreach ($name in @($archive, 'SHA256SUMS.txt', 'SHA256SUMS.txt.sig', 'SIGNING-PUBLIC-KEY.pub')) {
     Invoke-WebRequest -Uri "https://github.com/$repo/releases/download/$tag/$name" -OutFile $name
 }
@@ -32,8 +32,8 @@ if ($LASTEXITCODE -ne 0) { throw 'Provenance verification failed' }
 
 ```sh
 repo='pouriajamali/fenced-shard-ownership-lab'
-tag='v0.1.0-preview.7'
-archive='fenced-shard-ownership-lab-v0.1.0-preview.7-source.zip'
+tag='v0.1.0-preview.8'
+archive='fenced-shard-ownership-lab-v0.1.0-preview.8-source.zip'
 for name in "$archive" SHA256SUMS.txt SHA256SUMS.txt.sig SIGNING-PUBLIC-KEY.pub; do
   curl --fail --location --output "$name" "https://github.com/$repo/releases/download/$tag/$name" || exit 1
 done
@@ -46,9 +46,15 @@ Trust-boundary validation uses explicit exceptions, not Python assertions, and r
 
 GitHub build provenance attestations supplement this key-based verification when available. They do not establish a SLSA level, reproducible builds, exclusive ownership, safety, Windows Authenticode, exchange certification or production suitability. Original code uses MIT; upstream licenses and attribution remain independent. No existing release/tag/asset is overwritten.
 
-## Preview.7 publication and verification boundary
+## Preview.8 publication and verification boundary
 
-The links/examples above select the published [v0.1.0-preview.7 release](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.7) and its six verified assets. Runtime tag source is `bff39cd89822ceba07fce68c4dcdbf5819f09254`; documentation-only main revisions have a separate SHA. [CI43372419271 attempt1](https://github.com/pouriajamali/fenced-shard-ownership-lab/actions/runs/43372419271) succeeded on that runtime source. The archived README/source remains the tested build-time snapshot; current repository docs and release notes supply later availability status. The tested archives and historical tags/assets/signatures are unchanged.
+[Preview.8](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.8) binds signed source `fd935815bcb11dda722957bc0b4dc3a00b3a5312`, native Windows/Linux archives and the exact193-blob Git source ZIP. All six actual public downloads matched the four-entry signed checksums and independently trusted fingerprint above. Signature namespace is `file`, principal `pouriajamali`; the public key remains112 bytes. Both original16-case/21-SQL-snapshot/five-effect scenarios passed locally with unchanged resource/terminal controls.50 unit results perOS are reused only at byte-identical app source, as detailed in release notes.
+
+No Actions or new CI attestation was produced. Archived documentation remains its tested build-time snapshot. Later documentation-only main revisions do not repack those immutable bytes. Preview.7 values and CI observations below remain historical.
+
+## Historical preview.7 publication and verification boundary
+
+The historical published release was [v0.1.0-preview.7 release](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.7) and its six verified assets. Runtime tag source is `bff39cd89822ceba07fce68c4dcdbf5819f09254`; documentation-only main revisions have a separate SHA. [CI43372419271 attempt1](https://github.com/pouriajamali/fenced-shard-ownership-lab/actions/runs/43372419271) succeeded on that runtime source. The archived README/source remains the tested build-time snapshot; current repository docs and release notes supply later availability status. The tested archives and historical tags/assets/signatures are unchanged.
 
 The new signed `SHA256SUMS.txt` has exactly four entries: the three unchanged native/source CI archives and `SIGNING-PUBLIC-KEY.pub`. It is459 UTF-8/LF bytes with SHA256 `898aa935a4969b3ee51fa5490e55c77b9a8e55144cefa53cb1c04192ade86d4b`. Signature namespace is `file`, principal `pouriajamali`, using the independently trusted fingerprint above. Signature/self checksums are not entries. The downloadable public key is112 bytes/LF. The owner private key is never distributed.
 

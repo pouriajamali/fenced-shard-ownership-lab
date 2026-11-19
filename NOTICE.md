@@ -22,9 +22,9 @@ producer-proofs/vulndb-*. No upstream endorsement is claimed.
 The copied etcd audit records in vendor/etcd-admission also retain Go Vulnerability Database CC-BY-4.0 data. Their complete original license and source/selection/analysis attribution are bundled as vendor/notices/GO-VULNDB-LICENSE.txt and vendor/notices/VULNDB-ATTRIBUTION.txt. In the separate serving ZIP these same notices live under notices/. The original seven proof files and admitted image remain byte-identical; adding these disclosures performs no new audit or security certification.
 
 
-CI build-tool boundary: corrective Windows verification may privately stage the exact official .NET SDK 10.0.404 ZIP. Its full original SDK license and third-party notice files are retained and byte-checked in that private SDK tree before the first SDK target. The SDK is not installed globally, bundled with this application, cached, uploaded or publicly redistributed. Application Core runtime notices remain separately included under vendor/notices. Archive SHA identity is not a code-signature or general security certification.
+Historical preview.7 CI build-tool boundary: corrective Windows verification may privately stage the exact official .NET SDK 10.0.404 ZIP. Its full original SDK license and third-party notice files are retained and byte-checked in that private SDK tree before the first SDK target. The SDK is not installed globally, bundled with this application, cached, uploaded or publicly redistributed. Application Core runtime notices remain separately included under vendor/notices. Archive SHA identity is not a code-signature or general security certification.
 
-Proposed Linux CI build-tool boundary: the preview.5 draft may privately stage
+Historical preview.5 proposed Linux CI build-tool boundary: the preview.5 draft may privately stage
 the exact official .NET SDK10.0.404 Linux tar.gz only after a separate execution
 gate. All ten full original SDK license/third-party notice files must be
 byte-verified before SDK target creation and retained in the private SDK tree.
@@ -32,3 +32,7 @@ The source lock catalogs identities, not redistributed SDK notice substitutes.
 The SDK is not installed globally, bundled with the application, cached, uploaded
 or publicly redistributed. Application runtime15 notices and their byte maps
 remain unchanged. Raw digest identity is not a vendor signature or security claim.
+
+## Preview.8 SDK11 and Core11 boundary
+
+Read-only qualified SDK11 pools retain full original SDK notices and are not bundled or redistributed by this release. Each native archive ships11 managed components plus one Core11.0.0 runtime, with actual full original license/copyright and runtime third-party notices. Retained17 managed mappings plus two RID runtime mappings are reviewed source data; they do not imply17 managed components ship after framework pruning. DEPENDENCIES.json and the checked SBOM define the actual shipped graph. Raw signed NuGet SHA512 stays separate from normalized restore identity. SDK10 CI notes above describe historical releases.

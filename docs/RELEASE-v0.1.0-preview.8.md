@@ -1,4 +1,29 @@
-# v0.1.0-preview.8 - delivery in progress, unpublished
+# v0.1.0-preview.8 - published signed native Windows/Linux preview
+
+[Release and six verified downloads](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.8). Signed source `fd935815bcb11dda722957bc0b4dc3a00b3a5312`, tree `064e2f32c9619842f5b8f7724d0d2930cd9fd806`. SDK11.0.100 / net11.0 / C#15.0 / self-contained Core11.0.0. All actual public downloads match the signed four-entry checksums and independently trusted ED25519 key. No Actions, CI-PASS status or new CI attestation was produced.
+
+Final Windows412-file and Linux413-file archives passed original manifest, full license/copyright, advisory-at-build and raw NuGet/SBOM checks. Each actual packaged16-case scenario checked21 independent SQL snapshots, five unique effects and total165. Native Linux completed in77.900seconds within its original1080-second/4GiB/CPU2/128-task/swap0 profile. Windows with existing WSL completed in91.625seconds within original1200-second paired1GiB/CPU1/16 +3GiB/CPU1/48/swap0. Positive actual terminals and exact canonical release were observed with no new task denial/OOM.
+
+Original50 C# units perOS passed at unchanged application blobs (Windows48d7ec8; Linux6e24ca8). Their actual completed results were reused for pure Git metadata adapters; both final archives were rebuilt and checked from exact source above.32 changed-input guards passed in three optimization modes. PerOS original signature verifier8 tests/27 scenarios, notice4 and SBOM4 regressions passed. The original prepared fixture command passed once; its final metadata timeout remains globalHOLD, and a separate bounded current-source observation finalized those identity-bound inputs without another download or recipe execution. All original five budget profiles and semantic/receipt checks remain.
+
+P8 aggregation, exact193-blob source ZIP, four-entry SUMS, known-key signature and signed local tag completed in10.297seconds within150seconds. Public HTTPS transfer was separate from the closed SDK/runtime/signing phases. Completed assets were reused; no original execution cap, security/protection setting, key, historical release or producer-owned SDK byte changed.
+
+These are local Windows26H2 x64 and Ubuntu24.04 WSL2 x64 observations, not general/formal Windows.NET11 support, production HA, performance or security certification. Archives retain build-time documentation; later repository notes report publication availability.
+
+## Verified public assets
+
+| Asset | SHA256 |
+| --- | --- |
+| [fenced-shard-ownership-lab-v0.1.0-preview.8-linux-x64.tar.gz](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.8/fenced-shard-ownership-lab-v0.1.0-preview.8-linux-x64.tar.gz) | `7a7f9dbc1ff1158cc97a4a20de731a91f349d3a45b89a8315f9a6f050d088cd1` |
+| [fenced-shard-ownership-lab-v0.1.0-preview.8-source.zip](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.8/fenced-shard-ownership-lab-v0.1.0-preview.8-source.zip) | `ecce8d7c423a065ad5f80c88f01997c4f1abf1540efc6303410f9f25d78bd723` |
+| [fenced-shard-ownership-lab-v0.1.0-preview.8-win-x64.zip](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.8/fenced-shard-ownership-lab-v0.1.0-preview.8-win-x64.zip) | `089b0b5e1f48e3445c93b028c56342b66afc8fc0e3e37c57d7892ff52883cd4e` |
+| [SHA256SUMS.txt](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.8/SHA256SUMS.txt) | `80334a0190f81359d1ec38bb769df85fa6e7d6c0d009420d14f812f090a8d041` |
+| [SHA256SUMS.txt.sig](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.8/SHA256SUMS.txt.sig) | `18c572c37813b46d1fdf7a074c66b823d73cc1564b86e97636e6db9f7466c7c4` |
+| [SIGNING-PUBLIC-KEY.pub](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.8/SIGNING-PUBLIC-KEY.pub) | `a59fbecc53a0b3109212b70a3a51247dbd3529512d189ac2462a27a057dad671` |
+
+## Historical preparation snapshots (superseded)
+
+The following entries preserve their original earlier states; the completed delivery above is current.
 
 ## Current observed state, 2026-11-18
 

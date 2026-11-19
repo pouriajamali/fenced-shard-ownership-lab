@@ -3,7 +3,7 @@
   "documentationDate": "2026-11-10",
   "project": "Fenced Shard Ownership Lab",
   "repository": "https://github.com/pouriajamali/fenced-shard-ownership-lab",
-  "scope": "AI-assisted original synthetic local laboratory; documentation refresh, no runtime test or benchmark rerun",
+  "scope": "Historical preview.2 architecture evidence below retains its original boundaries. currentLocalDelivery separately records the completed preview.8 local release.",
   "runtime": {
     "tag": "v0.1.0-preview.2",
     "commit": "ea35e6a664931b1972c348796a9b7edae9e51378",
@@ -186,5 +186,71 @@
     "Real adoption or team-management history",
     "Performance superiority"
   ],
-  "reproductionBoundary": "Use exact runtime tag/source and fresh local outputs; CI artifact retention and timing reproducibility are not guaranteed; current documentation main can differ from runtime source"
+  "reproductionBoundary": "Use exact runtime tag/source and fresh local outputs; CI artifact retention and timing reproducibility are not guaranteed; current documentation main can differ from runtime source",
+  "currentLocalDelivery": {
+    "date": "2026-11-18",
+    "tag": "v0.1.0-preview.8",
+    "sourceCommit": "fd935815bcb11dda722957bc0b4dc3a00b3a5312",
+    "sourceTree": "064e2f32c9619842f5b8f7724d0d2930cd9fd806",
+    "signedTagObject": "35d3798354f1cd60f1b1a46fb8d2b666d74f2535",
+    "releaseUrl": "https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.8",
+    "assets": [
+      {
+        "id": 765399302,
+        "name": "fenced-shard-ownership-lab-v0.1.0-preview.8-linux-x64.tar.gz",
+        "bytes": 42694220,
+        "sha256": "7a7f9dbc1ff1158cc97a4a20de731a91f349d3a45b89a8315f9a6f050d088cd1",
+        "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.8/fenced-shard-ownership-lab-v0.1.0-preview.8-linux-x64.tar.gz"
+      },
+      {
+        "id": 765399304,
+        "name": "fenced-shard-ownership-lab-v0.1.0-preview.8-source.zip",
+        "bytes": 5406806,
+        "sha256": "ecce8d7c423a065ad5f80c88f01997c4f1abf1540efc6303410f9f25d78bd723",
+        "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.8/fenced-shard-ownership-lab-v0.1.0-preview.8-source.zip"
+      },
+      {
+        "id": 765399301,
+        "name": "fenced-shard-ownership-lab-v0.1.0-preview.8-win-x64.zip",
+        "bytes": 44985737,
+        "sha256": "089b0b5e1f48e3445c93b028c56342b66afc8fc0e3e37c57d7892ff52883cd4e",
+        "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.8/fenced-shard-ownership-lab-v0.1.0-preview.8-win-x64.zip"
+      },
+      {
+        "id": 765375332,
+        "name": "SHA256SUMS.txt",
+        "bytes": 459,
+        "sha256": "80334a0190f81359d1ec38bb769df85fa6e7d6c0d009420d14f812f090a8d041",
+        "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.8/SHA256SUMS.txt"
+      },
+      {
+        "id": 765375237,
+        "name": "SHA256SUMS.txt.sig",
+        "bytes": 294,
+        "sha256": "18c572c37813b46d1fdf7a074c66b823d73cc1564b86e97636e6db9f7466c7c4",
+        "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.8/SHA256SUMS.txt.sig"
+      },
+      {
+        "id": 765375013,
+        "name": "SIGNING-PUBLIC-KEY.pub",
+        "bytes": 112,
+        "sha256": "a59fbecc53a0b3109212b70a3a51247dbd3529512d189ac2462a27a057dad671",
+        "url": "https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.8/SIGNING-PUBLIC-KEY.pub"
+      }
+    ],
+    "ActionsRuns": 0,
+    "CIStatus": "NOT_RUN_BY_EXPLICIT_INSTRUCTION",
+    "nativePlatforms": [
+      "win-x64",
+      "linux-x64"
+    ],
+    "actualPackagedCasesPerPlatform": 16,
+    "independentSqlSnapshotsPerPlatform": 21,
+    "effectsPerScenario": 5,
+    "fixedScenarioTotal": 165,
+    "unitsPerOS": 50,
+    "unitReuseBoundary": "Unchanged app/SQL/locks/targets: Windows48d7ec8, Linux6e24ca8. Both finalfd archives rebuilt and checked after metadata-only Git adapters.",
+    "publicDownloadVerification": "All six actual public assets checked against known-key signed four-entry SUMS.",
+    "limits": "Local synthetic tested host scope only; no general/formal Windows.NET11 support, production HA, performance or security certification."
+  }
 }

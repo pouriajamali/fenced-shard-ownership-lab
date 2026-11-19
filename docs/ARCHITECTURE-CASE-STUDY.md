@@ -1,5 +1,7 @@
 # Fenced Shard Ownership Lab: architecture case study
 
+Publication update,18 November2026: [preview.8](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.8) is the current signed Windows/Linux .NET11 release at `fd935815bcb11dda722957bc0b4dc3a00b3a5312`. Both packaged16-case/21-SQL-snapshot/five-effect scenarios passed locally under original resource/terminal controls; no Actions was run. The architecture edition and frozen preview.2 evidence below remain historical. Current delivery is separate in [the evidence index](FLAGSHIP-EVIDENCE.json).
+
 Documentation edition: 10 November 2026. Original synthetic/local work prepared with AI assistance for Pouria Jamali. This is a selected architecture-and-evidence review, not an exhaustive code or security audit.
 
 Runtime: [`v0.1.0-preview.2`](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.2) at `ea35e6a664931b1972c348796a9b7edae9e51378`. The later documentation branch does not replace that runtime identity.

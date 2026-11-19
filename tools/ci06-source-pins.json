@@ -47,7 +47,7 @@
     {
       "path": "NOTICE.md",
       "mode": "100644",
-      "gitBlob": "6dd037f69be8503b4df526d724114a7bdc8db658"
+      "gitBlob": "e4b84220acb0e5dbe89bed9dc91b68d39592aec7"
     },
     {
       "path": "NuGet.Config",
@@ -57,12 +57,12 @@
     {
       "path": "PROVENANCE.md",
       "mode": "100644",
-      "gitBlob": "a3641d50fc45421fe8d12b8f0331b231414c52bc"
+      "gitBlob": "dc4c9fa1b46d764b1bd4b72b44902673e7babc1a"
     },
     {
       "path": "README.md",
       "mode": "100644",
-      "gitBlob": "4ece55041d4552476f38275f708c9778647b2bf0"
+      "gitBlob": "ec4aea6973ae12d948096270aaab2892fda27a18"
     },
     {
       "path": "SIGNING-PUBLIC-KEY.pub",
@@ -82,7 +82,7 @@
     {
       "path": "docs/ARCHITECTURE-CASE-STUDY.md",
       "mode": "100644",
-      "gitBlob": "f1dedf3794916291c31c4cc48c0d64eb039dfcd1"
+      "gitBlob": "aa168ec27fe1ddaafe3216444511bccdc9e92c84"
     },
     {
       "path": "docs/CI-HOST-ROUTE-PREPARATION.md",
@@ -112,7 +112,7 @@
     {
       "path": "docs/FLAGSHIP-EVIDENCE.json",
       "mode": "100644",
-      "gitBlob": "c161d46cd2b3a764327b42dd86de544b9d777efb"
+      "gitBlob": "4caee75f982da97f4357fb19fd2a8f7b2d7158c6"
     },
     {
       "path": "docs/RELEASE-v0.1.0-preview.1.md",
@@ -152,7 +152,7 @@
     {
       "path": "docs/RELEASE-v0.1.0-preview.8.md",
       "mode": "100644",
-      "gitBlob": "6ba48ebcf65971f19b08778355083f09472b7cb5"
+      "gitBlob": "17dc724cda42917e4c62efd81ac66fde30c6f28f"
     },
     {
       "path": "docs/RUNBOOK.md",
