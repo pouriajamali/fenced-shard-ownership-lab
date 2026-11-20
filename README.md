@@ -4,32 +4,37 @@ A small C#/.NET lab that makes a stale-writer failure reproducible: pause one wo
 
 Synthetic, local and single-machine only. No exchange, market data, orders, account credentials, strategy, production HA or speed claim.
 
+## Smallest runnable example
+
+Get the [signed preview.8 release](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.8): [Windows x64](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.8/fenced-shard-ownership-lab-v0.1.0-preview.8-win-x64.zip) or [Linux x64](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/download/v0.1.0-preview.8/fenced-shard-ownership-lab-v0.1.0-preview.8-linux-x64.tar.gz). [Verify its provenance](PROVENANCE.md) with an independently trusted key before execution, then extract it and open the package directory. The [exact runtime source](https://github.com/pouriajamali/fenced-shard-ownership-lab/tree/fd935815bcb11dda722957bc0b4dc3a00b3a5312) is separate from later README edits.
+
+Windows PowerShell:
+
+```powershell
+.\ownership.exe --help
+.\ownership.exe --version
+```
+
+Linux shell:
+
+```sh
+./ownership --help
+./ownership --version
+```
+
+Expected: `--help` prints usage beginning `Ownership Lab: acquire` and the literal-loopback boundary. `--version` prints one JSON object with `product` equal to `fenced-shard-ownership-lab` and a `version` containing `0.1.0-preview.8` and the runtime source commit above. Both commands are offline and need no installed .NET SDK, database, etcd or Python.
+
+For the full stale-writer/retry scenario, see [the named failures and expected outcomes](#start-with-the-failure) and [the current runbook](docs/RUNBOOK.md). It additionally needs Python 3.12, existing Ubuntu 24.04 (WSL on Windows), separately pinned service fixtures and enforced process limits. Its expected final receipt has five unique synthetic effects and total 165, with the stale write rejected and the retry returning its original receipt. Those are fixture invariants, not a benchmark.
+
 ## Architecture review
 
-Read the [architecture case study](docs/ARCHITECTURE-CASE-STUDY.md) for the decision, rejected alternatives, failure examples, frozen-release evidence and short English/Persian introductions. Follow the [30-minute four-project review](https://github.com/pouriajamali/trading-execution-lab/blob/main/docs/FLAGSHIP-REVIEW.md) for a guided discussion. The [evidence index](docs/FLAGSHIP-EVIDENCE.json) separates runtime/tag CI from later documentation commits.
+Read the [architecture case study](docs/ARCHITECTURE-CASE-STUDY.md) for the decision, rejected alternatives, failure examples, frozen-release evidence and short English/Persian introductions. Its 10 November 2026 edition and preview.2 evidence remain historical; [preview.8 changes and current delivery evidence](docs/RELEASE-v0.1.0-preview.8.md) describe the current .NET 11 release. Follow the [30-minute four-project review](https://github.com/pouriajamali/trading-execution-lab/blob/main/docs/FLAGSHIP-REVIEW.md) for a guided discussion. The [evidence index](docs/FLAGSHIP-EVIDENCE.json) separates runtime/tag CI from later documentation commits.
 
 ## Current release: 0.1.0-preview.8
 
-[Signed Windows/Linux release](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.8) uses SDK11.0.100, net11.0, stable C#15.0 and self-contained Core11.0.0. Runtime source is [`fd935815bcb11dda722957bc0b4dc3a00b3a5312`](https://github.com/pouriajamali/fenced-shard-ownership-lab/tree/fd935815bcb11dda722957bc0b4dc3a00b3a5312); tree is `064e2f32c9619842f5b8f7724d0d2930cd9fd806`. All six public assets were downloaded and checked against the signed four-entry checksums and independently trusted key.
+The [signed Windows/Linux release](https://github.com/pouriajamali/fenced-shard-ownership-lab/releases/tag/v0.1.0-preview.8) uses SDK 11.0.100, net11.0, C# 15.0 and self-contained Core 11.0.0. Its exact runtime source is [`fd935815bcb11dda722957bc0b4dc3a00b3a5312`](https://github.com/pouriajamali/fenced-shard-ownership-lab/tree/fd935815bcb11dda722957bc0b4dc3a00b3a5312), tree `064e2f32c9619842f5b8f7724d0d2930cd9fd806`; later documentation commits do not change those packages.
 
-Both final native archives passed manifest, full original license/copyright, advisory-at-build and raw NuGet/SBOM checks. Each actual packaged16-case scenario passed21 independent SQL snapshots, five unique synthetic effects and total165. Windows ran its native binary with the existing WSL services; native Linux used the original explicit128-task profile. All original fencing/idempotency/receipt rules and actual kernel/terminal controls remain.
-
-The50 C# units passed perOS at byte-identical application source (Windows48d7ec8; Linux6e24ca8). Completed results were reused while final metadata-only Git namespace adapters rebuilt and checked both exact archives.32 changed-input guards passed in normal, -O and PYTHONOPTIMIZE modes. Original signature verifier8 tests/27 scenarios passed perOS. [Delivery notes](docs/RELEASE-v0.1.0-preview.8.md) distinguish actual execution, reused evidence and historical failures.
-
-No GitHub Actions, CI-PASS status or new CI attestation was produced. These are local Windows26H2 x64 and Ubuntu24.04 WSL2 x64 observations; they do not establish general/formal Windows.NET11 support, production HA, performance or security certification. Archives retain their tested build-time documentation snapshot; current repository notes provide later publication status.
-
-## SDK11 input and original resource boundary
-
-Producer04 owns the shared SDK. Its exact38 package proofs (34 managed/test plus four Core/Host11) and read-only qualified pools were consumed under own06 current source, held-process, actual-cap and original-deadline bindings. Three real net11/both-RID locks are committed. No SDK qualification was replayed and no global SDK-ready claim follows. Direct pins remain Npgsql10.0.3, OpenTelemetry1.20.1 and xUnit4.0.3.
-
-| Actual role | Memory / CPU / processes or tasks |
-| --- | --- |
-| Windows build and Linux build/prepare | 4GiB / 2CPU / 64; Linux swap0 |
-| Explicit native Linux packaged16 | 4GiB / 2CPU / 128; swap0 |
-| Windows paired binary | 1GiB / 1CPU / 16 |
-| Existing WSL paired services | 3GiB / 1CPU / 48; swap0 |
-
-SDK calls stay in the bounded input/build route; the paired scenario is binary-only. Phase clocks begin after atomic canonical claim, with positive actual owned Job/service terminal and exact release. Original five SDK-free profile observations remain separately scoped history.
+Each final packaged scenario passed 16 cases and 21 independent SQL snapshots, ending with five unique synthetic effects and total 165. These are local Windows 26H2 x64 and Ubuntu 24.04 WSL2 x64 observations. [Delivery notes](docs/RELEASE-v0.1.0-preview.8.md) retain the exact test-source/reuse boundaries, SDK input proofs, resource profiles, historical failures and six verified downloads. No Actions, CI-PASS status or new CI attestation was produced; no general/formal Windows .NET 11 support, production HA, performance or security certification follows. Archives retain their tested build-time documentation snapshot.
 
 ## Historical preview.7 publication
 
@@ -69,14 +74,7 @@ Earlier [preview.1](https://github.com/pouriajamali/fenced-shard-ownership-lab/r
 
 The native CLI does not require an installed .NET SDK. Python 3.12 and existing Ubuntu 24.04/Linux are needed for the full demo; Windows uses an existing `Ubuntu-24.04` WSL distribution for the servers. No Docker daemon, package installation or paid service is required by this path. The fixture archives are downloaded separately and checksum-pinned.
 
-First inspect the package:
-
-```powershell
-.\ownership.exe --help
-.\ownership.exe --version
-```
-
-Linux uses `./ownership` for those commands. Both help/version are offline. See [PROVENANCE.md](PROVENANCE.md) to verify source/tag and archive signatures. Git provenance is separate from Windows Authenticode or production suitability.
+Use the [offline example above](#smallest-runnable-example) to inspect the package. See [PROVENANCE.md](PROVENANCE.md) to verify source/tag and archive signatures. Git provenance is separate from Windows Authenticode or production suitability.
 
 The server commands below describe frozen historical preview.2 only. They are not current preview.8 reproduction commands. For current-source work, follow [the fixture build contract](docs/ETCD-FIXTURE-BUILD.md) and [the runbook](docs/RUNBOOK.md): preparation and integration require actual aggregate kernel limits before execution. Windows integration additionally requires a bounded native Job and a fresh `--service-unit`. Bare historical commands do not supply those current-source limits. Offline CLI help/version remain separate.
 

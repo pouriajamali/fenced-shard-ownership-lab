@@ -10,6 +10,23 @@ P8 aggregation, exact193-blob source ZIP, four-entry SUMS, known-key signature a
 
 These are local Windows26H2 x64 and Ubuntu24.04 WSL2 x64 observations, not general/formal Windows.NET11 support, production HA, performance or security certification. Archives retain build-time documentation; later repository notes report publication availability.
 
+## SDK11 input and original resource boundary
+
+Producer04 owns the shared SDK. Its exact38 package proofs (34 managed/test plus four Core/Host11) and read-only qualified pools were consumed under own06 current source, held-process, actual-cap and original-deadline bindings. Three real net11/both-RID locks are committed. No SDK qualification was replayed and no global SDK-ready claim follows. Direct pins remain Npgsql10.0.3, OpenTelemetry1.20.1 and xUnit4.0.3.
+
+| Actual role | Memory / CPU / processes or tasks |
+| --- | --- |
+| Windows build and Linux build/prepare | 4GiB / 2CPU / 64; Linux swap0 |
+| Explicit native Linux packaged16 | 4GiB / 2CPU / 128; swap0 |
+| Windows paired binary | 1GiB / 1CPU / 16 |
+| Existing WSL paired services | 3GiB / 1CPU / 48; swap0 |
+
+SDK calls stay in the bounded input/build route; the paired scenario is binary-only. Phase clocks begin after atomic canonical claim, with positive actual owned Job/service terminal and exact release. Original five SDK-free profile observations remain separately scoped history.
+
+## Documentation update, 20 November 2026
+
+The README now presents the existing offline CLI example and expected output before release history, links the historical architecture edition to current release evidence, and keeps SDK/resource maintenance detail here. Documentation only: runtime source, version, tags, binaries, checksums and signatures are unchanged; no tests, builds, downloads or release were repeated.
+
 ## Verified public assets
 
 | Asset | SHA256 |
